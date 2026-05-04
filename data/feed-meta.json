@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-05-04T19:39:29Z",
-  "commit": "ddcd70b",
+  "generatedAt": "2026-05-04T20:37:30Z",
+  "commit": "9cab704",
   "feeds": {
-    "kev": { "generatedAt": "2026-05-04T19:39:29Z" },
-    "patchmypc": { "generatedAt": "2026-05-04T19:39:29Z" },
-    "zdi": { "generatedAt": "2026-05-04T19:39:29Z" }
+    "kev": { "generatedAt": "2026-05-04T20:37:30Z" },
+    "patchmypc": { "generatedAt": "2026-05-04T20:37:30Z" },
+    "zdi": { "generatedAt": "2026-05-04T20:37:30Z" }
   }
 }
