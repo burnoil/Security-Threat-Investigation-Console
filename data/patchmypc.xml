@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 30 Apr 2026 09:51:19 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 05 May 2026 12:43:05 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,256 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>WSUS URLs redirect to HTTPS when HSTS is enabled</title>
+		<link>https://patchmypc.com/kb/wsus-urls-redirect-to-https-when-hsts-is-enabled/</link>
+					<comments>https://patchmypc.com/kb/wsus-urls-redirect-to-https-when-hsts-is-enabled/#respond</comments>
+		
+		<dc:creator><![CDATA[Ben Whitmore]]></dc:creator>
+		<pubDate>Tue, 05 May 2026 12:43:04 +0000</pubDate>
+				<category><![CDATA[Knowledge Base]]></category>
+		<category><![CDATA[443 Redirect]]></category>
+		<category><![CDATA[HSTS]]></category>
+		<category><![CDATA[HTTP 404]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=183824</guid>
+
+					<description><![CDATA[<p>WSUS content URLs may redirect from HTTP port 8530 to HTTPS port 443 when HSTS is enabled or cached for the WSUS host name. This article explains the symptoms, cause, verification steps, and how to clear cached HSTS state on affected clients.</p>
+<p>The post <a href="https://patchmypc.com/kb/wsus-urls-redirect-to-https-when-hsts-is-enabled/">WSUS URLs redirect to HTTPS when HSTS is enabled</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<h2 class="wp-block-heading" id="h-overview">Overview</h2>
+
+
+
+<p>WSUS content URLs may redirect from HTTP port 8530 to HTTPS port 443 when HSTS is enabled or cached for the WSUS host name.</p>
+
+
+
+<p>This can affect direct access to WSUS content files, such as CAB files, and may prevent expected HTTP access to WSUS content.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-symptoms">Symptoms</h2>
+
+
+
+<p>When browsing to a WSUS content URL over HTTP, the browser redirects the request to HTTPS on port 443 e.g: <code>http://&lt;WSUSServer>:8530/Content/&lt;ContentPath>.cab</code></p>
+
+
+
+<p>The issue may also occur when browsing to the WSUS anonymous check file. e.g: <code>http://&lt;WSUSServer>:8530/content/anonymousCheckFile.txt</code></p>
+
+
+
+<p>The redirect may only occur when the Default Web Site has an HTTPS binding on port 443.</p>
+
+
+
+<p>Instead of the intended WSUS content being downloaded, or the expected WSUS test file being displayed, the browser may return an HTTP 404 error. This can occur because the browser is redirected to the Default Web Site on port 443, where the WSUS content file does not exist.</p>
+
+
+
+<p>For example, the browser may try to access content from the Default Web Site content directory, which is typically <code>C:\inetpub\wwwroot\</code></p>
+
+
+
+<p>The requested WSUS content file would not normally exist in that location <code>C:\inetpub\wwwroot\Content\&lt;ContentPath>.cab</code></p>
+
+
+
+<h2 class="wp-block-heading" id="h-cause">Cause</h2>
+
+
+
+<p>This behavior can occur when HSTS is enabled on the WSUS Administration site.</p>
+
+
+
+<p>After a browser receives and caches the HSTS instruction, future HTTP requests to that host name are automatically changed to HTTPS by the browser.</p>
+
+
+
+<p>Disabling HSTS in IIS prevents new clients from receiving the HSTS instruction. However, clients that already cached HSTS may continue forcing HTTPS until the local HSTS state is cleared or expires.</p>
+
+
+
+<p>Use these steps to determine whether the redirect is caused by active HSTS on the server or cached HSTS on the client.</p>
+
+
+
+<h3 class="wp-block-heading">Confirm the server configuration</h3>
+
+
+
+<ol class="wp-block-list">
+<li>Confirm that the WSUS Administration site is bound to HTTP port 8530 and HTTPS port 8531.</li>
+
+
+
+<li>Confirm that HSTS is disabled on the WSUS Administration site, the Default Web Site, and any other IIS site using the same host name.</li>
+
+
+
+<li>Confirm that there are no IIS redirect rules in the WSUS Administration site or Default Web Site.</li>
+
+
+
+<li>Confirm that no custom response headers are configured that add the <code>Strict-Transport-Security</code> header.</li>
+</ol>
+
+
+
+<h3 class="wp-block-heading" id="h-test-from-an-affected-client-or-server">Test from an affected client or server</h3>
+
+
+
+<ol class="wp-block-list">
+<li>Browse to the WSUS content URL from the affected client e.g: <code>http://&lt;WSUSServer>:8530/content/anonymousCheckFile.txt </code></li>
+</ol>
+
+
+
+<ol start="2" class="wp-block-list">
+<li>If the request still redirects to HTTPS after HSTS has been disabled in IIS, the client may have cached HSTS state.</li>
+
+
+
+<li>Clear the local browser HSTS state for the WSUS host name.</li>
+
+
+
+<li>Clear the browser cache.</li>
+
+
+
+<li>Close and reopen the browser.</li>
+
+
+
+<li>Test the same URL again.</li>
+</ol>
+
+
+
+<h3 class="wp-block-heading" id="h-test-from-a-clean-client">Test from a clean client</h3>
+
+
+
+<ol class="wp-block-list">
+<li>Use a different client that has not previously browsed to the WSUS host name.</li>
+
+
+
+<li>Browse to the same WSUS content URL. e.g: <code>http://&lt;WSUSServer>:8530/content/anonymousCheckFile.txt</code></li>
+</ol>
+
+
+
+<ol start="3" class="wp-block-list">
+<li>If both clients still redirect, review IIS bindings, redirect rules and custom response headers.</li>
+
+
+
+<li>If the clean client works but the affected client redirects, the issue is likely cached HSTS state on the affected client.</li>
+
+
+
+<li>If both clients redirect after HSTS is disabled and the browser cache is cleared, confirm that HSTS is disabled on the WSUS Administration site, the Default Web Site, and any other IIS site using the same host name.</li>
+</ol>
+
+
+
+<h2 class="wp-block-heading" id="h-resolution">Resolution</h2>
+
+
+
+<p>Disable HSTS where HTTP access to WSUS content is required, then clear the cached HSTS state on affected clients.</p>
+
+
+
+<h3 class="wp-block-heading">Disable HSTS in IIS</h3>
+
+
+
+<ol class="wp-block-list">
+<li>Open IIS Manager.</li>
+
+
+
+<li>Select the affected IIS site (typically the WSUS Administration site).</li>
+
+
+
+<li>Open the HSTS settings.</li>
+
+
+
+<li>Clear the HSTS options.</li>
+
+
+
+<li>Set the max age value to <code>0</code>.</li>
+
+
+
+<li>Clear Enable.</li>
+
+
+
+<li>Select OK.</li>
+</ol>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img fetchpriority="high" decoding="async" width="1001" height="520" src="https://patchmypc.com/app/uploads/2026/05/image-1.png" alt="Disable HSTS in IIS" class="wp-image-183832" style="aspect-ratio:1.9250856421659956;width:869px;height:auto" srcset="https://patchmypc.com/app/uploads/2026/05/image-1.png 1001w, https://patchmypc.com/app/uploads/2026/05/image-1-300x156.png 300w, https://patchmypc.com/app/uploads/2026/05/image-1-768x399.png 768w" sizes="(max-width: 1001px) 100vw, 1001px" /></figure>
+
+
+
+<h3 class="wp-block-heading">Clear cached HSTS state in Microsoft Edge</h3>
+
+
+
+<ol class="wp-block-list">
+<li>Open Microsoft Edge.</li>
+
+
+
+<li>Browse to the following page. <code>edge://net-internals/#hsts</code></li>
+</ol>
+
+
+
+<ol start="3" class="wp-block-list">
+<li>In the Delete domain security policies section, enter the WSUS host name or parent domain.</li>
+
+
+
+<li>Select Delete.</li>
+
+
+
+<li>Clear the browser cache.</li>
+
+
+
+<li>Close and reopen Microsoft Edge.</li>
+
+
+
+<li>Browse to the WSUS content URL again.</li>
+</ol>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img decoding="async" width="759" height="438" src="https://patchmypc.com/app/uploads/2026/05/image.png" alt="Clear HSTS Cache" class="wp-image-183831" style="aspect-ratio:1.732902857550569;width:653px;height:auto" srcset="https://patchmypc.com/app/uploads/2026/05/image.png 759w, https://patchmypc.com/app/uploads/2026/05/image-300x173.png 300w" sizes="(max-width: 759px) 100vw, 759px" /></figure>
+<p>The post <a href="https://patchmypc.com/kb/wsus-urls-redirect-to-https-when-hsts-is-enabled/">WSUS URLs redirect to HTTPS when HSTS is enabled</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/kb/wsus-urls-redirect-to-https-when-hsts-is-enabled/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>The Autopilot profile doesn’t decide if a device is corporate</title>
 		<link>https://patchmypc.com/blog/the-autopilot-profile-doesnt-decide-if-a-device-is-corporate/</link>
 					<comments>https://patchmypc.com/blog/the-autopilot-profile-doesnt-decide-if-a-device-is-corporate/#respond</comments>
@@ -49,7 +299,7 @@
 
 
 
-<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="294" src="https://patchmypc.com/app/uploads/2026/04/image-29-1024x294.png" alt="" class="wp-image-182832" srcset="https://patchmypc.com/app/uploads/2026/04/image-29-1024x294.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-29-300x86.png 300w, https://patchmypc.com/app/uploads/2026/04/image-29-768x221.png 768w, https://patchmypc.com/app/uploads/2026/04/image-29.png 1433w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="294" src="https://patchmypc.com/app/uploads/2026/04/image-29-1024x294.png" alt="" class="wp-image-182832" srcset="https://patchmypc.com/app/uploads/2026/04/image-29-1024x294.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-29-300x86.png 300w, https://patchmypc.com/app/uploads/2026/04/image-29-768x221.png 768w, https://patchmypc.com/app/uploads/2026/04/image-29.png 1433w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
@@ -1318,219 +1568,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-1-114-0-released/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Why an “Hourly” Intune Remediation Doesn’t Run Within the First Hour</title>
-		<link>https://patchmypc.com/blog/why-an-hourly-intune-remediation-doesnt-run-within-the-first-hour/</link>
-					<comments>https://patchmypc.com/blog/why-an-hourly-intune-remediation-doesnt-run-within-the-first-hour/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Wed, 01 Apr 2026 08:09:43 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=178120</guid>
-
-					<description><![CDATA[<p>Many assume an Intune hourly remediation runs within the first hour after assignment. In reality, the first execution depends on when the device retrieves the policy.</p>
-<p>The post <a href="https://patchmypc.com/blog/why-an-hourly-intune-remediation-doesnt-run-within-the-first-hour/">Why an “Hourly” Intune Remediation Doesn’t Run Within the First Hour</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p><strong>An hourly remediation</strong> sounds straightforward: assign it, and it should run sometime within the next hour. But when looking closer at how the Intune Management Extension evaluates remediation schedules, the behavior turns out to be very different. In this blog, I will walk through what really happens on existing devices and why the first execution depends on<strong> policy retrieval</strong> events rather than on the <strong>one-hour interval.</strong></p>
-
-
-
-<h2 class="wp-block-heading" id="h-introduction-to-the-hourly-remediations">Introduction to the Hourly Remediations</h2>
-
-
-
-<p>Some time ago, I wrote a blog explaining why Intune <strong><a href="https://patchmypc.com/blog/intune-powershell-script-delay-here-is-what-really-causes-it/">PowerShell scripts always appear with a delay</a></strong>. The key takeaway from that article was simple: the Intune Management Extension does not receive a push when scripts are assigned. Instead, the agent periodically pulls workloads from the Intune service. If the device has not yet retrieved the workload that contains the script, nothing happens yet.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="286" src="https://patchmypc.com/app/uploads/2026/03/image-44.png" alt="powershell workload timer in the ime determines when it should run the hourly remediations" class="wp-image-178127" srcset="https://patchmypc.com/app/uploads/2026/03/image-44.png 624w, https://patchmypc.com/app/uploads/2026/03/image-44-300x138.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>That design explains why PowerShell scripts sometimes appear delayed on devices. It also explains another misconception I hear quite often. When administrators create a<strong> <a href="https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/remediations">remediation with an</a></strong><a href="https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/remediations"> <strong>hourly schedule</strong></a>, many assume the device will wait up to one hour before running the remediation for the first time. In other words, the expectation usually looks like this:</p>
-
-
-
-<p><strong>Hourly Remediation assigned</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>Device waits up to one hour</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>First execution</strong></p>
-
-
-
-<p>That sounds logical. But it is not how the Intune Management Extension actually behaves. On already-enrolled devices, an hourly remediation is not performed within the first hour after assignment. The first execution is triggered by policy retrieval events such as <strong>user sign-in</strong>, <strong>device restart</strong>, <strong>IME restart</strong>, or the <strong>periodic workload cycle, NOT</strong> by the <strong>one-hour interval</strong> itself.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="82" src="https://patchmypc.com/app/uploads/2026/03/image-7.jpg" alt="powershell workload is also triggered when the user logs on" class="wp-image-178121" srcset="https://patchmypc.com/app/uploads/2026/03/image-7.jpg 624w, https://patchmypc.com/app/uploads/2026/03/image-7-300x39.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<h2 class="wp-block-heading" id="h-the-real-first-trigger-is-policy-retrieval-not-the-hourly-remediation-interval">The real first trigger is policy retrieval, not the hourly Remediation interval</h2>
-
-
-
-<p>To understand why this happens, it helps to revisit the architecture discussed in the <strong><a href="https://patchmypc.com/blog/intune-powershell-script-delay-here-is-what-really-causes-it">earlier blog about PowerShell script delays</a></strong>.  </p>
-
-
-
-<p><strong>A small summary for people who didn&#8217;t read the blog above: </strong>The Intune Management Extension does NOT receive push notifications when PowerShell scripts or remediations are assigned. Instead, it retrieves workloads from the service at specific moments. Because of that design, remediation scripts only appear on the device when the extension retrieves the workload that contains them. For remediation scripts, policy retrieval typically happens when one of the following events occurs:</p>
-
-
-
-<ul class="wp-block-list">
-<li><strong>the user signs in</strong></li>
-
-
-
-<li><strong>the Intune Management Extension service restarts</strong> (<strong>the device restarts</strong>)</li>
-
-
-
-<li><strong>the periodic remediation policy retrieval cycle runs (every eight hours)</strong></li>
-</ul>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="314" src="https://patchmypc.com/app/uploads/2026/03/image-45-1024x314.png" alt="powershell workload triggered on session change" class="wp-image-178128" srcset="https://patchmypc.com/app/uploads/2026/03/image-45-1024x314.png 1024w, https://patchmypc.com/app/uploads/2026/03/image-45-300x92.png 300w, https://patchmypc.com/app/uploads/2026/03/image-45-768x236.png 768w, https://patchmypc.com/app/uploads/2026/03/image-45.png 1215w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>This means that assigning a remediation does not immediately trigger execution. The device must first retrieve the specific policy that contains the PowerShell remediation.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-what-happens-when-the-hourly-remediation-policy-arrives">What happens when the hourly remediation policy arrives</h2>
-
-
-
-<p>Once the remediation policy appears on the device, the scheduler determines whether to run the remediation.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="766" height="239" src="https://patchmypc.com/app/uploads/2026/03/image-40.png" alt="hourly remediations schedule" class="wp-image-178124" srcset="https://patchmypc.com/app/uploads/2026/03/image-40.png 766w, https://patchmypc.com/app/uploads/2026/03/image-40-300x94.png 300w" sizes="(max-width: 766px) 100vw, 766px" /></figure>
-
-
-
-<p>At that moment, the Intune Management Extension checks whether the remediation has already been executed. If no execution history exists yet, the scheduler allows the remediation to run immediately. So the logic effectively looks like this:</p>
-
-
-
-<p><strong>Remediation policy retrieved</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>Scheduler evaluates remediation</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>No previous execution found</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>Run remediation immediately</strong></p>
-
-
-
-<p>This is the key point: the scheduler is <strong>not waiting for one hour to pass</strong>. It simply checks whether the remediation has already been executed. If the answer is no, the remediation runs right away.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-what-this-means-for-already-enrolled-devices">What this means for already enrolled devices</h2>
-
-
-
-<p>On a device that has already been enrolled for some time, the first execution therefore depends entirely on when the device retrieves the remediation policy. The sequence typically looks like this:</p>
-
-
-
-<p><strong>Admin assigns remediation</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>Device retrieves workloads</strong><br>(user sign-in / restart / IME restart / periodic retrieval)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>Remediation policy appears on the device</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>Scheduler evaluates remediation</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>No previous execution found</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>Remediation executes immediately</strong></p>
-
-
-
-<p>So the device does <strong>not wait one hour</strong> before executing the remediation. Instead, the remediation runs the moment the device processes the remediation policy for the first time. Only after that first execution has taken place does the hourly interval begin to matter.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-what-happens-during-enrollment"><strong>What happens during enrollment</strong></h2>
-
-
-
-<p>Enrollment behaves slightly differently because the Intune Management Extension is installed during the enrollment process. Once the extension is installed and the service starts, it immediately begins retrieving workloads assigned to the device.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="931" height="208" src="https://patchmypc.com/app/uploads/2026/03/image-42.png" alt="timerinterval set for hourly remediations" class="wp-image-178125" srcset="https://patchmypc.com/app/uploads/2026/03/image-42.png 931w, https://patchmypc.com/app/uploads/2026/03/image-42-300x67.png 300w, https://patchmypc.com/app/uploads/2026/03/image-42-768x172.png 768w" sizes="(max-width: 931px) 100vw, 931px" /></figure>
-
-
-
-<p>If the remediation policy already exists in the assignment, the device retrieves it almost immediately. Since the remediation has never been executed before, the scheduler again allows it to run right away. The sequence during enrollment typically looks like this:</p>
-
-
-
-<p><strong>Device enrollment</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>IME installed</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>IME service starts</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>Workloads retrieved</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>Remediation policy received</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>No previous execution found</strong><br><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br>Remediation executes with 5 minute delay</strong></p>
-
-
-
-<p>This is why administrators often observe an hourly remediation executing only a few minutes after enrollment completes. The remediation is not waiting for the hourly interval. It simply runs the first time the device processes the policy.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-five-minute-reevaluation-you-may-see-in-logs">The five-minute reevaluation you may see in logs</h2>
-
-
-
-<p>There is one small detail in the hourly scheduler that can confuse people when looking at logs. Whenever the scheduler decides to run a remediation immediately, it also schedules a follow-up evaluation roughly five minutes later. This comes directly from the schedule handler logic, which sets the next evaluation moment to the current time <strong>plus five minutes.</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><a href="https://patchmypc.com/app/uploads/2026/03/image-41.png"><img decoding="async" width="624" height="177" src="https://patchmypc.com/app/uploads/2026/03/image-41.png" alt="5 minutes added when the hourly remediations kicked in during enrollment" class="wp-image-178123" srcset="https://patchmypc.com/app/uploads/2026/03/image-41.png 624w, https://patchmypc.com/app/uploads/2026/03/image-41-300x85.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></a></figure>
-
-
-
-<p>That does <strong>not</strong> mean the remediation runs every five minutes. It simply means the scheduler checks the schedule again shortly after the first execution. The sequence looks like this:</p>
-
-
-
-<p><strong>12:39&nbsp; remediation executes</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>LastExecution timestamp written</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>12:44&nbsp; scheduler reevaluates (+5 minutes)</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓<br><strong>13:39&nbsp; next hourly execution allowed</strong></p>
-
-
-
-<p>By the time the five-minute reevaluation happens, the execution timestamp already exists, and the hourly interval prevents the remediation from running again. So if you notice activity roughly five minutes after the first run in the logs, that is simply the scheduler reevaluating the schedule.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-registry-key-that-anchors-the-hourly-schedule">The registry key that anchors the hourly schedule</h2>
-
-
-
-<p>After a remediation is executed, the Intune Management Extension records the execution timestamp in the registry. You can find it here: HKLM\SOFTWARE\Microsoft\IntuneManagementExtension\<br>SideCarPolicies\Scripts\Execution\&lt;UserId&gt;\&lt;PolicyId&gt;_&lt;Version&gt;. Inside that key, the agent stores the value: <strong>LastExecution</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="282" src="https://patchmypc.com/app/uploads/2026/03/image-43.png" alt="hourly remediations are scheduled by looking at the lastexecution timer" class="wp-image-178126" srcset="https://patchmypc.com/app/uploads/2026/03/image-43.png 624w, https://patchmypc.com/app/uploads/2026/03/image-43-300x136.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>That timestamp becomes the reference point for the hourly schedule.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="592" height="138" src="https://patchmypc.com/app/uploads/2026/03/image-39.png" alt="hourly remediations schedule" class="wp-image-178122" srcset="https://patchmypc.com/app/uploads/2026/03/image-39.png 592w, https://patchmypc.com/app/uploads/2026/03/image-39-300x70.png 300w" sizes="(max-width: 592px) 100vw, 592px" /></figure>
-
-
-
-<p>When the scheduler evaluates the remediation again later, it compares the current time with the stored execution timestamp. Only when the configured interval has passed will the remediation be allowed to run again. This means the hourly schedule is anchored to <strong>when the hourly remediation last executed</strong>, not to when it was assigned. That is why hourly remediations often run at slightly irregular minutes instead of exactly on the hour.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-key-takeaway">The key takeaway</h2>
-
-
-
-<p>The word <strong>hourly</strong> creates the expectation that a remediation will run sometime within the next hour after it is assigned. But the Intune Management Extension does not schedule the first run that way.</p>
-
-
-
-<p>On already-enrolled devices, the first execution occurs when the device retrieves and processes the remediation policy. That moment is tied to events like user sign-in, device restart, IME restart, or the periodic workload retrieval cycle. Only after the remediation has been executed once does the hourly interval begin controlling when the next run is allowed.</p>
-
-
-
-<p>So if an hourly remediation appears shortly after enrollment or soon after a policy retrieval event, that behavior is not unusual. It simply means the device has just processed the remediation policy for the first time.</p>
-<p>The post <a href="https://patchmypc.com/blog/why-an-hourly-intune-remediation-doesnt-run-within-the-first-hour/">Why an “Hourly” Intune Remediation Doesn’t Run Within the First Hour</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/why-an-hourly-intune-remediation-doesnt-run-within-the-first-hour/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
