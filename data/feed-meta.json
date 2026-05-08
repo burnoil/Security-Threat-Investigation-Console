@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-05-08T18:41:15Z",
-  "commit": "3dcdfee",
+  "generatedAt": "2026-05-08T19:37:32Z",
+  "commit": "4759950",
   "feeds": {
-    "kev": { "generatedAt": "2026-05-08T18:41:15Z" },
-    "patchmypc": { "generatedAt": "2026-05-08T18:41:15Z" },
-    "zdi": { "generatedAt": "2026-05-08T18:41:15Z" }
+    "kev": { "generatedAt": "2026-05-08T19:37:32Z" },
+    "patchmypc": { "generatedAt": "2026-05-08T19:37:32Z" },
+    "zdi": { "generatedAt": "2026-05-08T19:37:32Z" }
   }
 }
