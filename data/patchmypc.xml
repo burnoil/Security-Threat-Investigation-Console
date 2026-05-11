@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Mon, 11 May 2026 07:40:12 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 11 May 2026 11:52:55 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -153,7 +153,11 @@
 
 
 
-<p>The MPClient also contains trace strings such as <strong>Origin_SCC</strong>, <strong>Origin_SCC_Policy</strong>,, <strong>TamperProtection</strong>, and even a string named <strong>SecureControledConfig</strong> with the typo included.<img decoding="async" width="838" height="135" src="blob:https://patchmypc.com/a4a77778-01f1-4a7c-92d9-d55edb3e8867"></p>
+<p>The MPClient also contains trace strings such as <strong>Origin_SCC</strong>, <strong>Origin_SCC_Policy</strong>,, <strong>TamperProtection</strong>, and even a string named <strong>SecureControledConfig</strong> with the typo included.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="165" src="https://patchmypc.com/app/uploads/2026/05/image-17-1024x165.png" alt="" class="wp-image-184282" srcset="https://patchmypc.com/app/uploads/2026/05/image-17-1024x165.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-17-300x48.png 300w, https://patchmypc.com/app/uploads/2026/05/image-17-768x124.png 768w, https://patchmypc.com/app/uploads/2026/05/image-17.png 1309w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
