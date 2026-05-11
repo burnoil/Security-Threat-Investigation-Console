@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Mon, 11 May 2026 11:52:55 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 11 May 2026 15:52:17 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,182 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>Patch My PC Publisher Production Version 2.2.1.0 Released</title>
+		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-1-0-released/</link>
+					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-1-0-released/#respond</comments>
+		
+		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
+		<pubDate>Mon, 11 May 2026 15:52:16 +0000</pubDate>
+				<category><![CDATA[Production Release]]></category>
+		<category><![CDATA[Templates]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=184302</guid>
+
+					<description><![CDATA[<p>This release contains a variety of improvements and fixes, as noted below. This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&#160;MSI installer. Improvements Fixes</p>
+<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-1-0-released/">Patch My PC Publisher Production Version 2.2.1.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>This release contains a variety of improvements and fixes, as noted below.</p>
+
+
+
+<p>This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&nbsp;<strong><a href="https://patchmypc.com/publishing-service-setup-documentation">MSI installer</a></strong>.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-improvements">Improvements</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Increase Intune upload timeout to 1 hour for large files and other enhancements to azure upload process. ​</li>
+
+
+
+<li>Intune reports now run periodically in the background and cache for 8 hours to improve query speed. ​</li>
+
+
+
+<li>When selecting the Use Existing App Registration option, you are now given a choice of Intune tenants to choose from. ​</li>
+
+
+
+<li>Display Entra groups that have been deleted with a prefix of [Deleted Group: ] when editing DO Priority ​</li>
+
+
+
+<li>Ensure the Publisher gracefully handles the case where the Publisher connection is deleted from the cloud.</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="h-fixes">Fixes</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Fix a bug causing the user to be unable to add a new language to Manage Conflicting Processes.​</li>
+
+
+
+<li>Error message was displayed in the wrong place when editing a webhook.​</li>
+
+
+
+<li>Resolve an issue that causes the Publisher to improperly parse the installation command line for WSUS in some cases. This could result in an update being published with an incorrectly formatted installation command.​</li>
+
+
+
+<li>Grace period for required assignments can be disabled.​</li>
+
+
+
+<li>Republishing an Intune Update retains the icon.​</li>
+
+
+
+<li>Fxied a bug where a progress bar with an inaccurate count would be dispalyed in the Intune App Manager when editing assignments.​</li>
+
+
+
+<li>Pause Product only worked on the first tenant in the list for MSPs with more than one tenant configured.​</li>
+
+
+
+<li>Large Intune reports would fail to write to disk, causing an Out Of Memory exception.​</li>
+
+
+
+<li>Fixed a bug where some applications would not be found in the local content cache.​</li>
+
+
+
+<li>Clicking Browse in the Manage Pre/Post Scripts window would sometimes cause the Publisher to force close.​</li>
+
+
+
+<li>When running a sync, Auto Publishing rules would return 0 devices for the Intune Report even when Devices were present.​</li>
+
+
+
+<li>Switched from using json to LiteDB for Intune Report Caching to improve report performance.​</li>
+
+
+
+<li>Ensure the co-existance status is propogated to the cloud when a product is unselected in Publisher.​</li>
+
+
+
+<li>Requirement Architecture was not correctly interpreted by Publisher when creating Intune Apps​</li>
+
+
+
+<li>Fixed a bug causing products marked for &#8216;Exclude from auto-pubilshing rules&#8217; would not be saved when the product treeview is filtered to enabled products only.​</li>
+
+
+
+<li>Addressed bug in teams webhooks causing notification to be missing version and other information.​</li>
+
+
+
+<li>SMTP Oauth Test permission button would only ever account for the first tenant configured.​</li>
+
+
+
+<li>Fix a bug causing the WSUS Update Modification Wizard to not load in some cases.​</li>
+
+
+
+<li>Resolve an issue that causes the Publisher to improperly parse the installation command line for WSUS in some cases. This could result in an update being published with an incorrectly formatted installation command.​</li>
+
+
+
+<li>Intune tenant names were not correctly shown in the webhook list under the Alerts tab.​</li>
+
+
+
+<li>Ensure the nth-day-of-the-week option for a monthly sync schedule maps correctly to settings.xml.​</li>
+
+
+
+<li>The product export feature in the Advanced tab no longer exports duplicate rows for Intune applications and updates.​</li>
+
+
+
+<li>Refresh the Intune authentication token before retrieving reports from Intune when performing auto-publishing during synchronization.​</li>
+
+
+
+<li>CVE, Classification and Severity data were not populated in Publisher email reports for existing applications that received an update to a new version.​</li>
+
+
+
+<li>Fixed a bug where conflicting processes UI unable to start when there are duplicate entries in the process list:​</li>
+
+
+
+<li>Ensure the OS requirements are set appropriately for ConfigMgr and Intune Publishing.​</li>
+
+
+
+<li>Fixed a bug where Selective Sync apps were showing as &#8220;Marked&#8221; when not selected​</li>
+
+
+
+<li>Fixed a bug which was causing the copy apps button to not be displayed in intune standalone mode.</li>
+</ul>
+
+
+
+<p></p>
+<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-1-0-released/">Patch My PC Publisher Production Version 2.2.1.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-1-0-released/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Controlled Configuration for Microsoft Defender Antivirus settings</title>
 		<link>https://patchmypc.com/blog/controlled-configuration-for-microsoft-defender-antivirus-settings/</link>
 					<comments>https://patchmypc.com/blog/controlled-configuration-for-microsoft-defender-antivirus-settings/#respond</comments>
@@ -1745,47 +1921,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/it1272653-company-portal-stuck-on-downloading/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Patch My PC Publisher Production Version 2.1.116.0 Released</title>
-		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-1-116-0-released/</link>
-					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-1-116-0-released/#respond</comments>
-		
-		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
-		<pubDate>Tue, 07 Apr 2026 19:46:08 +0000</pubDate>
-				<category><![CDATA[Production Release]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=180730</guid>
-
-					<description><![CDATA[<p>This release contains a variety of features, improvements, and fixes, as noted below. This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&#160;MSI installer. Fixes</p>
-<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-1-116-0-released/">Patch My PC Publisher Production Version 2.1.116.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p>This release contains a variety of features, improvements, and fixes, as noted below.</p>
-
-
-
-<p>This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&nbsp;<strong><a href="https://patchmypc.com/publishing-service-setup-documentation">MSI installer</a></strong>.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-fixes">Fixes</h2>
-
-
-
-<ul class="wp-block-list">
-<li>Fixed a bug causing some applications, when updated in place in ConfigMgr, to include a &#8220;BaseInstallOnlyNotForUpdating_&#8221; prefix in the title. This release will prevent the issue from occurring and remediate existing applications by removing the prefix. </li>
-</ul>
-
-
-
-<p></p>
-<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-1-116-0-released/">Patch My PC Publisher Production Version 2.1.116.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-1-116-0-released/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
