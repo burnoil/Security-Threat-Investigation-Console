@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Mon, 11 May 2026 07:25:42 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 11 May 2026 07:40:12 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -45,7 +45,7 @@
 
 
 
-<p>Almost a year ago (or even more), I stumbled upon something on one of my devices that immediately felt out of place. Buried in Program Files was a component called <strong>ControlConfigAdapter</strong>. I had never seen it before, Microsoft was not saying anything publicly about it, and the name was far too specific to ignore. So I started investigating….yes, investigating&#8230;&#8230;</p>
+<p>Almost a year ago (or even more), I stumbled upon something on one of my devices that immediately felt out of place. Buried in Program Files was a component called <strong>ControlConfigAdapter</strong>. I had never seen it before, Microsoft was not saying anything publicly about it, and the name was far too specific to ignore. So I started<strong> investigating….yes, investigating&#8230;&#8230;</strong></p>
 
 
 
@@ -53,7 +53,7 @@
 
 
 
-<p>At first, it was just a folder, just a name, and that familiar feeling that Windows had quietly dropped something important on the device without much explanation (as always). What made it even stranger was where it showed up. This adapter came along in the same agent package as the <strong><a href="https://call4cloud.nl/intune-device-inventory-agent/">device inventory agent MSI</a></strong>&#8230; Yep… that made me wonder… That alone was enough to make me think about it, because inventory and configuration enforcement are not exactly the same story. The more I investigated, the less this looked like a random device inventory extension and the more it looked like the plumbing for something much bigger&#8230; Something new for Defender.</p>
+<p>At first, it was just a folder, just a name, and that familiar feeling that Windows had quietly dropped something important on the device without much explanation (as always). What made it even stranger was where it showed up. This ControlConfig adapter came along in the same agent package as the <strong><a href="https://call4cloud.nl/intune-device-inventory-agent/">device inventory agent MSI</a></strong>&#8230; That alone was enough to make me think about it, because device inventory and configuration enforcement are not exactly the same story. The more I investigated, the less this looked like a random device inventory extension and the more it looked like the plumbing for something much bigger&#8230; Something new for <strong>Defender.</strong></p>
 
 
 
@@ -61,11 +61,7 @@
 
 
 
-<p>The first surprise was simply that it existed. If you notice a new agent or component on the device and it arrives next to an inventory agent, the easy assumption is that it probably belongs to that same feature set. <strong>ControlConfigAdapter </strong>was sure not.</p>
-
-
-
-<p>While doing some addtional investigation, the function names were not talking about inventory, collection, or hardware state. They were talking about <strong>config payloads</strong>, <strong>policy status</strong>, <strong>payload import</strong>, and something called <strong>SCC state</strong>.</p>
+<p>The first surprise was simply that it existed. If you notice a new agent or component on the device and it appears next to an inventory agent, the natural assumption is that it likely belongs to the same device inventory agent. <strong>ControlConfigAdapter </strong>was sure not. While doing some additional investigation, the function names did not mention inventory, collection, or hardware state. They were talking about <strong>config payloads</strong>, <strong>policy status</strong>, <strong>payload import</strong>, and something called <strong>SCC state</strong>.</p>
 
 
 
@@ -81,7 +77,7 @@
 
 
 
-<p>Once I started following the functions, the story became clearer. The controlled configuration adapter has routines that line up around three big actions. First, it can import a <strong>configuration payload.</strong> One of the clearest examples is the function that logs it is calling <strong>MpImportConfigPayload</strong>.</p>
+<p>Once I started following the functions, the story became clearer. The controlled configuration adapter has routines that line up around three big actions. First, it can import a <strong>configuration payload.</strong> One of the clearest examples is the function that logs, which calls <strong>MpImportConfigPayload.</strong></p>
 
 
 
@@ -89,7 +85,7 @@
 
 
 
-<p>That alone is a strong hint that this adapter is not enforcing settings directly by itself. It looks more like a bridge that takes an incoming management payload and hands it to the <strong>Defender configuration</strong> layer through <strong>mpclient.dll</strong>.</p>
+<p>That alone is a strong hint that this adapter is not enforcing settings on its own. It looks more like a bridge that takes an incoming management payload and hands it to the <strong>Defender configuration</strong> layer through <strong>mpclient.dll</strong>.</p>
 
 
 
@@ -97,7 +93,7 @@
 
 
 
-<p>Second, it can retrieve payload status. Another function calls <strong>MpGetConfigPayloadStatus</strong>, then reads the response and logs whether the payload was successfully retrieved. That tells you this is not a one way push only. It also wants feedback from the Defender side.</p>
+<p>Second, it can retrieve payload status. Another function calls <strong>MpGetConfigPayloadStatus</strong>, then reads the response and logs whether the payload was successfully retrieved. That tells you this is not a one-way push only. It also wants feedback from the Defender side.</p>
 
 
 
@@ -109,7 +105,7 @@
 
 
 
-<p>That combination matters. It means this adapter looks like a management bridge with full round trip behavior. It takes the Secure Controlled configuration in, asks Defender to apply it, reads back the status, and exposes reporting on top of that.</p>
+<p>That combination matters. It means this adapter looks like a management bridge with full round-trip behavior. It takes the Secure Controlled configuration in, asks Defender to apply it, reads back the status, and exposes reporting on top of that.</p>
 
 
 
@@ -125,7 +121,7 @@
 
 
 
-<p>Instead of sitting in some private Defender only corner, the provider is registered in the <strong>ROOT\MicrosoftDeviceManagement_Extensibility_ControlConfig</strong> namespace. The class is literally called <strong>ControlConfigAdapter</strong> and it inherits from <strong>OMI_BaseResource</strong>, which is exactly the what we also noticed with the device inventory agent and how that one was connected to declared configuration.</p>
+<p>Instead of sitting in some private Defender-only corner, the provider is registered in the <strong>ROOT\MicrosoftDeviceManagement_Extensibility_ControlConfig</strong> namespace. The class is literally called <strong>ControlConfigAdapter</strong> and it inherits from <strong>OMI_BaseResource</strong>, which is exactly what we also noticed with the device inventory agent and how that one was connected to declared configuration.</p>
 
 
 
@@ -149,7 +145,7 @@
 
 
 
-<p>Then there was the other breadcrumb that kept repeating itself while I was investigating: <strong>SCC</strong>. It showed up everywhere. It showed up in the configuration tree under <strong>Features\SCC</strong> and <strong>Features\SCC\Notification</strong>. </p>
+<p>Then there was the other breadcrumb that kept repeating itself as I investigated: <strong>SCC</strong>. It showed up everywhere. It showed up in the configuration tree under <strong>Features\SCC</strong> and <strong>Features\SCC\Notification</strong>.</p>
 
 
 
@@ -185,7 +181,7 @@
 
 
 
-<p>That stood out immediately. It sits there next to other known Defender states, including <strong>IsTamperProtected</strong> and <strong>TamperProtectionSource</strong>. That means the Defender side is already prepared to expose a dedicated controlled configuration state. Not just tamper protection but something better.That is a strong clue. <strong>It suggests tamper protection and controlled configuration are not the same thing</strong>. They live next to each other in the Defender model.</p>
+<p>That stood out immediately. It sits there next to other known Defender states, including <strong>IsTamperProtected</strong> and <strong>TamperProtectionSource</strong>. That means the Defender side is already prepared to expose a dedicated controlled configuration state. Not just tamper protection, but something better. That is a strong clue. It suggests that <strong>tamper protection and controlled configuration are not the same thing</strong>. They live next to each other in the Defender model.</p>
 
 
 
@@ -193,7 +189,7 @@
 
 
 
-<p>For a long time, all of that lived only in the code, on the device, and in the adapter itself. That made it interesting, but still incomplete. You could see the plumbing, but there was no public sign yet that connected it to an actual product direction. That finally changed once <strong>Controlled Configuration</strong> appeared in Microsoft’s <strong><a href="https://learn.microsoft.com/en-us/intune/whats-new/in-development">What’s in development</a></strong> page.</p>
+<p>For a long time, all of that lived only in the code, on the device, and in the adapter itself. That made it interesting, but still incomplete. You could see the plumbing, but there was no public sign yet that connected it to an actual product direction. That finally changed once <strong>Controlled Configuration</strong> appeared on Microsoft’s <strong><a href="https://learn.microsoft.com/en-us/intune/whats-new/in-development">What’s in development</a></strong> page.</p>
 
 
 
@@ -201,11 +197,7 @@
 
 
 
-<p>That matters more than it might seem. Because once Microsoft announced this <strong>Controlled Configuration for Microsoft Defender,</strong> the adapter suddenly stops looking like an unfinished internal experiment and starts looking exactly like what it had been hinting at all along. The code had already been pointing toward configuration payloads, SCC state, policy enforcement, notification handling, and Defender status reporting. The announcement finally gave all of that a destination.</p>
-
-
-
-<p><strong>First there was the adapter on the device.<br>Then there was the code.<br>Then there was the MOF.<br>And only after that came the public breadcrumb that made the whole thing easier to place.</strong></p>
+<p>That matters more than it might seem. Because once Microsoft announced this <strong>Controlled Configuration for Microsoft Defender, </strong>the adapter suddenly stopped looking like an unfinished internal experiment and started looking exactly like what it had been hinting at all along.  Tamper Protection v2 :)&#8230;.. and it all started with the ControlConfig Adapter showing up on my devices last year!</p>
 
 
 
@@ -217,7 +209,7 @@
 
 
 
-<p>But based on what the current Intune Portal configuration, and based on how this feature is described, <strong>Controlled Configuration</strong> looks like the kind of setting that would naturally sit in the same general area where you already think about Defender Configuration.</p>
+<p>But based on the current Intune Portal configuration and the way this feature is described,<strong> Controlled Configuration</strong> seems like a setting that would naturally sit in the same general area as the <strong>Tamper Protection</strong> setting in the <strong>Defender Configuration.</strong></p>
 
 
 
@@ -225,7 +217,7 @@
 
 
 
-<p>In other words, this feels like something that would belong alongside the Defender antivirus and endpoint security experience… So when I need to make a wild gues.. it will look something like this…</p>
+<p>In other words, this feels like something that would belong alongside the <strong>Defender antivirus and endpoint security experience… </strong>So when I need to make a wild guess, it will look something like this…</p>
 
 
 
@@ -245,7 +237,7 @@
 
 
 
-<p>So while I would not present any portal layout as final, I would absolutely say this: if Microsoft rolls this out broadly, I would expect it to show up exactly where admins already manage Defender security posture, only with a much heavier focus on source of truth and enforcement.</p>
+<p>So while I would not present any portal layout as final, I would absolutely say this: if Microsoft rolls out Controlled Configuration, I would expect it to show up exactly where admins already manage Defender security posture, only with a much heavier focus on source of truth and enforcement.</p>
 
 
 
@@ -261,11 +253,11 @@
 
 
 
-<p>Tamper protection says certain protected settings cannot be changed.<br>Controlled configuration appears to say Intune owns the configuration, Defender applies it, and the device reports that managed state back. And the most interesting part is what happens to everything you did <strong>not</strong> explicitly configure.</p>
+<p><strong>Tamper protectio</strong>n says certain protected settings cannot be changed.<br><strong>Controlled configuration</strong> appears to say Intune owns the configuration, Defender applies it, and the device reports that managed state back. And the most interesting part is what happens to everything you did <strong>not</strong> explicitly configure.</p>
 
 
 
-<p>The wording Microsoft is starting to use around this feature strongly suggests it is not only about locking configured settings. It is also about falling back to <strong>secure defaults</strong> for the rest. That is what makes this feel like something more than tamper protection v2 as a simple rename. It looks more like a bigger managed enforcement model that may include tamper protection inside it.</p>
+<p>The wording Microsoft is using around this feature strongly suggests it is not only about locking configured settings. It is also about falling back to secure defaults for the rest. That is what makes this feel like more than a simple rename of tamper protection v2. It looks more like a larger managed enforcement model that may include <strong>tamper protection.</strong></p>
 
 
 
@@ -277,11 +269,7 @@
 
 
 
-<p>The code shows payload import, status retrieval, and SCC state handling. The MOF ties it into Microsoft device management extensibility with the kind of metadata you would expect from <strong><a href="https://patchmypc.com/blog/mmp-c-the-future-of-windows-device-management-with-intune/">MMP C and WinDC</a></strong>. The Defender provider already exposes a <strong>ControlledConfigurationState</strong>. The configuration manager knows about SCC as a policy origin. And Microsoft has finally started putting the name <strong>Controlled Configuration</strong> in front of customers.</p>
-
-
-
-<p>This does not look like a small cosmetic addition to tamper protection.<br>It looks like Microsoft is building a stronger model where Defender configuration is not only protected from tampering, but managed, enforced, and reported as a secured <strong>controlled state.</strong></p>
+<p>The code shows payload import, status retrieval, and SCC state handling. The MOF ties it into Microsoft device management extensibility with the kind of metadata you would expect from <strong><a href="https://patchmypc.com/blog/mmp-c-the-future-of-windows-device-management-with-intune/">MMP C and WinDC</a></strong>. The Defender provider already exposes a <strong>ControlledConfigurationState</strong>. The configuration manager knows about SCC as a policy origin. And Microsoft has finally published Controlled Configuration in the &#8220;What&#8217;s in development&#8221; pages.  This does not look like a small cosmetic addition to tamper protection.<br>It looks like Microsoft is building a stronger model where Defender configuration is not only protected from tampering, but managed, enforced, and reported as a <strong>secure controlled state.</strong></p>
 
 
 
