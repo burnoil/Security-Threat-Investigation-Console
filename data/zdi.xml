@@ -10,9 +10,65 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Tue, 12 May 2026 12:46:34 -0500</pubDate>
+    <pubDate>Tue, 12 May 2026 13:46:49 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-317: Siemens Simcenter Femap IPT File Parsing Memory Corruption Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-27349</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-317/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Siemens Simcenter Femap. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-12659.]]></description>
+      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-316: Siemens Simcenter Femap IPT File Parsing Memory Corruption Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-27389</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-316/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Siemens Simcenter Femap. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-12659.]]></description>
+      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-315: Apple macOS USD Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29240</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-315/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Apple macOS. Interaction with the USD library is required to exploit this vulnerability but attack vectors may vary depending on the implementation. The ZDI has assigned a CVSS rating of 3.3. The following CVEs are assigned: CVE-2026-28941.]]></description>
+      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-314: Apple macOS USD File Parsing Out-Of-Bounds Write Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29239</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-314/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Apple macOS. Interaction with the USD library is required to exploit this vulnerability but attack vectors may vary depending on the implementation. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-28940.]]></description>
+      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-313: Apple Safari Regular Expression Duplicate Named Groups Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29186</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-313/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Apple Safari. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-28847.]]></description>
+      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-312: Apple Safari Web Inspector WebCore Style Resolver Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28879</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-312/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Apple Safari. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-28955.]]></description>
+      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-311: Apple macOS CoreSymbolication Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28695</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-311/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Apple macOS. Interaction with the CoreSymbolication framework is required to exploit this vulnerability but attack vectors may vary depending on the implementation. The ZDI has assigned a CVSS rating of 3.3. The following CVEs are assigned: CVE-2026-28918.]]></description>
+      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-310: Microsoft Windows splwow64 Race Condition Local Privilege Escalation Vulnerability]]></title>
@@ -1555,62 +1611,6 @@
       <guid isPermaLink="false">ZDI-CAN-28158</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-118/</link>
       <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of GIMP. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-2044.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-117: RustDesk Client for Windows Transfer File Link Following Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27909</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-117/</link>
-      <description><![CDATA[This vulnerability allows local attackers to disclose sensitive information on affected installations of RustDesk Client for Windows. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.5. The following CVEs are assigned: CVE-2026-2490.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-116: TensorFlow HDF5 Library Uncontrolled Search Path Element Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-25480</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-116/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TensorFlow. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.0. The following CVEs are assigned: CVE-2026-2492.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-115: Fortinet FortiClient VPN FCConfig Utility Link Following Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-25710</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-115/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Fortinet FortiClient VPN. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-62676.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-114: Dassault Systèmes eDrawings Viewer EPRT File Parsing Out-Of-Bounds Write Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28404</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-114/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Dassault Syst��mes eDrawings Viewer. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-1335.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-113: Dassault Systèmes eDrawings Viewer EPRT File Parsing Memory Corruption Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28378</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-113/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Dassault Syst��mes eDrawings Viewer. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-1334.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-112: Dassault Systèmes eDrawings Viewer EPRT File Parsing Uninitialized Variable Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28315</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-112/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Dassault Syst��mes eDrawings Viewer. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-1333.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-111: MLflow Use of Default Password Authentication Bypass Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28256</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-111/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to bypass authentication on affected installations of MLflow. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2026-2635.]]></description>
       <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
     </item>
     
