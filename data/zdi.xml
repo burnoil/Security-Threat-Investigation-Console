@@ -10,9 +10,33 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Tue, 12 May 2026 11:52:30 -0500</pubDate>
+    <pubDate>Tue, 12 May 2026 12:46:34 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-310: Microsoft Windows splwow64 Race Condition Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28605</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-310/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 4.4. The following CVEs are assigned: CVE-2026-34342.]]></description>
+      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-309: Microsoft Windows Message Queueing Double Free Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28559</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-309/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows that run Message Queueing. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-33838.]]></description>
+      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-308: Ivanti Endpoint Manager RemoteControlAuth Exposed Dangerous Method Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28617</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-308/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Ivanti Endpoint Manager. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 4.9. The following CVEs are assigned: CVE-2026-8109.]]></description>
+      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-307: FlowiseAI Flowise Airtable_Agent Code Injection Remote Code Execution Vulnerability]]></title>
@@ -1587,30 +1611,6 @@
       <guid isPermaLink="false">ZDI-CAN-28256</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-111/</link>
       <description><![CDATA[This vulnerability allows remote attackers to bypass authentication on affected installations of MLflow. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2026-2635.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-110: Bosch Rexroth IndraWorks Print Settings File Parsing Deserialization Of Untrusted Data Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28112</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-110/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Bosch Rexroth IndraWorks. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-60037,  CVE-2025-60038.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-109: Bosch Rexroth IndraWorks OPC.TestClient XML File Parsing Deserialization Of Untrusted Data Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27994</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-109/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Bosch Rexroth IndraWorks. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-60035.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-108: Bosch Rexroth IndraWorks UA.TestClient XML File Parsing Deserialization Of Untrusted Data Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27996</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-108/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Bosch Rexroth IndraWorks. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-60036.]]></description>
       <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
     </item>
     
