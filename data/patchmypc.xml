@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 13 May 2026 06:38:01 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 13 May 2026 17:45:33 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -170,7 +170,6 @@
 		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
 		<pubDate>Mon, 11 May 2026 15:52:16 +0000</pubDate>
 				<category><![CDATA[Production Release]]></category>
-		<category><![CDATA[Templates]]></category>
 		<guid isPermaLink="false">https://patchmypc.com/?p=184302</guid>
 
 					<description><![CDATA[<p>This release contains a variety of improvements and fixes, as noted below. This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&#160;MSI installer. Improvements Fixes</p>
