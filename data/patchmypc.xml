@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Mon, 11 May 2026 15:52:17 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 13 May 2026 06:38:01 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,149 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>Maintenance Window Settings Catalog… And it’s Gone</title>
+		<link>https://patchmypc.com/blog/maintenance-window-settings-catalog-and-its-gone/</link>
+					<comments>https://patchmypc.com/blog/maintenance-window-settings-catalog-and-its-gone/#respond</comments>
+		
+		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
+		<pubDate>Wed, 13 May 2026 06:26:50 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=184475</guid>
+
+					<description><![CDATA[<p>Maintenance Window Settings Catalog briefly showed up in the Intune In development documentation and was later pulled back. The Settings Catalog experience is no longer listed, but the Windows Update CSP still exposes the maintenance window policy settings.</p>
+<p>The post <a href="https://patchmypc.com/blog/maintenance-window-settings-catalog-and-its-gone/">Maintenance Window Settings Catalog… And it’s Gone</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>A while ago, I wrote about something interesting that showed up in the Intune “In development” documentation. Microsoft mentioned <a href="https://patchmypc.com/blog/maintenance-window-os-drivers-updates-intune/"><strong>new Maintenance Window</strong></a> settings for OS updates, drivers, and updates in the <strong>Windows Settings Catalog.</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="398" src="https://patchmypc.com/app/uploads/2026/05/image-1.jpg" alt="maintenance window settings catalog" class="wp-image-184476" srcset="https://patchmypc.com/app/uploads/2026/05/image-1.jpg 624w, https://patchmypc.com/app/uploads/2026/05/image-1-300x191.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>That immediately caught my attention. Not because we needed another setting in Intune, but because this one touched a very familiar problem: timing. At what point is Windows allowed to do update work? Should drivers install during the day, or only inside a controlled window? What about firmware updates? And how do we prevent all of this from kicking in at exactly the wrong moment?</p>
+
+
+
+<p>We already have active hours, deadlines, and restart controls. Useful settings, but not the same thing as a real Maintenance Window. Active hours tell Windows when it should try to stay out of the user’s way. A maintenance window does the opposite. It tells Windows when it is allowed to do the work. That difference is exactly why this caught my attention.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-maintenance-window-settings-catalog-disappeared">Maintenance Window Settings Catalog Disappeared</h2>
+
+
+
+<p>Sometime later (1 April), the maintenance window entry disappeared from the public Intune <a href="https://github.com/MicrosoftDocs/memdocs/pull/4993/changes/2e6a66b5566356d8999cb098129bb26a772ad342">“In development”</a> page.</p>
+
+
+
+<p>The GitHub history shows the change clearly. The maintenance window section was removed from the documentation. The removed text specifically talked about new <strong>Windows Settings Catalog settings for maintenance windows</strong>, including configuration steps and policy options.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="840" height="456" src="https://patchmypc.com/app/uploads/2026/05/image-18.png" alt="maintenance window settings catalog removed from the docs" class="wp-image-184479" srcset="https://patchmypc.com/app/uploads/2026/05/image-18.png 840w, https://patchmypc.com/app/uploads/2026/05/image-18-300x163.png 300w, https://patchmypc.com/app/uploads/2026/05/image-18-768x417.png 768w" sizes="(max-width: 840px) 100vw, 840px" /></figure>
+
+
+
+<p>That is the interesting part. It was not a small wording change. It was not moved to a different sentence. The Settings Catalog announcement for this feature was pulled back before it landed. <strong>That does NOT mean the whole Maintenance Window idea is gone forever</strong>. It does mean the original public wording is no longer something we should treat as the current Intune roadmap.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-maintenance-window-csps-still-work">Maintenance Window CSPs Still Work</h2>
+
+
+
+<p>The best part is that the Windows Update CSP still documents the maintenance window policy family.</p>
+
+
+
+<p>The CSP still contains settings such as <strong>MaintenanceWindowEnabled, MaintenanceWindowDurationHours, MaintenanceWindowStartDate, MaintenanceWindowStartTime, MaintenanceWindowRepeatScheduleOption, and MaintenanceWindowUpdateActions.</strong></p>
+
+
+
+<p>That last one is important because it describes what Windows should only do during the configured maintenance window. The documented actions are around download, install, restart, or install and restart. The Maintenance Window CSPs are still there. The policy surface is still there. With it we can still configure the Maintenance Windows CSP manually (when needed)</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="287" src="https://patchmypc.com/app/uploads/2026/05/image-2.jpg" alt="maintenance window update csp still available" class="wp-image-184478" srcset="https://patchmypc.com/app/uploads/2026/05/image-2.jpg 624w, https://patchmypc.com/app/uploads/2026/05/image-2-300x138.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>The Intune “In development” entry that promised a Settings Catalog experience is the only part that was pulled back. </p>
+
+
+
+<p>For now, the Custom OMA URI route is still the way to test it. I covered the configuration steps earlier, and those CSP settings are still documented.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-maybe-maintenance-window-settings-catalog-just-needed-more-time">Maybe Maintenance Window Settings Catalog Just Needed More Time</h2>
+
+
+
+<p>A maintenance window sounds simple, but there is more to it than just enabling a setting.</p>
+
+
+
+<p>You need a start time, a duration, a repeat schedule, and the actions Windows is allowed to perform inside that window. In the end, it directly decides how Windows Update behaves on the device. That kind of feature needs a clear story before it shows up in Intune, because admins will not read “<strong>maintenance window”</strong> as a tiny Windows Update detail. They will read it as something bigger. And honestly, that is not weird… because this is a feature everyone is waiting for.</p>
+
+
+
+<p>When admins see a maintenance window, they want to know what respects that window. They want to know what ignores it. They want to know what happens when the device is offline, what happens when a deadline is reached, and what happens when a restart is needed outside the configured time. Those are the details that make this kind of feature useful or confusing.</p>
+
+
+
+<p>Maybe it simply needed more time. The experience could have changed, the wording may have gone public a bit too early, or Microsoft pulled it back before everyone started searching the Settings Catalog for something that was not ready yet. Whatever the reason was, the breadcrumb is still there. The Settings Catalog announcement appeared, and then it disappeared.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-maybe-they-are-saving-it-for-ignite">Maybe They Are Saving It For Ignite</h2>
+
+
+
+<p>Of course, there is always another option. Maybe Microsoft looked at the documentation and thought: not yet, let’s save this one for a bigger moment. (just guessing… nothing more)</p>
+
+
+
+<p>Maybe Ignite needed another slide. Maybe someone saw the words <strong>“maintenance window</strong>” in the public docs and decided this feature deserved a bit more spotlight before every admin started clicking through the Settings Catalog. Which makes sense, as this maintenance window feature deserves a lot of attention (people are waiting for it)</p>
+
+
+
+<p>For now, the Intune Settings Catalog experience is not there in the public roadmap anymore. That means we are back to the part Windows already gives us: the <strong>Update CSP.</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="898" height="306" src="https://patchmypc.com/app/uploads/2026/05/image-3.jpg" alt="maintenance window update csp" class="wp-image-184477" srcset="https://patchmypc.com/app/uploads/2026/05/image-3.jpg 898w, https://patchmypc.com/app/uploads/2026/05/image-3-300x102.jpg 300w, https://patchmypc.com/app/uploads/2026/05/image-3-768x262.jpg 768w" sizes="(max-width: 898px) 100vw, 898px" /></figure>
+
+
+
+<p>So if you want to investigate this today, the CSP is where the story currently lives. Not because that is the perfect admin experience, but because that is the public policy surface that still documents the maintenance window settings.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-where-this-leaves-us">Where This Leaves Us</h2>
+
+
+
+<p>The current Intune “In development” page no longer mentions Maintenance Window Settings Catalog. That does not make the feature useless. The Windows Update CSP still documents the maintenance window policies, still uses preview wording, and still gives us a way to enable it manually when we want to test it.</p>
+
+
+
+<p>So for now, the CSP is the place to look. The Maintenance Window Settings Catalog disappeared from the public Intune docs, but the maintenance window update policy surface is still there. Enough to test, enough to understand, and definitely enough to keep an eye on.</p>
+
+
+
+<p></p>
+<p>The post <a href="https://patchmypc.com/blog/maintenance-window-settings-catalog-and-its-gone/">Maintenance Window Settings Catalog… And it’s Gone</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/blog/maintenance-window-settings-catalog-and-its-gone/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Patch My PC Publisher Production Version 2.2.1.0 Released</title>
 		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-1-0-released/</link>
 					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-1-0-released/#respond</comments>
@@ -225,7 +368,7 @@
 
 
 
-<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="198" src="https://patchmypc.com/app/uploads/2026/05/image-3.png" alt="ControlConfig Adapter" class="wp-image-184233" srcset="https://patchmypc.com/app/uploads/2026/05/image-3.png 624w, https://patchmypc.com/app/uploads/2026/05/image-3-300x95.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="198" src="https://patchmypc.com/app/uploads/2026/05/image-3.png" alt="ControlConfig Adapter" class="wp-image-184233" srcset="https://patchmypc.com/app/uploads/2026/05/image-3.png 624w, https://patchmypc.com/app/uploads/2026/05/image-3-300x95.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
 
 
 
@@ -1670,257 +1813,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-1-120-0-released/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>The Story Behind: IT1272653 and the Company Portal Stuck on Download Pending</title>
-		<link>https://patchmypc.com/blog/it1272653-company-portal-stuck-on-downloading/</link>
-					<comments>https://patchmypc.com/blog/it1272653-company-portal-stuck-on-downloading/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Thu, 09 Apr 2026 12:27:13 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=180882</guid>
-
-					<description><![CDATA[<p>In 1.101.103.0, Microsoft changed the IME config into a companion file, and that first transition appears to be where the file disappeared during upgrade. In 1.101.105.0, the same model remained, but the missing config could finally be recreated, which explains why the issue looked so different across both versions.</p>
-<p>The post <a href="https://patchmypc.com/blog/it1272653-company-portal-stuck-on-downloading/">The Story Behind: IT1272653 and the Company Portal Stuck on Download Pending</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p>The moment the IME version <strong>1.101.103.0</strong> was released, and the IME stopped responding completely, with no new logs being written, I knew where to start looking. Microsoft needed a way to fix the config file versioning problem from the first issue, but the change introduced in IME version <strong>1.101</strong>.<strong>103.0</strong> created a new one instead. After I reached out, Microsoft published incident <strong>IT1272653</strong>, which confirmed that a <strong>required configuration file</strong> had become unavailable.</p>
-
-
-
-<p>This is the story of how that fix went wrong, why the IME config file disappeared, and how the Intune Management Extension <strong>1.101.105.0 Version</strong> fixed it and restored the required config file.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-introduction-to-the-it1272653-error">Introduction to the IT1272653 error</h2>
-
-
-
-<p>Not long ago<a href="https://patchmypc.com/blog/company-portal-stuck-on-downloading-idx12729-0x80131040/">,</a><strong><a href="https://patchmypc.com/blog/company-portal-stuck-on-downloading-idx12729-0x80131040/"> I wrote about a Company Portal issue</a> </strong>(so please read it first) that looked like a download problem but really was not. Applications were stuck during the <strong>download process,</strong> while the actual failure occurred within the <strong>Intune Management Extension.</strong></p>
-
-
-
-<p>The one that caused the IME to break was: <strong>Microsoft.Management.Services.IntuneWindowsAgent.exe.config</strong>. Once that config file drifts out of sync with the assemblies next to it, token handling could fail with errors like <strong>IDX12729</strong> <strong>and 0x80131040</strong>, and the Win32 user app flow never really got started. <strong>That was the first chapter.</strong></p>
-
-
-
-<p><strong>The second chapter</strong> began when Microsoft tried to solve that original config problem. What changed in <strong>1.101.103.0</strong> was not just a version bump. Microsoft changed how MSI handled <strong>Microsoft.Management.Services.IntuneWindowsAgent.exe.config</strong>, and that change appears to explain why the file might have disappeared during the first upgrade to the new companion model. Microsoft later acknowledged the fallout under <strong>IT1272653</strong>, describing a case where user-targeted apps could remain stuck in <strong>Download Pending</strong> because a required configuration file had become unavailable.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="975" height="717" src="https://patchmypc.com/app/uploads/2026/04/image.png" alt="" class="wp-image-180883" srcset="https://patchmypc.com/app/uploads/2026/04/image.png 975w, https://patchmypc.com/app/uploads/2026/04/image-300x221.png 300w, https://patchmypc.com/app/uploads/2026/04/image-768x565.png 768w" sizes="(max-width: 975px) 100vw, 975px" /></figure>
-
-
-
-<p>That wording of the <strong>IT1272653 incident </strong>lines up closely with what showed up in the MSI package and in the upgrade behavior.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-intunewindowsagent-exe-config">The IntuneWindowsAgent.exe.config</h2>
-
-
-
-<p>In the older IME packages, <strong>Microsoft.Management.Services.IntuneWindowsAgent.exe.config</strong> didn’t have a version configured.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="102" src="https://patchmypc.com/app/uploads/2026/04/image-1-1024x102.png" alt="" class="wp-image-180884" srcset="https://patchmypc.com/app/uploads/2026/04/image-1-1024x102.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-1-300x30.png 300w, https://patchmypc.com/app/uploads/2026/04/image-1-768x76.png 768w, https://patchmypc.com/app/uploads/2026/04/image-1-1536x153.png 1536w, https://patchmypc.com/app/uploads/2026/04/image-1-2048x204.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>That matters because Windows Installer treats <strong><a href="https://learn.microsoft.com/en-us/windows/win32/msi/file-versioning-rules">unversioned files differently from versioned ones.</a></strong> When a file is unversioned, Windows Installer tends to preserve user-modified data rather than blindly overwrite it. Guess what happened if you changed the config file to add verbose logging…</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="975" height="411" src="https://patchmypc.com/app/uploads/2026/04/image-2.png" alt="" class="wp-image-180885" srcset="https://patchmypc.com/app/uploads/2026/04/image-2.png 975w, https://patchmypc.com/app/uploads/2026/04/image-2-300x126.png 300w, https://patchmypc.com/app/uploads/2026/04/image-2-768x324.png 768w" sizes="(max-width: 975px) 100vw, 975px" /></figure>
-
-
-
-<p>You guessed it… Your own versioned config file will <strong>NOT</strong> be overwritten when a new IME gets installed. Good to know is that Microsoft’s file versioning rules also state that <strong>non-versioned files</strong> are <strong>treated as user data </strong>when the modified date is newer than the creation date.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="99" src="https://patchmypc.com/app/uploads/2026/04/image-3-1024x99.png" alt="" class="wp-image-180887" srcset="https://patchmypc.com/app/uploads/2026/04/image-3-1024x99.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-3-300x29.png 300w, https://patchmypc.com/app/uploads/2026/04/image-3-768x74.png 768w, https://patchmypc.com/app/uploads/2026/04/image-3-1536x148.png 1536w, https://patchmypc.com/app/uploads/2026/04/image-3.png 1668w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>That old model helps explain the first issue. The agent binaries could move forward while the config stayed behind.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="975" height="261" src="https://patchmypc.com/app/uploads/2026/04/image-4.png" alt="" class="wp-image-180889" srcset="https://patchmypc.com/app/uploads/2026/04/image-4.png 975w, https://patchmypc.com/app/uploads/2026/04/image-4-300x80.png 300w, https://patchmypc.com/app/uploads/2026/04/image-4-768x206.png 768w" sizes="(max-width: 975px) 100vw, 975px" /></figure>
-
-
-
-<p>Once the binding redirects no longer matched what was actually on disk, the IME could fail before Company Portal ever had a real chance to start the user app workflow.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-what-the-intune-management-extension-1-101-103-0-changed">What the Intune Management Extension 1.101.103.0 changed</h2>
-
-
-
-<p>In <strong>1.101.103.0</strong>, Microsoft changed that config into a <strong>companion file</strong> of Microsoft.Management.Services.IntuneWindowsAgent.exe.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="95" src="https://patchmypc.com/app/uploads/2026/04/image-5-1024x95.png" alt="" class="wp-image-180890" srcset="https://patchmypc.com/app/uploads/2026/04/image-5-1024x95.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-5-300x28.png 300w, https://patchmypc.com/app/uploads/2026/04/image-5-768x71.png 768w, https://patchmypc.com/app/uploads/2026/04/image-5-1536x143.png 1536w, https://patchmypc.com/app/uploads/2026/04/image-5.png 1946w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>In MSI terms, that occurs when the <strong>Version field of one file record points to another</strong>. Microsoft’s documentation says that when a <strong>file is authored that way</strong>, the <strong>companion parent file </strong>controls the <strong>versioning logic. </strong>The same documentation also states that a file whose KeyPath is that of its component must not be authored as a companion file.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="60" src="https://patchmypc.com/app/uploads/2026/04/image-6-1024x60.png" alt="" class="wp-image-180893" srcset="https://patchmypc.com/app/uploads/2026/04/image-6-1024x60.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-6-300x18.png 300w, https://patchmypc.com/app/uploads/2026/04/image-6-768x45.png 768w, https://patchmypc.com/app/uploads/2026/04/image-6-1536x91.png 1536w, https://patchmypc.com/app/uploads/2026/04/image-6-2048x121.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>That is exactly the kind of shift that showed up in the 103 MSI export. The config stopped behaving like its own independent tracked file and started following the main Intune Windows Agent EXE instead. At the same time, the component no longer used the config file itself as the KeyPath. In practical terms, <strong>Microsoft took the config out of the driver’s seat.</strong></p>
-
-
-
-<p>On paper, that makes sense. If the old issue came from a stale config that could outlive the agent version it belonged to, then making the config follow the EXE is a reasonable way to prevent stale<strong> binding-redirect drift.</strong></p>
-
-
-
-<h2 class="wp-block-heading" id="h-why-103-caused-it1272653">Why 103 caused: IT1272653</h2>
-
-
-
-<p>Before explaining what happened with the <strong>incident: IT1272653</strong>… First, I need to make one thing clear: an important detail is that <strong>companion files</strong> do <strong>NOT</strong> automatically <strong>delete themselves.</strong> Microsoft’s file versioning rules say the opposite. If the companion parent on disk and the one being installed have the same version and language, but the companion file is <strong>missing</strong>, Windows Installer uses the companion file being installed. In other words, companion file logic can help a missing file come back.</p>
-
-
-
-<p>So the story is not “<strong>Microsoft turned the config into a companion file, and companion files delete themselves</strong>.” The more accurate story is that <strong>1.101.103.0 was the first transition from the old standalone model into the new companion model</strong>, and that transition happened inside a major upgrade sequence where <strong>RemoveExistingProducts</strong>still ran after the new files were installed.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="81" src="https://patchmypc.com/app/uploads/2026/04/image-7-1024x81.png" alt="" class="wp-image-180894" srcset="https://patchmypc.com/app/uploads/2026/04/image-7-1024x81.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-7-300x24.png 300w, https://patchmypc.com/app/uploads/2026/04/image-7-768x61.png 768w, https://patchmypc.com/app/uploads/2026/04/image-7-1536x122.png 1536w, https://patchmypc.com/app/uploads/2026/04/image-7-2048x163.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>Microsoft’s documentation is very clear on this point: when <strong>RemoveExistingProducts</strong><strong> </strong>is scheduled between <strong>InstallExecute</strong><strong> and </strong><strong>InstallFinalize</strong><strong>,</strong> the updated files are installed first and the old product is removed afterward. That is the gap where this issue likely happened.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="315" src="https://patchmypc.com/app/uploads/2026/04/image-8-1024x315.png" alt="" class="wp-image-180895" srcset="https://patchmypc.com/app/uploads/2026/04/image-8-1024x315.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-8-300x92.png 300w, https://patchmypc.com/app/uploads/2026/04/image-8-768x236.png 768w, https://patchmypc.com/app/uploads/2026/04/image-8-1536x472.png 1536w, https://patchmypc.com/app/uploads/2026/04/image-8-2048x629.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>The new 103 package could lay down the config using the new companion model, and then the uninstall phase of the old package could still come in afterward and remove that same <strong>config file</strong> because the upgrade was crossing from one ownership model into another.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="121" src="https://patchmypc.com/app/uploads/2026/04/image-9-1024x121.png" alt="" class="wp-image-180896" srcset="https://patchmypc.com/app/uploads/2026/04/image-9-1024x121.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-9-300x36.png 300w, https://patchmypc.com/app/uploads/2026/04/image-9-768x91.png 768w, https://patchmypc.com/app/uploads/2026/04/image-9-1536x182.png 1536w, https://patchmypc.com/app/uploads/2026/04/image-9.png 1672w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>Once that happened, the <strong>intunewindowsagent.exe</strong>.<strong>config file was gone. </strong>The new MSI no longer treated the missing config as the key proof that the component was broken in the same way the older package had</p>
-
-
-
-<h2 class="wp-block-heading" id="h-why-105-behaves-differently">Why 105 behaves differently</h2>
-
-
-
-<p>The reason <strong>1.101.105.0</strong> behaves differently is that by then the machine is already on the <strong>companion file model</strong>. The first dangerous jump already happened in 103. That matters because the MSI rules now work in 105’s favor. Microsoft documents that if the companion file is missing while the parent file is being installed, the companion file being installed is used even when the parent file version comparison is otherwise equal. &nbsp;</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="101" src="https://patchmypc.com/app/uploads/2026/04/image-10-1024x101.png" alt="" class="wp-image-180897" srcset="https://patchmypc.com/app/uploads/2026/04/image-10-1024x101.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-10-300x29.png 300w, https://patchmypc.com/app/uploads/2026/04/image-10-768x75.png 768w, https://patchmypc.com/app/uploads/2026/04/image-10-1536x151.png 1536w, https://patchmypc.com/app/uploads/2026/04/image-10-2048x201.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>That fits what showed up in the 103 to 105 MSI log. The config was no longer treated like a normal <strong>unversioned file</strong> with its own hash-based overwrite decision.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="60" src="https://patchmypc.com/app/uploads/2026/04/image-11-1024x60.png" alt="" class="wp-image-180898" srcset="https://patchmypc.com/app/uploads/2026/04/image-11-1024x60.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-11-300x18.png 300w, https://patchmypc.com/app/uploads/2026/04/image-11-768x45.png 768w, https://patchmypc.com/app/uploads/2026/04/image-11-1536x91.png 1536w, https://patchmypc.com/app/uploads/2026/04/image-11-2048x121.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>It was processed through the <strong>companion relationship </strong>to Microsoft.Management.Services.IntuneWindowsAgent.exe, which means 105 could refresh or recreate the config precisely because the companion model was already in place by then.  So 103 appears to be the version that introduced the Win32 <strong>companion model</strong> and hit the ugly transition problem. 105 appears to be the version that benefits from the companion rules instead of colliding with them.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-so-what-did-105-fix">So what did 105 fix???</h2>
-
-
-
-<p>Based on what I could verify, <strong>105 did two different things at the same time</strong>, but only one of them is clearly visible in the code. The first part is the <strong>APDP / APv2 provisioning hardening</strong>. That is visible in EmsAgentService and looks deliberate. The service restart and provisioning resume path is cleaner in 105, and the guard logic is better contained.</p>
-
-
-
-<p>The second part is the <strong>config recovery effect</strong>. Because the system is already on the companion model after 103, and because companion file rules allow a missing companion file to be laid down when the parent file is being installed, <strong>105 can recreate the config that 103 left missing</strong>.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="975" height="88" src="https://patchmypc.com/app/uploads/2026/04/image-12.png" alt="" class="wp-image-180899" srcset="https://patchmypc.com/app/uploads/2026/04/image-12.png 975w, https://patchmypc.com/app/uploads/2026/04/image-12-300x27.png 300w, https://patchmypc.com/app/uploads/2026/04/image-12-768x69.png 768w" sizes="(max-width: 975px) 100vw, 975px" /></figure>
-
-
-
-<p>That does not require Microsoft to abandon the companion model. In fact, it is the companion model that now lets the missing config come back.</p>
-
-
-
-<p><strong>-IME 103 introduced the new companion model and removed the config file</strong></p>
-
-
-
-<p><strong>-IME 105 kept the new model, fixed the APDP side, and, because the config was already missing, could now put it back down using the normal companion rules.</strong>.<strong>.But still, this version doesn&#8217;t contain the real fix when the config file is missing?.</strong></p>
-
-
-
-<h2 class="wp-block-heading">What 1.101.109.0 changed</h2>
-
-
-
-<p>After 105 was released, within a couple of days, we got another IME release&#8230; which holds the real fix for <strong>the missing config file!</strong> When I compared the 1.101.105.0 and 1.101.109.0 MSI exports, Microsoft clearly changed how the Intune Management Extension installer handles Microsoft.Management.Services.IntuneWindowsAgent.exe.config. In 109, they added a new custom action named EnsureAppConfigExists, sequenced right after RemoveExistingProducts during an upgrade</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="166" src="https://patchmypc.com/app/uploads/2026/04/image-21-1024x166.png" alt="" class="wp-image-181447" srcset="https://patchmypc.com/app/uploads/2026/04/image-21-1024x166.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-21-300x49.png 300w, https://patchmypc.com/app/uploads/2026/04/image-21-768x124.png 768w, https://patchmypc.com/app/uploads/2026/04/image-21.png 1039w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>That timing matters because it places the repair step exactly when the old IME version could still interfere with files that the new IME version had just laid down.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="932" height="31" src="https://patchmypc.com/app/uploads/2026/04/image-22.png" alt="" class="wp-image-181448" srcset="https://patchmypc.com/app/uploads/2026/04/image-22.png 932w, https://patchmypc.com/app/uploads/2026/04/image-22-300x10.png 300w, https://patchmypc.com/app/uploads/2026/04/image-22-768x26.png 768w" sizes="(max-width: 932px) 100vw, 932px" /></figure>
-
-
-
-<p>After extracting and reviewing that custom action, the logic turned out to be very targeted. It checks whether Microsoft.Management.Services.IntuneWindowsAgent.exe exists and whether Microsoft.Management.Services.IntuneWindowsAgent.exe.config is missing. </p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="992" height="513" src="https://patchmypc.com/app/uploads/2026/04/image-23.png" alt="" class="wp-image-181449" srcset="https://patchmypc.com/app/uploads/2026/04/image-23.png 992w, https://patchmypc.com/app/uploads/2026/04/image-23-300x155.png 300w, https://patchmypc.com/app/uploads/2026/04/image-23-768x397.png 768w" sizes="(max-width: 992px) 100vw, 992px" /></figure>
-
-
-
-<p>If the executable is present but the config file is missing, it restores the config from an embedded resource named EmsAgentAppConfig. I<strong>n other words, 109 introduced a safety net for the missing config file scenario.</strong></p>
-
-
-
-<p>That is an important distinction, because this fix is narrow by design&#8230;.But&#8230;. This new IME version still does not validate or check the contents of the existing config file. It does <strong>NOT</strong> compare the file on disk with the embedded baseline. And it does <strong>NOT</strong> overwrite the config when the file is present but <strong>altered</strong>. So while the IME version 109 appears to close the gap where the config disappeared entirely during an upgrade, it does not fully protect against the older problem where the config still exists but no longer matches the binaries next to it. How would I fix it? Well&#8230;<strong><a href="https://patchmypc.com/blog/company-portal-stuck-on-downloading-idx12729-0x80131040/"> check out the older blog !</a></strong></p>
-
-
-
-<h2 class="wp-block-heading" id="h-it1272653-summary">IT1272653: Summary</h2>
-
-
-
-<p>Microsoft needed a way to solve the original IME config versioning problem, where an old Microsoft.Management.Services.IntuneWindowsAgent.exe.config could survive an upgrade and no longer match the binaries next to it. In <strong>1.101.103.0</strong>, they changed that file into a companion file of Microsoft.Management.Services.IntuneWindowsAgent.exe, but that first jump into the new model appears to be where the config could disappear during upgrade. In 1.101.105.0, the companion model stayed in place;<strong> the missing config could be recreated… with it, the IME started working again.</strong></p>
-<p>The post <a href="https://patchmypc.com/blog/it1272653-company-portal-stuck-on-downloading/">The Story Behind: IT1272653 and the Company Portal Stuck on Download Pending</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/it1272653-company-portal-stuck-on-downloading/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
