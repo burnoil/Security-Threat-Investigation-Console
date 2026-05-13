@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 13 May 2026 17:45:33 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 13 May 2026 17:49:19 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,47 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>Patch My PC Publisher Production Version 2.2.2.0 Released</title>
+		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-2-0-released/</link>
+					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-2-0-released/#respond</comments>
+		
+		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
+		<pubDate>Wed, 13 May 2026 17:49:18 +0000</pubDate>
+				<category><![CDATA[Production Release]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=184548</guid>
+
+					<description><![CDATA[<p>This release contains a fix as noted below. This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&#160;MSI installer. Fixes</p>
+<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-2-0-released/">Patch My PC Publisher Production Version 2.2.2.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>This release contains a fix as noted below.</p>
+
+
+
+<p>This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&nbsp;<strong><a href="https://patchmypc.com/publishing-service-setup-documentation">MSI installer</a></strong>.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-fixes">Fixes</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Revert a change causing a notification with message &#8216;Update complete&#8217;, &#8216;&lt;app name> update complete&#8217;, or similar to appear.</li>
+</ul>
+
+
+
+<p></p>
+<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-2-0-released/">Patch My PC Publisher Production Version 2.2.2.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-2-0-released/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Maintenance Window Settings Catalog… And it’s Gone</title>
 		<link>https://patchmypc.com/blog/maintenance-window-settings-catalog-and-its-gone/</link>
 					<comments>https://patchmypc.com/blog/maintenance-window-settings-catalog-and-its-gone/#respond</comments>
@@ -1763,55 +1804,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/windows-11-hotpatch-updates-secure-boot-and-the-reset-this-pc-problem/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Patch My PC Publisher Production Version 2.1.120.0 Released</title>
-		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-1-120-0-released/</link>
-					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-1-120-0-released/#respond</comments>
-		
-		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
-		<pubDate>Fri, 10 Apr 2026 20:05:47 +0000</pubDate>
-				<category><![CDATA[Production Release]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=180962</guid>
-
-					<description><![CDATA[<p>This release contains a fix, as noted below. This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&#160;MSI installer. Fixes</p>
-<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-1-120-0-released/">Patch My PC Publisher Production Version 2.1.120.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p>This release contains a fix, as noted below.</p>
-
-
-
-<p>This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&nbsp;<strong><a href="https://patchmypc.com/publishing-service-setup-documentation">MSI installer</a></strong>.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-fixes">Fixes</h2>
-
-
-
-<ul class="wp-block-list">
-<li>Fix a bug causing some Intune Dynamic Assignments to fail to parse from settings.xml. An error message in the log containing “Sequence contains no matching elements” indicates if this bug was encountered. This release will automatically restore missing Intune Dynamic Assignments from backup settings.
-<ul class="wp-block-list">
-<li>This is a follow-up to a fix in 2.1.114.0. It was found that the bug impacted Dynamic Assignments with a rule filtering on Classification or Severity. Build 2.1.114.0 addresses Severity, and this build addresses Classification. </li>
-</ul>
-</li>
-
-
-
-<li>An exception would occur when the Publisher UI was opened when installed on a ConfigMgr site server that did not also have the Software Update Point role installed. </li>
-</ul>
-
-
-
-<p></p>
-<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-1-120-0-released/">Patch My PC Publisher Production Version 2.1.120.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-1-120-0-released/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
