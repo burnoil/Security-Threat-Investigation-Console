@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 13 May 2026 17:49:19 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 14 May 2026 06:28:25 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -396,7 +396,7 @@
 
 
 
-<p><strong>Please Note: This blog is based on OSINT and purely my investigation&#8230;.. nothing else&#8230;</strong></p>
+<p><strong>Please Note: This blog is based on OSINT and purely my own investigation&#8230;.. nothing else&#8230; well&#8230; maybe the update of the<a href="https://learn.microsoft.com/en-us/intune/whats-new/in-development"> what&#8217;s in development pages from MSFT</a></strong></p>
 
 
 
@@ -404,7 +404,7 @@
 
 
 
-<p>Almost a year ago (or even more), I stumbled upon something on one of my devices that immediately felt out of place. Buried in Program Files was a component called <strong>ControlConfigAdapter</strong>. I had never seen it before, Microsoft was not saying anything publicly about it, and the name was far too specific to ignore. So I started<strong> investigating….yes, investigating&#8230;&#8230;</strong></p>
+<p>Almost a year ago (or even more), I stumbled upon something on one of my devices that immediately felt out of place. Buried in Program Files was a component called <strong>ControlConfigAdapter</strong>. I had never seen it before, Microsoft was not saying anything publicly about it, and the name was far too specific to ignore. So I started <strong>investigating….yes, investigating&#8230;&#8230;</strong></p>
 
 
 
@@ -560,7 +560,7 @@
 
 
 
-<p>That matters more than it might seem. Because once Microsoft announced this <strong>Controlled Configuration for Microsoft Defender, </strong>the adapter suddenly stopped looking like an unfinished internal experiment and started looking exactly like what it had been hinting at all along.  Tamper Protection v2 :)&#8230;.. and it all started with the ControlConfig Adapter showing up on my devices last year!</p>
+<p>That matters more than it might seem. Because once Microsoft announced this <strong>Controlled Configuration for Microsoft Defender, </strong>the adapter suddenly stopped looking like an unfinished internal experiment and started looking exactly like what it had been hinting at all along. <strong>Tamper Protection v2 :)..</strong>&#8230; and it all started with the ControlConfig Adapter showing up on my devices last year!</p>
 
 
 
