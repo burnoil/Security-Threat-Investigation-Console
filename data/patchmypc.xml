@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 14 May 2026 06:28:25 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 14 May 2026 08:07:20 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,297 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>Download IntuneWin Files from Microsoft Intune</title>
+		<link>https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/</link>
+					<comments>https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/#respond</comments>
+		
+		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
+		<pubDate>Thu, 14 May 2026 07:31:49 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=184605</guid>
+
+					<description><![CDATA[<p>Download IntuneWin files from Microsoft Intune with the rebuilt IntuneWin Downloader. This version makes it easier to find assigned Win32 apps and recover the original app content when the source files are no longer available.</p>
+<p>The post <a href="https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/">Download IntuneWin Files from Microsoft Intune</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>In the first version of the IntuneWin Downloader, the goal was simple: <strong>Download IntuneWin</strong> content from Intune and recover the original Win32 app source files when they were no longer available locally. That blog walked through the IME style flow: find the Intune MDM device certificate, discover the SideCar Gateway, request ContentInfo, download the encrypted content, decrypt it, and extract the package. It also made one thing very clear: this only works when the app is still assigned to the device or user. It was never about bypassing Intune assignments.</p>
+
+
+
+<p>That first version worked, but it still felt a bit rough around the edges. You needed the AppId, you needed the right token to be present in the local TokenBroker cache, and when the cache contained multiple tokens, picking the right one could become a bit of a gamble.</p>
+
+
+
+<p>So I went back into the IME flow. Not to change what the tool was doing, but to make the <strong>IntuneWin Downloader</strong> behave more like the IME and Company Portal. With it&#8230; The tool looks like this.</p>
+
+
+
+<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="659" src="https://patchmypc.com/app/uploads/2026/05/image-30-1024x659.png" alt="Download IntuneWin files  straight from intune using WAM for the tokens" class="wp-image-184622" srcset="https://patchmypc.com/app/uploads/2026/05/image-30-1024x659.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-30-300x193.png 300w, https://patchmypc.com/app/uploads/2026/05/image-30-768x494.png 768w, https://patchmypc.com/app/uploads/2026/05/image-30.png 1248w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<h2 class="wp-block-heading" id="h-the-first-version-chasing-the-tbres-token">The first version: chasing the .tbres token</h2>
+
+
+
+<p><strong><a href="https://patchmypc.com/blog/download-intunewin-win32-app-files-from-intune/">The first version of the tool relied on the local TokenBroker cache. </a></strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="774" height="438" src="https://patchmypc.com/app/uploads/2026/05/image-20.png" alt="" class="wp-image-184608" srcset="https://patchmypc.com/app/uploads/2026/05/image-20.png 774w, https://patchmypc.com/app/uploads/2026/05/image-20-300x170.png 300w, https://patchmypc.com/app/uploads/2026/05/image-20-768x435.png 768w" sizes="(max-width: 774px) 100vw, 774px" /></figure>
+
+
+
+<p>The idea was straightforward. The Intune Management Extension already requires a bearer token when communicating with the SideCar Gateway. That token could often be found in the user’s local TokenBroker cache as a .tbres file.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="770" height="189" src="https://patchmypc.com/app/uploads/2026/05/image-35.png" alt="" class="wp-image-184636" srcset="https://patchmypc.com/app/uploads/2026/05/image-35.png 770w, https://patchmypc.com/app/uploads/2026/05/image-35-300x74.png 300w, https://patchmypc.com/app/uploads/2026/05/image-35-768x189.png 768w" sizes="(max-width: 770px) 100vw, 770px" /></figure>
+
+
+
+<p>So the script would look through the cache, decrypt ResponseBytes using DPAPI in the current user context, search for a JWT, and then use that token for the SideCar calls. That worked, but it had some weak spots.</p>
+
+
+
+<p>The token had to exist in the tbres cache. The Intunewin Download script had to run as the same user who owned that cache. The cache had to contain a still-valid token. And when the decrypted response contained multiple JWTs, the script had to ensure it did not grab the wrong one. That last part is where things became interesting. A token can be valid and not expired, yet still be completely useless for the endpoint you are calling. If the audience does not match what SideCar expects, the request will fail anyway. So, yes, the .tbres approach was useful. But it was not the cleanest way forward.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-moment-wam-changed-the-intunewin-download"><strong>The moment WAM changed the IntuneWin Download</strong></h2>
+
+
+
+<p>The newer version no longer depends on scraping .tbres files. Instead of hunting for a cached token, the tool now asks <strong><a href="https://learn.microsoft.com/en-us/entra/identity-platform/reference-entra-id-wam-api">WAM directly</a></strong>.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="628" height="166" src="https://patchmypc.com/app/uploads/2026/05/image-25.png" alt="" class="wp-image-184613" srcset="https://patchmypc.com/app/uploads/2026/05/image-25.png 628w, https://patchmypc.com/app/uploads/2026/05/image-25-300x79.png 300w" sizes="(max-width: 628px) 100vw, 628px" /></figure>
+
+
+
+<p><strong>WAM, or Web Account Manager,</strong> is the Windows broker layer that apps use to request tokens for signed-in accounts. The important part is that the tool no longer needs to rely on the assumption that the right token already exists in the cache. It can request the token itself, using the correct client and resource pair.</p>
+
+
+
+<p>That changed the tool from this:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Find TokenBroker cache</li>
+
+
+
+<li>Decrypt .tbres</li>
+
+
+
+<li>Extract token</li>
+
+
+
+<li>Hope it is the right one</li>
+
+
+
+<li>Call SideCar</li>
+</ul>
+
+
+
+<p>into this:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Ask WAM for the right token</li>
+
+
+
+<li>Use the MDM device certificate</li>
+
+
+
+<li>Call the right Intune client-side endpoint</li>
+
+
+
+<li>Download the content</li>
+
+
+
+<li>Process the package</li>
+</ul>
+
+
+
+<p>That sounds small, but it makes the flow much more reliable.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-two-different-lanes-two-different-tokens-to-download-the-intunewin">Two different lanes, two different tokens to download the IntuneWin</h2>
+
+
+
+<p>The next lesson was that “Intune token” is too vague. The <strong>Company Portal and IME do not use one magic token for everything</strong>. The Company Portal catalog and the IME SideCar flow are different lanes, and each lane expects a token with the correct audience.</p>
+
+
+
+<p>For the Company Portal catalog lane, the tool uses the Company Portal client and the IWService resource.</p>
+
+
+
+<p><strong>Company Portal</strong><br>ClientId&nbsp; = 9ba1a5c7-f17a-4de9-a1f1-6178c8d51223<br>Resource&nbsp; = b8066b99-6e67-41be-abfa-75db1a2c8809</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="708" height="70" src="https://patchmypc.com/app/uploads/2026/05/image-24.png" alt="" class="wp-image-184612" srcset="https://patchmypc.com/app/uploads/2026/05/image-24.png 708w, https://patchmypc.com/app/uploads/2026/05/image-24-300x30.png 300w" sizes="(max-width: 708px) 100vw, 708px" /></figure>
+
+
+
+<p>That token is used to talk to the IWService catalog endpoint. This is the lane that helps us list apps with a friendly name and an AppId, without having to manually copy the AppId from the Intune portal. For the IME SideCar lane, the tool uses the IME SideCar client and resource pair.</p>
+
+
+
+<p><strong>IME SideCar</strong><br>ClientId&nbsp; = fc0f3af4-6835-4174-b806-f7db311fd2f3<br>Resource&nbsp; = 26a4ae64-5862-427f-a9b0-044e62572a4f</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="750" height="144" src="https://patchmypc.com/app/uploads/2026/05/image-23.png" alt="" class="wp-image-184611" srcset="https://patchmypc.com/app/uploads/2026/05/image-23.png 750w, https://patchmypc.com/app/uploads/2026/05/image-23-300x58.png 300w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+
+
+
+<p>That token is used for the SideCar GetContentInfo flow. This split is important. The Company Portal token can help you discover apps, but it is not the token that SideCar wants when you request content. The SideCar token can help you resolve content, but it is not the cleanest way to list the Company Portal catalog. So the new tool uses both lanes for what they do best.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-discovering-the-apps-with-the-company-portal-catalog">Discovering the apps with the Company Portal catalog</h2>
+
+
+
+<p>The first version required you to know the AppId. That was annoying. Yes, you could get it from the Intune portal. Yes, you could use Graph. But the Company Portal already has a catalog view of apps relevant to the user and device. So the better approach was to use the Company Portal catalog lane for discovery&#8230; which just worked perfectly.</p>
+
+
+
+<p>The tool now requests a WAM token for the Company Portal IWService resource and calls the IWService catalog endpoint. From there, it builds the app list in the UI. That gives us the display name and AppId without having to manually search for them. The important thing is that this is only used for discovery. It does not download anything yet. It only answers the question: <strong>Which apps does the Company Portal know about?</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="895" height="80" src="https://patchmypc.com/app/uploads/2026/05/image-26.png" alt="" class="wp-image-184614" srcset="https://patchmypc.com/app/uploads/2026/05/image-26.png 895w, https://patchmypc.com/app/uploads/2026/05/image-26-300x27.png 300w, https://patchmypc.com/app/uploads/2026/05/image-26-768x69.png 768w" sizes="(max-width: 895px) 100vw, 895px" /></figure>
+
+
+
+<p> The download still happens through the IME SideCar flow.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-downloading-the-intunewin-still-belongs-to-sidecar">Downloading the IntuneWin still belongs to SideCar</h2>
+
+
+
+<p>Once you select an app, the tool switches lanes. It takes the selected AppId and calls SideCar GetContentInfo using the SideCar WAM token and the local Intune MDM device certificate. That part still follows the same idea as the original blog. The device identity matters. The MDM certificate matters. The SideCar Gateway matters. The app assignment still matters.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="211" src="https://patchmypc.com/app/uploads/2026/05/image-27-1024x211.png" alt="" class="wp-image-184616" srcset="https://patchmypc.com/app/uploads/2026/05/image-27-1024x211.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-27-300x62.png 300w, https://patchmypc.com/app/uploads/2026/05/image-27-768x158.png 768w, https://patchmypc.com/app/uploads/2026/05/image-27.png 1141w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>The tool first discovers the correct SideCar Gateway URI for the tenant and scale unit. Then it sends the GetContentInfo request for the selected AppId and ApplicationVersion.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="748" height="175" src="https://patchmypc.com/app/uploads/2026/05/image-28.png" alt="" class="wp-image-184618" srcset="https://patchmypc.com/app/uploads/2026/05/image-28.png 748w, https://patchmypc.com/app/uploads/2026/05/image-28-300x70.png 300w" sizes="(max-width: 748px) 100vw, 748px" /></figure>
+
+
+
+<p>If SideCar allows the current device or user to resolve the content, it returns the metadata needed to download and process the package. If SideCar rejects it, the tool does not magically work around that.</p>
+
+
+
+<p>And that is exactly how it should be.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-regular-win32-apps-versus-catalog-apps">Regular Win32 apps versus catalog apps</h2>
+
+
+
+<p>The original IntuneWin flow is built around encrypted content. A regular Win32 app returns encrypted content metadata. The tool downloads the .intunewin content, uses the returned encryption information, decrypts the payload with AES, and extracts the resulting zip.</p>
+
+
+
+<p>That is the classic path. But Enterprise App Management catalog apps can behave differently. For some of those apps, the metadata returns: ProfileIdentifier = NoEncryption</p>
+
+
+
+<p>That changes the processing flow. When NoEncryption is enabled, there is no AES key or IV to use in the classic way. The tool should not keep trying to decrypt something that was not returned as an encrypted IntuneWin payload. Instead, it treats the downloaded content as the decoded zip and extracts it directly.</p>
+
+
+
+<p>That was one of those small details that only becomes obvious once the tool starts working against more than just manually uploaded Win32 apps.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-what-the-intunwin-download-tool-does-now">What the Intunwin Download tool does now</h2>
+
+
+
+<p>The current flow looks like this. The tool starts by initializing the local Intune identity context. It locates the MDM device certificate and extracts the device identity. It then discovers the SideCar Gateway URI for the device’s Intune environment.</p>
+
+
+
+<p>For app discovery, it requests a Company Portal IWService token through WAM and loads the Company Portal catalog. That gives the UI a clean list of apps with display names and AppIDs.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="657" src="https://patchmypc.com/app/uploads/2026/05/image-33-1024x657.png" alt="Download IntuneWin files  straight from intune using WAM for the tokens" class="wp-image-184631" srcset="https://patchmypc.com/app/uploads/2026/05/image-33-1024x657.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-33-300x193.png 300w, https://patchmypc.com/app/uploads/2026/05/image-33-768x493.png 768w, https://patchmypc.com/app/uploads/2026/05/image-33.png 1217w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>For downloading, it requests an IME SideCar token through WAM, calls <strong>GetContentInfo with the MDM device certificate</strong>, downloads the content, and then processes it based on the returned metadata.&nbsp; If the metadata contains regular encryption information, the tool decrypts and extracts the IntuneWin content.If the metadata says NoEncryption, it skips AES decryption and extracts the downloaded zip directly.</p>
+
+
+
+<p>And because large app packages can take some time, the tool now shows a separate download progress dialog instead of making the UI look frozen while the content is being downloaded. </p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="452" src="https://patchmypc.com/app/uploads/2026/05/image-34-1024x452.png" alt="Download IntuneWin files  straight from intune using WAM for the tokens" class="wp-image-184632" srcset="https://patchmypc.com/app/uploads/2026/05/image-34-1024x452.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-34-300x132.png 300w, https://patchmypc.com/app/uploads/2026/05/image-34-768x339.png 768w, https://patchmypc.com/app/uploads/2026/05/image-34.png 1246w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>Want to test it? I am currently also testing the .NET application, but for now, here is the executable version.</p>
+
+
+
+<p><a href="https://patchmypc.com/app/uploads/2026/05/IntuneWinDownloader.zip">https://patchmypc.com/app/uploads/2026/05/IntuneWinDownloader.zip</a></p>
+
+
+
+<h2 class="wp-block-heading" id="h-conclusion">Conclusion</h2>
+
+
+
+<p>Recovering IntuneWin content from Intune was already possible, as long as the app was still assigned and the device could resolve the content. The first version showed that by following the IME flow and manually pulling the pieces together. This newer version takes the next step.</p>
+
+
+
+<p>It uses WAM instead of hunting through .tbres files, uses the Company Portal catalog for AppId discovery, uses the IME SideCar lane for content resolution, and handles both encrypted Win32 packages and catalog apps that return NoEncryption.</p>
+
+
+
+<p></p>
+<p>The post <a href="https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/">Download IntuneWin Files from Microsoft Intune</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Patch My PC Publisher Production Version 2.2.2.0 Released</title>
 		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-2-0-released/</link>
 					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-2-0-released/#respond</comments>
@@ -78,7 +369,7 @@
 
 
 
-<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="398" src="https://patchmypc.com/app/uploads/2026/05/image-1.jpg" alt="maintenance window settings catalog" class="wp-image-184476" srcset="https://patchmypc.com/app/uploads/2026/05/image-1.jpg 624w, https://patchmypc.com/app/uploads/2026/05/image-1-300x191.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="398" src="https://patchmypc.com/app/uploads/2026/05/image-1.jpg" alt="maintenance window settings catalog" class="wp-image-184476" srcset="https://patchmypc.com/app/uploads/2026/05/image-1.jpg 624w, https://patchmypc.com/app/uploads/2026/05/image-1-300x191.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
 
 
 
@@ -1653,157 +1944,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/on-demand-remediation-push-notification-troubleshoot-intune/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Windows 11 Hotpatch Updates, Secure Boot, and the Reset This PC Problem</title>
-		<link>https://patchmypc.com/blog/windows-11-hotpatch-updates-secure-boot-and-the-reset-this-pc-problem/</link>
-					<comments>https://patchmypc.com/blog/windows-11-hotpatch-updates-secure-boot-and-the-reset-this-pc-problem/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Mon, 13 Apr 2026 08:40:24 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=181306</guid>
-
-					<description><![CDATA[<p>Windows 11 hotpatch updates can reduce reboots, but they do not move every part of Windows forward at the same pace. Microsoft has now confirmed the reset issue, while Secure Boot still depends on the baseline path.</p>
-<p>The post <a href="https://patchmypc.com/blog/windows-11-hotpatch-updates-secure-boot-and-the-reset-this-pc-problem/">Windows 11 Hotpatch Updates, Secure Boot, and the Reset This PC Problem</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p>A while ago, I wrote about <strong><a href="https://patchmypc.com/blog/windows-11-hotpatch-rebootless-updates/">hotpatch updates</a> </strong>and why the story felt a bit too clean. Fewer reboots, faster security fixes, less disruption. On paper, it is hard to argue with that. But the moment Microsoft announced that <strong><a href="https://techcommunity.microsoft.com/blog/windows-itpro-blog/securing-devices-faster-with-hotpatch-updates-on-by-default/4500066">hotpatch would be enabled by default</a></strong> for eligible Windows Autopatch devices starting with the May 2026 security update, the whole conversation changed for me.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="140" src="https://patchmypc.com/app/uploads/2026/04/image-18-1024x140.png" alt="hotpatch updates on by default" class="wp-image-181313" srcset="https://patchmypc.com/app/uploads/2026/04/image-18-1024x140.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-18-300x41.png 300w, https://patchmypc.com/app/uploads/2026/04/image-18-768x105.png 768w, https://patchmypc.com/app/uploads/2026/04/image-18.png 1069w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>The moment <strong>hotpatch updates become the default</strong>, most people stop asking what it really changes underneath the hood. And now Microsoft has done something important. It has officially documented the exact kind of issue that made me nervous in the first place.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-hotpatch-updates-reset-this-pc-issue">The Hotpatch Updates &#8220;Reset this pc&#8221; Issue</h2>
-
-
-
-<p>In the March 10, <a href="https://support.microsoft.com/en-gb/topic/march-10-2026-hotpatch-kb5079420-os-builds-26200-7979-and-26100-7979-752485e9-41c1-4628-ad1a-7538dba503e3"><strong>2026 hotpatch article for KB5079420</strong></a>, Microsoft states that Windows Autopatch managed commercial devices with <strong>hotpatch enabled</strong> can fail during <strong>Push Button Reset.</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="173" src="https://patchmypc.com/app/uploads/2026/04/image-16.png" alt="reset this pc might fail with hotpatch updates installed" class="wp-image-181311" srcset="https://patchmypc.com/app/uploads/2026/04/image-16.png 624w, https://patchmypc.com/app/uploads/2026/04/image-16-300x83.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>After the first phase of the offline reset, the device can restart back to the desktop and show the message, “<strong>There was a problem resetting your PC. No changes were made.”</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="449" src="https://patchmypc.com/app/uploads/2026/04/image.jpg" alt="there was a problem resetting your pc" class="wp-image-181310" srcset="https://patchmypc.com/app/uploads/2026/04/image.jpg 624w, https://patchmypc.com/app/uploads/2026/04/image-300x216.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>If you want to know more about what happened during the reset and why it broke, check out our upcoming <strong>patch n rant!</strong> (it&#8217;s coming!)&#8230; here is a small teaser in the meantime!</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="141" src="https://patchmypc.com/app/uploads/2026/04/image-20-1024x141.png" alt="" class="wp-image-181322" srcset="https://patchmypc.com/app/uploads/2026/04/image-20-1024x141.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-20-300x41.png 300w, https://patchmypc.com/app/uploads/2026/04/image-20-768x106.png 768w, https://patchmypc.com/app/uploads/2026/04/image-20.png 1486w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>Microsoft also lists a mitigation, the <strong>March Safe OS Dynamic Update KB5079471</strong>, and notes that this update only needs to be applied once.   That matters because this is no longer a theory built on log analysis alone. It is no longer a weird edge case that only showed up in my <strong><a href="https://www.reddit.com/r/Intune/comments/1s36b14/windows_remote_wipe_issues_after_intune_202603/">own testing or on reddit.</a></strong> Microsoft has now placed it directly in the release notes of the hotpatch update itself, for <strong><a href="https://support.microsoft.com/en-gb/topic/march-10-2026-hotpatch-kb5079420-os-builds-26200-7979-and-26100-7979-752485e9-41c1-4628-ad1a-7538dba503e3">Windows 11 version 25H2 and 24H2.</a></strong></p>
-
-
-
-<h2 class="wp-block-heading" id="h-why-this-matters-more-than-the-reset-error-itself">Why this matters more than the reset error itself</h2>
-
-
-
-<p>The reset failure is the visible part. The more interesting part is what it tells us about <strong>hotpatch.</strong> Microsoft’s own hotpatch documentation is already very clear about the update rhythm. January, April, July, and October are <strong>baseline months</strong> that require a restart. The months in between are the hotpatch months.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="501" height="219" src="https://patchmypc.com/app/uploads/2026/04/image-13.png" alt="hotpatch updates baseline month" class="wp-image-181307" srcset="https://patchmypc.com/app/uploads/2026/04/image-13.png 501w, https://patchmypc.com/app/uploads/2026/04/image-13-300x131.png 300w" sizes="(max-width: 501px) 100vw, 501px" /></figure>
-
-
-
-<p>And if a device is not on the latest baseline update, Windows can still apply both the latest baseline update and the latest hotpatch update. That alone tells you hotpatch is not replacing the normal servicing model. It is sitting on top of it.</p>
-
-
-
-<p>That is exactly why I have never been fully comfortable with the simplified version of the hotpatch story. Hotpatch can move the OS security fixes forward faster, yes. But that does not mean every other part of the platform moves forward at the same pace. The baseline still matters. The reboot still matters. The broader servicing state still matters. And the moment recovery depends on that servicing state, you stop talking about convenience and start talking about platform consistency.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-hotpatch-updates-and-the-secure-boot-certificates">Hotpatch Updates and the Secure Boot Certificates</h2>
-
-
-
-<p>The same March 2026 hotpatch article also contains another detail that should make people slow down a bit. Microsoft explicitly says that <strong>Secure Boot certificate updates</strong> will be delivered with the next baseline Windows update in April 2026<strong>, NOT</strong> with the hotpatch month itself.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="591" height="69" src="https://patchmypc.com/app/uploads/2026/04/image-14.png" alt="secure boot certificates will be delivered in the baseline month" class="wp-image-181309" srcset="https://patchmypc.com/app/uploads/2026/04/image-14.png 591w, https://patchmypc.com/app/uploads/2026/04/image-14-300x35.png 300w" sizes="(max-width: 591px) 100vw, 591px" /></figure>
-
-
-
-<p>In the same article, Microsoft also reminds customers that Secure Boot certificates used by most Windows devices start expiring from June 2026. It confirms the bigger point in one sentence. Hotpatch can move one part of Windows forward, while another important part still waits for the <strong>baseline month</strong>.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="471" height="282" src="https://patchmypc.com/app/uploads/2026/04/image-15.png" alt="hotpatch updates not containing the secure boot certificates" class="wp-image-181308" srcset="https://patchmypc.com/app/uploads/2026/04/image-15.png 471w, https://patchmypc.com/app/uploads/2026/04/image-15-300x180.png 300w" sizes="(max-width: 471px) 100vw, 471px" /></figure>
-
-
-
-<p>So yes, a device may look current from a hotpatch point of view. It may have the latest security fixes for the OS. But that still does not mean the entire platform has moved forward as one block. The Secure Boot certificate path is one example. The reset issue is another. And both are sitting in the same official article.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-this-is-the-part-people-need-to-be-aware-of">This is the part people need to be aware of</h2>
-
-
-
-<p><strong>I am NOT saying hotpatch is bad</strong>. I am saying hotpatch is narrower than the marketing pitch makes it sound. That is a very important difference.</p>
-
-
-
-<p>If you run devices where <strong>uptime </strong>really matters, <strong>hotpatch makes a lot of sense</strong>. But when Microsoft enables it by default for eligible Windows Autopatch devices, the risk is that people stop treating it like a servicing choice and start treating it like a harmless checkbox.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="287" src="https://patchmypc.com/app/uploads/2026/04/image-19-1024x287.png" alt="hotpatch updates turned on by default" class="wp-image-181315" srcset="https://patchmypc.com/app/uploads/2026/04/image-19-1024x287.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-19-300x84.png 300w, https://patchmypc.com/app/uploads/2026/04/image-19-768x215.png 768w, https://patchmypc.com/app/uploads/2026/04/image-19.png 1356w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>It is not. It changes the way monthly servicing progresses on the device. And once the device has to recover, reset, or rely on components still tied to the baseline path, those differences stop being theoretical.</p>
-
-
-
-<p>That is really why this follow-up blog matters. The earlier conversation around hotpatch could still be framed as a debate about caution. This one cannot. Microsoft has now documented the <strong>push button</strong> <strong>reset failure</strong> itself, documented the mitigation, and in the same breath reminded everyone that <strong>Secure Boot certificate </strong>updates still wait for the next baseline. </p>
-
-
-
-<p>That is the story. <strong>Not that hotpatch is broken</strong> everywhere. <strong>Not that nobody should use it.</strong> But that <strong>reducing reboots is not the same thing as reducing complexity.</strong></p>
-
-
-
-<h2 class="wp-block-heading" id="h-my-take-on-hotpach">My take on Hotpach</h2>
-
-
-
-<p>If hotpatch is about to become the default, reset testing should also be part of the conversation. And Secure Boot certificate planning definitely also needs to be part of the conversation now that Microsoft has already pointed to April 2026 as the next baseline moment for those updates, while the certificate expiration window starts in June 2026. &nbsp;So no, I would not panic (or maybe a bit?). But <strong>I also would NOT just let hotpatch quietly be turned on by default </strong>and assume it is nothing more than a nice way to avoid reboots.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="166" src="https://patchmypc.com/app/uploads/2026/04/image-17.png" alt="" class="wp-image-181312" srcset="https://patchmypc.com/app/uploads/2026/04/image-17.png 624w, https://patchmypc.com/app/uploads/2026/04/image-17-300x80.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>Microsoft has now shown us, in its own documentation, that hotpatch can affect more than the monthly update experience. It can also show up in the exact moment you need the device to recover cleanly.</p>
-<p>The post <a href="https://patchmypc.com/blog/windows-11-hotpatch-updates-secure-boot-and-the-reset-this-pc-problem/">Windows 11 Hotpatch Updates, Secure Boot, and the Reset This PC Problem</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/windows-11-hotpatch-updates-secure-boot-and-the-reset-this-pc-problem/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
