@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 14 May 2026 08:07:20 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 15 May 2026 08:29:17 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -286,6 +286,10 @@
 
 
 <p><a href="https://patchmypc.com/app/uploads/2026/05/IntuneWinDownloader.zip">https://patchmypc.com/app/uploads/2026/05/IntuneWinDownloader.zip</a></p>
+
+
+
+<p>Please note: You need to run this tool on an enta joined device within your tenant, otherwise the silent WAM token request will not work.</p>
 
 
 
