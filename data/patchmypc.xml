@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Sat, 16 May 2026 19:58:20 +0000</lastBuildDate>
+	<lastBuildDate>Sun, 17 May 2026 12:07:43 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,7 +20,7 @@
 	1	</sy:updateFrequency>
 	
 	<item>
-		<title>Download IntuneWin Files from Microsoft Intune</title>
+		<title>Download IntuneWin Files from Microsoft Intune V2</title>
 		<link>https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/</link>
 					<comments>https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/#respond</comments>
 		
@@ -30,7 +30,7 @@
 		<guid isPermaLink="false">https://patchmypc.com/?p=184605</guid>
 
 					<description><![CDATA[<p>Download IntuneWin files from Microsoft Intune with the rebuilt IntuneWin Downloader. This version makes it easier to find assigned Win32 apps and recover the original app content when the source files are no longer available.</p>
-<p>The post <a href="https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/">Download IntuneWin Files from Microsoft Intune</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+<p>The post <a href="https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/">Download IntuneWin Files from Microsoft Intune V2</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
 <p>In the first version of the IntuneWin Downloader, the goal was simple: <strong>Download IntuneWin</strong> content from Intune and recover the original Win32 app source files when they were no longer available locally. That blog walked through the IME style flow: find the Intune MDM device certificate, discover the SideCar Gateway, request ContentInfo, download the encrypted content, decrypt it, and extract the package. It also made one thing very clear: this only works when the app is still assigned to the device or user. It was never about bypassing Intune assignments.</p>
@@ -298,7 +298,7 @@
 
 
 <p></p>
-<p>The post <a href="https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/">Download IntuneWin Files from Microsoft Intune</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+<p>The post <a href="https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/">Download IntuneWin Files from Microsoft Intune V2</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/feed/</wfw:commentRss>
