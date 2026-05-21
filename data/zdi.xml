@@ -10,9 +10,25 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Thu, 21 May 2026 17:35:12 -0500</pubDate>
+    <pubDate>Thu, 21 May 2026 18:28:18 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-319: Progress Software Kemp LoadMaster addcountry Command Injection Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29249</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-319/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Progress Software Kemp LoadMaster. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-3517.]]></description>
+      <pubDate>Thu, 21 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-318: Progress Software Kemp LoadMaster ssodomain_killsession Command Injection Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29222</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-318/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Progress Software Kemp LoadMaster. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-3518.]]></description>
+      <pubDate>Thu, 21 May 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-317: Siemens Simcenter Femap IPT File Parsing Memory Corruption Remote Code Execution Vulnerability]]></title>
@@ -1595,22 +1611,6 @@
       <guid isPermaLink="false">ZDI-CAN-28530</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-120/</link>
       <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of GIMP. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-2047.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-119: GIMP XWD File Parsing Out-Of-Bounds Write Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28265</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-119/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of GIMP. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-2045.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-118: GIMP PGM File Parsing Uninitialized Memory Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28158</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-118/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of GIMP. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-2044.]]></description>
       <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
     </item>
     
