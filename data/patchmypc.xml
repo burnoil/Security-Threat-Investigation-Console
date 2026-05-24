@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Sun, 17 May 2026 12:07:43 +0000</lastBuildDate>
+	<lastBuildDate>Sun, 24 May 2026 13:42:57 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,299 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>The Illusion of Intune “Last Check-in”: When Devices Appear Active but Cannot Sync</title>
+		<link>https://patchmypc.com/blog/intune-last-check-in-when-devices-appear-active-but-cannot-sync/</link>
+					<comments>https://patchmypc.com/blog/intune-last-check-in-when-devices-appear-active-but-cannot-sync/#respond</comments>
+		
+		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
+		<pubDate>Tue, 19 May 2026 07:48:49 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=168056</guid>
+
+					<description><![CDATA[<p>The Intune portal can show a fresh Last check in even when the MDM certificate on the device has already expired. That timestamp only proves the device was able to touch the service. It does not prove that policy sync, app delivery, or real management is still working.</p>
+<p>The post <a href="https://patchmypc.com/blog/intune-last-check-in-when-devices-appear-active-but-cannot-sync/">The Illusion of Intune “Last Check-in”: When Devices Appear Active but Cannot Sync</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>This blog exposes the gap between what Intune shows as <strong>Last check-in (last sync) </strong>and what the device is actually capable of once the <strong>MDM certificate has expired.</strong></p>
+
+
+
+<p class="has-small-font-size"><em>Please note: This blog is based on my own testing and analysis, including decompiling publicly available Windows binaries. No NDA covered information, internal documentation, or private sources were used.</em></p>
+
+
+
+<h2 class="wp-block-heading" id="h-introduction">Introduction</h2>
+
+
+
+<p>I ran into this while digging into a set of devices where the Intune MDM certificate simply refused to renew. The certificate had expired, long past its expiration date, yet the device still showed a perfectly fresh <strong>Last check-in (Last Sync Time) </strong>timestamp in the Intune portal.</p>
+
+
+
+<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="80" src="https://patchmypc.com/app/uploads/2025/11/image-66-1024x80.png" alt="" class="wp-image-170302" srcset="https://patchmypc.com/app/uploads/2025/11/image-66-1024x80.png 1024w, https://patchmypc.com/app/uploads/2025/11/image-66-300x24.png 300w, https://patchmypc.com/app/uploads/2025/11/image-66-768x60.png 768w, https://patchmypc.com/app/uploads/2025/11/image-66.png 1313w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>At first glance, that made no sense. An expired certificate should block authentication. (as shown below, the certificate was expired on 11-1-2024)</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="210" src="https://patchmypc.com/app/uploads/2025/11/image-24.jpg" alt="" class="wp-image-168058" srcset="https://patchmypc.com/app/uploads/2025/11/image-24.jpg 624w, https://patchmypc.com/app/uploads/2025/11/image-24-300x101.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>No authentication means no check-in. At least, that is what most IT admins assume. But the Last Check-In <strong>(Last Sync Time) </strong>timestamps kept updating.</p>
+
+
+
+<figure class="wp-block-image size-large"><a href="https://patchmypc.com/app/uploads/2025/11/image-63-scaled.png"><img decoding="async" width="1024" height="223" src="https://patchmypc.com/app/uploads/2025/11/image-63-1024x223.png" alt="" class="wp-image-170297" srcset="https://patchmypc.com/app/uploads/2025/11/image-63-1024x223.png 1024w, https://patchmypc.com/app/uploads/2025/11/image-63-300x65.png 300w, https://patchmypc.com/app/uploads/2025/11/image-63-768x167.png 768w, https://patchmypc.com/app/uploads/2025/11/image-63-1536x335.png 1536w, https://patchmypc.com/app/uploads/2025/11/image-63-2048x446.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></figure>
+
+
+
+<p>Not just in the Intune portal. The registry under the OMADM account key showed the same thing.<br><strong>ServerLastAccessTime and ServerLastSuccessTime</strong> moved forward every time the device reached out.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="215" src="https://patchmypc.com/app/uploads/2025/11/image-64-1024x215.png" alt="" class="wp-image-170298" srcset="https://patchmypc.com/app/uploads/2025/11/image-64-1024x215.png 1024w, https://patchmypc.com/app/uploads/2025/11/image-64-300x63.png 300w, https://patchmypc.com/app/uploads/2025/11/image-64-768x161.png 768w, https://patchmypc.com/app/uploads/2025/11/image-64-1536x322.png 1536w, https://patchmypc.com/app/uploads/2025/11/image-64.png 1670w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>The device looked healthy, while the certificate was clearly invalid.<br>So I started digging into the OMADM flow.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-omadm-account-structure-behind-the-scenes">The OMADM account structure behind the scenes</h2>
+
+
+
+<p>Every Intune-enrolled device keeps a local record of its MDM account underHKLM\software\microsoft\provisioning\OMADM\Accounts\&lt;AccountGUID></p>
+
+
+
+<p>Inside that key sits a packed structure the client calls <strong>AcctInfo (AccountInfo)</strong>. That block contains the server URL, retry timers, flags, and, more interesting for this story, the timestamps Intune uses for the last check in:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>ServerLastAccessTime</strong></li>
+
+
+
+<li><strong>ServerLastSuccessTime</strong></li>
+
+
+
+<li><strong>LastSessionResult</strong></li>
+</ul>
+
+
+
+<p>When the device talks to Intune, the OMADM client does not just fire off a web request. It first loads this AcctInfo structure, runs a session setup, and only then starts sending SyncML. You can picture the simple version of the flow like this:</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="446" height="1024" src="https://patchmypc.com/app/uploads/2025/11/image-65-446x1024.png" alt="" class="wp-image-170300" srcset="https://patchmypc.com/app/uploads/2025/11/image-65-446x1024.png 446w, https://patchmypc.com/app/uploads/2025/11/image-65-131x300.png 131w, https://patchmypc.com/app/uploads/2025/11/image-65-768x1762.png 768w, https://patchmypc.com/app/uploads/2025/11/image-65.png 813w" sizes="(max-width: 446px) 100vw, 446px" /></figure>
+
+
+
+<ul class="wp-block-list">
+<li>&nbsp;&nbsp;&nbsp; A[MDM scheduled sync or manual sync] &#8211;&gt; B[OmadmAccountManager]</li>
+
+
+
+<li>&nbsp;&nbsp;&nbsp; B &#8211;&gt; C[OmaDmGetAcctInfoFromKey&lt;br&gt;Read AcctInfo from HKLM\&#8230;Accounts\&lt;GUID&gt;]</li>
+
+
+
+<li>&nbsp;&nbsp;&nbsp; C &#8211;&gt; D[SyncmlSessionStateManager::InitiateSession]</li>
+
+
+
+<li>&nbsp;&nbsp;&nbsp; D &#8211;&gt; E[Build SyncML request&lt;br&gt;select auth settings&lt;br&gt;prepare connection]</li>
+
+
+
+<li>&nbsp;&nbsp;&nbsp; E &#8211;&gt; F[Send request to Intune service]</li>
+
+
+
+<li>&nbsp;&nbsp;&nbsp; F &#8211;&gt; G[Receive SyncML response&lt;br&gt;with server time]</li>
+
+
+
+<li>&nbsp;&nbsp;&nbsp; G &#8211;&gt; H[StoreServerLastTime&lt;br&gt;update timestamps in AcctInfo]</li>
+
+
+
+<li>&nbsp;&nbsp;&nbsp; H &#8211;&gt; I[InternalSaveAcctInfoToKey&lt;br&gt;write back to registry]</li>
+
+
+
+<li>&nbsp;&nbsp;&nbsp; I &#8211;&gt; J[Intune reads these values&lt;br&gt;and shows Last check in]</li>
+
+
+
+<li>&nbsp;&nbsp;&nbsp; F -.-&gt; K[TLS handshake uses MDM cert&lt;br&gt;but expiry is not enforced here]</li>
+</ul>
+
+
+
+<h3 class="wp-block-heading" id="h-the-corrosponding-explanation">The Corrosponding Explanation</h3>
+
+
+
+<p>Step A is whatever kicked off the sync. That might be the regular DMClient schedule, a manual sync request from the portal, or the user pressing the sync button. Step B is where OmadmAccountManager wakes up and starts working with the local account. It calls OmaDmGetAcctInfoFromKey, which reads the AcctInfo block from the registry and unpacks it into memory.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="585" height="309" src="https://patchmypc.com/app/uploads/2025/11/image-59.png" alt="" class="wp-image-168062" srcset="https://patchmypc.com/app/uploads/2025/11/image-59.png 585w, https://patchmypc.com/app/uploads/2025/11/image-59-300x158.png 300w" sizes="(max-width: 585px) 100vw, 585px" /></figure>
+
+
+
+<p>With that state in hand, SyncmlSessionStateManager::InitiateSession sets up the session.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="531" height="102" src="https://patchmypc.com/app/uploads/2025/11/image-58.png" alt="" class="wp-image-168061" srcset="https://patchmypc.com/app/uploads/2025/11/image-58.png 531w, https://patchmypc.com/app/uploads/2025/11/image-58-300x58.png 300w" sizes="(max-width: 531px) 100vw, 531px" /></figure>
+
+
+
+<p>It populates the authentication fields, selects the app auth index, checks the account flags, and prepares the first SyncML envelope. None of that cares about certificate validity yet. Only after that setup does the client send the actual request to Intune. The TLS handshake uses the MDM certificate and its private key, but the code path here does not block on an expired NotAfter date. As long as the private key is available, the connection can be established, and the server can respond.</p>
+
+
+
+<p>When the first response arrives, <strong>StoreServerLastTime</strong> extracts the server time from that response, converts it to ISO format, and updates the timestamps in the in-memory <strong>AcctInfo. InternalSaveAcctInfoToKey</strong> then writes that updated structure back into the OMADM account key in the registry.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="975" height="269" src="https://patchmypc.com/app/uploads/2025/11/image-61.png" alt="" class="wp-image-168065" srcset="https://patchmypc.com/app/uploads/2025/11/image-61.png 975w, https://patchmypc.com/app/uploads/2025/11/image-61-300x83.png 300w, https://patchmypc.com/app/uploads/2025/11/image-61-768x212.png 768w" sizes="(max-width: 975px) 100vw, 975px" /></figure>
+
+
+
+<p>Intune reads those values and displays them as a fresh last check-in, even though the certificate used for the handshake has already expired. The certificate will become relevant later in the session, when policy and management operations are attempted, but the timestamps are already updated at this early stage.</p>
+
+
+
+<p><strong>And that is exactly what was happening.</strong></p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-surprising-part-certificate-expiry-is-not-checked-on-the-device">The Surprising Part: Certificate Expiry Is Not Checked on The Device</h2>
+
+
+
+<p>While going through the decompiled code for the SyncML session startup, one thing became immediately obvious. The OMADM client on the device itself does not check whether the MDM certificate has expired. The entire setup phase in <strong>SyncmlSessionStateManager::InitiateSession</strong> reads the account information, prepares the SyncML envelope, selects the authentication method, and establishes the connection. Not once does it validate the certificate’s <strong>NotAfter date.</strong></p>
+
+
+
+<p>Even the function that writes the<strong> timestamps</strong>,<strong>StoreServerLastTime,</strong> simply accepts the timestamp from the server and writes it directly into the AcctInfo structure without verifying whether the session certificate is valid or has expired.</p>
+
+
+
+<p>So from the device’s perspective, a session with Intune can begin even if the certificate is completely out of date. This raised a new question: how does the device even reach Intune without a valid certificate?</p>
+
+
+
+<h2 class="wp-block-heading" id="h-why-the-tls-handshake-still-works">Why the TLS Handshake Still Works</h2>
+
+
+
+<p>TLS should block expired certificates, right? But in this case, it does not. And there is a simple reason why. If Microsoft enforced strict certificate validity for client authentication, a device with a broken or expired management certificate would never be able to recover. The renewal flow would be impossible because the device would not even be allowed to start the session needed to request a new certificate.</p>
+
+
+
+<p>Instead, the TLS handshake accepts expired certificates as long as the private key still exists. That allows the device to authenticate just enough for Intune to identify which device is attempting the connection. Intune then sends its initial SyncML response header, which includes a server timestamp.</p>
+
+
+
+<p>The OMADM client receives that timestamp, stores it in the AcctInfo structure, and updates the registry. Once that happens, the Last check-in value in the portal moves forward, even though the certificate has expired.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="210" src="https://patchmypc.com/app/uploads/2025/11/image-27.jpg" alt="" class="wp-image-168063" srcset="https://patchmypc.com/app/uploads/2025/11/image-27.jpg 624w, https://patchmypc.com/app/uploads/2025/11/image-27-300x101.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>Only after this early handshake does the server begin enforcing the certificate validity for real management operations. And that is where everything fails.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-device-looks-healthy-but-management-is-gone">The Device Looks Healthy, but Management Is Gone?</h2>
+
+
+
+<p>After the timestamp update, the device tries to request new policies or fetch the latest configuration. This is where the expired certificate finally causes trouble. All meaningful operations fail silently. Policies are not updating, and because the IME also uses the Intune Certificate, none of the Win32 apps will be installed. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="773" height="62" src="https://patchmypc.com/app/uploads/2025/11/image-67.png" alt="" class="wp-image-170375" srcset="https://patchmypc.com/app/uploads/2025/11/image-67.png 773w, https://patchmypc.com/app/uploads/2025/11/image-67-300x24.png 300w, https://patchmypc.com/app/uploads/2025/11/image-67-768x62.png 768w" sizes="(max-width: 773px) 100vw, 773px" /></figure>
+
+
+
+<p>The only thing that continues to work is the initial contact with the service.</p>
+
+
+
+<p>This creates a situation that feels a bit misleading in the Intune portal.<br>The device appears online. The last check-in value is up to date. Nothing looks broken at first glance. But behind the scenes, the device is no longer managed at all. It can “<strong>touch</strong>” the service, but cannot communicate in a meaningful way.”</p>
+
+
+
+<h2 class="wp-block-heading" id="h-why-this-last-check-in-behaviour-exists">Why This Last Check-In Behaviour Exists</h2>
+
+
+
+<p>This is not a bug. It is necessary. Without this behaviour, <strong><a href="https://patchmypc.com/blog/automatic-intune-certificate-recovery/">certificate recovery</a></strong> and <strong>renewal (expired certs)</strong> could never work. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="715" height="249" src="https://patchmypc.com/app/uploads/2025/11/image-19.png" alt="" class="wp-image-179278" srcset="https://patchmypc.com/app/uploads/2025/11/image-19.png 715w, https://patchmypc.com/app/uploads/2025/11/image-19-300x104.png 300w" sizes="(max-width: 715px) 100vw, 715px" /></figure>
+
+
+
+<p>A system (Enrollment Services) that refused <strong>expired certificates</strong> at the first connection would trap devices permanently. They would be stuck in an expired state with no way out except for a wipe or a hardware reset.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="202" height="674" src="https://patchmypc.com/app/uploads/2025/11/image-50.png" alt="" class="wp-image-179280" srcset="https://patchmypc.com/app/uploads/2025/11/image-50.png 202w, https://patchmypc.com/app/uploads/2025/11/image-50-90x300.png 90w" sizes="(max-width: 202px) 100vw, 202px" /></figure>
+
+
+
+<p>So Microsoft allows just enough of the session to proceed to support renewal. The timestamps are updated during that early stage, which can give the impression that the device is still healthy even when it is not.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-real-problem-you-cannot-trust-last-check-in">The Real Problem: You Cannot Trust Last Check In</h2>
+
+
+
+<p>This leads to one unavoidable conclusion.<br><strong>The Last check in value cannot be used as a device health indicator.</strong><br>It only indicates that the device was able to contact Intune.</p>
+
+
+
+<ul class="wp-block-list">
+<li>It does not tell you that the device could retrieve the latest policies.</li>
+
+
+
+<li>It does not tell you that the certificate is valid.</li>
+
+
+
+<li>It does not tell you that management is still working.</li>
+</ul>
+
+
+
+<p>An expired certificate can still move the <strong>Last-check in</strong> date forward while management is completely dead. If you truly want to know if a device is still under management, you have to look beyond that single value. Start with the Management certificate expiration date itself, and from there on sort by last check-in. That is where the truth sits.</p>
+<p>The post <a href="https://patchmypc.com/blog/intune-last-check-in-when-devices-appear-active-but-cannot-sync/">The Illusion of Intune “Last Check-in”: When Devices Appear Active but Cannot Sync</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/blog/intune-last-check-in-when-devices-appear-active-but-cannot-sync/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Download IntuneWin Files from Microsoft Intune V2</title>
 		<link>https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/</link>
 					<comments>https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/#respond</comments>
@@ -45,7 +338,7 @@
 
 
 
-<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="659" src="https://patchmypc.com/app/uploads/2026/05/image-30-1024x659.png" alt="Download IntuneWin files  straight from intune using WAM for the tokens" class="wp-image-184622" srcset="https://patchmypc.com/app/uploads/2026/05/image-30-1024x659.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-30-300x193.png 300w, https://patchmypc.com/app/uploads/2026/05/image-30-768x494.png 768w, https://patchmypc.com/app/uploads/2026/05/image-30.png 1248w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="659" src="https://patchmypc.com/app/uploads/2026/05/image-30-1024x659.png" alt="Download IntuneWin files  straight from intune using WAM for the tokens" class="wp-image-184622" srcset="https://patchmypc.com/app/uploads/2026/05/image-30-1024x659.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-30-300x193.png 300w, https://patchmypc.com/app/uploads/2026/05/image-30-768x494.png 768w, https://patchmypc.com/app/uploads/2026/05/image-30.png 1248w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
@@ -1665,281 +1958,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-1-120-131-released/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>When Intune Remediations Fail: Troubleshooting Push Notifications</title>
-		<link>https://patchmypc.com/blog/on-demand-remediation-push-notification-troubleshoot-intune/</link>
-					<comments>https://patchmypc.com/blog/on-demand-remediation-push-notification-troubleshoot-intune/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Mon, 20 Apr 2026 08:46:09 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=173125</guid>
-
-					<description><![CDATA[<p>Everything that depends on instant device actions (such as remediations) in Intune relies on Windows Push Notifications, and that is where troubleshooting goes blind. The Windows Notification Services (WNS) gives you no delivery status, no failure signal, and no way to see whether a push ever reached the device. Intune reports the action as sent, ... <a href="https://patchmypc.com/blog/on-demand-remediation-push-notification-troubleshoot-intune/">Continue Reading  &#187;</a></p>
-<p>The post <a href="https://patchmypc.com/blog/on-demand-remediation-push-notification-troubleshoot-intune/">When Intune Remediations Fail: Troubleshooting Push Notifications</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p>Everything that depends on instant device actions (such as remediations) in Intune relies on <strong>Windows Push Notifications</strong>, and that is where troubleshooting goes blind. <strong>The Windows Notification Services (WNS) </strong>gives you no delivery status, no failure signal, and no way to see whether a push ever reached the device. Intune reports the action as sent, the Intune Management Extension (IME) looks healthy, but nothing happens.</p>
-
-
-
-<p>Read the blog to learn how to determine whether the push arrived, where to check on the device, and how to troubleshoot without reinstalling the IME.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-introduction">Introduction</h2>
-
-
-
-<p id="h-">It all started with something that should have been pretty instant. I triggered an on-demand remediation from Intune.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="483" height="273" src="https://patchmypc.com/app/uploads/2026/01/image-137.png" alt="" class="wp-image-173126" srcset="https://patchmypc.com/app/uploads/2026/01/image-137.png 483w, https://patchmypc.com/app/uploads/2026/01/image-137-300x170.png 300w" sizes="(max-width: 483px) 100vw, 483px" /></figure>
-
-
-
-<p>Which is a remote action to the device, without waiting for weird IME schedules or the Intune Management Extension to wake up on its own. But somehow nothing happened.&nbsp; At first, it felt like a one-off. Maybe the remediation itself was broken. But after retrying it a couple of times, it became pretty clear. Every device action that depends on the IME reacting instantly behaves the same way… With it, <strong>Device Query </strong>was also stuck in progress.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="534" height="306" src="https://patchmypc.com/app/uploads/2026/01/image-138.png" alt="" class="wp-image-173137" srcset="https://patchmypc.com/app/uploads/2026/01/image-138.png 534w, https://patchmypc.com/app/uploads/2026/01/image-138-300x172.png 300w" sizes="(max-width: 534px) 100vw, 534px" /></figure>
-
-
-
-<p>That was the moment it stopped being only a remediation problem.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-fixing-the-push-notifications-option-1">Fixing the Push Notifications Option 1</h2>
-
-
-
-<p>This behavior was familiar. I had seen it before. <strong><a href="https://call4cloud.nl/push-notifications-device-query-an-error-occurred/">Uninstalling and reinstalling the Intune Management Extension fixed everything instantly.</a></strong> After the IME got reinstalled, on-demand remediations started working again as if nothing had ever happened. That workaround still worked here.</p>
-
-
-
-<p>But reinstalling the IME is not the solution we want. It is a reset button. The real question was why that reset worked and what exactly got fixed when you do it.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-how-on-demand-remediation-should-work">How on-demand remediation should work</h2>
-
-
-
-<p>The IME itself does not discover on-demand remediations by polling. These actions are delivered via Windows push notifications. To receive those notifications, IME registers itself with the Windows Push Notification platform under a specific application identity: the <strong>IME notification AUMID.</strong></p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="118" src="https://patchmypc.com/app/uploads/2026/01/image-201-1024x118.png" alt="registering the ime for Push Notifications" class="wp-image-173837" srcset="https://patchmypc.com/app/uploads/2026/01/image-201-1024x118.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-201-300x34.png 300w, https://patchmypc.com/app/uploads/2026/01/image-201-768x88.png 768w, https://patchmypc.com/app/uploads/2026/01/image-201-1536x176.png 1536w, https://patchmypc.com/app/uploads/2026/01/image-201-2048x235.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>From Windows’ perspective, this looks like an app registering for push, even though IME is a service. That registration has two distinct steps. First, IME ensures the <strong>local application registration exists</strong>. This lives under the <strong>PushNotifications Applications registry hive</strong>. If the key is missing or incomplete, IME recreates it.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="298" src="https://patchmypc.com/app/uploads/2026/01/image-202-1024x298.png" alt="the ime Push Notifications registry hive" class="wp-image-173838" srcset="https://patchmypc.com/app/uploads/2026/01/image-202-1024x298.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-202-300x87.png 300w, https://patchmypc.com/app/uploads/2026/01/image-202-768x224.png 768w, https://patchmypc.com/app/uploads/2026/01/image-202-1536x447.png 1536w, https://patchmypc.com/app/uploads/2026/01/image-202.png 1773w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>Second, the IME creates the <strong>IMENotificationApp</strong> folder and asks Windows to create a push channel by calling the WinRT API <strong>CreatePushNotificationChannelForApplicationAsync</strong>.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="180" src="https://patchmypc.com/app/uploads/2026/01/image-203-1024x180.png" alt="the Push Notifications imenotificationapop" class="wp-image-173839" srcset="https://patchmypc.com/app/uploads/2026/01/image-203-1024x180.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-203-300x53.png 300w, https://patchmypc.com/app/uploads/2026/01/image-203-768x135.png 768w, https://patchmypc.com/app/uploads/2026/01/image-203-1536x270.png 1536w, https://patchmypc.com/app/uploads/2026/01/image-203-2048x360.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="186" src="https://patchmypc.com/app/uploads/2026/01/image-143-1024x186.png" alt="Push Notifications callback was added" class="wp-image-173145" srcset="https://patchmypc.com/app/uploads/2026/01/image-143-1024x186.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-143-300x54.png 300w, https://patchmypc.com/app/uploads/2026/01/image-143-768x139.png 768w, https://patchmypc.com/app/uploads/2026/01/image-143.png 1427w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>Windows responds with a <strong>channel URI </strong>and an expiration time. That URI is the <strong>callback address.</strong></p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="40" src="https://patchmypc.com/app/uploads/2026/01/image-144-1024x40.png" alt="" class="wp-image-173146" srcset="https://patchmypc.com/app/uploads/2026/01/image-144-1024x40.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-144-300x12.png 300w, https://patchmypc.com/app/uploads/2026/01/image-144-768x30.png 768w, https://patchmypc.com/app/uploads/2026/01/image-144-1536x61.png 1536w, https://patchmypc.com/app/uploads/2026/01/image-144-2048x81.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>Intune sends the notification (through WNS) to that address, Windows receives it, and Windows calls back into the IME when a message arrives.&nbsp; &nbsp;If that callback chain is broken, the IME never wakes up. No remediation runs, no error is shown, and retries from the Intune portal change nothing.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-proving-whether-the-push-notifications-arrived-at-all">Proving whether the push notifications arrived at all</h2>
-
-
-
-<p>At that point, guessing if the push arrived was no longer useful. There is no status in Intune that tells you whether a push was actually delivered to the device, and IME does not expose that information either….the <strong>WNS is just 1 big black box</strong>. So we stopped relying on the portal and built our own way to observe push delivery on the device.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="468" src="https://patchmypc.com/app/uploads/2026/01/image-204-1024x468.png" alt="powershell script to monitor Push Notifications" class="wp-image-173840" srcset="https://patchmypc.com/app/uploads/2026/01/image-204-1024x468.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-204-300x137.png 300w, https://patchmypc.com/app/uploads/2026/01/image-204-768x351.png 768w, https://patchmypc.com/app/uploads/2026/01/image-204-1536x702.png 1536w, https://patchmypc.com/app/uploads/2026/01/image-204-2048x936.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>Under normal circumstances, this part of the story is boring. On a healthy device, Windows makes push delivery visible if you know where to look. Every push routed to the Intune Management Extension appears in the PushNotification Platform operational log. You see <strong>Event ID 1010 </strong>for the IME notification AUMID, followed almost immediately by <strong>Event ID 1225 containing the raw payload.</strong></p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="276" src="https://patchmypc.com/app/uploads/2026/01/image-146-1024x276.png" alt="Push Notifications payload" class="wp-image-173148" srcset="https://patchmypc.com/app/uploads/2026/01/image-146-1024x276.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-146-300x81.png 300w, https://patchmypc.com/app/uploads/2026/01/image-146-768x207.png 768w, https://patchmypc.com/app/uploads/2026/01/image-146-1536x413.png 1536w, https://patchmypc.com/app/uploads/2026/01/image-146.png 1992w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>We can easily decode the payload to see the notification intent and ID.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="360" src="https://patchmypc.com/app/uploads/2026/01/image-147-1024x360.png" alt="decoding the Push Notifications payload" class="wp-image-173149" srcset="https://patchmypc.com/app/uploads/2026/01/image-147-1024x360.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-147-300x106.png 300w, https://patchmypc.com/app/uploads/2026/01/image-147-768x270.png 768w, https://patchmypc.com/app/uploads/2026/01/image-147.png 1486w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>That is what a working system looks like. A clean and predictable sequence. The push message is routed, the payload is delivered, and the IME is woken up. On the affected device, none of that happened. When we triggered an on-demand remediation, the Push Platform event log stayed completely silent. No Event <strong>ID 1010 for the IME AUMID.</strong> No <strong>Event ID 1225</strong>. Nothing to decode. From Windows’ perspective, no notification was ever delivered. That absence changed the entire investigation.</p>
-
-
-
-<p>From the Intune side, the action was marked as sent. From the IME side, nothing appeared obviously broken. But the push message never crossed the Windows boundary. The IME was never woken up because the WNS never routed the notification to that specific device. AKA the Push Notification was lost in cyberspace. Before zooming in on how we fixed it without reinstalling the IME, let&#8217;s zoom in on the remediation itself… when it&#8217;s working.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-what-happens-if-the-remediation-push-notification-works">What happens if the Remediation Push Notification works</h2>
-
-
-
-<p>A Run Remediation push does NOT contain the remediation logic itself. It is just a signal. When the IME receives that notification, it enters the device action callback path. The payload is parsed, the intent is identified as <strong>RunRemediation</strong>, and IME starts a notification-driven check-in</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="268" src="https://patchmypc.com/app/uploads/2026/01/image-205-1024x268.png" alt="decoding the notificationintent from the Push Notifications payload" class="wp-image-173841" srcset="https://patchmypc.com/app/uploads/2026/01/image-205-1024x268.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-205-300x79.png 300w, https://patchmypc.com/app/uploads/2026/01/image-205-768x201.png 768w, https://patchmypc.com/app/uploads/2026/01/image-205-1536x402.png 1536w, https://patchmypc.com/app/uploads/2026/01/image-205.png 1792w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="has-small-font-size"><strong>Please Note: Win32AppWorkload Notification&#8230;. wondering what that is going to do</strong></p>
-
-
-
-<p>This is different from a scheduled cycle. It is explicitly marked as notification-based and immediately requests the device action policy tied to that <strong>NotificationID.</strong> Only then does IME download the remediation payload, store it locally, and invoke the proactive remediation engine in on-demand mode.</p>
-
-
-
-<p>All of that happens after the push. If the callback never fires, the IME never even starts this remediation flow. If the callback fires but the follow-up communication fails, the remediation still never runs. From the portal, both cases look identical.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-remediation-flow-in-mermaid-style">The Remediation flow In mermaid Style</h2>
-
-
-
-<p>The same flow as discussed above, but now in total… also with the IME action in it</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="198" height="1024" src="https://patchmypc.com/app/uploads/2026/01/image-206-198x1024.png" alt="Push Notifications flow" class="wp-image-173842" srcset="https://patchmypc.com/app/uploads/2026/01/image-206-198x1024.png 198w, https://patchmypc.com/app/uploads/2026/01/image-206-58x300.png 58w" sizes="(max-width: 198px) 100vw, 198px" /></figure>
-
-
-
-<h2 class="wp-block-heading" id="h-fixing-the-push-notifications-with-our-powershell-script">Fixing the Push Notifications with our PowerShell script</h2>
-
-
-
-<p>Once it was clear that the IME push notification with the notificationintent never arrived, it became clear what we needed to do. <strong>Re-registering the IME Notification app</strong>… because something during the uninstall and reinstall of the IME also forced the IME to reregister it. So why can’t we do it ourselves? Besides that I thought it was funny….</p>
-
-
-
-<p>We already know that the IME maintains its own notification cache, but that cache is only part of the chain. The more important piece is the Windows Push Notification platform registration for the IME notification AUMID. That registration is owned by the operating system. Even when running as an administrator, you cannot reliably remove or repair it. Windows may block the deletion or recreate the key immediately in the background. So we created a PowerShell script to mimic the same steps</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="535" src="https://patchmypc.com/app/uploads/2026/01/image-207-1024x535.png" alt="" class="wp-image-173843" srcset="https://patchmypc.com/app/uploads/2026/01/image-207-1024x535.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-207-300x157.png 300w, https://patchmypc.com/app/uploads/2026/01/image-207-768x401.png 768w, https://patchmypc.com/app/uploads/2026/01/image-207.png 1476w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>The IME service was stopped first, so it could not interfere. Its <strong>local notification cache</strong> was cleared to remove any stale channel data. The PushNotifications application registration for the IME AUMID was then removed by executing the deletion as SYSTEM, not as an administrator. That distinction matters. Only SYSTEM can reliably remove the registration long enough for the platform to rebuild it.</p>
-
-
-
-<p>After that, the Windows Push Notification service was restarted to flush any cached platform state. From that point, the normal registration flow ran cleanly.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="178" src="https://patchmypc.com/app/uploads/2026/01/image-150-1024x178.png" alt="registering the IME Push Notifications" class="wp-image-173152" srcset="https://patchmypc.com/app/uploads/2026/01/image-150-1024x178.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-150-300x52.png 300w, https://patchmypc.com/app/uploads/2026/01/image-150-768x133.png 768w, https://patchmypc.com/app/uploads/2026/01/image-150-1536x267.png 1536w, https://patchmypc.com/app/uploads/2026/01/image-150.png 1548w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<h3 class="wp-block-heading" id="h-create-push-notification-channel">Create Push Notification Channel</h3>
-
-
-
-<p>After executing the script, the IME recreated the application registration, and the IME called <strong>CreatePushNotificationChannelForApplicationAsync.</strong> From there on, Windows issued a fresh channel URI and expiration. Immediately after that, push notifications started working again. The PushNotification Platform log began showing <strong>EventID 1010 and 1225</strong> for the IME notification AUMID, and on-demand remediation triggered exactly like it did on a healthy device.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="389" src="https://patchmypc.com/app/uploads/2026/01/image-208-1024x389.png" alt="" class="wp-image-173844" srcset="https://patchmypc.com/app/uploads/2026/01/image-208-1024x389.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-208-300x114.png 300w, https://patchmypc.com/app/uploads/2026/01/image-208-768x292.png 768w, https://patchmypc.com/app/uploads/2026/01/image-208-1536x584.png 1536w, https://patchmypc.com/app/uploads/2026/01/image-208.png 1859w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>The end result was identical to reinstalling IME. The difference was understanding why it worked and fixing the actual failure instead of resetting everything around it.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-why-reinstalling-ime-fixes-the-push-channel">Why reinstalling IME “fixes” the Push Channel</h2>
-
-
-
-<p>The key detail turned out to be where the broken state lived. It was not only inside IME’s own notification cache. It was inside the Windows Push Notification platform’s protected application registration for the IME AUMID. That registry key is owned by the operating system. Even as an administrator, you cannot reliably delete it. Reinstalling IME works because it indirectly forces Windows to tear down and rebuild the push notification app registration. But … yeah, don’t do this in prod.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-wns-as-a-black-box-and-why-ic3-might-replace-it">WNS as a black box, and why IC3 might replace it</h2>
-
-
-
-<p><strong>Windows push notifications</strong> are opaque by design. Once Intune hands a message to WNS, visibility largely disappears. If the notification is routed correctly, you might see it in the PushNotification Platform log. If it is not, there is no retry signal, no failure surface, and no way to tell where it vanished. In practice, WNS is a black box… and it has a nice throttling mechanism. The best thing? You don’t have any visibility!</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="247" height="408" src="https://patchmypc.com/app/uploads/2026/01/image-47.jpg" alt="wns black box" class="wp-image-173139" srcset="https://patchmypc.com/app/uploads/2026/01/image-47.jpg 247w, https://patchmypc.com/app/uploads/2026/01/image-47-182x300.jpg 182w" sizes="(max-width: 247px) 100vw, 247px" /></figure>
-
-
-
-<p>That is exactly what we ran into here. Intune marked the action as sent. IME looked healthy. But the push itself never reached the device. Somewhere between the service and the callback, it simply stopped existing. This is where <strong>IC3 becomes interesting</strong>, even though it is not fully there yet.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="318" src="https://patchmypc.com/app/uploads/2026/01/image-139.png" alt="ic3 teams" class="wp-image-173141" srcset="https://patchmypc.com/app/uploads/2026/01/image-139.png 624w, https://patchmypc.com/app/uploads/2026/01/image-139-300x153.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<h2 class="wp-block-heading" id="h-ic3-is-coming">IC3 is Coming?</h2>
-
-
-
-<p>If you look at how newer IME flows are evolving,<strong> </strong><a href="https://patchmypc.com/blog/intune-ime-ic3-teams-protocol/"><strong>IC3</strong> </a>appears to be positioning itself as more than just another transport layer. Instead of relying on Windows push notifications as the primary wake-up mechanism,<strong> IC3 </strong>provides a direct, stateful communication path between Intune and the IME. One that is observable, traceable, and far less dependent on OS-level push plumbing. In the current model, WNS is still the trigger. <strong>If WNS breaks, the IME never wakes up.</strong> That single dependency is the weak link. The behavior we saw here is a perfect example of that. Everything above WNS was fine. Everything below it was never reached.</p>
-
-
-
-<p>What <strong>IC3</strong> seems to aim to do is <strong>remove that WNS fragility. </strong>Rather than notifications vanishing into an OS owned subsystem with no feedback, IC3 shifts device actions into a protocol that IME already uses for other workloads. One where connections are explicit, retries exist, and failures show up as real errors instead of silence. Today, that transition is incomplete. WNS is still part of the picture, and when it breaks, everything built on top of it still collapses. But the direction is clear.<strong> IC3 is not just another channel</strong>. It looks like a deliberate <strong><a href="https://patchmypc.com/blog/intune-ime-ic3-teams-protocol/">move away from WNS as the critical dependency for instant device actions.</a></strong></p>
-
-
-
-<p>If and when that shift completes, issues like this should become far easier to reason about. Not because failures stop happening, but because they stop disappearing. And after chasing a remediation that never arrived, that alone would be a massive improvement.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-real-takeaway">The real takeaway</h2>
-
-
-
-<p>On-demand remediation was never the root problem. It was simply the first feature to expose a broken push callback chain. IME depends on a Windows push notification callback created through CreatePushNotificationChannelForApplicationAsync. When that callback registration is corrupted, IME never wakes up, and every instant device action silently stops working. Reinstalling IME fixes it by coincidence. Resetting the push registration fixes it by design.</p>
-<p>The post <a href="https://patchmypc.com/blog/on-demand-remediation-push-notification-troubleshoot-intune/">When Intune Remediations Fail: Troubleshooting Push Notifications</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/on-demand-remediation-push-notification-troubleshoot-intune/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
