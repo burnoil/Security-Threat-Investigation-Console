@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Tue, 26 May 2026 12:01:05 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 26 May 2026 14:01:01 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -33,7 +33,7 @@
 <p>The post <a href="https://patchmypc.com/blog/intune-management-extension-release-notes/">Intune Management Extension: Release Notes</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p>The Intune Management Extension is doing a lot more than most people give it credit for. That is why <strong><a href="https://github.com/call4cloud-code/IME-Change-Tracke">Intune Management Extension Release Notes</a></strong> make sense: when the local SideCar/IME agent changes, I want to know what changed before troubleshooting turns into guessing.</p>
+<p>The Intune Management Extension is doing a lot more than most people give it credit for. That is why <strong><a href="https://github.com/call4cloud-code/IME-Change-Tracker">Intune Management Extension Release Notes</a></strong> make sense: when the local SideCar/IME agent changes, I want to know what changed before troubleshooting turns into guessing.</p>
 
 
 
@@ -173,7 +173,7 @@
 
 
 
-<p>One thing I wanted from these Intune Management Extension release notes is a Mermaid flow, not a generic diagram that only shows one version compared to another. That looks nice, but it does not help much when you are trying to understand a changed DLL.</p>
+<p>One thing I wanted from these<strong><a href="https://github.com/call4cloud-code/IME-Change-Tracker"> Intune Management Extension release notes</a></strong> is a Mermaid flow, not a generic diagram that only shows one version compared to another. That looks nice, but it does not help much when you are trying to understand a changed DLL.</p>
 
 
 
@@ -237,7 +237,7 @@
 
 
 
-<p><a href="https://github.com/call4cloud-code/IME-Change-Tracker/b">https://github.com/call4cloud-code/IME-Change-Tracker</a></p>
+<p><a href="https://github.com/call4cloud-code/IME-Change-Tracker">https://github.com/call4cloud-code/IME-Change-Tracker</a></p>
 <p>The post <a href="https://patchmypc.com/blog/intune-management-extension-release-notes/">Intune Management Extension: Release Notes</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
