@@ -10,9 +10,65 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Thu, 28 May 2026 10:19:14 -0500</pubDate>
+    <pubDate>Thu, 28 May 2026 12:24:28 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-326: TrendAI Vision One Security Agent Time-Of-Check Time-Of-Use Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-27982</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-326/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-45208.]]></description>
+      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-325: TrendAI Vision One Security Agent Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29177</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-325/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-45207.]]></description>
+      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-324: TrendAI Vision One Security Agent Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28118</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-324/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-45206.]]></description>
+      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-323: TrendAI Vision One Security Agent Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28089</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-323/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-34930.]]></description>
+      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-322: TrendAI Vision One Security Agent Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28077</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-322/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-34929.]]></description>
+      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-321: TrendAI Vision One Security Agent Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28061</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-321/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-34928.]]></description>
+      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-320: TrendAI Vision One Security Agent Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-27959</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-320/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-34927.]]></description>
+      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-319: Progress Software Kemp LoadMaster addcountry Command Injection Remote Code Execution Vulnerability]]></title>
@@ -1556,62 +1612,6 @@
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-127/</link>
       <description><![CDATA[This vulnerability allows network-adjacent attackers to disclose sensitive information on affected installations of Ubiquiti Networks AI Pro. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.3. The following CVEs are assigned: CVE-2026-21633.]]></description>
       <pubDate>Wed, 25 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-126: (Pwn2Own) Ubiquiti Networks AI Pro Discovery Protocol Missing Encryption Protocol Downgrade Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28274</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-126/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to downgrade the communication protocol on affected installations of Ubiquiti Networks AI Pro. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.4. The following CVEs are assigned: CVE-2026-21633.]]></description>
-      <pubDate>Wed, 25 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-125: Docker Desktop grpcfuse Kernel Module Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28631</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-125/</link>
-      <description><![CDATA[This vulnerability allows local attackers to disclose sensitive information on affected installations of Docker Desktop. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.5. The following CVEs are assigned: CVE-2026-2664.]]></description>
-      <pubDate>Wed, 25 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-124: claude-hovercraft executeClaudeCode Command Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27785</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-124/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of claude-hovercraft. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2025-15060.]]></description>
-      <pubDate>Wed, 25 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-123: Docker Desktop MCP Server Cleartext Storage of Sensitive Information Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27562</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-123/</link>
-      <description><![CDATA[This vulnerability allows local attackers to disclose sensitive information on affected installations of Docker Desktop. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.5.]]></description>
-      <pubDate>Mon, 23 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-122: PDF-XChange Editor TrackerUpdate Uncontrolled Search Path Element Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27788</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-122/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of PDF-XChange Editor. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.3. The following CVEs are assigned: CVE-2026-2040.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-121: GIMP XWD File Parsing Out-Of-Bounds Write Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28591</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-121/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of GIMP. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-2048.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-120: GIMP ICNS File Parsing Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28530</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-120/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of GIMP. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-2047.]]></description>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 -0600</pubDate>
     </item>
     
   </channel>
