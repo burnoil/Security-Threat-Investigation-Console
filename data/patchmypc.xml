@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Tue, 26 May 2026 14:01:01 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 02 Jun 2026 16:40:47 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,59 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>Patch My PC Publisher Preview Version 2.2.2.98 Released</title>
+		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-98-released/</link>
+					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-98-released/#respond</comments>
+		
+		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
+		<pubDate>Tue, 02 Jun 2026 16:40:46 +0000</pubDate>
+				<category><![CDATA[Preview Release]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=185970</guid>
+
+					<description><![CDATA[<p>This release contains a variety of fixes as noted below. Fixes</p>
+<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-98-released/">Patch My PC Publisher Preview Version 2.2.2.98 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>This release contains a variety of fixes as noted below.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-fixes">Fixes</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Ensure Auto-Publishing rules are saved as expected for Intune and ConfigMgr scan wizards.​</li>
+
+
+
+<li>Refresh button in the Intune Filter Editor view now properly clears the cache and pulls the up-to-date list of filters from Intune.​</li>
+
+
+
+<li>Fixed a bug causing the selected products to not show as selected within the Intune Scan Wizard. This could cause a product to be unselected unexpectedly.​</li>
+
+
+
+<li>Ensure Azure chunk uploading respects the configured upload timeout.​</li>
+
+
+
+<li>Fix a bug causing Selective Sync, and Republish to not process as expected in some cases.</li>
+</ul>
+
+
+
+<p></p>
+<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-98-released/">Patch My PC Publisher Preview Version 2.2.2.98 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-98-released/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Intune Management Extension: Release Notes</title>
 		<link>https://patchmypc.com/blog/intune-management-extension-release-notes/</link>
 					<comments>https://patchmypc.com/blog/intune-management-extension-release-notes/#respond</comments>
@@ -1945,95 +1998,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/the-autopilot-profile-doesnt-decide-if-a-device-is-corporate/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Patch My PC Publisher Preview Version 2.1.120.177 Released</title>
-		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-1-120-177-released/</link>
-					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-1-120-177-released/#respond</comments>
-		
-		<dc:creator><![CDATA[Brian Hall]]></dc:creator>
-		<pubDate>Tue, 28 Apr 2026 15:01:47 +0000</pubDate>
-				<category><![CDATA[Preview Release]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=182996</guid>
-
-					<description><![CDATA[<p>This release contains a variety of features, improvements, and fixes, as noted below. Bugfixes &#38; Improvements Publisher Microsoft Intune Integration Reliability and Logging</p>
-<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-1-120-177-released/">Patch My PC Publisher Preview Version 2.1.120.177 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p>This release contains a variety of features, improvements, and fixes, as noted below.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-bugfixes-amp-improvements">Bugfixes &amp; Improvements</h2>
-
-
-
-<h3 class="wp-block-heading" id="h-publisher">Publisher</h3>
-
-
-
-<ul class="wp-block-list">
-<li><strong>Improved Manage Assignments window usability</strong><br>Fixed an issue where the <em>Manage Assignments</em> window could not be resized when accessed via right‑click actions in the Intune Apps and Updates tabs. The window can now be resized to more easily view and manage multiple assignments.</li>
-
-
-
-<li><strong>Copy button restored in Intune Apps and Updates tabs</strong><br>Resolved an issue where the <strong>Copy</strong> button was no longer visible, allowing customers to once again copy products and customizations between entries.</li>
-
-
-
-<li><strong>Fixed scrollbar interaction across multiple managers</strong><br>Fixed an issue where scrollbars only supported mouse‑wheel scrolling instead of click‑and‑drag interaction in the following areas:
-<ul class="wp-block-list">
-<li>WSUS Updates</li>
-
-
-
-<li>ConfigMgr Application Manager</li>
-
-
-
-<li>Intune Application Manager</li>
-
-
-
-<li>Intune Update Manager</li>
-</ul>
-</li>
-</ul>
-
-
-
-<h3 class="wp-block-heading" id="h-microsoft-intune-integration">Microsoft Intune Integration</h3>
-
-
-
-<ul class="wp-block-list">
-<li><strong>Corrected assignment loading behavior</strong><br>Fixed an issue where an unexpected progress indicator appeared when viewing assignments for a single Intune application, incorrectly showing the total number of applications being loaded before the assignment window opened.</li>
-
-
-
-<li><strong>Validated expected behavior for zero‑count scan results</strong><br>Confirmed expected behavior when filtering Intune scan results with a count of zero. These views are designed to display only applications detected on devices, while exports remain available for reviewing zero‑count results.</li>
-</ul>
-
-
-
-<h3 class="wp-block-heading">Reliability and Logging</h3>
-
-
-
-<ul class="wp-block-list">
-<li><strong>Improved log file handling to reduce event log noise</strong> <br>Fixed an issue that could cause repeated event log errors due to log file access conflicts, helping reduce unnecessary logging and monitoring alerts while the Publisher is running.</li>
-</ul>
-
-
-
-<p></p>
-<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-1-120-177-released/">Patch My PC Publisher Preview Version 2.1.120.177 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-1-120-177-released/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
