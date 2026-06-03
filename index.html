@@ -5,21 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Technology Vulnerability & Patch Intelligence</title>
 <style>
-:root{--bg:#09090b;--panel:#14141b;--panel2:#1f1f2a;--text:#f4f4f5;--muted:#a1a1aa;--border:#30303d;--blue:#2563eb;--green:#34d399;--red:#fb7185;--amber:#f59e0b;--sky:#38bdf8;--purple:#c084fc}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,#152238 0,#09090b 44%);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}main{max-width:1380px;margin:auto;padding:28px 18px 70px}.top{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:20px}.badge{display:inline-block;border:1px solid rgba(56,189,248,.35);background:rgba(56,189,248,.08);color:var(--sky);border-radius:999px;padding:6px 12px;font-size:13px}h1{font-size:clamp(32px,5vw,54px);line-height:1;margin:10px 0 8px;letter-spacing:-.04em}h2{margin-top:0}p{color:var(--muted);line-height:1.55}.layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.card{background:rgba(20,20,27,.94);border:1px solid var(--border);border-radius:22px;padding:18px;margin-bottom:18px;box-shadow:0 20px 55px rgba(0,0,0,.25)}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.actions{display:flex;flex-wrap:wrap;gap:10px}button,a.button,label.filebtn{border:0;color:white;background:var(--blue);border-radius:14px;padding:10px 14px;font-weight:750;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;min-height:40px}button:hover,a.button:hover,label.filebtn:hover{filter:brightness(1.12)}button.secondary,a.secondary,label.secondary{background:var(--panel2)}button.danger{background:rgba(251,113,133,.18);color:#fecdd3}select,input,textarea{width:100%;border:1px solid var(--border);background:#0d0d13;color:var(--text);border-radius:14px;padding:11px 12px;outline:none;font-size:15px}textarea{min-height:260px;resize:vertical;font-family:Consolas,Monaco,monospace}select:focus,input:focus,textarea:focus{border-color:rgba(56,189,248,.8);box-shadow:0 0 0 3px rgba(56,189,248,.12)}.item{background:#0d0d13;border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:10px}.item-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.mono{font-family:Consolas,Monaco,monospace;font-size:12px;color:#d4d4d8;overflow-wrap:anywhere}.small{font-size:13px;color:var(--muted)}.pill{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:999px;padding:4px 9px;color:var(--muted);font-size:12px;margin-right:6px;margin-bottom:6px}.age-badge{display:inline-flex;align-items:center;border-radius:999px;padding:3px 8px;font-size:11px;font-weight:800;margin:3px 4px 3px 0}.age-new{background:rgba(251,113,133,.18);border:1px solid rgba(251,113,133,.45);color:#fecdd3}.age-recent{background:rgba(245,158,11,.16);border:1px solid rgba(245,158,11,.42);color:#fde68a}.age-aging{background:rgba(59,130,246,.14);border:1px solid rgba(59,130,246,.38);color:#bfdbfe}.age-old{background:rgba(161,161,170,.12);border:1px solid rgba(161,161,170,.30);color:#d4d4d8}.ok{border:1px solid rgba(52,211,153,.5);background:rgba(52,211,153,.08);color:#a7f3d0;border-radius:14px;padding:12px}.warn{border:1px solid rgba(245,158,11,.5);background:rgba(245,158,11,.09);color:#fde68a;border-radius:14px;padding:12px}.bad{border:1px solid rgba(251,113,133,.55);background:rgba(251,113,133,.09);color:#fecdd3;border-radius:14px;padding:12px}.score-critical{color:#fecdd3;background:rgba(251,113,133,.15);padding:3px 8px;border-radius:8px}.score-high{color:#fde68a;background:rgba(245,158,11,.15);padding:3px 8px;border-radius:8px}.score-medium{color:#bfdbfe;background:rgba(59,130,246,.15);padding:3px 8px;border-radius:8px}.score-low{color:#a7f3d0;background:rgba(52,211,153,.15);padding:3px 8px;border-radius:8px}details summary{cursor:pointer;font-weight:800}code{background:rgba(255,255,255,.07);padding:2px 5px;border-radius:6px;color:#e4e4e7}.linkbtn{display:inline-flex;align-items:center;margin:3px 4px 3px 0;padding:3px 8px;border:1px solid var(--border);border-radius:999px;color:#93c5fd;text-decoration:none;font-size:11px;background:rgba(37,99,235,.12)}.linkbtn:hover{text-decoration:underline;filter:brightness(1.15)}.sticky{position:sticky;top:18px;align-self:start}.hide{display:none!important}@media(max-width:980px){.top,.layout,.two,.three{display:block}.sticky{position:static}.item-head{display:block}.item-head .actions{margin-top:10px}}
+:root{--bg:#09090b;--panel:#14141b;--panel2:#1f1f2a;--text:#f4f4f5;--muted:#a1a1aa;--border:#30303d;--blue:#2563eb;--green:#34d399;--red:#fb7185;--amber:#f59e0b;--sky:#38bdf8;--purple:#c084fc}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,#152238 0,#09090b 44%);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}main{max-width:1380px;margin:auto;padding:28px 18px 70px}.top{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:20px}.badge{display:inline-block;border:1px solid rgba(56,189,248,.35);background:rgba(56,189,248,.08);color:var(--sky);border-radius:999px;padding:6px 12px;font-size:13px}h1{font-size:clamp(32px,5vw,54px);line-height:1;margin:10px 0 8px;letter-spacing:-.04em}h2{margin-top:0}p{color:var(--muted);line-height:1.55}.layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.card{background:rgba(20,20,27,.94);border:1px solid var(--border);border-radius:22px;padding:18px;margin-bottom:18px;box-shadow:0 20px 55px rgba(0,0,0,.25)}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.actions{display:flex;flex-wrap:wrap;gap:10px}button,a.button,label.filebtn{border:0;color:white;background:var(--blue);border-radius:14px;padding:10px 14px;font-weight:750;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;min-height:40px}button:hover,a.button:hover,label.filebtn:hover{filter:brightness(1.12)}button.secondary,a.secondary,label.secondary{background:var(--panel2)}button.danger{background:rgba(251,113,133,.18);color:#fecdd3}select,input,textarea{width:100%;border:1px solid var(--border);background:#0d0d13;color:var(--text);border-radius:14px;padding:11px 12px;outline:none;font-size:15px}textarea{min-height:260px;resize:vertical;font-family:Consolas,Monaco,monospace}select:focus,input:focus,textarea:focus{border-color:rgba(56,189,248,.8);box-shadow:0 0 0 3px rgba(56,189,248,.12)}.item{background:#0d0d13;border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:10px}.item-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.mono{font-family:Consolas,Monaco,monospace;font-size:12px;color:#d4d4d8;overflow-wrap:anywhere}.small{font-size:13px;color:var(--muted)}.pill{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:999px;padding:4px 9px;color:var(--muted);font-size:12px;margin-right:6px;margin-bottom:6px}.age-badge,.metric-badge{display:inline-flex;align-items:center;border-radius:999px;padding:3px 8px;font-size:11px;font-weight:800;margin:3px 4px 3px 0}.age-new,.metric-critical{background:rgba(251,113,133,.18);border:1px solid rgba(251,113,133,.45);color:#fecdd3}.age-recent,.metric-high{background:rgba(245,158,11,.16);border:1px solid rgba(245,158,11,.42);color:#fde68a}.age-aging,.metric-medium{background:rgba(59,130,246,.14);border:1px solid rgba(59,130,246,.38);color:#bfdbfe}.age-old,.metric-low{background:rgba(161,161,170,.12);border:1px solid rgba(161,161,170,.30);color:#d4d4d8}.ok{border:1px solid rgba(52,211,153,.5);background:rgba(52,211,153,.08);color:#a7f3d0;border-radius:14px;padding:12px}.warn{border:1px solid rgba(245,158,11,.5);background:rgba(245,158,11,.09);color:#fde68a;border-radius:14px;padding:12px}.bad{border:1px solid rgba(251,113,133,.55);background:rgba(251,113,133,.09);color:#fecdd3;border-radius:14px;padding:12px}.score-critical{color:#fecdd3;background:rgba(251,113,133,.15);padding:3px 8px;border-radius:8px}.score-high{color:#fde68a;background:rgba(245,158,11,.15);padding:3px 8px;border-radius:8px}.score-medium{color:#bfdbfe;background:rgba(59,130,246,.15);padding:3px 8px;border-radius:8px}.score-low{color:#a7f3d0;background:rgba(52,211,153,.15);padding:3px 8px;border-radius:8px}details summary{cursor:pointer;font-weight:800}code{background:rgba(255,255,255,.07);padding:2px 5px;border-radius:6px;color:#e4e4e7}.linkbtn{display:inline-flex;align-items:center;margin:3px 4px 3px 0;padding:3px 8px;border:1px solid var(--border);border-radius:999px;color:#93c5fd;text-decoration:none;font-size:11px;background:rgba(37,99,235,.12)}.linkbtn:hover{text-decoration:underline;filter:brightness(1.15)}.sticky{position:sticky;top:18px;align-self:start}.hide{display:none!important}@media(max-width:980px){.top,.layout,.two,.three{display:block}.sticky{position:static}.item-head{display:block}.item-head .actions{margin-top:10px}}
 </style>
 </head>
 <body>
 <main>
   <section class="top">
     <div>
-      <div class="badge">Technology Stack → Vulnerability + Patch Intelligence • v<span id="versionBadge">0.7.0</span></div>
+      <div class="badge">Technology Stack → Vulnerability + Patch Intelligence • v<span id="versionBadge">0.8.0</span></div>
       <h1>Technology Vulnerability & Patch Intelligence</h1>
-      <p>Paste applications, operating systems, firmware, hardware, SaaS platforms, drivers, and appliances; correlate them against exploited vulnerabilities and recent patch/update signals; then generate an engineer-ready action report.</p>
+      <p>Paste applications, operating systems, firmware, hardware, SaaS platforms, drivers, and appliances; correlate them against exploited vulnerabilities, emerging disclosures, patch/update signals, NVD severity, EPSS exploit probability, and official vendor resources.</p>
       <p class="small" id="versionInfo">Version loading...</p>
     </div>
     <div class="actions">
       <button data-action="load-feeds">Load Feeds</button>
       <button class="secondary" data-action="analyze">Analyze Assets</button>
+      <button class="secondary" data-action="enrich-cves">Enrich NVD + EPSS</button>
       <button class="secondary" data-action="export-report">Export Report</button>
       <button class="secondary" data-action="export-results-csv">Export Results CSV</button>
       <button class="secondary" data-action="copy-critical-high">Copy Critical + High</button>
@@ -64,14 +65,16 @@
           <div><label><b>Patch RSS URL</b></label><input id="patchUrl" value="data/patchmypc.xml"></div>
           <div><label><b>ZDI RSS URL</b></label><input id="zdiUrl" value="data/zdi.xml"></div>
         </div>
-        <p class="small">Recommended GitHub Pages setup: mirror CISA KEV to <code>data/kev.json</code>, Patch My PC RSS to <code>data/patchmypc.xml</code>, and ZDI RSS to <code>data/zdi.xml</code> using GitHub Actions. Direct external fetches may be blocked by CORS.</p>
+        <p class="small">KEV and RSS feeds are mirrored by GitHub Actions. NVD/CVSS and EPSS enrichment runs on-demand against CVEs found in the current results.</p>
         <div class="actions" style="margin-top:12px">
           <button data-action="load-feeds">Refresh Feeds</button>
+          <button class="secondary" data-action="enrich-cves">Enrich Current CVEs</button>
           <label class="filebtn secondary">Import KEV JSON<input id="kevImport" type="file" accept="application/json" style="display:none"></label>
           <label class="filebtn secondary">Import Patch RSS/XML<input id="rssImport" type="file" accept=".xml,.rss,text/xml,application/xml" style="display:none"></label>
           <label class="filebtn secondary">Import ZDI RSS/XML<input id="zdiImport" type="file" accept=".xml,.rss,text/xml,application/xml" style="display:none"></label>
         </div>
         <div id="sourceStatus" style="margin-top:12px"></div>
+        <div id="enrichStatus" class="small" style="margin-top:10px"></div>
       </section>
 
       <section class="card">
@@ -87,679 +90,129 @@
     </div>
 
     <aside class="sticky">
-      <section class="card">
-        <h2>Analysis Summary</h2>
-        <div id="summaryBox"><p class="small">Load feeds and analyze assets to see results.</p></div>
-      </section>
-      <section class="card">
-        <h2>Feed Freshness</h2>
-        <div id="freshnessBox"><p class="small">Feeds have not been loaded yet.</p></div>
-      </section>
-      <section class="card">
-        <h2>What This Tool Does</h2>
-        <p class="small">This does not scan endpoints. It correlates a technology/asset list against public vulnerability and patch signals so an engineer can prioritize validation, patching, ownership, and escalation.</p>
-        <span class="pill">Technology stack input</span><span class="pill">KEV exploited</span><span class="pill">Patch signal</span><span class="pill">ZDI emerging</span><span class="pill">Firmware / hardware</span><span class="pill">Action report</span>
-      </section>
+      <section class="card"><h2>Analysis Summary</h2><div id="summaryBox"><p class="small">Load feeds and analyze assets to see results.</p></div></section>
+      <section class="card"><h2>Feed Freshness</h2><div id="freshnessBox"><p class="small">Feeds have not been loaded yet.</p></div></section>
+      <section class="card"><h2>What This Tool Does</h2><p class="small">This does not scan endpoints. It correlates a technology/asset list against public vulnerability and patch signals so an engineer can prioritize validation, patching, ownership, and escalation.</p><span class="pill">Technology stack input</span><span class="pill">KEV exploited</span><span class="pill">ZDI emerging</span><span class="pill">NVD/CVSS</span><span class="pill">EPSS</span><span class="pill">Vendor resources</span><span class="pill">Action report</span></section>
     </aside>
   </section>
 
-  <section class="card">
-    <h2>Results</h2>
-    <div id="results"><p class="small">No asset analysis has been run yet.</p></div>
-  </section>
-
-  <section class="card">
-    <details>
-      <summary>Version / Changelog</summary>
-      <div class="small" style="margin-top:12px">
-        <p><b id="versionLine">Version loading...</b></p>
-        <ul>
-          <li><b>0.7.0</b> — Added vulnerability age indicators for KEV, patch/update signals, and ZDI emerging disclosures.</li>
-          <li><b>0.6.0</b> — Added built-in asset profiles and custom user-created profiles stored locally in the browser.</li>
-          <li><b>0.5.0</b> — Added CSV asset import/export, CSV results export, and GitHub Action feed timestamp metadata support.</li>
-          <li><b>0.4.0</b> — Asset-type support for applications, OS, firmware, hardware/appliances, drivers, SaaS/cloud, and vendor/product entries.</li>
-          <li><b>0.3.0</b> — Added ZDI emerging vulnerability feed integration.</li>
-          <li><b>0.2.0</b> — Added Patch RSS correlation, clickable investigation links, criticality scoring, and Critical/High copy workflow.</li>
-          <li><b>0.1.0</b> — Initial KEV-based software vulnerability correlation prototype.</li>
-        </ul>
-      </div>
-    </details>
-  </section>
-
-  <section class="card">
-    <details>
-      <summary>Built-in tests</summary>
-      <div id="testResults" style="margin-top:12px"></div>
-    </details>
-  </section>
+  <section class="card"><h2>Results</h2><div id="results"><p class="small">No asset analysis has been run yet.</p></div></section>
+  <section class="card"><details><summary>Version / Changelog</summary><div class="small" style="margin-top:12px"><p><b id="versionLine">Version loading...</b></p><ul><li><b>0.8.0</b> — Added official vendor resource mapping, on-demand NVD/CVSS enrichment, on-demand FIRST EPSS enrichment, stale-feed warnings, and updated repo fallback paths.</li><li><b>0.7.0</b> — Added vulnerability age indicators for KEV, patch/update signals, and ZDI emerging disclosures.</li><li><b>0.6.0</b> — Added built-in asset profiles and custom user-created profiles stored locally in the browser.</li><li><b>0.5.0</b> — Added CSV asset import/export, CSV results export, and GitHub Action feed timestamp metadata support.</li><li><b>0.4.0</b> — Asset-type support for applications, OS, firmware, hardware/appliances, drivers, SaaS/cloud, and vendor/product entries.</li><li><b>0.3.0</b> — Added ZDI emerging vulnerability feed integration.</li><li><b>0.2.0</b> — Added Patch RSS correlation, clickable investigation links, criticality scoring, and Critical/High copy workflow.</li><li><b>0.1.0</b> — Initial KEV-based software vulnerability correlation prototype.</li></ul></div></details></section>
+  <section class="card"><details><summary>Built-in tests</summary><div id="testResults" style="margin-top:12px"></div></details></section>
 </main>
-
 <script>
 'use strict';
-
-const APP_VERSION = '0.7.0';
-const APP_UPDATED = '2026-04-30';
-const APP_CODENAME = 'Asset Intelligence';
-let GIT_FEED_META = null;
-
-const $ = id => document.getElementById(id);
-let KEV = { vulnerabilities: [] };
-let RSS_ITEMS = [];
-let ZDI_ITEMS = [];
-let LAST_RESULTS = [];
-let FEED_META = { kev: null, patch: null, zdi: null };
-
-const NL = String.fromCharCode(10);
-const CR = String.fromCharCode(13);
-const BUILT_IN_PROFILES = {
-  'Endpoint Baseline': ['app: Google Chrome','app: Microsoft Edge','app: Mozilla Firefox','app: Microsoft Office','app: Adobe Acrobat','app: Zoom','app: 7-Zip','os: Windows 11','driver: Intel Graphics Driver'].join(NL),
-  'Network / Edge Security': ['hardware: Fortinet FortiGate','hardware: Cisco ASA','hardware: Palo Alto PAN-OS','hardware: Ivanti Connect Secure','hardware: Citrix ADC','hardware: SonicWall Firewall','hardware: F5 BIG-IP'].join(NL),
-  'Server / Infrastructure': ['os: Windows Server 2022','os: Ubuntu Server','os: Red Hat Enterprise Linux','hardware: VMware ESXi','app: Apache HTTP Server','app: NGINX','app: OpenSSL','app: OpenSSH'].join(NL),
-  'Identity / SaaS': ['saas: Okta','saas: Microsoft Entra ID','saas: Microsoft 365','saas: Salesforce','saas: ServiceNow','saas: Google Workspace','saas: Slack'].join(NL),
-  'Firmware / Hardware Risk Set': ['firmware: Dell BIOS','firmware: HP iLO','firmware: Lenovo UEFI','hardware: QNAP NAS','hardware: Synology NAS','hardware: Cisco IOS XE','hardware: Fortinet FortiGate','hardware: Palo Alto PAN-OS'].join(NL),
-  'Patch Management / RMM': ['app: Microsoft Configuration Manager','app: BigFix','app: Patch My PC','app: ConnectWise ScreenConnect','app: Kaseya VSA','app: NinjaOne','app: Action1','app: PDQ Deploy'].join(NL)
+const APP_VERSION='0.8.0';
+const APP_UPDATED='2026-06-03';
+const APP_CODENAME='Asset Intelligence';
+const REPO_RAW_BASE='https://raw.githubusercontent.com/burnoil/technology-vulnerability-patch-intelligence/main/';
+let GIT_FEED_META=null;
+const $=id=>document.getElementById(id);
+let KEV={vulnerabilities:[]};
+let RSS_ITEMS=[];
+let ZDI_ITEMS=[];
+let LAST_RESULTS=[];
+let FEED_META={kev:null,patch:null,zdi:null};
+let ENRICHMENTS={};
+const NL=String.fromCharCode(10);
+const CR=String.fromCharCode(13);
+const BUILT_IN_PROFILES={
+  'Endpoint Baseline':['app: Google Chrome','app: Microsoft Edge','app: Mozilla Firefox','app: Microsoft Office','app: Adobe Acrobat','app: Zoom','app: 7-Zip','os: Windows 11','driver: Intel Graphics Driver'].join(NL),
+  'Network / Edge Security':['hardware: Fortinet FortiGate','hardware: Cisco ASA','hardware: Palo Alto PAN-OS','hardware: Ivanti Connect Secure','hardware: Citrix ADC','hardware: SonicWall Firewall','hardware: F5 BIG-IP'].join(NL),
+  'Server / Infrastructure':['os: Windows Server 2022','os: Ubuntu Server','os: Red Hat Enterprise Linux','hardware: VMware ESXi','app: Apache HTTP Server','app: NGINX','app: OpenSSL','app: OpenSSH'].join(NL),
+  'Identity / SaaS':['saas: Okta','saas: Microsoft Entra ID','saas: Microsoft 365','saas: Salesforce','saas: ServiceNow','saas: Google Workspace','saas: Slack'].join(NL),
+  'Firmware / Hardware Risk Set':['firmware: Dell BIOS','firmware: HP iLO','firmware: Lenovo UEFI','hardware: QNAP NAS','hardware: Synology NAS','hardware: Cisco IOS XE','hardware: Fortinet FortiGate','hardware: Palo Alto PAN-OS'].join(NL),
+  'Management Plane / Remote Admin Tools':['app: Microsoft Configuration Manager','app: BigFix','app: ConnectWise ScreenConnect','app: Kaseya VSA','app: NinjaOne','app: Action1','app: TeamViewer','app: AnyDesk'].join(NL)
 };
-const SAMPLE = BUILT_IN_PROFILES['Endpoint Baseline'];
-
-const esc = value => String(value || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
-
-function norm(value) {
-  return String(value || '').toLowerCase().replace(new RegExp('[^a-z0-9]+','g'),' ').replace(new RegExp(' +','g'),' ').trim();
-}
-
-function tokenSet(value) {
-  return new Set(norm(value).split(' ').filter(t => t.length > 1));
-}
-
-function inferAssetType(name) {
-  const n = norm(name);
-  if (['windows','macos','ubuntu','debian','rhel','red hat','suse','android','ios','linux'].some(x => n.includes(x))) return 'os';
-  if (['bios','uefi','firmware','idrac','ilo','bmc','controller'].some(x => n.includes(x))) return 'firmware';
-  if (['fortigate','asa','firewall','router','switch','nas','qnap','synology','esxi','appliance','gateway','vpn','pan os','pan-os'].some(x => n.includes(x))) return 'hardware';
-  if (['driver','graphics driver','printer driver','audio driver','chipset'].some(x => n.includes(x))) return 'driver';
-  if (['okta','entra','azure ad','m365','office 365','salesforce','servicenow','google workspace','slack'].some(x => n.includes(x))) return 'saas';
-  return 'app';
-}
-
-function parseAssetLine(line) {
-  const raw = String(line || '').trim();
-  const idx = raw.indexOf(':');
-  if (idx > 0) {
-    let type = raw.slice(0, idx).trim().toLowerCase();
-    const name = raw.slice(idx + 1).trim();
-    const aliases = { application:'app', 'operating-system':'os', appliance:'hardware', cloud:'saas', product:'vendor' };
-    type = aliases[type] || type;
-    const allowed = ['app','os','firmware','hardware','driver','saas','vendor','unknown'];
-    if (name && allowed.includes(type)) return { name, type, raw };
-  }
-  return { name: raw, type: inferAssetType(raw) || 'unknown', raw };
-}
-
-function softwareList() {
-  return $('softwareInput').value.split(new RegExp('\\r?\\n|,','g')).map(parseAssetLine).filter(asset => asset.name).filter((asset, i, arr) => arr.findIndex(x => x.name.toLowerCase() === asset.name.toLowerCase() && x.type === asset.type) === i);
-}
-
-function assetTypeLabel(type) {
-  const labels = { app:'Application', os:'Operating System', firmware:'Firmware', hardware:'Hardware / Appliance', driver:'Driver', saas:'SaaS / Cloud', vendor:'Vendor / Product', unknown:'Unspecified' };
-  return labels[type] || 'Unspecified';
-}
-
-function getCustomProfiles() {
-  try { return JSON.parse(localStorage.getItem('tvpi.customProfiles') || '{}'); }
-  catch { return {}; }
-}
-
-function saveCustomProfiles(profiles) {
-  localStorage.setItem('tvpi.customProfiles', JSON.stringify(profiles || {}));
-}
-
-function profileKey(kind, name) {
-  return kind + '::' + name;
-}
-
-function renderProfiles() {
-  const select = $('profileSelect');
-  if (!select) return;
-  const custom = getCustomProfiles();
-  const options = [];
-  Object.keys(BUILT_IN_PROFILES).forEach(name => options.push('<option value="' + esc(profileKey('built-in', name)) + '">Built-in: ' + esc(name) + '</option>'));
-  Object.keys(custom).sort().forEach(name => options.push('<option value="' + esc(profileKey('custom', name)) + '">Custom: ' + esc(name) + '</option>'));
-  select.innerHTML = options.join('');
-}
-
-function selectedProfile() {
-  const select = $('profileSelect');
-  if (!select || !select.value) return null;
-  const parts = select.value.split('::');
-  const kind = parts[0];
-  const name = parts.slice(1).join('::');
-  const custom = getCustomProfiles();
-  const content = kind === 'built-in' ? BUILT_IN_PROFILES[name] : custom[name];
-  return content ? { kind, name, content } : null;
-}
-
-function loadProfile(append) {
-  const profile = selectedProfile();
-  const status = $('profileStatus');
-  if (!profile) { if (status) status.textContent = 'No profile selected.'; return; }
-  if (append && $('softwareInput').value.trim()) $('softwareInput').value = $('softwareInput').value.trim() + NL + profile.content;
-  else $('softwareInput').value = profile.content;
-  if (status) status.textContent = (append ? 'Appended' : 'Loaded') + ' profile: ' + profile.name;
-}
-
-function saveCurrentProfile() {
-  const name = ($('profileName')?.value || '').trim();
-  const status = $('profileStatus');
-  const content = $('softwareInput').value.trim();
-  if (!name) { if (status) status.textContent = 'Enter a custom profile name first.'; return; }
-  if (!content) { if (status) status.textContent = 'Current asset list is empty.'; return; }
-  const custom = getCustomProfiles();
-  custom[name] = content;
-  saveCustomProfiles(custom);
-  renderProfiles();
-  if (status) status.textContent = 'Saved custom profile: ' + name;
-}
-
-function deleteSelectedCustomProfile() {
-  const profile = selectedProfile();
-  const status = $('profileStatus');
-  if (!profile) { if (status) status.textContent = 'No profile selected.'; return; }
-  if (profile.kind !== 'custom') { if (status) status.textContent = 'Built-in profiles cannot be deleted.'; return; }
-  const custom = getCustomProfiles();
-  delete custom[profile.name];
-  saveCustomProfiles(custom);
-  renderProfiles();
-  if (status) status.textContent = 'Deleted custom profile: ' + profile.name;
-}
-
-function engineUrl(query) {
-  const engine = $('engine').value;
-  if (engine === 'bing') return 'https://www.bing.com/search?q=' + encodeURIComponent(query);
-  if (engine === 'duck') return 'https://duckduckgo.com/?q=' + encodeURIComponent(query);
-  return 'https://www.google.com/search?q=' + encodeURIComponent(query);
-}
-
-function sourceCandidateList(primary, fallbackRaw) {
-  return [...new Set([primary, fallbackRaw].filter(Boolean))];
-}
-
-async function fetchTextCandidates(candidates) {
-  const errors = [];
-  for (const url of candidates) {
-    try {
-      const response = await fetch(url, { cache: 'no-store' });
-      if (!response.ok) throw new Error('HTTP ' + response.status);
-      return { url, text: await response.text() };
-    } catch (error) {
-      errors.push(url + ' -> ' + error.message);
-    }
-  }
-  throw new Error(errors.join(' | '));
-}
-
-async function loadGitFeedMeta() {
-  try {
-    const result = await fetchTextCandidates(sourceCandidateList('data/feed-meta.json', 'https://raw.githubusercontent.com/burnoil/Security-Threat-Investigation-Console/main/data/feed-meta.json'));
-    GIT_FEED_META = JSON.parse(result.text);
-  } catch (error) {
-    GIT_FEED_META = null;
-  }
-}
-
-async function loadFeeds() {
-  const status = $('sourceStatus');
-  status.innerHTML = '<p class="small">Loading data sources...</p>';
-  const kevUrl = $('kevUrl').value || 'data/kev.json';
-  const patchUrl = $('patchUrl').value || 'data/patchmypc.xml';
-  const zdiUrl = $('zdiUrl').value || 'data/zdi.xml';
-  const lines = [];
-  await loadGitFeedMeta();
-
-  try {
-    const kevResult = await fetchTextCandidates(sourceCandidateList(kevUrl, 'https://raw.githubusercontent.com/burnoil/Security-Threat-Investigation-Console/main/data/kev.json'));
-    KEV = JSON.parse(kevResult.text);
-    if (!Array.isArray(KEV.vulnerabilities)) throw new Error('KEV JSON missing vulnerabilities[]');
-    FEED_META.kev = { loadedAt: new Date().toISOString(), source: kevResult.url, count: KEV.vulnerabilities.length };
-    lines.push('<div class="ok"><b>KEV loaded:</b> ' + KEV.vulnerabilities.length + ' entries from <code>' + esc(kevResult.url) + '</code></div>');
-  } catch (error) {
-    lines.push('<div class="bad"><b>KEV failed:</b> ' + esc(error.message) + '</div>');
-  }
-
-  try {
-    const rssResult = await fetchTextCandidates(sourceCandidateList(patchUrl, 'https://raw.githubusercontent.com/burnoil/Security-Threat-Investigation-Console/main/data/patchmypc.xml'));
-    RSS_ITEMS = parseRss(rssResult.text);
-    FEED_META.patch = { loadedAt: new Date().toISOString(), source: rssResult.url, count: RSS_ITEMS.length };
-    lines.push('<div class="ok" style="margin-top:8px"><b>Patch RSS loaded:</b> ' + RSS_ITEMS.length + ' items from <code>' + esc(rssResult.url) + '</code></div>');
-  } catch (error) {
-    lines.push('<div class="warn" style="margin-top:8px"><b>Patch RSS failed:</b> ' + esc(error.message) + '<br>RSS is optional; KEV matching can still run.</div>');
-  }
-
-  try {
-    const zdiResult = await fetchTextCandidates(sourceCandidateList(zdiUrl, 'https://raw.githubusercontent.com/burnoil/Security-Threat-Investigation-Console/main/data/zdi.xml'));
-    ZDI_ITEMS = parseRss(zdiResult.text);
-    FEED_META.zdi = { loadedAt: new Date().toISOString(), source: zdiResult.url, count: ZDI_ITEMS.length };
-    lines.push('<div class="ok" style="margin-top:8px"><b>ZDI RSS loaded:</b> ' + ZDI_ITEMS.length + ' advisories from <code>' + esc(zdiResult.url) + '</code></div>');
-  } catch (error) {
-    lines.push('<div class="warn" style="margin-top:8px"><b>ZDI RSS failed:</b> ' + esc(error.message) + '<br>ZDI is optional; KEV and patch matching can still run.</div>');
-  }
-
-  status.innerHTML = lines.join('');
-  renderFreshness();
-}
-
-function sanitizeXmlText(xmlText) {
-  const ampPattern = new RegExp('&(?!amp;|lt;|gt;|quot;|apos;|#[0-9]+;|#x[0-9a-fA-F]+;)', 'g');
-  return String(xmlText || '').replace(ampPattern, '&amp;');
-}
-
-function compactPreview(text, length) {
-  return String(text || '').slice(0, length || 160).replace(new RegExp('\\s+','g'), ' ');
-}
-
-function parseRss(xmlText) {
-  const original = String(xmlText || '').trim();
-  if (!original) throw new Error('RSS/XML file was empty');
-  const lower = original.toLowerCase();
-  if (lower.startsWith('<!doctype html') || lower.startsWith('<html')) throw new Error('Downloaded content is HTML, not RSS/XML. Preview: ' + compactPreview(original, 120));
-  const parser = new DOMParser();
-  let doc = parser.parseFromString(original, 'application/xml');
-  let parseError = doc.querySelector('parsererror');
-  if (parseError) {
-    doc = parser.parseFromString(sanitizeXmlText(original), 'application/xml');
-    parseError = doc.querySelector('parsererror');
-  }
-  if (parseError) throw new Error('Invalid XML/RSS. Preview: ' + compactPreview(original, 160));
-  const items = [...doc.querySelectorAll('item, entry')];
-  const cvePattern = new RegExp('CVE-[0-9]{4}-[0-9]{4,7}', 'gi');
-  return items.map(item => {
-    const title = item.querySelector('title')?.textContent || '';
-    const link = item.querySelector('link')?.textContent || item.querySelector('link')?.getAttribute('href') || '';
-    const encoded = item.getElementsByTagName('content:encoded')[0]?.textContent || '';
-    const description = item.querySelector('description, summary')?.textContent || encoded || item.querySelector('content')?.textContent || '';
-    const date = item.querySelector('pubDate, updated, published')?.textContent || '';
-    const cves = [...new Set((title + ' ' + description).match(cvePattern) || [])].map(x => x.toUpperCase());
-    return { title, link, description, date, cves, text: title + ' ' + description };
-  });
-}
-
-function importKev(file) {
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    try {
-      KEV = JSON.parse(reader.result);
-      if (!Array.isArray(KEV.vulnerabilities)) throw new Error('KEV JSON missing vulnerabilities[]');
-      $('sourceStatus').innerHTML = '<div class="ok"><b>Imported KEV:</b> ' + KEV.vulnerabilities.length + ' entries.</div>';
-    } catch (error) {
-      $('sourceStatus').innerHTML = '<div class="bad"><b>KEV import failed:</b> ' + esc(error.message) + '</div>';
-    }
-  };
-  reader.readAsText(file);
-}
-
-function importRss(file) {
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    try {
-      RSS_ITEMS = parseRss(reader.result);
-      $('sourceStatus').innerHTML = '<div class="ok"><b>Imported Patch RSS:</b> ' + RSS_ITEMS.length + ' items.</div>';
-    } catch (error) {
-      $('sourceStatus').innerHTML = '<div class="bad"><b>Patch RSS import failed:</b> ' + esc(error.message) + '</div>';
-    }
-  };
-  reader.readAsText(file);
-}
-
-function importZdi(file) {
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    try {
-      ZDI_ITEMS = parseRss(reader.result);
-      $('sourceStatus').innerHTML = '<div class="ok"><b>Imported ZDI RSS:</b> ' + ZDI_ITEMS.length + ' advisories.</div>';
-    } catch (error) {
-      $('sourceStatus').innerHTML = '<div class="bad"><b>ZDI import failed:</b> ' + esc(error.message) + '</div>';
-    }
-  };
-  reader.readAsText(file);
-}
-
-function matchScore(assetName, text) {
-  const sw = norm(assetName);
-  const hay = norm(text);
-  if (!sw || !hay) return 0;
-  if (hay.includes(sw)) return 100;
-  const swTokens = tokenSet(sw);
-  if (!swTokens.size) return 0;
-  let hits = 0;
-  swTokens.forEach(token => { if (hay.includes(token)) hits++; });
-  return Math.round((hits / swTokens.size) * 100);
-}
-
-function matchKev(assetName) {
-  return (KEV.vulnerabilities || []).map(v => ({ ...v, matchScore: matchScore(assetName, [v.cveID, v.vendorProject, v.product, v.vulnerabilityName, v.shortDescription].join(' ')) })).filter(v => v.matchScore >= 50).sort((a, b) => b.matchScore - a.matchScore || String(b.dateAdded).localeCompare(String(a.dateAdded))).slice(0, 10);
-}
-
-function matchRss(assetName) {
-  const days = parseInt($('lookbackDays').value || '90', 10);
-  const cutoff = Date.now() - days * 24 * 60 * 60 * 1000;
-  return RSS_ITEMS.map(item => ({ ...item, matchScore: matchScore(assetName, item.text) })).filter(item => item.matchScore >= 50).filter(item => { const d = item.date ? new Date(item.date).getTime() : NaN; return Number.isNaN(d) || d >= cutoff; }).sort((a, b) => b.matchScore - a.matchScore).slice(0, 8);
-}
-
-function matchZdi(assetName) {
-  const days = parseInt($('lookbackDays').value || '90', 10);
-  const cutoff = Date.now() - days * 24 * 60 * 60 * 1000;
-  return ZDI_ITEMS.map(item => ({ ...item, matchScore: matchScore(assetName, item.text) })).filter(item => item.matchScore >= 50).filter(item => { const d = item.date ? new Date(item.date).getTime() : NaN; return Number.isNaN(d) || d >= cutoff; }).sort((a, b) => b.matchScore - a.matchScore).slice(0, 8);
-}
-
-function priorityFor(kevMatches = [], rssMatches = [], zdiMatches = []) {
-  let score = 0;
-  const reasons = [];
-  if (kevMatches.length) { score += 70; reasons.push('Known exploited vulnerability match'); }
-  if (zdiMatches.length) { score += 40; reasons.push('Recently disclosed vulnerability signal from ZDI'); }
-  if (rssMatches.some(x => x.cves.length)) { score += 20; reasons.push('Recent patch/update item references CVEs'); }
-  if (rssMatches.length) { score += 10; reasons.push('Recent patch/update signal found'); }
-  score = Math.min(100, score);
-  if (score >= 80) return { label: 'Critical / Immediate Review', level: 'critical', cls: 'score-critical', score, reasons };
-  if (score >= 60) return { label: 'High Priority', level: 'high', cls: 'score-high', score, reasons };
-  if (score >= 30) return { label: 'Medium Priority', level: 'medium', cls: 'score-medium', score, reasons };
-  return { label: 'Low / No Current Signal', level: 'low', cls: 'score-low', score, reasons: reasons.length ? reasons : ['No KEV, ZDI, or recent patch signal found'] };
-}
-
-function analyze() {
-  const assets = softwareList();
-  const filter = $('resultFilter').value;
-  const noise = $('noiseFilter') ? $('noiseFilter').value : 'all';
-  const assetTypeFilter = $('assetTypeFilter') ? $('assetTypeFilter').value : 'all';
-  LAST_RESULTS = assets.filter(asset => assetTypeFilter === 'all' || asset.type === assetTypeFilter).map(asset => {
-    const kev = matchKev(asset.name);
-    const rss = matchRss(asset.name);
-    const zdi = matchZdi(asset.name);
-    const priority = priorityFor(kev, rss, zdi);
-    return { app: asset.name, asset, kev, rss, zdi, priority };
-  }).filter(result => {
-    if (filter === 'critical') return result.priority.level === 'critical';
-    if (filter === 'high') return result.priority.level === 'high';
-    if (filter === 'medium') return result.priority.level === 'medium';
-    if (filter === 'low') return result.priority.level === 'low';
-    if (noise === 'actionable' && result.priority.level === 'low') return false;
-    return true;
-  }).sort((a, b) => {
-    const rank = { critical: 4, high: 3, medium: 2, low: 1 };
-    return (rank[b.priority.level] - rank[a.priority.level]) || (b.priority.score - a.priority.score) || a.app.localeCompare(b.app);
-  });
-  renderSummary();
-  renderResults();
-}
-
-function renderFreshness() {
-  const root = $('freshnessBox');
-  if (!root) return;
-  const mirrorTime = GIT_FEED_META && GIT_FEED_META.generatedAt ? new Date(GIT_FEED_META.generatedAt).toLocaleString() : null;
-  const mirrorCommit = GIT_FEED_META && GIT_FEED_META.commit ? GIT_FEED_META.commit : null;
-  const label = (name, key, meta) => {
-    const gitSource = GIT_FEED_META && GIT_FEED_META.feeds && GIT_FEED_META.feeds[key] ? GIT_FEED_META.feeds[key] : null;
-    if (!meta) return '<div class="item"><b>' + name + '</b><br><span class="small">Not loaded yet.' + (gitSource ? '<br>Mirrored: ' + esc(gitSource.generatedAt || GIT_FEED_META.generatedAt || 'unknown') : '') + '</span></div>';
-    return '<div class="item"><b>' + name + '</b><br><span class="small">Browser loaded: ' + esc(new Date(meta.loadedAt).toLocaleString()) + '<br>Items: ' + esc(meta.count) + '<br>Source: <code>' + esc(meta.source) + '</code>' + (gitSource ? '<br>Repo mirror: ' + esc(gitSource.generatedAt || GIT_FEED_META.generatedAt || 'unknown') : '') + '</span></div>';
-  };
-  root.innerHTML = label('CISA KEV', 'kev', FEED_META.kev) + label('Patch RSS', 'patchmypc', FEED_META.patch) + label('ZDI RSS', 'zdi', FEED_META.zdi) + '<p class="small">GitHub Action mirrors feeds hourly.' + (mirrorTime ? ' Last repo mirror: <b>' + esc(mirrorTime) + '</b>.' : '') + (mirrorCommit ? ' Commit: <code>' + esc(mirrorCommit) + '</code>.' : '') + ' Browser data refresh happens when you click Load Feeds or reload the page.</p>';
-}
-
-function renderSummary() {
-  const total = LAST_RESULTS.length;
-  const kevCount = LAST_RESULTS.filter(r => r.kev.length).length;
-  const patchCount = LAST_RESULTS.filter(r => r.rss.length).length;
-  const zdiCount = LAST_RESULTS.filter(r => r.zdi.length).length;
-  const critical = LAST_RESULTS.filter(r => r.priority.level === 'critical').length;
-  const high = LAST_RESULTS.filter(r => r.priority.level === 'high').length;
-  $('summaryBox').innerHTML = '<div class="three">' + '<div class="item"><b>' + total + '</b><br><span class="small">Assets analyzed</span></div>' + '<div class="item"><b>' + kevCount + '</b><br><span class="small">KEV matches</span></div>' + '<div class="item"><b>' + patchCount + '</b><br><span class="small">Patch/update signals</span></div>' + '<div class="item"><b>' + zdiCount + '</b><br><span class="small">ZDI emerging signals</span></div>' + '</div><div class="' + (critical ? 'bad' : high ? 'warn' : 'ok') + '" style="margin-top:10px"><b>' + critical + '</b> critical items • <b>' + high + '</b> high-priority items. Results are sorted by priority descending.</div>';
-}
-
-function renderResults() {
-  const root = $('results');
-  if (!LAST_RESULTS.length) { root.innerHTML = '<p class="small">No results to display. Try loading feeds and analyzing an asset list.</p>'; return; }
-  root.innerHTML = LAST_RESULTS.map(result => renderResult(result)).join('');
-}
-
-function ageInfo(dateValue, label) {
-  if (!dateValue) return { text: label + ': unknown age', cls: 'age-old', days: null };
-  const parsed = new Date(dateValue);
-  if (Number.isNaN(parsed.getTime())) return { text: label + ': unknown age', cls: 'age-old', days: null };
-  const days = Math.max(0, Math.floor((Date.now() - parsed.getTime()) / (24 * 60 * 60 * 1000)));
-  let cls = 'age-old';
-  if (days <= 7) cls = 'age-new';
-  else if (days <= 30) cls = 'age-recent';
-  else if (days <= 90) cls = 'age-aging';
-  const word = days === 1 ? 'day' : 'days';
-  return { text: label + ': ' + days + ' ' + word + ' ago', cls, days };
-}
-
-function ageBadge(dateValue, label) {
-  const info = ageInfo(dateValue, label);
-  return '<span class="age-badge ' + info.cls + '">' + esc(info.text) + '</span>';
-}
-
-function linkButton(label, url) {
-  if (!url) return '';
-  return '<a class="linkbtn" href="' + esc(url) + '" target="_blank" rel="noreferrer">' + esc(label) + '</a>';
-}
-
-function cveLinks(cve) {
-  if (!cve) return '';
-  return linkButton('NVD', 'https://nvd.nist.gov/vuln/detail/' + encodeURIComponent(cve)) + linkButton('CISA KEV', 'https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=' + encodeURIComponent(cve)) + linkButton('Exploit / PoC', engineUrl('"' + cve + '" exploit OR poc OR github')) + linkButton('Patch / Mitigation', engineUrl('"' + cve + '" patch OR mitigation OR advisory'));
-}
-
-function vendorLinks(app, assetType) {
-  const updatePhrase = assetType === 'firmware' ? 'firmware update download' : assetType === 'hardware' ? 'firmware advisory update' : assetType === 'os' ? 'security update release notes' : 'download update latest version';
-  return linkButton('Vendor Advisory', engineUrl('"' + app + '" vulnerability advisory')) + linkButton('Security Updates', engineUrl('"' + app + '" security update release notes')) + linkButton('Update Page', engineUrl('"' + app + '" ' + updatePhrase));
-}
-
-function renderResult(result) {
-  const assetType = result.asset?.type || 'unknown';
-  const kevHtml = result.kev.length ? result.kev.map(v => '<div class="mono" style="margin-bottom:8px"><b>' + esc(v.cveID) + '</b> • ' + esc(v.vendorProject) + ' ' + esc(v.product) + ' • Added ' + esc(v.dateAdded) + ' • Match ' + v.matchScore + '%<br>' + ageBadge(v.dateAdded, 'KEV added') + '<br>' + cveLinks(v.cveID) + '</div>').join('') : '<div class="small">No KEV match.</div>';
-  const rssHtml = result.rss.length ? result.rss.map(item => { const cveLinkHtml = item.cves.length ? '<br>' + item.cves.map(cve => '<b>' + esc(cve) + '</b> ' + cveLinks(cve)).join('<br>') : ''; const updateLink = item.link ? '<br>' + linkButton('Patch / Release Item', item.link) : ''; return '<div class="mono" style="margin-bottom:8px">' + esc(item.title) + '<br>' + ageBadge(item.date, 'Published') + cveLinkHtml + updateLink + '</div>'; }).join('') : '<div class="small">No recent patch/update signal.</div>';
-  const zdiHtml = result.zdi.length ? result.zdi.map(item => { const cveLinkHtml = item.cves.length ? '<br>' + item.cves.map(cve => '<b>' + esc(cve) + '</b> ' + cveLinks(cve)).join('<br>') : ''; const advisoryLink = item.link ? '<br>' + linkButton('ZDI Advisory', item.link) : ''; return '<div class="mono" style="margin-bottom:8px">' + esc(item.title) + cveLinkHtml + advisoryLink + '</div>'; }).join('') : '<div class="small">No recent ZDI disclosure signal.</div>';
-  const queries = buildQueries(result);
-  return '<div class="item">' + '<div class="item-head"><div><h3 style="margin:0 0 6px">' + esc(result.app) + '</h3><span class="pill">' + esc(assetTypeLabel(assetType)) + '</span> <span class="' + result.priority.cls + '">' + result.priority.label + '</span> <span class="pill">Score ' + result.priority.score + '</span></div>' + '<div class="actions"><button data-open-searches="' + esc(result.app) + '">Open Searches</button><button class="secondary" data-copy-report="' + esc(result.app) + '">Copy</button></div></div>' + '<p class="small">' + esc(result.priority.reasons.join(' • ')) + '</p>' + '<div style="margin-bottom:8px">' + vendorLinks(result.app, assetType) + '</div>' + '<details open><summary>KEV exploited vulnerability matches</summary>' + kevHtml + '</details>' + '<details><summary>Patch/update signals</summary>' + rssHtml + '</details>' + '<details><summary>ZDI emerging disclosures</summary>' + zdiHtml + '</details>' + '<details><summary>Suggested validation actions</summary><div class="mono">' + buildActions(result).map(esc).join('<br>') + '</div></details>' + '<details><summary>Search pivots</summary><div class="mono">' + queries.map(esc).join('<br>') + '</div></details>' + '</div>';
-}
-
-function buildActions(result) {
-  const type = result.asset?.type || 'unknown';
-  const actions = ['- Confirm presence and version from the right source of truth for this asset type: inventory, EDR, BigFix, MECM, vulnerability scanner, CMDB, firmware tooling, network management, or vendor portal.', '- Identify owner, business criticality, exposure, and patch/update path.', '- Check vendor advisory and release notes for fixed versions, firmware, mitigations, and upgrade guidance.'];
-  if (type === 'firmware' || type === 'hardware') actions.push('- For hardware/firmware: validate model, firmware branch, support status, maintenance window, and vendor-specific upgrade prerequisites.');
-  if (type === 'os') actions.push('- For operating systems: validate build/version, servicing channel, cumulative update state, and unsupported/end-of-life exposure.');
-  if (result.kev.length) actions.push('- Prioritize immediately: at least one matching item appears in CISA KEV.');
-  if (result.rss.length) actions.push('- Validate whether a recent vendor/update signal maps to a deployable update.');
-  if (result.zdi.length) actions.push('- Review ZDI disclosure details and vendor fix status; treat as emerging risk even if not yet in KEV.');
-  return actions;
-}
-
-function buildQueries(result) {
-  const app = result.app;
-  const assetType = result.asset?.type || 'unknown';
-  const cves = [...new Set(result.kev.map(v => v.cveID).concat(result.rss.flatMap(r => r.cves)).concat(result.zdi.flatMap(z => z.cves)))];
-  const queries = ['"' + app + '" vulnerability advisory', '"' + app + '" release notes security update', '"' + app + '" fixed version CVE'];
-  if (assetType === 'firmware' || assetType === 'hardware') queries.push('"' + app + '" firmware update security advisory');
-  if (assetType === 'os') queries.push('"' + app + '" cumulative update security bulletin');
-  cves.slice(0, 5).forEach(cve => { queries.push('"' + cve + '" exploit OR poc OR github'); queries.push('"' + cve + '" patch OR mitigation OR advisory'); });
-  return queries;
-}
-
-function resultText(result) {
-  return [result.app, 'Asset Type: ' + assetTypeLabel(result.asset?.type || 'unknown'), 'Priority: ' + result.priority.label + ' (' + result.priority.score + ')', 'Reasons: ' + result.priority.reasons.join('; '), '', 'KEV Matches:', ...(result.kev.length ? result.kev.map(v => '- ' + v.cveID + ' ' + v.vendorProject + ' ' + v.product + ' Added: ' + v.dateAdded) : ['- None']), '', 'Patch Signals:', ...(result.rss.length ? result.rss.map(r => '- ' + r.title + (r.cves.length ? ' [' + r.cves.join(', ') + ']' : '')) : ['- None']), '', 'ZDI Emerging Disclosures:', ...(result.zdi.length ? result.zdi.map(z => '- ' + z.title + (z.cves.length ? ' [' + z.cves.join(', ') + ']' : '')) : ['- None']), '', 'Validation Actions:', ...buildActions(result), '', 'Search Pivots:', ...buildQueries(result)].join(NL);
-}
-
-function csvEscape(value) {
-  const text = String(value ?? '');
-  return '"' + text.replaceAll('"', '""') + '"';
-}
-
-function parseCsv(text) {
-  const rows = [];
-  let row = [];
-  let cell = '';
-  let inQuotes = false;
-  const input = String(text || '');
-  for (let i = 0; i < input.length; i++) {
-    const ch = input[i];
-    const next = input[i + 1];
-    if (ch === '"') {
-      if (inQuotes && next === '"') { cell += '"'; i++; }
-      else inQuotes = !inQuotes;
-    } else if (ch === ',' && !inQuotes) {
-      row.push(cell);
-      cell = '';
-    } else if ((ch === NL || ch === CR) && !inQuotes) {
-      if (ch === CR && next === NL) i++;
-      row.push(cell);
-      cell = '';
-      if (row.some(v => String(v).trim())) rows.push(row);
-      row = [];
-    } else {
-      cell += ch;
-    }
-  }
-  row.push(cell);
-  if (row.some(v => String(v).trim())) rows.push(row);
-  return rows;
-}
-
-function importAssetCsv(file) {
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    const rows = parseCsv(reader.result);
-    if (!rows.length) return;
-    const header = rows[0].map(h => String(h).trim().toLowerCase());
-    const hasHeader = header.includes('name') || header.includes('asset') || header.includes('software') || header.includes('type');
-    const dataRows = hasHeader ? rows.slice(1) : rows;
-    const nameIndex = hasHeader ? Math.max(header.indexOf('name'), header.indexOf('asset'), header.indexOf('software'), header.indexOf('product')) : 0;
-    const typeIndex = hasHeader ? header.indexOf('type') : -1;
-    const lines = dataRows.map(row => {
-      const name = String(row[nameIndex >= 0 ? nameIndex : 0] || '').trim();
-      const type = typeIndex >= 0 ? String(row[typeIndex] || '').trim().toLowerCase() : '';
-      return name ? (type ? type + ': ' + name : name) : '';
-    }).filter(Boolean);
-    $('softwareInput').value = lines.join(NL);
-  };
-  reader.readAsText(file);
-}
-
-function downloadText(filename, text, type = 'text/plain') {
-  const blob = new Blob([text], { type });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = filename;
-  link.click();
-  URL.revokeObjectURL(link.href);
-}
-
-function exportAssetsCsv() {
-  const rows = [['type','name','raw']].concat(softwareList().map(asset => [asset.type, asset.name, asset.raw]));
-  downloadText('technology-assets.csv', rows.map(row => row.map(csvEscape).join(',')).join(NL), 'text/csv');
-}
-
-function exportResultsCsv() {
-  const rows = [['asset_type','asset_name','priority_level','priority_label','score','reasons','kev_cves','patch_items','zdi_items']];
-  LAST_RESULTS.forEach(result => {
-    rows.push([assetTypeLabel(result.asset?.type || 'unknown'), result.app, result.priority.level, result.priority.label, result.priority.score, result.priority.reasons.join('; '), result.kev.map(v => v.cveID).join('; '), result.rss.map(r => r.title).join('; '), result.zdi.map(z => z.title).join('; ')]);
-  });
-  downloadText('technology-vulnerability-results.csv', rows.map(row => row.map(csvEscape).join(',')).join(NL), 'text/csv');
-}
-
-function criticalHighResults() {
-  return LAST_RESULTS.filter(result => result.priority.level === 'critical' || result.priority.level === 'high');
-}
-
-function copyCriticalHigh() {
-  const items = criticalHighResults();
-  const text = items.length ? items.map(resultText).join(NL + NL + '---' + NL + NL) : 'No Critical or High findings in the current analysis.';
-  navigator.clipboard.writeText(text);
-}
-
-function exportReport() {
-  const lines = ['Technology Vulnerability & Patch Intelligence Report', 'Generated: ' + new Date().toLocaleString(), '', 'Technology / Asset Input:', ...softwareList().map(x => '- ' + assetTypeLabel(x.type) + ': ' + x.name), '', 'Results:', ''];
-  LAST_RESULTS.forEach(result => lines.push(resultText(result), '', '---', ''));
-  downloadText('technology-vulnerability-patch-report.txt', lines.join(NL), 'text/plain');
-}
-
-function openSearchesFor(app) {
-  const result = LAST_RESULTS.find(r => r.app === app);
-  if (!result) return;
-  buildQueries(result).forEach(query => window.open(engineUrl(query), '_blank'));
-}
-
-function copyReportFor(app) {
-  const result = LAST_RESULTS.find(r => r.app === app);
-  if (!result) return;
-  navigator.clipboard.writeText(resultText(result));
-}
-
-function runTests() {
-  const tests = [
-    { name: 'Asset parser splits typed lines', pass: (() => { const old = $('softwareInput').value; $('softwareInput').value = 'app: A' + NL + 'os: B'; const parsed = softwareList(); const ok = parsed.length === 2 && parsed[0].type === 'app' && parsed[1].type === 'os'; $('softwareInput').value = old; return ok; })() },
-    { name: 'RSS parser accepts empty channel', pass: parseRss('<rss><channel></channel></rss>').length === 0 },
-    { name: 'RSS parser fixes bare ampersand', pass: parseRss('<rss><channel><item><title>A & B</title></item></channel></rss>').length === 1 },
-    { name: 'Priority with KEV is high', pass: priorityFor([{ cveID: 'CVE-2024-0001' }], [], []).score >= 70 },
-    { name: 'Priority levels include critical', pass: priorityFor([{ cveID: 'CVE-2024-0001' }], [{ cves: ['CVE-2024-0001'] }], []).level === 'critical' },
-    { name: 'Priority with ZDI is medium or higher', pass: priorityFor([], [], [{ title: 'ZDI test' }]).score >= 40 },
-    { name: 'Report text contains validation actions', pass: resultText({ app: 'TestApp', asset: { type: 'app' }, kev: [], rss: [], zdi: [], priority: priorityFor([], [], []) }).includes('Validation Actions') },
-    { name: 'Critical/high helper returns array', pass: Array.isArray(criticalHighResults()) },
-    { name: 'Critical/high copy separator is escaped', pass: ['A','B'].join(NL + NL + '---' + NL + NL).includes('---') },
-    { name: 'CSV parser handles quoted comma', pass: parseCsv('type,name' + NL + 'app,"A, B"')[1][1] === 'A, B' },
-    { name: 'CVE links include NVD', pass: cveLinks('CVE-2024-0001').includes('nvd.nist.gov') },
-    { name: 'Vendor links include update search', pass: vendorLinks('TestApp', 'app').includes('download') },
-    { name: 'Age badge renders days', pass: ageBadge(new Date().toISOString(), 'Test').includes('days ago') || ageBadge(new Date().toISOString(), 'Test').includes('day ago') },
-    { name: 'Firmware type inference works', pass: parseAssetLine('Dell BIOS').type === 'firmware' },
-    { name: 'Built-in profiles are available', pass: Object.keys(BUILT_IN_PROFILES).length >= 5 },
-    { name: 'Profile key roundtrip works', pass: profileKey('custom','Test').includes('custom::Test') }
-  ];
-  $('testResults').innerHTML = tests.map(t => '<div class="' + (t.pass ? 'ok' : 'bad') + '" style="margin-bottom:8px"><b>' + (t.pass ? 'PASS' : 'FAIL') + '</b> - ' + esc(t.name) + '</div>').join('');
-}
-
-function renderVersion() {
-  const badge = $('versionBadge');
-  const info = $('versionInfo');
-  const line = $('versionLine');
-  if (badge) badge.textContent = APP_VERSION;
-  const text = 'Version ' + APP_VERSION + ' • ' + APP_CODENAME + ' • Updated ' + APP_UPDATED;
-  if (info) info.textContent = text;
-  if (line) line.textContent = text;
-}
-
-function boot() {
-  document.addEventListener('click', event => {
-    const target = event.target;
-    if (target.dataset.action === 'load-feeds') loadFeeds();
-    if (target.dataset.action === 'analyze') analyze();
-    if (target.dataset.action === 'export-report') exportReport();
-    if (target.dataset.action === 'export-assets-csv') exportAssetsCsv();
-    if (target.dataset.action === 'export-results-csv') exportResultsCsv();
-    if (target.dataset.action === 'copy-critical-high') copyCriticalHigh();
-    if (target.dataset.action === 'load-sample') $('softwareInput').value = SAMPLE;
-    if (target.dataset.action === 'load-profile') loadProfile(false);
-    if (target.dataset.action === 'append-profile') loadProfile(true);
-    if (target.dataset.action === 'save-profile') saveCurrentProfile();
-    if (target.dataset.action === 'delete-profile') deleteSelectedCustomProfile();
-    if (target.dataset.action === 'clear-input') $('softwareInput').value = '';
-    if (target.dataset.openSearches) openSearchesFor(target.dataset.openSearches);
-    if (target.dataset.copyReport) copyReportFor(target.dataset.copyReport);
-  });
-  $('kevImport').addEventListener('change', event => importKev(event.target.files[0]));
-  $('rssImport').addEventListener('change', event => importRss(event.target.files[0]));
-  $('zdiImport').addEventListener('change', event => importZdi(event.target.files[0]));
-  $('csvImport').addEventListener('change', event => importAssetCsv(event.target.files[0]));
-  $('resultFilter').addEventListener('change', analyze);
-  $('lookbackDays').addEventListener('change', analyze);
-  $('noiseFilter').addEventListener('change', analyze);
-  $('assetTypeFilter').addEventListener('change', analyze);
-  renderVersion();
-  renderProfiles();
-  runTests();
-  loadFeeds();
-}
-
+const SAMPLE=BUILT_IN_PROFILES['Endpoint Baseline'];
+const VENDOR_RESOURCES=[
+  {keys:['google chrome','chrome'],links:[['Chrome Releases','https://chromereleases.googleblog.com/'],['Chrome Enterprise Release Notes','https://support.google.com/chrome/a/topic/9027936']]},
+  {keys:['microsoft','windows','office','edge','entra'],links:[['Microsoft MSRC Update Guide','https://msrc.microsoft.com/update-guide'],['Microsoft Security Response Center','https://msrc.microsoft.com/']]},
+  {keys:['adobe','acrobat','reader'],links:[['Adobe Security Bulletins','https://helpx.adobe.com/security.html'],['Adobe Release Notes','https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html']]},
+  {keys:['fortinet','fortigate','fortios'],links:[['Fortinet PSIRT','https://www.fortiguard.com/psirt'],['Fortinet Support','https://support.fortinet.com/']]},
+  {keys:['cisco','asa','ios xe'],links:[['Cisco Security Advisories','https://sec.cloudapps.cisco.com/security/center/publicationListing.x'],['Cisco Software Download','https://software.cisco.com/download/home']]},
+  {keys:['palo alto','pan os','pan-os'],links:[['Palo Alto Security Advisories','https://security.paloaltonetworks.com/'],['Palo Alto Software Updates','https://docs.paloaltonetworks.com/']]},
+  {keys:['ivanti'],links:[['Ivanti Security Advisories','https://forums.ivanti.com/s/product-security-advisory'],['Ivanti Downloads','https://www.ivanti.com/support/downloads']]},
+  {keys:['citrix'],links:[['Citrix Security Bulletins','https://support.citrix.com/s/topic/0TO4z000000IHZ3GAO/security-bulletins']]},
+  {keys:['vmware','esxi'],links:[['VMware Security Advisories','https://support.broadcom.com/web/ecx/security-advisory'],['VMware Product Downloads','https://support.broadcom.com/']]},
+  {keys:['dell','idrac'],links:[['Dell Security Advisories','https://www.dell.com/support/security'],['Dell Drivers & Downloads','https://www.dell.com/support/home/drivers/driversdetails']]},
+  {keys:['hp','ilo','hewlett'],links:[['HP Security Bulletins','https://support.hp.com/us-en/security-bulletins'],['HP Drivers & Software','https://support.hp.com/us-en/drivers']]},
+  {keys:['lenovo','thinkpad'],links:[['Lenovo Product Security Advisories','https://support.lenovo.com/us/en/product_security/home'],['Lenovo Drivers & Software','https://support.lenovo.com/us/en/downloads']]},
+  {keys:['qnap'],links:[['QNAP Security Advisories','https://www.qnap.com/en/security-advisory'],['QNAP Download Center','https://www.qnap.com/en/download']]},
+  {keys:['synology'],links:[['Synology Security Advisories','https://www.synology.com/en-us/security/advisory'],['Synology Download Center','https://www.synology.com/en-us/support/download']]},
+  {keys:['okta'],links:[['Okta Security Advisories','https://trust.okta.com/security-advisories/'],['Okta Release Notes','https://help.okta.com/en-us/content/topics/releasenotes/okta-relnotes.htm']]},
+  {keys:['zoom'],links:[['Zoom Security Bulletins','https://www.zoom.com/en/trust/security/security-bulletin/'],['Zoom Release Notes','https://support.zoom.com/hc/en/category?id=kb_category&kb_category=Release_Notes']]}
+];
+const esc=value=>String(value||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
+function norm(value){return String(value||'').toLowerCase().replace(new RegExp('[^a-z0-9]+','g'),' ').replace(new RegExp(' +','g'),' ').trim();}
+function tokenSet(value){return new Set(norm(value).split(' ').filter(t=>t.length>1));}
+function inferAssetType(name){const n=norm(name);if(['windows','macos','ubuntu','debian','rhel','red hat','suse','android','ios','linux'].some(x=>n.includes(x)))return'os';if(['bios','uefi','firmware','idrac','ilo','bmc','controller'].some(x=>n.includes(x)))return'firmware';if(['fortigate','asa','firewall','router','switch','nas','qnap','synology','esxi','appliance','gateway','vpn','pan os','pan-os'].some(x=>n.includes(x)))return'hardware';if(['driver','graphics driver','printer driver','audio driver','chipset'].some(x=>n.includes(x)))return'driver';if(['okta','entra','azure ad','m365','office 365','salesforce','servicenow','google workspace','slack'].some(x=>n.includes(x)))return'saas';return'app';}
+function parseAssetLine(line){const raw=String(line||'').trim();const idx=raw.indexOf(':');if(idx>0){let type=raw.slice(0,idx).trim().toLowerCase();const name=raw.slice(idx+1).trim();const aliases={application:'app','operating-system':'os',appliance:'hardware',cloud:'saas',product:'vendor'};type=aliases[type]||type;const allowed=['app','os','firmware','hardware','driver','saas','vendor','unknown'];if(name&&allowed.includes(type))return{name,type,raw};}return{name:raw,type:inferAssetType(raw)||'unknown',raw};}
+function softwareList(){return $('softwareInput').value.split(new RegExp('\\r?\\n|,','g')).map(parseAssetLine).filter(asset=>asset.name).filter((asset,i,arr)=>arr.findIndex(x=>x.name.toLowerCase()===asset.name.toLowerCase()&&x.type===asset.type)===i);}
+function assetTypeLabel(type){const labels={app:'Application',os:'Operating System',firmware:'Firmware',hardware:'Hardware / Appliance',driver:'Driver',saas:'SaaS / Cloud',vendor:'Vendor / Product',unknown:'Unspecified'};return labels[type]||'Unspecified';}
+function getCustomProfiles(){try{return JSON.parse(localStorage.getItem('tvpi.customProfiles')||'{}');}catch{return{};}}
+function saveCustomProfiles(profiles){localStorage.setItem('tvpi.customProfiles',JSON.stringify(profiles||{}));}
+function profileKey(kind,name){return kind+'::'+name;}
+function renderProfiles(){const select=$('profileSelect');if(!select)return;const custom=getCustomProfiles();const options=[];Object.keys(BUILT_IN_PROFILES).forEach(name=>options.push('<option value="'+esc(profileKey('built-in',name))+'">Built-in: '+esc(name)+'</option>'));Object.keys(custom).sort().forEach(name=>options.push('<option value="'+esc(profileKey('custom',name))+'">Custom: '+esc(name)+'</option>'));select.innerHTML=options.join('');}
+function selectedProfile(){const select=$('profileSelect');if(!select||!select.value)return null;const parts=select.value.split('::');const kind=parts[0];const name=parts.slice(1).join('::');const custom=getCustomProfiles();const content=kind==='built-in'?BUILT_IN_PROFILES[name]:custom[name];return content?{kind,name,content}:null;}
+function loadProfile(append){const profile=selectedProfile();const status=$('profileStatus');if(!profile){if(status)status.textContent='No profile selected.';return;}if(append&&$('softwareInput').value.trim())$('softwareInput').value=$('softwareInput').value.trim()+NL+profile.content;else $('softwareInput').value=profile.content;if(status)status.textContent=(append?'Appended':'Loaded')+' profile: '+profile.name;}
+function saveCurrentProfile(){const name=($('profileName')?.value||'').trim();const status=$('profileStatus');const content=$('softwareInput').value.trim();if(!name){if(status)status.textContent='Enter a custom profile name first.';return;}if(!content){if(status)status.textContent='Current asset list is empty.';return;}const custom=getCustomProfiles();custom[name]=content;saveCustomProfiles(custom);renderProfiles();if(status)status.textContent='Saved custom profile: '+name;}
+function deleteSelectedCustomProfile(){const profile=selectedProfile();const status=$('profileStatus');if(!profile){if(status)status.textContent='No profile selected.';return;}if(profile.kind!=='custom'){if(status)status.textContent='Built-in profiles cannot be deleted.';return;}const custom=getCustomProfiles();delete custom[profile.name];saveCustomProfiles(custom);renderProfiles();if(status)status.textContent='Deleted custom profile: '+profile.name;}
+function engineUrl(query){const engine=$('engine').value;if(engine==='bing')return'https://www.bing.com/search?q='+encodeURIComponent(query);if(engine==='duck')return'https://duckduckgo.com/?q='+encodeURIComponent(query);return'https://www.google.com/search?q='+encodeURIComponent(query);}
+function sourceCandidateList(primary,fallbackRaw){return[...new Set([primary,fallbackRaw].filter(Boolean))];}
+async function fetchTextCandidates(candidates){const errors=[];for(const url of candidates){try{const response=await fetch(url,{cache:'no-store'});if(!response.ok)throw new Error('HTTP '+response.status);return{url,text:await response.text()};}catch(error){errors.push(url+' -> '+error.message);}}throw new Error(errors.join(' | '));}
+async function loadGitFeedMeta(){try{const result=await fetchTextCandidates(sourceCandidateList('data/feed-meta.json',REPO_RAW_BASE+'data/feed-meta.json'));GIT_FEED_META=JSON.parse(result.text);}catch(error){GIT_FEED_META=null;}}
+async function loadFeeds(){const status=$('sourceStatus');status.innerHTML='<p class="small">Loading data sources...</p>';const kevUrl=$('kevUrl').value||'data/kev.json';const patchUrl=$('patchUrl').value||'data/patchmypc.xml';const zdiUrl=$('zdiUrl').value||'data/zdi.xml';const lines=[];await loadGitFeedMeta();try{const kevResult=await fetchTextCandidates(sourceCandidateList(kevUrl,REPO_RAW_BASE+'data/kev.json'));KEV=JSON.parse(kevResult.text);if(!Array.isArray(KEV.vulnerabilities))throw new Error('KEV JSON missing vulnerabilities[]');FEED_META.kev={loadedAt:new Date().toISOString(),source:kevResult.url,count:KEV.vulnerabilities.length};lines.push('<div class="ok"><b>KEV loaded:</b> '+KEV.vulnerabilities.length+' entries from <code>'+esc(kevResult.url)+'</code></div>');}catch(error){lines.push('<div class="bad"><b>KEV failed:</b> '+esc(error.message)+'</div>');}
+try{const rssResult=await fetchTextCandidates(sourceCandidateList(patchUrl,REPO_RAW_BASE+'data/patchmypc.xml'));RSS_ITEMS=parseRss(rssResult.text);FEED_META.patch={loadedAt:new Date().toISOString(),source:rssResult.url,count:RSS_ITEMS.length};lines.push('<div class="ok" style="margin-top:8px"><b>Patch RSS loaded:</b> '+RSS_ITEMS.length+' items from <code>'+esc(rssResult.url)+'</code></div>');}catch(error){lines.push('<div class="warn" style="margin-top:8px"><b>Patch RSS failed:</b> '+esc(error.message)+'<br>RSS is optional; KEV matching can still run.</div>');}
+try{const zdiResult=await fetchTextCandidates(sourceCandidateList(zdiUrl,REPO_RAW_BASE+'data/zdi.xml'));ZDI_ITEMS=parseRss(zdiResult.text);FEED_META.zdi={loadedAt:new Date().toISOString(),source:zdiResult.url,count:ZDI_ITEMS.length};lines.push('<div class="ok" style="margin-top:8px"><b>ZDI RSS loaded:</b> '+ZDI_ITEMS.length+' advisories from <code>'+esc(zdiResult.url)+'</code></div>');}catch(error){lines.push('<div class="warn" style="margin-top:8px"><b>ZDI RSS failed:</b> '+esc(error.message)+'<br>ZDI is optional; KEV and patch matching can still run.</div>');}
+status.innerHTML=lines.join('');renderFreshness();}
+function sanitizeXmlText(xmlText){const ampPattern=new RegExp('&(?!amp;|lt;|gt;|quot;|apos;|#[0-9]+;|#x[0-9a-fA-F]+;)','g');return String(xmlText||'').replace(ampPattern,'&amp;');}
+function compactPreview(text,length){return String(text||'').slice(0,length||160).replace(new RegExp('\\s+','g'),' ');}
+function parseRss(xmlText){const original=String(xmlText||'').trim();if(!original)throw new Error('RSS/XML file was empty');const lower=original.toLowerCase();if(lower.startsWith('<!doctype html')||lower.startsWith('<html'))throw new Error('Downloaded content is HTML, not RSS/XML. Preview: '+compactPreview(original,120));const parser=new DOMParser();let doc=parser.parseFromString(original,'application/xml');let parseError=doc.querySelector('parsererror');if(parseError){doc=parser.parseFromString(sanitizeXmlText(original),'application/xml');parseError=doc.querySelector('parsererror');}if(parseError)throw new Error('Invalid XML/RSS. Preview: '+compactPreview(original,160));const items=[...doc.querySelectorAll('item, entry')];const cvePattern=new RegExp('CVE-[0-9]{4}-[0-9]{4,7}','gi');return items.map(item=>{const title=item.querySelector('title')?.textContent||'';const link=item.querySelector('link')?.textContent||item.querySelector('link')?.getAttribute('href')||'';const encoded=item.getElementsByTagName('content:encoded')[0]?.textContent||'';const description=item.querySelector('description, summary')?.textContent||encoded||item.querySelector('content')?.textContent||'';const date=item.querySelector('pubDate, updated, published')?.textContent||'';const cves=[...new Set((title+' '+description).match(cvePattern)||[])].map(x=>x.toUpperCase());return{title,link,description,date,cves,text:title+' '+description};});}
+function importKev(file){if(!file)return;const reader=new FileReader();reader.onload=()=>{try{KEV=JSON.parse(reader.result);if(!Array.isArray(KEV.vulnerabilities))throw new Error('KEV JSON missing vulnerabilities[]');$('sourceStatus').innerHTML='<div class="ok"><b>Imported KEV:</b> '+KEV.vulnerabilities.length+' entries.</div>';}catch(error){$('sourceStatus').innerHTML='<div class="bad"><b>KEV import failed:</b> '+esc(error.message)+'</div>';}};reader.readAsText(file);}
+function importRss(file){if(!file)return;const reader=new FileReader();reader.onload=()=>{try{RSS_ITEMS=parseRss(reader.result);$('sourceStatus').innerHTML='<div class="ok"><b>Imported Patch RSS:</b> '+RSS_ITEMS.length+' items.</div>';}catch(error){$('sourceStatus').innerHTML='<div class="bad"><b>Patch RSS import failed:</b> '+esc(error.message)+'</div>';}};reader.readAsText(file);}
+function importZdi(file){if(!file)return;const reader=new FileReader();reader.onload=()=>{try{ZDI_ITEMS=parseRss(reader.result);$('sourceStatus').innerHTML='<div class="ok"><b>Imported ZDI RSS:</b> '+ZDI_ITEMS.length+' advisories.</div>';}catch(error){$('sourceStatus').innerHTML='<div class="bad"><b>ZDI import failed:</b> '+esc(error.message)+'</div>';}};reader.readAsText(file);}
+function matchScore(assetName,text){const sw=norm(assetName);const hay=norm(text);if(!sw||!hay)return 0;if(hay.includes(sw))return 100;const swTokens=tokenSet(sw);if(!swTokens.size)return 0;let hits=0;swTokens.forEach(token=>{if(hay.includes(token))hits++;});return Math.round((hits/swTokens.size)*100);}
+function matchKev(assetName){return(KEV.vulnerabilities||[]).map(v=>({...v,matchScore:matchScore(assetName,[v.cveID,v.vendorProject,v.product,v.vulnerabilityName,v.shortDescription].join(' '))})).filter(v=>v.matchScore>=50).sort((a,b)=>b.matchScore-a.matchScore||String(b.dateAdded).localeCompare(String(a.dateAdded))).slice(0,10);}
+function matchRss(assetName){const days=parseInt($('lookbackDays').value||'90',10);const cutoff=Date.now()-days*24*60*60*1000;return RSS_ITEMS.map(item=>({...item,matchScore:matchScore(assetName,item.text)})).filter(item=>item.matchScore>=50).filter(item=>{const d=item.date?new Date(item.date).getTime():NaN;return Number.isNaN(d)||d>=cutoff;}).sort((a,b)=>b.matchScore-a.matchScore).slice(0,8);}
+function matchZdi(assetName){const days=parseInt($('lookbackDays').value||'90',10);const cutoff=Date.now()-days*24*60*60*1000;return ZDI_ITEMS.map(item=>({...item,matchScore:matchScore(assetName,item.text)})).filter(item=>item.matchScore>=50).filter(item=>{const d=item.date?new Date(item.date).getTime():NaN;return Number.isNaN(d)||d>=cutoff;}).sort((a,b)=>b.matchScore-a.matchScore).slice(0,8);}
+function priorityFor(kevMatches=[],rssMatches=[],zdiMatches=[]){let score=0;const reasons=[];if(kevMatches.length){score+=70;reasons.push('Known exploited vulnerability match');}if(zdiMatches.length){score+=40;reasons.push('Recently disclosed vulnerability signal from ZDI');}if(rssMatches.some(x=>x.cves.length)){score+=20;reasons.push('Recent patch/update item references CVEs');}if(rssMatches.length){score+=10;reasons.push('Recent patch/update signal found');}score=Math.min(100,score);if(score>=80)return{label:'Critical / Immediate Review',level:'critical',cls:'score-critical',score,reasons};if(score>=60)return{label:'High Priority',level:'high',cls:'score-high',score,reasons};if(score>=30)return{label:'Medium Priority',level:'medium',cls:'score-medium',score,reasons};return{label:'Low / No Current Signal',level:'low',cls:'score-low',score,reasons:reasons.length?reasons:['No KEV, ZDI, or recent patch signal found']};}
+function analyze(){const assets=softwareList();const filter=$('resultFilter').value;const noise=$('noiseFilter')?$('noiseFilter').value:'all';const assetTypeFilter=$('assetTypeFilter')?$('assetTypeFilter').value:'all';LAST_RESULTS=assets.filter(asset=>assetTypeFilter==='all'||asset.type===assetTypeFilter).map(asset=>{const kev=matchKev(asset.name);const rss=matchRss(asset.name);const zdi=matchZdi(asset.name);const priority=priorityFor(kev,rss,zdi);return{app:asset.name,asset,kev,rss,zdi,priority};}).filter(result=>{if(filter==='critical')return result.priority.level==='critical';if(filter==='high')return result.priority.level==='high';if(filter==='medium')return result.priority.level==='medium';if(filter==='low')return result.priority.level==='low';if(noise==='actionable'&&result.priority.level==='low')return false;return true;}).sort((a,b)=>{const rank={critical:4,high:3,medium:2,low:1};return(rank[b.priority.level]-rank[a.priority.level])||(b.priority.score-a.priority.score)||a.app.localeCompare(b.app);});renderSummary();renderResults();}
+function feedAgeClass(dateValue){if(!dateValue)return'warn';const hours=(Date.now()-new Date(dateValue).getTime())/(60*60*1000);if(Number.isNaN(hours))return'warn';if(hours>24)return'bad';if(hours>6)return'warn';return'ok';}
+function renderFreshness(){const root=$('freshnessBox');if(!root)return;const mirrorTime=GIT_FEED_META&&GIT_FEED_META.generatedAt?new Date(GIT_FEED_META.generatedAt).toLocaleString():null;const mirrorCommit=GIT_FEED_META&&GIT_FEED_META.commit?GIT_FEED_META.commit:null;const staleClass=GIT_FEED_META&&GIT_FEED_META.generatedAt?feedAgeClass(GIT_FEED_META.generatedAt):'warn';const label=(name,key,meta)=>{const gitSource=GIT_FEED_META&&GIT_FEED_META.feeds&&GIT_FEED_META.feeds[key]?GIT_FEED_META.feeds[key]:null;if(!meta)return'<div class="item"><b>'+name+'</b><br><span class="small">Not loaded yet.'+(gitSource?'<br>Mirrored: '+esc(gitSource.generatedAt||GIT_FEED_META.generatedAt||'unknown'):'')+'</span></div>';return'<div class="item"><b>'+name+'</b><br><span class="small">Browser loaded: '+esc(new Date(meta.loadedAt).toLocaleString())+'<br>Items: '+esc(meta.count)+'<br>Source: <code>'+esc(meta.source)+'</code>'+(gitSource?'<br>Repo mirror: '+esc(gitSource.generatedAt||GIT_FEED_META.generatedAt||'unknown'):'')+'</span></div>';};root.innerHTML=label('CISA KEV','kev',FEED_META.kev)+label('Patch RSS','patchmypc',FEED_META.patch)+label('ZDI RSS','zdi',FEED_META.zdi)+'<div class="'+staleClass+'" style="margin-top:10px"><b>Feed freshness:</b> '+(mirrorTime?'Last repo mirror: '+esc(mirrorTime):'No repo mirror metadata found')+(mirrorCommit?' • Commit: <code>'+esc(mirrorCommit)+'</code>':'')+'. Warning appears if the mirror is older than 6 hours; critical if older than 24 hours.</div>';}
+function renderSummary(){const total=LAST_RESULTS.length;const kevCount=LAST_RESULTS.filter(r=>r.kev.length).length;const patchCount=LAST_RESULTS.filter(r=>r.rss.length).length;const zdiCount=LAST_RESULTS.filter(r=>r.zdi.length).length;const critical=LAST_RESULTS.filter(r=>r.priority.level==='critical').length;const high=LAST_RESULTS.filter(r=>r.priority.level==='high').length;const enriched=Object.keys(ENRICHMENTS).length;$('summaryBox').innerHTML='<div class="three"><div class="item"><b>'+total+'</b><br><span class="small">Assets analyzed</span></div><div class="item"><b>'+kevCount+'</b><br><span class="small">KEV matches</span></div><div class="item"><b>'+patchCount+'</b><br><span class="small">Patch/update signals</span></div><div class="item"><b>'+zdiCount+'</b><br><span class="small">ZDI emerging signals</span></div><div class="item"><b>'+enriched+'</b><br><span class="small">NVD/EPSS enriched CVEs</span></div></div><div class="'+(critical?'bad':high?'warn':'ok')+'" style="margin-top:10px"><b>'+critical+'</b> critical items • <b>'+high+'</b> high-priority items. Results are sorted by priority descending.</div>';}
+function renderResults(){const root=$('results');if(!LAST_RESULTS.length){root.innerHTML='<p class="small">No results to display. Try loading feeds and analyzing an asset list.</p>';return;}root.innerHTML=LAST_RESULTS.map(result=>renderResult(result)).join('');}
+function ageInfo(dateValue,label){if(!dateValue)return{text:label+': unknown age',cls:'age-old',days:null};const parsed=new Date(dateValue);if(Number.isNaN(parsed.getTime()))return{text:label+': unknown age',cls:'age-old',days:null};const days=Math.max(0,Math.floor((Date.now()-parsed.getTime())/(24*60*60*1000)));let cls='age-old';if(days<=7)cls='age-new';else if(days<=30)cls='age-recent';else if(days<=90)cls='age-aging';const word=days===1?'day':'days';return{text:label+': '+days+' '+word+' ago',cls,days};}
+function ageBadge(dateValue,label){const info=ageInfo(dateValue,label);return'<span class="age-badge '+info.cls+'">'+esc(info.text)+'</span>';}
+function metricClass(score,severity){const sev=String(severity||'').toUpperCase();const val=Number(score);if(sev==='CRITICAL'||val>=9)return'metric-critical';if(sev==='HIGH'||val>=7)return'metric-high';if(sev==='MEDIUM'||val>=4)return'metric-medium';return'metric-low';}
+function linkButton(label,url){if(!url)return'';return'<a class="linkbtn" href="'+esc(url)+'" target="_blank" rel="noreferrer">'+esc(label)+'</a>';}
+function cveLinks(cve){if(!cve)return'';return linkButton('NVD','https://nvd.nist.gov/vuln/detail/'+encodeURIComponent(cve))+linkButton('CISA KEV','https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext='+encodeURIComponent(cve))+linkButton('Exploit / PoC',engineUrl('"'+cve+'" exploit OR poc OR github'))+linkButton('Patch / Mitigation',engineUrl('"'+cve+'" patch OR mitigation OR advisory'));}
+function officialResourceLinks(app){const n=norm(app);const links=[];VENDOR_RESOURCES.forEach(entry=>{if(entry.keys.some(k=>n.includes(norm(k))))entry.links.forEach(l=>links.push(l));});const seen=new Set();return links.filter(l=>{const key=l[0]+'|'+l[1];if(seen.has(key))return false;seen.add(key);return true;});}
+function vendorLinks(app,assetType){const updatePhrase=assetType==='firmware'?'firmware update download':assetType==='hardware'?'firmware advisory update':assetType==='os'?'security update release notes':'download update latest version';const official=officialResourceLinks(app).map(l=>linkButton(l[0],l[1])).join('');return official+linkButton('Vendor Advisory Search',engineUrl('"'+app+'" vulnerability advisory'))+linkButton('Security Updates Search',engineUrl('"'+app+'" security update release notes'))+linkButton('Update Page Search',engineUrl('"'+app+'" '+updatePhrase));}
+function enrichmentBadges(cve){const data=ENRICHMENTS[cve]||{};const bits=[];if(data.cvss){bits.push('<span class="metric-badge '+metricClass(data.cvss.score,data.cvss.severity)+'">NVD '+esc(data.cvss.severity||'CVSS')+' '+esc(data.cvss.score)+'</span>');}if(data.epss){const epssPct=(Number(data.epss.epss)*100).toFixed(1);const perc=Number(data.epss.percentile);bits.push('<span class="metric-badge '+(Number(data.epss.epss)>=0.7?'metric-critical':Number(data.epss.epss)>=0.3?'metric-high':'metric-low')+'">EPSS '+epssPct+'%</span>');if(!Number.isNaN(perc))bits.push('<span class="metric-badge metric-medium">EPSS percentile '+(perc*100).toFixed(0)+'%</span>');}return bits.length?'<br>'+bits.join(''):'';}
+function renderResult(result){const assetType=result.asset?.type||'unknown';const kevHtml=result.kev.length?result.kev.map(v=>'<div class="mono" style="margin-bottom:8px"><b>'+esc(v.cveID)+'</b> • '+esc(v.vendorProject)+' '+esc(v.product)+' • Added '+esc(v.dateAdded)+' • Match '+v.matchScore+'%<br>'+ageBadge(v.dateAdded,'KEV added')+enrichmentBadges(v.cveID)+'<br>'+cveLinks(v.cveID)+'</div>').join(''):'<div class="small">No KEV match.</div>';const rssHtml=result.rss.length?result.rss.map(item=>{const cveLinkHtml=item.cves.length?'<br>'+item.cves.map(cve=>'<b>'+esc(cve)+'</b> '+enrichmentBadges(cve)+'<br>'+cveLinks(cve)).join('<br>'):'';const updateLink=item.link?'<br>'+linkButton('Patch / Release Item',item.link):'';return'<div class="mono" style="margin-bottom:8px">'+esc(item.title)+'<br>'+ageBadge(item.date,'Published')+cveLinkHtml+updateLink+'</div>';}).join(''):'<div class="small">No recent patch/update signal.</div>';const zdiHtml=result.zdi.length?result.zdi.map(item=>{const cveLinkHtml=item.cves.length?'<br>'+item.cves.map(cve=>'<b>'+esc(cve)+'</b> '+enrichmentBadges(cve)+'<br>'+cveLinks(cve)).join('<br>'):'';const advisoryLink=item.link?'<br>'+linkButton('ZDI Advisory',item.link):'';return'<div class="mono" style="margin-bottom:8px">'+esc(item.title)+'<br>'+ageBadge(item.date,'Published')+cveLinkHtml+advisoryLink+'</div>';}).join(''):'<div class="small">No recent ZDI disclosure signal.</div>';const queries=buildQueries(result);return'<div class="item"><div class="item-head"><div><h3 style="margin:0 0 6px">'+esc(result.app)+'</h3><span class="pill">'+esc(assetTypeLabel(assetType))+'</span> <span class="'+result.priority.cls+'">'+result.priority.label+'</span> <span class="pill">Score '+result.priority.score+'</span></div><div class="actions"><button data-open-searches="'+esc(result.app)+'">Open Searches</button><button class="secondary" data-copy-report="'+esc(result.app)+'">Copy</button></div></div><p class="small">'+esc(result.priority.reasons.join(' • '))+'</p><div style="margin-bottom:8px">'+vendorLinks(result.app,assetType)+'</div><details open><summary>KEV exploited vulnerability matches</summary>'+kevHtml+'</details><details><summary>Patch/update signals</summary>'+rssHtml+'</details><details><summary>ZDI emerging disclosures</summary>'+zdiHtml+'</details><details><summary>Suggested validation actions</summary><div class="mono">'+buildActions(result).map(esc).join('<br>')+'</div></details><details><summary>Search pivots</summary><div class="mono">'+queries.map(esc).join('<br>')+'</div></details></div>';}
+function buildActions(result){const type=result.asset?.type||'unknown';const actions=['- Confirm presence and version from the right source of truth for this asset type: inventory, EDR, BigFix, MECM, vulnerability scanner, CMDB, firmware tooling, network management, or vendor portal.','- Identify owner, business criticality, exposure, and patch/update path.','- Check vendor advisory and release notes for fixed versions, firmware, mitigations, and upgrade guidance.'];if(type==='firmware'||type==='hardware')actions.push('- For hardware/firmware: validate model, firmware branch, support status, maintenance window, and vendor-specific upgrade prerequisites.');if(type==='os')actions.push('- For operating systems: validate build/version, servicing channel, cumulative update state, and unsupported/end-of-life exposure.');if(result.kev.length)actions.push('- Prioritize immediately: at least one matching item appears in CISA KEV.');if(result.rss.length)actions.push('- Validate whether a recent vendor/update signal maps to a deployable update.');if(result.zdi.length)actions.push('- Review ZDI disclosure details and vendor fix status; treat as emerging risk even if not yet in KEV.');return actions;}
+function buildQueries(result){const app=result.app;const assetType=result.asset?.type||'unknown';const cves=[...new Set(result.kev.map(v=>v.cveID).concat(result.rss.flatMap(r=>r.cves)).concat(result.zdi.flatMap(z=>z.cves)))];const queries=['"'+app+'" vulnerability advisory','"'+app+'" release notes security update','"'+app+'" fixed version CVE'];if(assetType==='firmware'||assetType==='hardware')queries.push('"'+app+'" firmware update security advisory');if(assetType==='os')queries.push('"'+app+'" cumulative update security bulletin');cves.slice(0,5).forEach(cve=>{queries.push('"'+cve+'" exploit OR poc OR github');queries.push('"'+cve+'" patch OR mitigation OR advisory');});return queries;}
+function collectCurrentCves(){const set=new Set();LAST_RESULTS.forEach(r=>{r.kev.forEach(v=>set.add(v.cveID));r.rss.forEach(i=>i.cves.forEach(c=>set.add(c)));r.zdi.forEach(i=>i.cves.forEach(c=>set.add(c)));});return[...set].filter(Boolean);}
+function extractCvss(v){const m=v.cve?.metrics||{};const candidates=[m.cvssMetricV40?.[0],m.cvssMetricV31?.[0],m.cvssMetricV30?.[0],m.cvssMetricV2?.[0]].filter(Boolean);if(!candidates.length)return null;const c=candidates[0];const data=c.cvssData||{};return{score:data.baseScore??'',severity:c.baseSeverity||data.baseSeverity||'',vector:data.vectorString||'',source:c.source||''};}
+async function enrichCves(){const status=$('enrichStatus');const cves=collectCurrentCves();if(!cves.length){status.textContent='No CVEs found in current results. Analyze assets first.';return;}status.textContent='Enriching '+cves.length+' CVEs from NVD and EPSS...';try{for(let i=0;i<cves.length;i+=100){const batch=cves.slice(i,i+100);const nvdUrl='https://services.nvd.nist.gov/rest/json/cves/2.0?cveIds='+encodeURIComponent(batch.join(','));const nvd=await fetch(nvdUrl,{cache:'no-store'});if(nvd.ok){const data=await nvd.json();(data.vulnerabilities||[]).forEach(item=>{const id=item.cve?.id;if(!id)return;ENRICHMENTS[id]=ENRICHMENTS[id]||{};ENRICHMENTS[id].nvd=item;const cvss=extractCvss(item);if(cvss)ENRICHMENTS[id].cvss=cvss;});}}
+const epssUrl='https://api.first.org/data/v1/epss?cve='+encodeURIComponent(cves.join(','));const epss=await fetch(epssUrl,{cache:'no-store'});if(epss.ok){const data=await epss.json();(data.data||[]).forEach(row=>{const id=row.cve;if(!id)return;ENRICHMENTS[id]=ENRICHMENTS[id]||{};ENRICHMENTS[id].epss={epss:row.epss,percentile:row.percentile,date:row.date};});}
+status.textContent='Enriched '+Object.keys(ENRICHMENTS).length+' CVEs. NVD/CVSS and EPSS badges appear next to matching CVEs.';renderSummary();renderResults();}catch(error){status.textContent='Enrichment failed: '+error.message+'. This can happen because of CORS, rate limits, or public API availability.';}}
+function resultText(result){return[result.app,'Asset Type: '+assetTypeLabel(result.asset?.type||'unknown'),'Priority: '+result.priority.label+' ('+result.priority.score+')','Reasons: '+result.priority.reasons.join('; '),'','KEV Matches:',...(result.kev.length?result.kev.map(v=>'- '+v.cveID+' '+v.vendorProject+' '+v.product+' Added: '+v.dateAdded):['- None']),'','Patch Signals:',...(result.rss.length?result.rss.map(r=>'- '+r.title+(r.cves.length?' ['+r.cves.join(', ')+']':'')):['- None']),'','ZDI Emerging Disclosures:',...(result.zdi.length?result.zdi.map(z=>'- '+z.title+(z.cves.length?' ['+z.cves.join(', ')+']':'')):['- None']),'','Validation Actions:',...buildActions(result),'','Search Pivots:',...buildQueries(result)].join(NL);}
+function csvEscape(value){const text=String(value??'');return'"'+text.replaceAll('"','""')+'"';}
+function parseCsv(text){const rows=[];let row=[];let cell='';let inQuotes=false;const input=String(text||'');for(let i=0;i<input.length;i++){const ch=input[i];const next=input[i+1];if(ch==='"'){if(inQuotes&&next==='"'){cell+='"';i++;}else inQuotes=!inQuotes;}else if(ch===','&&!inQuotes){row.push(cell);cell='';}else if((ch===NL||ch===CR)&&!inQuotes){if(ch===CR&&next===NL)i++;row.push(cell);cell='';if(row.some(v=>String(v).trim()))rows.push(row);row=[];}else{cell+=ch;}}row.push(cell);if(row.some(v=>String(v).trim()))rows.push(row);return rows;}
+function importAssetCsv(file){if(!file)return;const reader=new FileReader();reader.onload=()=>{const rows=parseCsv(reader.result);if(!rows.length)return;const header=rows[0].map(h=>String(h).trim().toLowerCase());const hasHeader=header.includes('name')||header.includes('asset')||header.includes('software')||header.includes('type');const dataRows=hasHeader?rows.slice(1):rows;const nameIndex=hasHeader?Math.max(header.indexOf('name'),header.indexOf('asset'),header.indexOf('software'),header.indexOf('product')):0;const typeIndex=hasHeader?header.indexOf('type'):-1;const lines=dataRows.map(row=>{const name=String(row[nameIndex>=0?nameIndex:0]||'').trim();const type=typeIndex>=0?String(row[typeIndex]||'').trim().toLowerCase():'';return name?(type?type+': '+name:name):'';}).filter(Boolean);$('softwareInput').value=lines.join(NL);};reader.readAsText(file);}
+function downloadText(filename,text,type='text/plain'){const blob=new Blob([text],{type});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download=filename;link.click();URL.revokeObjectURL(link.href);}
+function exportAssetsCsv(){const rows=[['type','name','raw']].concat(softwareList().map(asset=>[asset.type,asset.name,asset.raw]));downloadText('technology-assets.csv',rows.map(row=>row.map(csvEscape).join(',')).join(NL),'text/csv');}
+function exportResultsCsv(){const rows=[['asset_type','asset_name','priority_level','priority_label','score','reasons','kev_cves','patch_items','zdi_items','official_resources']];LAST_RESULTS.forEach(result=>{rows.push([assetTypeLabel(result.asset?.type||'unknown'),result.app,result.priority.level,result.priority.label,result.priority.score,result.priority.reasons.join('; '),result.kev.map(v=>v.cveID).join('; '),result.rss.map(r=>r.title).join('; '),result.zdi.map(z=>z.title).join('; '),officialResourceLinks(result.app).map(l=>l[0]+' '+l[1]).join('; ')]);});downloadText('technology-vulnerability-results.csv',rows.map(row=>row.map(csvEscape).join(',')).join(NL),'text/csv');}
+function criticalHighResults(){return LAST_RESULTS.filter(result=>result.priority.level==='critical'||result.priority.level==='high');}
+function copyCriticalHigh(){const items=criticalHighResults();const text=items.length?items.map(resultText).join(NL+NL+'---'+NL+NL):'No Critical or High findings in the current analysis.';navigator.clipboard.writeText(text);}
+function exportReport(){const lines=['Technology Vulnerability & Patch Intelligence Report','Generated: '+new Date().toLocaleString(),'','Technology / Asset Input:',...softwareList().map(x=>'- '+assetTypeLabel(x.type)+': '+x.name),'','Results:',''];LAST_RESULTS.forEach(result=>lines.push(resultText(result),'','---',''));downloadText('technology-vulnerability-patch-report.txt',lines.join(NL),'text/plain');}
+function openSearchesFor(app){const result=LAST_RESULTS.find(r=>r.app===app);if(!result)return;buildQueries(result).forEach(query=>window.open(engineUrl(query),'_blank'));}
+function copyReportFor(app){const result=LAST_RESULTS.find(r=>r.app===app);if(!result)return;navigator.clipboard.writeText(resultText(result));}
+function runTests(){const tests=[{name:'Asset parser splits typed lines',pass:(()=>{const old=$('softwareInput').value;$('softwareInput').value='app: A'+NL+'os: B';const parsed=softwareList();const ok=parsed.length===2&&parsed[0].type==='app'&&parsed[1].type==='os';$('softwareInput').value=old;return ok;})()},{name:'RSS parser accepts empty channel',pass:parseRss('<rss><channel></channel></rss>').length===0},{name:'RSS parser fixes bare ampersand',pass:parseRss('<rss><channel><item><title>A & B</title></item></channel></rss>').length===1},{name:'Priority with KEV is high',pass:priorityFor([{cveID:'CVE-2024-0001'}],[],[]).score>=70},{name:'Priority levels include critical',pass:priorityFor([{cveID:'CVE-2024-0001'}],[{cves:['CVE-2024-0001']}],[]).level==='critical'},{name:'Priority with ZDI is medium or higher',pass:priorityFor([],[],[{title:'ZDI test'}]).score>=40},{name:'Report text contains validation actions',pass:resultText({app:'TestApp',asset:{type:'app'},kev:[],rss:[],zdi:[],priority:priorityFor([],[],[])}).includes('Validation Actions')},{name:'Critical/high helper returns array',pass:Array.isArray(criticalHighResults())},{name:'Critical/high copy separator is escaped',pass:['A','B'].join(NL+NL+'---'+NL+NL).includes('---')},{name:'CSV parser handles quoted comma',pass:parseCsv('type,name'+NL+'app,"A, B"')[1][1]==='A, B'},{name:'CVE links include NVD',pass:cveLinks('CVE-2024-0001').includes('nvd.nist.gov')},{name:'Vendor links include official Microsoft mapping',pass:officialResourceLinks('Microsoft Office').some(l=>l[0].includes('MSRC'))},{name:'EPSS enrichment storage object exists',pass:typeof ENRICHMENTS==='object'},{name:'Stale feed class works',pass:['ok','warn','bad'].includes(feedAgeClass(new Date().toISOString()))},{name:'Age badge renders days',pass:ageBadge(new Date().toISOString(),'Test').includes('days ago')||ageBadge(new Date().toISOString(),'Test').includes('day ago')},{name:'Firmware type inference works',pass:parseAssetLine('Dell BIOS').type==='firmware'},{name:'Built-in profiles are available',pass:Object.keys(BUILT_IN_PROFILES).length>=5},{name:'Profile key roundtrip works',pass:profileKey('custom','Test').includes('custom::Test')}];$('testResults').innerHTML=tests.map(t=>'<div class="'+(t.pass?'ok':'bad')+'" style="margin-bottom:8px"><b>'+(t.pass?'PASS':'FAIL')+'</b> - '+esc(t.name)+'</div>').join('');}
+function renderVersion(){const badge=$('versionBadge');const info=$('versionInfo');const line=$('versionLine');if(badge)badge.textContent=APP_VERSION;const text='Version '+APP_VERSION+' • '+APP_CODENAME+' • Updated '+APP_UPDATED;if(info)info.textContent=text;if(line)line.textContent=text;}
+function boot(){document.addEventListener('click',event=>{const target=event.target;if(target.dataset.action==='load-feeds')loadFeeds();if(target.dataset.action==='analyze')analyze();if(target.dataset.action==='enrich-cves')enrichCves();if(target.dataset.action==='export-report')exportReport();if(target.dataset.action==='export-assets-csv')exportAssetsCsv();if(target.dataset.action==='export-results-csv')exportResultsCsv();if(target.dataset.action==='copy-critical-high')copyCriticalHigh();if(target.dataset.action==='load-sample')$('softwareInput').value=SAMPLE;if(target.dataset.action==='load-profile')loadProfile(false);if(target.dataset.action==='append-profile')loadProfile(true);if(target.dataset.action==='save-profile')saveCurrentProfile();if(target.dataset.action==='delete-profile')deleteSelectedCustomProfile();if(target.dataset.action==='clear-input')$('softwareInput').value='';if(target.dataset.openSearches)openSearchesFor(target.dataset.openSearches);if(target.dataset.copyReport)copyReportFor(target.dataset.copyReport);});$('kevImport').addEventListener('change',event=>importKev(event.target.files[0]));$('rssImport').addEventListener('change',event=>importRss(event.target.files[0]));$('zdiImport').addEventListener('change',event=>importZdi(event.target.files[0]));$('csvImport').addEventListener('change',event=>importAssetCsv(event.target.files[0]));$('resultFilter').addEventListener('change',analyze);$('lookbackDays').addEventListener('change',analyze);$('noiseFilter').addEventListener('change',analyze);$('assetTypeFilter').addEventListener('change',analyze);renderVersion();renderProfiles();runTests();loadFeeds();}
 boot();
 </script>
 </body>
