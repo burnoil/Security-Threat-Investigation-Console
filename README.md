@@ -10,7 +10,8 @@ Rather than scanning endpoints, TVPI helps security, vulnerability management, e
 
 ## Screenshot
 
-![TVPI Screenshot](docs/images/tvpi-dashboard.png)
+<img width="1369" height="884" alt="image" src="https://github.com/user-attachments/assets/c1cac6d9-f78c-458b-9766-d6c17d0d5806" />
+
 
 ---
 
