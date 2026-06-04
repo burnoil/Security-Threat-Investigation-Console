@@ -10,9 +10,25 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Thu, 04 Jun 2026 12:12:24 -0500</pubDate>
+    <pubDate>Thu, 04 Jun 2026 13:58:07 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-328: ASUS Business Manager Service Client-Side Authentication Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28776</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-328/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of ASUS Business Manager. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-7480.]]></description>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-327: Docker Desktop grpcfuse Kernel Module Uncontrolled Recursion Denial-of-Service Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30796</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-327/</link>
+      <description><![CDATA[This vulnerability allows local attackers to create a denial-of-service condition on affected installations of Docker Desktop. An attacker must first obtain the ability to execute low-privileged code within a container on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.5. The following CVEs are assigned: CVE-2026-8936.]]></description>
+      <pubDate>Wed, 03 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-326: TrendAI Vision One Security Agent Time-Of-Check Time-Of-Use Local Privilege Escalation Vulnerability]]></title>
@@ -1595,22 +1611,6 @@
       <guid isPermaLink="false">ZDI-CAN-23993</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-129/</link>
       <description><![CDATA[This vulnerability allows network-adjacent attackers to bypass authentication on affected installations of Socomec DIRIS A-40 power monitoring devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.3. The following CVEs are assigned: CVE-2026-2491.]]></description>
-      <pubDate>Wed, 25 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-128: (Pwn2Own) Ubiquiti Networks AI Pro Uncaught Exception Denial-of-Service Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28824</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-128/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to create a denial-of-service condition on affected installations of Ubiquiti Networks AI Pro. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.5. The following CVEs are assigned: CVE-2026-21634.]]></description>
-      <pubDate>Wed, 25 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-127: (Pwn2Own) Ubiquiti Networks AI Pro Cleartext Transmission Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28474</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-127/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to disclose sensitive information on affected installations of Ubiquiti Networks AI Pro. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.3. The following CVEs are assigned: CVE-2026-21633.]]></description>
       <pubDate>Wed, 25 Feb 2026 00:00:00 -0600</pubDate>
     </item>
     
