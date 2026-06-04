@@ -10,9 +10,33 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Thu, 04 Jun 2026 15:49:56 -0500</pubDate>
+    <pubDate>Thu, 04 Jun 2026 16:38:07 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-331: (Pwn2Own) Microsoft Edge Feedback Log File Handling Directory Traversal Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31431</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-331/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Microsoft Edge. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-45495.]]></description>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-330: (Pwn2Own) Microsoft Edge Navigation Handling Universal Cross-Site Scripting Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31430</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-330/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary cross-origin script on affected installations of Microsoft Edge. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 5.0. The following CVEs are assigned: CVE-2026-45494.]]></description>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-329: (Pwn2Own) Microsoft Edge Origin Validation Error Security Bypass Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31429</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-329/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to access restricted functionality on affected installations of Microsoft Edge. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 4.3. The following CVEs are assigned: CVE-2026-45492.]]></description>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-328: ASUS Business Manager Service Client-Side Authentication Local Privilege Escalation Vulnerability]]></title>
@@ -1587,30 +1611,6 @@
       <guid isPermaLink="false">ZDI-CAN-28108</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-132/</link>
       <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Siemens SINEC NMS. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-25656.]]></description>
-      <pubDate>Wed, 25 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-131: Siemens SINEC NMS Uncontrolled Search Path Element Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28107</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-131/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Siemens SINEC NMS. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-25655.]]></description>
-      <pubDate>Wed, 25 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-130: IceWarp collaboration Directory Traversal Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-25440</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-130/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of IceWarp. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-2493.]]></description>
-      <pubDate>Wed, 25 Feb 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-129: Socomec DIRIS A-40 HTTP API Authentication Bypass Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-23993</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-129/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to bypass authentication on affected installations of Socomec DIRIS A-40 power monitoring devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.3. The following CVEs are assigned: CVE-2026-2491.]]></description>
       <pubDate>Wed, 25 Feb 2026 00:00:00 -0600</pubDate>
     </item>
     
