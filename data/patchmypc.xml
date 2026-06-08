@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Tue, 02 Jun 2026 16:40:47 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 08 Jun 2026 09:05:06 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,295 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>Company Portal Not Installing During Autopilot Enrollment 0x87D1041C</title>
+		<link>https://patchmypc.com/blog/company-portal-not-installing-during-autopilot-enrollment-0x87d1041c/</link>
+					<comments>https://patchmypc.com/blog/company-portal-not-installing-during-autopilot-enrollment-0x87d1041c/#respond</comments>
+		
+		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
+		<pubDate>Mon, 08 Jun 2026 08:56:33 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=186444</guid>
+
+					<description><![CDATA[<p>The Company Portal suddenly started failing during Autopilot pre provisioning with error 0x87D1041C, even though the app was already present on the device. We traced the issue back to a Windows change introduced with the May update and confirmed the fix after Microsoft reverted the rollout.</p>
+<p>The post <a href="https://patchmypc.com/blog/company-portal-not-installing-during-autopilot-enrollment-0x87d1041c/">Company Portal Not Installing During Autopilot Enrollment 0x87D1041C</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>The Company Portal suddenly stopped installing during <strong>Autopilot pre-provisioning</strong> after the <strong>May Windows update,</strong> leaving devices stuck with error <strong>0x87D1041C</strong>. In this blog, we uncover what changed, why system context deployments failed, and how a Microsoft flight rollback restored the Company Portal installation.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-autopilot-and-the-0x87d1041c-error">Autopilot and the 0x87D1041C error</h2>
+
+
+
+<p>It started with <strong><a href="https://www.linkedin.com/in/sandy-tsang/">Sandy</a></strong> asking why <strong>Company Portal</strong> had suddenly failed to be installed during <strong>Autopilot pre-provisioning</strong> <strong>(0x87D1041C)</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="268" src="https://patchmypc.com/app/uploads/2026/06/image-2.jpg" alt="0x87D1041C during autopilot" class="wp-image-186452" srcset="https://patchmypc.com/app/uploads/2026/06/image-2.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-2-300x129.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>It was pretty clear that nothing had changed in Intune. <strong><a href="https://patchmypc.com/blog/launching-the-company-portal-automatically-after-autopilot/">The Company Portal </a></strong>was still deployed via the Microsoft Store in system context, and the same Autopilot configuration had worked without issues before. The only real difference was that the device had been installed with the May Windows update. With the May update installed, the Company Portal now failed with <strong>0x87D1041C…</strong></p>
+
+
+
+<p>which just means that the application was not detected after installation completed successfully. The <strong>0x87D1041C</strong> error indicated that the installation had finished, but Intune could not detect the app afterward. That appeared to be exactly what was happening. The Company Portal package was present under C:\Program Files\WindowsApps.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="108" src="https://patchmypc.com/app/uploads/2026/06/image.jpg" alt="" class="wp-image-186446" srcset="https://patchmypc.com/app/uploads/2026/06/image.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-300x52.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>But the Enrollment Status Page still reported that the installation had failed with <strong>0x87D1041C.&nbsp; The Company Portal was assigned in system context, so it would be installed during Autopilot pre-provi</strong>sioning.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="290" src="https://patchmypc.com/app/uploads/2026/06/image-3.jpg" alt="company portal deployed under system install behavior during autopilot caused 0x87D1041C" class="wp-image-186453" srcset="https://patchmypc.com/app/uploads/2026/06/image-3.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-3-300x139.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>Changing the assignment to user context delayed the installation until after the user signed in. That prevented the ESP from failing on the required app, but it also meant Company Portal was no longer installed during pre-provisioning. Noticing that changing the install behavior fixed the issue confirmed that the Store package itself was fine, but it was not a good solution. During Autopilot pre-provisioning, Company Portal needs to be installed before the device is handed over to the user. Waiting for the user to sign in defeats the purpose of assigning it in the system context.</p>
+
+
+
+<p>Sandy was not the only one seeing this. Similar reports appeared on Reddit and <strong><a href="https://techcommunity.microsoft.com/discussions/microsoft-intune/company-portal-no-longer-installing-during-autopilot-enrollment/4519066">Microsoft forums </a></strong>after the May update. Company Portal had worked before the update, failed afterward, and returned the same detection error. Something inside the Windows Store installation flow had changed.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-following-the-error-0x87d1041c-in-the-store-installation">Following the error 0x87D1041C in the Store Installation</h2>
+
+
+
+<p>Installing the Microsoft Store app involves more than placing package files in the <strong>WindowsApps</strong> folder.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="108" src="https://patchmypc.com/app/uploads/2026/06/image-1.jpg" alt="" class="wp-image-186447" srcset="https://patchmypc.com/app/uploads/2026/06/image-1.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-1-300x52.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>Windows first obtains the Store package, stages its content on the device, and then registers or provisions it in the correct scope. The presence of the package under WindowsApps indicates that the content reached the device, but it does not confirm that the final registration completed successfully. To find where that process had changed, we focused on three Windows components:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>InstallService.dll</strong></li>
+
+
+
+<li><strong>AppXDeploymentClient.dll</strong></li>
+
+
+
+<li><strong>AppXDeploymentServer.dll</strong></li>
+</ul>
+
+
+
+<p><strong>InstallService.dll</strong> controls the Store installation workflow. It searches for the correct package, prepares the installation session, downloads the content, and determines which installation path to use.</p>
+
+
+
+<p><strong>AppXDeploymentClient.dll</strong> exposes the package management operations for staging, registering, and provisioning AppX and MSIX packages.</p>
+
+
+
+<p><strong>AppXDeploymentServer.dll</strong> performs the underlying deployment work. It processes the package manifest, updates the package repository, and records the package state for the device and its users.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="579" src="https://patchmypc.com/app/uploads/2026/06/image-9-1024x579.png" alt="" class="wp-image-186467" srcset="https://patchmypc.com/app/uploads/2026/06/image-9-1024x579.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-9-300x170.png 300w, https://patchmypc.com/app/uploads/2026/06/image-9-768x434.png 768w, https://patchmypc.com/app/uploads/2026/06/image-9-1536x868.png 1536w, https://patchmypc.com/app/uploads/2026/06/image-9.png 1544w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>Because the Company Portal was already present under WindowsApps, the package download and staging process had clearly completed. The failure appeared to be happening later, when Windows decided how the package should be registered. That brought us back to <strong>InstallService.dll</strong><strong>.</strong></p>
+
+
+
+<h2 class="wp-block-heading" id="h-comparing-april-and-may-to-fix-0x87d1041c">Comparing April and May to Fix 0x87D1041C</h2>
+
+
+
+<p>We compared the May version of InstallService.dll with the version from the April update. The most interesting change appeared inside: <strong>UWAInstallWork::_DoNormalInstall</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="80" src="https://patchmypc.com/app/uploads/2026/06/image-4.jpg" alt="" class="wp-image-186456" srcset="https://patchmypc.com/app/uploads/2026/06/image-4.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-4-300x38.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>This function controls the normal Store installation flow. It prepares the update session, downloads the required files, and eventually chooses how the application should be installed. Inside the May version, we found a new feature: <strong>FixInstallUnderSystemContext </strong>with the corresponding feature ID: <strong>61372494</strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="109" src="https://patchmypc.com/app/uploads/2026/06/image-8-1024x109.png" alt="" class="wp-image-186460" srcset="https://patchmypc.com/app/uploads/2026/06/image-8-1024x109.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-8-300x32.png 300w, https://patchmypc.com/app/uploads/2026/06/image-8-768x82.png 768w, https://patchmypc.com/app/uploads/2026/06/image-8.png 1105w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="472" height="35" src="https://patchmypc.com/app/uploads/2026/06/image.png" alt="" class="wp-image-186445" srcset="https://patchmypc.com/app/uploads/2026/06/image.png 472w, https://patchmypc.com/app/uploads/2026/06/image-300x22.png 300w" sizes="(max-width: 472px) 100vw, 472px" /></figure>
+
+
+
+<p>The Fix Installed Under System Context name immediately stood out. <strong><a href="https://patchmypc.com/blog/intune-company-portal-app-refreshed/">The Company Portal </a></strong>was failing only when deployed in the system context during autopilot pre-provisioning, and there was a newly introduced feature specifically intended to change exactly that installation path… that couldn’t be a coincidence, right? The next step was to find out what the feature actually did.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-fix-install-under-system-context">Fix Install Under System Context</h2>
+
+
+
+<p>When FixInstallUnderSystemContext is active, InstallService.dll loads an additional configuration value:<strong>FIXINSTALLUNDERSYSTEMCONTEXT </strong>When both the feature and its configuration value are enabled, InstallService logs: <strong>Enumerating all users if run in system context.</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="427" height="53" src="https://patchmypc.com/app/uploads/2026/06/image-2.png" alt="" class="wp-image-186449" srcset="https://patchmypc.com/app/uploads/2026/06/image-2.png 427w, https://patchmypc.com/app/uploads/2026/06/image-2-300x37.png 300w" sizes="(max-width: 427px) 100vw, 427px" /></figure>
+
+
+
+<p>With it, the installation will then be redirected into: <strong>UWAInstallWork::_DoInstallForAllLoggedOnUsers</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="576" height="68" src="https://patchmypc.com/app/uploads/2026/06/image-1.png" alt="" class="wp-image-186448" srcset="https://patchmypc.com/app/uploads/2026/06/image-1.png 576w, https://patchmypc.com/app/uploads/2026/06/image-1-300x35.png 300w" sizes="(max-width: 576px) 100vw, 576px" /></figure>
+
+
+
+<p>Instead of continuing only through the normal system installation path, <strong>InstallService</strong> begins looking for logged-on users and tries to register the Store package for them.</p>
+
+
+
+<p>That may work during a normal user session, but Autopilot pre-provisioning is different. The device is being prepared before the actual user receives it, so there may not be a normal user session available yet.&nbsp; To understand the impact, we opened <strong>_DoInstallForAllLoggedOnUsers.</strong></p>
+
+
+
+<h2 class="wp-block-heading" id="h-looking-for-logged-on-users">Looking for Logged-On Users</h2>
+
+
+
+<p>The function starts with: <strong>TokenHelpers::GetAllLoggedInUserTokens(&#8230;) The InstallService</strong> collects the available logged-on user tokens and then processes each user individually.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="592" height="69" src="https://patchmypc.com/app/uploads/2026/06/image-3.png" alt="" class="wp-image-186457" srcset="https://patchmypc.com/app/uploads/2026/06/image-3.png 592w, https://patchmypc.com/app/uploads/2026/06/image-3-300x35.png 300w" sizes="(max-width: 592px) 100vw, 592px" /></figure>
+
+
+
+<p>For every token, it retrieves the user SID and searches for packages that should be registered for that user. The logging inside the function shows this clearly: <strong>Attempting to register update for User. </strong>When no applicable package is found, InstallService logs: <strong>Nothing to register for User. Skipping Install.&nbsp;</strong></p>
+
+
+
+<p>The important detail is what happens when there is no normal logged-on user. During Autopilot pre-provisioning, the real user has not yet signed in. If the function does not find a usable user token, there is no user for whom Company Portal can be registered.</p>
+
+
+
+<p>The package may already have been downloaded and staged, but the registration step expected by Intune is never completed. <strong>InstallService</strong> can still finish the operation without returning a package installation failure. Intune then checks whether Company Portal is installed, cannot find it in the expected state, and reports <strong>0x87D1041C.</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="623" height="401" src="https://patchmypc.com/app/uploads/2026/06/image-6.jpg" alt="company portal deployed under system install behavior during autopilot caused 0x87D1041C" class="wp-image-186455" srcset="https://patchmypc.com/app/uploads/2026/06/image-6.jpg 623w, https://patchmypc.com/app/uploads/2026/06/image-6-300x193.jpg 300w" sizes="(max-width: 623px) 100vw, 623px" /></figure>
+
+
+
+<p>That also explains why the user context assignment continued to work. Once the user signs in, InstallService has a real user token and can register Company Portal for that user. The problem only occurs when the installation is expected to complete before the user session ends.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-was-the-feature-actually-enabled">Was the Feature Actually Enabled?</h2>
+
+
+
+<p>Finding the feature inside the DLL did not prove that it was also enabled by default. Microsoft regularly ships feature code before enabling it<strong><a href="https://support.microsoft.com/en-us/windows/delivering-continuous-innovation-in-windows-11-b0aa0a27-ea9a-4365-9224-cb155e517f12"> (it should be turned off by default!!)</a></strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="65" src="https://patchmypc.com/app/uploads/2026/06/image-6.png" alt="" class="wp-image-186461" srcset="https://patchmypc.com/app/uploads/2026/06/image-6.png 624w, https://patchmypc.com/app/uploads/2026/06/image-6-300x31.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>The feature can remain dormant until it is activated through Windows feature management or a service-side configuration.  Let’s check if that was the same with this <strong>FixInstallUnderSystemContext function. </strong>When inspecting the InstallService OneSettings configuration. Inside the JSON payload, we found: <strong>&#8220;FIXINSTALLUNDERSYSTEMCONTEXT&#8221;: &#8220;1&#8221;</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="433" height="169" src="https://patchmypc.com/app/uploads/2026/06/image-4.png" alt="fix install under system context flight set to 1 (enabled)" class="wp-image-186450" srcset="https://patchmypc.com/app/uploads/2026/06/image-4.png 433w, https://patchmypc.com/app/uploads/2026/06/image-4-300x117.png 300w" sizes="(max-width: 433px) 100vw, 433px" /></figure>
+
+
+
+<p>The new code was not only simply present inside the May binary… The Controlled feature rollout service also had enabled it on all devices. That explained why the issue appeared without any change to the Intune assignment. The May update introduced the new <strong>InstallService</strong> behavior, while <strong>OneSettings </strong>activated the code path on Windows.</p>
+
+
+
+<p>From that moment, a Store installation started by LocalSystem could be redirected into a flow that depended on logged-on user tokens. During Autopilot pre-provisioning, that was exactly the wrong moment to depend on a user session.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-reaching-out-to-microsoft">Reaching Out to Microsoft</h2>
+
+
+
+<p>On Friday, we shared the findings with Microsoft. We explained that Company Portal only failed in system context, while the user context assignment still worked. We also shared the difference between the April and May versions of InstallService.dll, the new <strong>FixInstallUnderSystemContext</strong> feature, and the OneSettings value that enabled it.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="433" height="169" src="https://patchmypc.com/app/uploads/2026/06/image-5.png" alt="fix install under system context flight set to 1 (enabled)" class="wp-image-186459" srcset="https://patchmypc.com/app/uploads/2026/06/image-5.png 433w, https://patchmypc.com/app/uploads/2026/06/image-5-300x117.png 300w" sizes="(max-width: 433px) 100vw, 433px" /></figure>
+
+
+
+<p>The following Monday…. the Sccinstallservice.json was updated (yes… I build a tracked.. more in this in an upcoming blog). The updated JSON was now showing that the flight was reverted.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="552" height="68" src="https://patchmypc.com/app/uploads/2026/06/image-7.png" alt="fix install under system context flight set to 0 suddenly" class="wp-image-186458" srcset="https://patchmypc.com/app/uploads/2026/06/image-7.png 552w, https://patchmypc.com/app/uploads/2026/06/image-7-300x37.png 300w" sizes="(max-width: 552px) 100vw, 552px" /></figure>
+
+
+
+<p>We repeated the Autopilot pre-provisioning test with Company Portal still assigned in the system context. This time, Company Portal installed successfully again. Nothing had changed in Intune. The application assignment was the same, the Enrollment Status Page configuration was the same, and the Company Portal was still expected to install before the user received the device…and others were reporting the same</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="110" src="https://patchmypc.com/app/uploads/2026/06/image.jpeg" alt="company portal deployed under system install behavior during autopilot no longer causing 0x87D1041C" class="wp-image-186454" srcset="https://patchmypc.com/app/uploads/2026/06/image.jpeg 624w, https://patchmypc.com/app/uploads/2026/06/image-300x53.jpeg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>The only change was that the <strong>InstallService</strong> flight had been turned off. We cannot claim that our message was the only reason Microsoft reverted the flight. Other customers were reporting the same issue, and Microsoft may already have been investigating it.</p>
+
+
+
+<p>The timing was still hard to ignore. We shared the InstallService findings on Friday, the flight was reverted on Monday, and Company Portal immediately started installing again.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-when-the-fix-becomes-the-actual-problem">When the Fix Becomes the Actual Problem</h2>
+
+
+
+<p>FixInstallUnderSystemContext was probably intended to improve Store installations started by LocalSystem. The problem was how that new behavior interacted with Autopilot pre-provisioning. A system context installation that runs before the user receives the device cannot depend on a normal user session being available.</p>
+
+
+
+<p>By redirecting the installation into the logged-on user&#8217;s path, InstallService changed the final package state. Company Portal reached the device, but it was not registered in the context Intune expected to detect.</p>
+
+
+
+<p>That is why the Store installation appeared successful while the Enrollment Status Page still failed with <strong>0x87D1041C.</strong></p>
+
+
+
+<p>The most interesting part was not that Company Portal disappeared. It never did. It was already sitting inside WindowsApps.</p>
+
+
+
+<p>Windows had simply stopped finishing the part that made it usable and detectable during Autopilot pre-provisioning.</p>
+<p>The post <a href="https://patchmypc.com/blog/company-portal-not-installing-during-autopilot-enrollment-0x87d1041c/">Company Portal Not Installing During Autopilot Enrollment 0x87D1041C</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/blog/company-portal-not-installing-during-autopilot-enrollment-0x87d1041c/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Patch My PC Publisher Preview Version 2.2.2.98 Released</title>
 		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-98-released/</link>
 					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-98-released/#respond</comments>
@@ -106,7 +395,7 @@
 
 
 
-<figure class="wp-block-image size-large is-resized"><img fetchpriority="high" decoding="async" width="1024" height="528" src="https://patchmypc.com/app/uploads/2026/05/image-37-1024x528.png" alt="intune management extension functions" class="wp-image-185481" style="width:1188px;height:auto" srcset="https://patchmypc.com/app/uploads/2026/05/image-37-1024x528.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-37-300x155.png 300w, https://patchmypc.com/app/uploads/2026/05/image-37-768x396.png 768w, https://patchmypc.com/app/uploads/2026/05/image-37.png 1459w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+<figure class="wp-block-image size-large is-resized"><img decoding="async" width="1024" height="528" src="https://patchmypc.com/app/uploads/2026/05/image-37-1024x528.png" alt="intune management extension functions" class="wp-image-185481" style="width:1188px;height:auto" srcset="https://patchmypc.com/app/uploads/2026/05/image-37-1024x528.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-37-300x155.png 300w, https://patchmypc.com/app/uploads/2026/05/image-37-768x396.png 768w, https://patchmypc.com/app/uploads/2026/05/image-37.png 1459w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
@@ -1751,253 +2040,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/kb/wsus-urls-redirect-to-https-when-hsts-is-enabled/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>The Autopilot profile doesn’t decide if a device is corporate</title>
-		<link>https://patchmypc.com/blog/the-autopilot-profile-doesnt-decide-if-a-device-is-corporate/</link>
-					<comments>https://patchmypc.com/blog/the-autopilot-profile-doesnt-decide-if-a-device-is-corporate/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Thu, 30 Apr 2026 08:45:47 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=182829</guid>
-
-					<description><![CDATA[<p>A missing Autopilot profile often makes Windows show the full OOBE flow again. That looks like the device was not recognized as corporate, but the profile only controls the setup experience. The real ownership check happens later, when Intune evaluates the device identity and ZTDID during enrollment.</p>
-<p>The post <a href="https://patchmypc.com/blog/the-autopilot-profile-doesnt-decide-if-a-device-is-corporate/">The Autopilot profile doesn’t decide if a device is corporate</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p>When a device suddenly shows the full<strong> Out-of-Box Experience (showing privacy screen/region/etc),</strong> most administrators come to the same conclusion. <strong>The Autopilot profile did NOT apply</strong>, so the device must <strong>NOT</strong> have been recognized as a <strong>corporate Autopilot device</strong>. That conclusion feels logical. The Autopilot profile is the only visible signal during setup. When it is present, Windows skips consumer screens, and the experience clearly looks enterprise. When it is missing, Windows looks personal again and <strong>shows the default OOBE flow</strong>. From there, it is easy to assume that enrollment should be blocked when personal devices are restricted.</p>
-
-
-
-<p>That assumption is wrong. This blog explains why by following the device enrollment step by step. If you prefer to watch me talking about it&#8230; <strong><a href="https://www.youtube.com/watch?v=gVKHuDEwgjA&amp;t=1s">Check out our Patch N Rant on YouTube.</a></strong></p>
-
-
-
-<h2 class="wp-block-heading" id="h-introduction">Introduction</h2>
-
-
-
-<p>Windows Autopilot is the supported way to onboard new Windows devices&#8230; To do so, we need to upload something that is called the hardware Hash. When the hardware hash is uploaded, and the corresponding Autopilot profile is assigned, the device is <strong>registered with the Autopilot service</strong> and <strong>classified as corporate</strong> at that moment.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="294" src="https://patchmypc.com/app/uploads/2026/04/image-29-1024x294.png" alt="" class="wp-image-182832" srcset="https://patchmypc.com/app/uploads/2026/04/image-29-1024x294.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-29-300x86.png 300w, https://patchmypc.com/app/uploads/2026/04/image-29-768x221.png 768w, https://patchmypc.com/app/uploads/2026/04/image-29.png 1433w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>That registration exists independently of whether the Autopilot<strong> profile is successfully downloaded during setup</strong>. What most people associate with Autopilot is the visible part we normally don&#8217;t see: <strong>The full setup experience</strong>. When the profile downloads, Windows <strong>suppresses those consumer-focused screens</strong> and moves directly into the organizational/corporate flow. When the Autopilot profile fails to be downloaded, the setup screen looks very generic <strong>(AKA not corporate)</strong> again. Almost as if it&#8217;s a personal device.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="349" src="https://patchmypc.com/app/uploads/2026/04/image-30.png" alt="" class="wp-image-182834" srcset="https://patchmypc.com/app/uploads/2026/04/image-30.png 624w, https://patchmypc.com/app/uploads/2026/04/image-30-300x168.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>This visual change often leads to the wrong conclusion. <strong>If platform enrollment restrictions are configured to block personal devices</strong>, a device that shows the personal out-of-the-box questions should be blocked from enrollment. </p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="315" src="https://patchmypc.com/app/uploads/2026/04/image-1-1024x315.jpg" alt="" class="wp-image-182831" srcset="https://patchmypc.com/app/uploads/2026/04/image-1-1024x315.jpg 1024w, https://patchmypc.com/app/uploads/2026/04/image-1-300x92.jpg 300w, https://patchmypc.com/app/uploads/2026/04/image-1-768x236.jpg 768w, https://patchmypc.com/app/uploads/2026/04/image-1.jpg 1442w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>In this scenario, even when the Autopilot failed to download, the MDM/ Intune enrollment still succeeded. Why? Well&#8230;When the device fails to download the Autopilot Profile, it does NOT mean the device is personal. It only changed how OOBE looked. Before diving in, let me explain what Autopilot really is&#8230;</p>
-
-
-
-<h2 class="wp-block-heading" id="h-what-windows-autopilot-really-is">What Windows Autopilot really is</h2>
-
-
-
-<p>On first boot, Windows tries to find its assigned Autopilot profile. That Autopilot profile, its job is to improve the <a href="https://patchmypc.com/blog/windows-quality-updates-out-of-box-experience-autopilot/">Enrollment experience.</a></p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="486" src="https://patchmypc.com/app/uploads/2026/04/image-10-1024x486.jpg" alt="what the autopilot profile really is" class="wp-image-182843" srcset="https://patchmypc.com/app/uploads/2026/04/image-10-1024x486.jpg 1024w, https://patchmypc.com/app/uploads/2026/04/image-10-300x142.jpg 300w, https://patchmypc.com/app/uploads/2026/04/image-10-768x364.jpg 768w, https://patchmypc.com/app/uploads/2026/04/image-10.jpg 1433w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>Its purpose is to skip or suppress specific <strong><a href="https://learn.microsoft.com/en-us/windows-hardware/test/assessments/out-of-box-experience">Out of Box Experience</a></strong> screens such as consumer prompts, privacy questions, and regional setup steps. Once those OOBE instructions are applied, Windows moves on and asks you to log in.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="348" src="https://patchmypc.com/app/uploads/2026/04/image-32.png" alt="the oobe screen" class="wp-image-182842" srcset="https://patchmypc.com/app/uploads/2026/04/image-32.png 624w, https://patchmypc.com/app/uploads/2026/04/image-32-300x167.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>&nbsp;From that point forward, the Autopilot profile has no further role. Identity registration and Entra/Intune enrollment decisions happen later and are not driven by the profile. Autopilot only affects how the first setup looks like. It does NOT decide whether a device is corporate or personal. Let me zoom into that even a bit more.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-how-the-autopilot-profile-is-fetched">How the Autopilot profile is fetched</h2>
-
-
-
-<p>As soon as Windows<strong> detects internet connectivity during OOBE</strong>,  the wman service attempts to determine whether the device is registered with Autopilot and whether a deployment profile is assigned.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="313" src="https://patchmypc.com/app/uploads/2026/04/image-37-1024x313.png" alt="fetching the autopilot profile" class="wp-image-183230" srcset="https://patchmypc.com/app/uploads/2026/04/image-37-1024x313.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-37-300x92.png 300w, https://patchmypc.com/app/uploads/2026/04/image-37-768x235.png 768w, https://patchmypc.com/app/uploads/2026/04/image-37.png 1191w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>To do so, it needs to talk to the Autopilot ZTD service and prove that it is the same device that was previously registered by its hardware hash. That proof is obtained by reaching out to <strong>login.live.com/rst2</strong> to request a device security token (RST).</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="205" src="https://patchmypc.com/app/uploads/2026/04/image-38-1024x205.png" alt="authentication to the login.live.com endpoint" class="wp-image-183231" srcset="https://patchmypc.com/app/uploads/2026/04/image-38-1024x205.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-38-300x60.png 300w, https://patchmypc.com/app/uploads/2026/04/image-38-768x154.png 768w, https://patchmypc.com/app/uploads/2026/04/image-38.png 1375w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>Once it retrieves the security token, that token is also cached locally in the system account.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="376" src="https://patchmypc.com/app/uploads/2026/04/image-2.jpg" alt="saving the authentication ticket" class="wp-image-182833" srcset="https://patchmypc.com/app/uploads/2026/04/image-2.jpg 624w, https://patchmypc.com/app/uploads/2026/04/image-2-300x181.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>The device token is commonly referenced through the headers when communicating with the ZTD service<strong> (x-device-token)</strong>. It is tied to the uploaded hardware hash and allows the Autopilot service to recognize the device without any user identity being involved. When Windows contacts the Autopilot service with that<strong> x-device-token,</strong> the service checks whether a deployment profile is assigned and returns it if available.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="141" src="https://patchmypc.com/app/uploads/2026/04/image-3.jpg" alt="fetching the profile from ztd.dds.microsoft.com" class="wp-image-182839" srcset="https://patchmypc.com/app/uploads/2026/04/image-3.jpg 624w, https://patchmypc.com/app/uploads/2026/04/image-3-300x68.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>If this request fails, because Autopilot service endpoints are unreachable, the device does <strong>NOT lose its Autopilot registration</strong>. What it loses is only the Autopilot profile instructions <strong>(cloudassignedoobeconfig)</strong> that control setup behavior.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="247" src="https://patchmypc.com/app/uploads/2026/04/image-6.jpg" alt="" class="wp-image-182840" srcset="https://patchmypc.com/app/uploads/2026/04/image-6.jpg 624w, https://patchmypc.com/app/uploads/2026/04/image-6-300x119.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>The enrollment itself continues with a generic experience and shows the screens that the Autopilot Profile would normally suppress. So&#8230; even without the profile in place, the device still proceeds toward the Entra Join and prompts for credentials.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="672" src="https://patchmypc.com/app/uploads/2026/04/image-35-1024x672.png" alt="the full autopilot profile retrieval flow" class="wp-image-182856" srcset="https://patchmypc.com/app/uploads/2026/04/image-35-1024x672.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-35-300x197.png 300w, https://patchmypc.com/app/uploads/2026/04/image-35-768x504.png 768w, https://patchmypc.com/app/uploads/2026/04/image-35-1536x1007.png 1536w, https://patchmypc.com/app/uploads/2026/04/image-35-2048x1343.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>This is where the misunderstanding usually starts. A missing Autopilot profile changes the OOBE experience but <strong>NOT</strong> the device’s identity.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-entra-join-and-the-transition-to-mdm">Entra Join and the transition to MDM</h2>
-
-
-
-<p>After the first stages of OOBE, <strong>with or without the Autopilot profile</strong> applied, Windows proceeds with Entra join as part of the same setup flow</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="975" height="544" src="https://patchmypc.com/app/uploads/2026/04/image-39.png" alt="" class="wp-image-183232" srcset="https://patchmypc.com/app/uploads/2026/04/image-39.png 975w, https://patchmypc.com/app/uploads/2026/04/image-39-300x167.png 300w, https://patchmypc.com/app/uploads/2026/04/image-39-768x429.png 768w" sizes="(max-width: 975px) 100vw, 975px" /></figure>
-
-
-
-<p>The user signs in, the device object is created in Entra ID, and trust is established. Again&#8230; the Entra join does <strong>NOT</strong> depend on the Autopilot profile. If credentials are valid, the device joins Entra.&nbsp; As part of the Entra join flow, Windows also obtains the MDM enrollment token and the MDM service URLs. (The MDM enrollment URIs are inside the token)</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="649" src="https://patchmypc.com/app/uploads/2026/04/image-40-1024x649.png" alt="" class="wp-image-183233" srcset="https://patchmypc.com/app/uploads/2026/04/image-40-1024x649.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-40-300x190.png 300w, https://patchmypc.com/app/uploads/2026/04/image-40-768x487.png 768w, https://patchmypc.com/app/uploads/2026/04/image-40.png 1272w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>During this MDM discovery phase, the service checks whether the user is in the MDM scope and of course if the user has a valid Intune license assigned.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="228" src="https://patchmypc.com/app/uploads/2026/04/image-42-1024x228.png" alt="the mde enrollment flow" class="wp-image-183235" srcset="https://patchmypc.com/app/uploads/2026/04/image-42-1024x228.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-42-300x67.png 300w, https://patchmypc.com/app/uploads/2026/04/image-42-768x171.png 768w, https://patchmypc.com/app/uploads/2026/04/image-42-1536x343.png 1536w, https://patchmypc.com/app/uploads/2026/04/image-42-2048x457.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>Once this step completes, the device moves into MDM/Intune enrollment.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-enrollment-restrictions-and-the-autopilot-profile">Enrollment Restrictions and the Autopilot Profile</h2>
-
-
-
-<p>Once Windows has the MDM URLs and enrollment token, it reaches out to the Intune enrollment service. <strong>This is the exact moment enrollment restrictions are evaluated.</strong> During this enrollment request, Windows hands over the device information to the Intune enrollment service. <strong>This includes the device identity established earlier and the ZTDID</strong>, which originates from the device ticket issued by login.live.com during the provisioning phase and is carried forward into MDM enrollment.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="356" src="https://patchmypc.com/app/uploads/2026/04/image-43-1024x356.png" alt="enrollment restrictions and the autopilot profile" class="wp-image-183236" srcset="https://patchmypc.com/app/uploads/2026/04/image-43-1024x356.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-43-300x104.png 300w, https://patchmypc.com/app/uploads/2026/04/image-43-768x267.png 768w, https://patchmypc.com/app/uploads/2026/04/image-43-1536x534.png 1536w, https://patchmypc.com/app/uploads/2026/04/image-43-2048x712.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>The <strong>ZTDID </strong>does not come from the Autopilot profile. It existed before setup started and survives regardless of whether the profile was downloaded. It represents the device physical identity and allows the service to match the enrolling device to the Autopilot registration.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="509" src="https://patchmypc.com/app/uploads/2026/04/image-33.png" alt="" class="wp-image-182844" srcset="https://patchmypc.com/app/uploads/2026/04/image-33.png 624w, https://patchmypc.com/app/uploads/2026/04/image-33-300x245.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>This is the point where the service decides whether the device is corporate or personal. If personal devices are blocked, the presence of a valid ZTDID allows the device to be classified as corporate and proceed.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="433" src="https://patchmypc.com/app/uploads/2026/04/image-44-1024x433.png" alt="ztdid missing " class="wp-image-183237" srcset="https://patchmypc.com/app/uploads/2026/04/image-44-1024x433.png 1024w, https://patchmypc.com/app/uploads/2026/04/image-44-300x127.png 300w, https://patchmypc.com/app/uploads/2026/04/image-44-768x324.png 768w, https://patchmypc.com/app/uploads/2026/04/image-44.png 1373w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>If the <strong>ZTDID </strong>is missing, the device is treated as personal, and enrollment is blocked, even if the <strong>user is licensed and discovery succeeded.</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="1001" height="500" src="https://patchmypc.com/app/uploads/2026/04/image-7.jpg" alt="80180014 something went wrong" class="wp-image-182836" srcset="https://patchmypc.com/app/uploads/2026/04/image-7.jpg 1001w, https://patchmypc.com/app/uploads/2026/04/image-7-300x150.jpg 300w, https://patchmypc.com/app/uploads/2026/04/image-7-768x384.jpg 768w" sizes="(max-width: 1001px) 100vw, 1001px" /></figure>
-
-
-
-<p>That decision is not based on the Autopilot profile. It is made silently during the enrollment request&#8230;So again.. the Autopilot profile does NOT decide if the device is corporate.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-blocking-the-autopilot-service-ztd">Blocking the Autopilot Service (ZTD)</h2>
-
-
-
-<p>Blocking Autopilot service endpoints (ztd.dds.microsoft.com) changes how the OOBE setup looks like, but it does NOT automatically change the device into a personal one. When the Autopilot service endpoints are unreachable, Windows cannot retrieve the Autopilot profile. With it, the enrollment continues without the OOBE instructions that suppress consumer OOBE screens. The experience looks generic, even when the device is corporate.</p>
-
-
-
-<p>As long as login.live.com remains reachable, Windows can still establish its provisioning context. It can obtain a <strong>valid device ticket</strong> and retain the associated <strong>ZTDID</strong> that links the provisioning session back to the Autopilot registration created from the uploaded hardware hash. When the device later reaches MDM enrollment, Intune evaluates that provisioning context, not the setup experience. Because the device can still be linked to a trusted Autopilot registration, enrollment can succeed even when personal devices are blocked.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-why-blocking-login-live-com-breaks-the-flow">Why blocking login.live.com breaks the flow</h2>
-
-
-
-<p>Blocking login.live.com is different <strong>(and stupid)</strong>. When login.live.com is unreachable, Windows cannot obtain a valid device ticket. Without it, the provisioning identity chain cannot be established correctly. When the MDM enrollment is retried later on, the request reaches Intune <strong>without the context needed</strong> to link the device back to a trusted Autopilot registration. The failure happens BEFORE enrollment restrictions can even be evaluated. This is exactly why <strong>blocking</strong> <strong>login.live.com</strong> causes weird failures that look like Autopilot or Intune issues, but are actually they are caused by the missing <strong>&#8220;identity&#8221;</strong>. The device can no longer prove who it is or how it started.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-conclusion">Conclusion</h2>
-
-
-
-<p>When the Autopilot profile does not show up, the device can suddenly look personal during OOBE.  You might see a random device name, the local Administrator account, and the normal setup screens. That is what happens when the ZTD service is not reachable and the Autopilot profile cannot be downloaded. But that does not automatically mean the device became personal.</p>
-
-
-
-<p>The Autopilot profile controls how OOBE looks and which settings are applied during setup. If <code>login.live.com</code> is still reachable, the device can still get the device ticket it needs to prove who it is. That proof allows the Autopilot corporate state to be handed over during enrollment. That is also why blocking personal devices does not always block this scenario.</p>
-
-
-
-<p><strong>So the important difference is this:</strong> If the ZTD service is not reachable, the Autopilot experience can be missing. If the identity flow still works, the corporate registration can still be handed over to Intune.</p>
-<p>The post <a href="https://patchmypc.com/blog/the-autopilot-profile-doesnt-decide-if-a-device-is-corporate/">The Autopilot profile doesn’t decide if a device is corporate</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/the-autopilot-profile-doesnt-decide-if-a-device-is-corporate/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
