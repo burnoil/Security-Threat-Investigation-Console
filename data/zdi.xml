@@ -10,9 +10,17 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Tue, 09 Jun 2026 14:46:09 -0500</pubDate>
+    <pubDate>Tue, 09 Jun 2026 15:47:28 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-332: QEMU calc_image_hostmem Integer Overflow Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-27578</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-332/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of QEMU. An attacker must first obtain the ability to execute low-privileged code on the target guest system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-3886.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-331: (Pwn2Own) Microsoft Edge Feedback Log File Handling Directory Traversal Remote Code Execution Vulnerability]]></title>
@@ -1604,14 +1612,6 @@
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-133/</link>
       <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Music Assistant. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-26975.]]></description>
       <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-132: Siemens SINEC NMS Uncontrolled Search Path Element Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28108</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-132/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Siemens SINEC NMS. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-25656.]]></description>
-      <pubDate>Wed, 25 Feb 2026 00:00:00 -0600</pubDate>
     </item>
     
   </channel>
