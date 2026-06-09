@@ -10,9 +10,145 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Tue, 09 Jun 2026 17:38:09 -0500</pubDate>
+    <pubDate>Tue, 09 Jun 2026 18:34:37 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-354: Adobe Acrobat Reader DC Annotation Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29987</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-354/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Adobe Acrobat Reader DC. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-47919.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-353: Adobe Acrobat Reader DC Annotation Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30387</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-353/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Adobe Acrobat Reader DC. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-47918.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-352: Adobe Acrobat Pro DC AcroForm Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30689</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-352/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Adobe Acrobat Pro DC. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-47917.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-351: Adobe USD-Fileformat-plugins Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30375</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-351/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Adobe USD-Fileformat-plugins. Interaction with the USD library is required to exploit this vulnerability but attack vectors may vary depending on the implementation. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-48292.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-350: Adobe USD-Fileformat-plugins Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29653</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-350/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Adobe USD-Fileformat-plugins. Interaction with the USD library is required to exploit this vulnerability but attack vectors may vary depending on the implementation. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-48291.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-349: Adobe Acrobat Pro DC Annots.api Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29886</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-349/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Adobe Acrobat Pro DC. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-47915.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-348: Adobe Acrobat Reader DC Annotation Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29896</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-348/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Adobe Acrobat Reader DC. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-47914.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-347: Adobe Acrobat Reader DC Multimedia Rendition Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29409</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-347/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Adobe Acrobat Reader DC. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-47913.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-346: Adobe Acrobat Reader DC Annotation Use-After-Free Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29433</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-346/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Adobe Acrobat Reader DC. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 3.3. The following CVEs are assigned: CVE-2026-47924.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-345: Adobe Acrobat Reader DC Font Handling Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30015</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-345/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Adobe Acrobat Reader DC. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-47912.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-344: Adobe Acrobat Reader DC Doc Object Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29477</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-344/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Adobe Acrobat Reader DC. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 3.3. The following CVEs are assigned: CVE-2026-47923.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-343: Adobe Acrobat Reader DC TIF File Parsing Integer Overflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29828</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-343/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Adobe Acrobat Reader DC. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-47911.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-342: Progress Software Kemp LoadMaster apiuser Uninitialized Memory Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30437</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-342/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Progress Software Kemp LoadMaster. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2026-8037.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-341: Progress Software Kemp LoadMaster dolistapikeys Uninitialized Memory Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30439</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-341/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Progress Software Kemp LoadMaster. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.2. The following CVEs are assigned: CVE-2026-8037.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-340: Progress Software Kemp LoadMaster dodelapikey Uninitialized Memory Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30438</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-340/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Progress Software Kemp LoadMaster. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-8037.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-339: Microsoft Windows Narrator Braille Support brlapi Exposed Dangerous Function Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28792</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-339/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. Additionally, Braille support for Narrator must be installed. The ZDI has assigned a CVSS rating of 7.0. The following CVEs are assigned: CVE-2026-48565.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-338: NVIDIA Transformers4Rec Model.load Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28649</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-338/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of NVIDIA Transformers4Rec. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-24162.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-337: X.Org Server CheckKeyTypes Buffer Overflow Privilege Escalation Vulnerability]]></title>
@@ -1476,142 +1612,6 @@
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-155/</link>
       <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Philips Hue Bridge. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.0. The following CVEs are assigned: CVE-2026-3557.]]></description>
       <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-154: (Pwn2Own) Philips Hue Bridge HomeKit Pair-Setup Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28326</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-154/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Philips Hue Bridge. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-3556.]]></description>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-153: (Pwn2Own) Philips Hue Bridge Zigbee Stack Custom Command Handler Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28276</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-153/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Philips Hue Bridge. User interaction is required to exploit this vulnerability in that the user must initiate the device pairing process. The ZDI has assigned a CVSS rating of 8.0. The following CVEs are assigned: CVE-2026-3555.]]></description>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-152: Docker Desktop Docker Plugins Uncontrolled Search Path Element Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28304</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-152/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Docker Desktop. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-15558.]]></description>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-151: Delta Electronics CNCSoft-G2 DPAX File Parsing Out-Of-Bounds Write Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28415</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-151/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Delta Electronics CNCSoft-G2. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-3094.]]></description>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-150: Docker Desktop for Mac Docker Model Runner Exposed Dangerous Function Denial-of-Service Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28379</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-150/</link>
-      <description><![CDATA[This vulnerability allows local attackers to create a denial-of-service condition on affected installations of Docker Desktop. An attacker must first obtain the ability to execute low-privileged code on the target guest system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.3. The following CVEs are assigned: CVE-2026-28400.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-149: Trend Micro Cleaner One Pro Link Following Denial-of-Service Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28218</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-149/</link>
-      <description><![CDATA[This vulnerability allows local attackers to create a denial-of-service condition on affected installations of Trend Micro Cleaner One Pro. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.0. The following CVEs are assigned: CVE-2025-71218.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-148: Trend Micro Apex Central Improper Authentication Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26039</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-148/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to escalate privileges on affected installations of Trend Micro Apex Central. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.1. The following CVEs are assigned: CVE-2025-71209.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-147: Trend Micro Apex Central Improper Authentication Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26037</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-147/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to escalate privileges on affected installations of Trend Micro Apex Central. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.1. The following CVEs are assigned: CVE-2025-71208.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-146: Trend Micro Apex Central Manual Update Server-Side Request Forgery Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26597</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-146/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Trend Micro Apex Central. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 4.4. The following CVEs are assigned: CVE-2025-71207.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-145: Trend Micro Apex Central Scheduled Update Server-Side Request Forgery Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26598</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-145/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Trend Micro Apex Central. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 4.4. The following CVEs are assigned: CVE-2025-71206.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-144: Trend Micro Apex Central Hub Server Server-Side Request Forgery Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26618</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-144/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Trend Micro Apex Central. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 4.4. The following CVEs are assigned: CVE-2025-71205.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-143: Trend Micro Apex One Security Agent TmSelfProtect Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26594</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-143/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Trend Micro Apex One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-71217.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-142: Trend Micro Apex One Security Agent Cache Mechanism Time-Of-Check Time-Of-Use Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26605</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-142/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Trend Micro Apex One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-71216.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-141: Trend Micro Apex One Security Agent iCore Service Signature Verification Time-Of-Check Time-Of-Use Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26609</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-141/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Trend Micro Apex One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-71215.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-140: Trend Micro Apex One Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26771</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-140/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Trend Micro Apex One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-71213.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-139: Trend Micro Apex One Security Agent iCore Service Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26282</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-139/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Trend Micro Apex One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-71214.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-138: Trend Micro Apex One Virus Scan Engine Link Following Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-24972</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-138/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Trend Micro Apex One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-71212.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
     </item>
     
   </channel>
