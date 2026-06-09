@@ -10,9 +10,49 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Tue, 09 Jun 2026 16:39:51 -0500</pubDate>
+    <pubDate>Tue, 09 Jun 2026 17:38:09 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-337: X.Org Server CheckKeyTypes Buffer Overflow Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28736</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-337/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-34003.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-336: X.Org Server CheckKeyActions Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28737</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-336/</link>
+      <description><![CDATA[This vulnerability allows local attackers to disclose sensitive information on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.1. The following CVEs are assigned: CVE-2026-34002.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-335: X.Org Server SyncAwaitFence Use-After-Free Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28706</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-335/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-34001.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-334: X.Org Server CheckSetGeom Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28679</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-334/</link>
+      <description><![CDATA[This vulnerability allows local attackers to disclose sensitive information on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.1. The following CVEs are assigned: CVE-2026-34000.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-333: X.Org Server XkbSetCompatMap Integer Underflow Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28593</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-333/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-33999.]]></description>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-332: QEMU calc_image_hostmem Integer Overflow Local Privilege Escalation Vulnerability]]></title>
@@ -1571,46 +1611,6 @@
       <guid isPermaLink="false">ZDI-CAN-24972</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-138/</link>
       <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Trend Micro Apex One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-71212.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-137: Trend Micro Apex One Console Directory Traversal Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28002</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-137/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Trend Micro Apex One. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2025-71211.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-136: Trend Micro Apex One Console Directory Traversal Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28001</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-136/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Trend Micro Apex One. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2025-71210.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-135: LangChain LangGraph BaseCache Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28385</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-135/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of LangChain LangGraph. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.1. The following CVEs are assigned: CVE-2026-27794.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-134: Hewlett Packard Enterprise AutoPass License Server Authentication Bypass Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27634</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-134/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to bypass authentication on affected installations of Hewlett Packard Enterprise AutoPass License Server. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.3. The following CVEs are assigned: CVE-2026-23600.]]></description>
-      <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-133: (Pwn2Own) Music Assistant _update_library_item External Control of File Path Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28235</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-133/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Music Assistant. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-26975.]]></description>
       <pubDate>Tue, 03 Mar 2026 00:00:00 -0600</pubDate>
     </item>
     
