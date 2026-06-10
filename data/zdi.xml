@@ -10,7 +10,7 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Wed, 10 Jun 2026 10:15:46 -0500</pubDate>
+    <pubDate>Wed, 10 Jun 2026 12:14:56 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
     
@@ -219,14 +219,6 @@
       <guid isPermaLink="false">ZDI-CAN-31429</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-329/</link>
       <description><![CDATA[This vulnerability allows remote attackers to access restricted functionality on affected installations of Microsoft Edge. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 4.3. The following CVEs are assigned: CVE-2026-45492.]]></description>
-      <pubDate>Thu, 04 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-328: ASUS Business Manager Service Client-Side Authentication Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28776</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-328/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of ASUS Business Manager. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-7480.]]></description>
       <pubDate>Thu, 04 Jun 2026 00:00:00 -0500</pubDate>
     </item>
     
@@ -1611,6 +1603,14 @@
       <guid isPermaLink="false">ZDI-CAN-28337</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-155/</link>
       <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Philips Hue Bridge. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.0. The following CVEs are assigned: CVE-2026-3557.]]></description>
+      <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-154: (Pwn2Own) Philips Hue Bridge HomeKit Pair-Setup Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28326</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-154/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Philips Hue Bridge. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-3556.]]></description>
       <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
     </item>
     
