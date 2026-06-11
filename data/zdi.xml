@@ -10,9 +10,49 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Thu, 11 Jun 2026 17:40:52 -0500</pubDate>
+    <pubDate>Thu, 11 Jun 2026 18:37:27 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-360: MATE Desktop Atril Document Viewer EPUB File Parsing Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30289</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-360/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of MATE Desktop Atril Document Viewer. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-52849.]]></description>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-359: Samsung rlottie Numeric Truncation Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30288</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-359/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Samsung rlottie. Interaction with the rlottie library is required to exploit this vulnerability but attack vectors may vary depending on the implementation. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-8916.]]></description>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-358: Allegra downloadAttachment Cross-Site Scripting Authentication Bypass Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28236</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-358/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary script on affected installations of Allegra. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 4.6. The following CVEs are assigned: CVE-2026-11443.]]></description>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-357: Allegra exportReport Directory Traversal Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28208</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-357/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Allegra. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.5. The following CVEs are assigned: CVE-2026-11442.]]></description>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-356: Apache HTTP Server mod_proxy_ajp Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30089</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-356/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Apache HTTP Server. An attacker must first obtain the ability to compromise an AJP backend associated with the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 3.7. The following CVEs are assigned: CVE-2026-34032.]]></description>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-355: Adobe Acrobat Reader DC Annotation Use-After-Free Remote Code Execution Vulnerability]]></title>
@@ -1571,46 +1611,6 @@
       <guid isPermaLink="false">ZDI-CAN-28838</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-161/</link>
       <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of GStreamer. Interaction with this library is required to exploit this vulnerability but attack vectors may vary depending on the implementation. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-2923.]]></description>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-160: (Pwn2Own) Philips Hue Bridge hk_hap Ed25519 Signature Verification Authentication Bypass Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28480</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-160/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Philips Hue Bridge. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.3. The following CVEs are assigned: CVE-2026-3562.]]></description>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-159: (Pwn2Own) Philips Hue Bridge hk_hap characteristics Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28479</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-159/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Philips Hue Bridge. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.0. The following CVEs are assigned: CVE-2026-3561.]]></description>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-158: (Pwn2Own) Philips Hue Bridge HomeKit hk_hap_pair_storage_put Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28469</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-158/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Philips Hue Bridge. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-3560.]]></description>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-157: (Pwn2Own) Philips Hue Bridge HomeKit Accessory Protocol Static Nonce Authentication Bypass Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28451</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-157/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to bypass authentication on affected installations of Philips Hue Bridge. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.1. The following CVEs are assigned: CVE-2026-3559.]]></description>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-156: (Pwn2Own) Philips Hue Bridge HomeKit Accessory Protocol Transient Pairing Mode Authentication Bypass Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28374</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-156/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to bypass authentication on affected installations of Philips Hue Bridge. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.1. The following CVEs are assigned: CVE-2026-3558.]]></description>
       <pubDate>Fri, 06 Mar 2026 00:00:00 -0600</pubDate>
     </item>
     
