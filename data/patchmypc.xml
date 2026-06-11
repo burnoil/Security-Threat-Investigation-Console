@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Mon, 08 Jun 2026 09:05:06 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 11 Jun 2026 13:26:06 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,61 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>Patch My PC Publisher Preview Version 2.2.2.217 Released</title>
+		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-217-released/</link>
+					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-217-released/#respond</comments>
+		
+		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
+		<pubDate>Thu, 11 Jun 2026 13:26:05 +0000</pubDate>
+				<category><![CDATA[Preview Release]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=186787</guid>
+
+					<description><![CDATA[<p>This release contains a variety of improvements and fixes, as noted below. Improvements Fixes</p>
+<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-217-released/">Patch My PC Publisher Preview Version 2.2.2.217 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>This release contains a variety of improvements and fixes, as noted below.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-improvements">Improvements</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Update validation for pre/post script argument configuration.</li>
+
+
+
+<li>Update logging for WSUS update republishing.</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="h-fixes">Fixes</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Ensure the Cancel button stops loading Intune applications in the Intune Application Manager.</li>
+
+
+
+<li>Fix a bug that causes the Availability and Deadline time configuration in the Intune assignment manager to reset when reopened.</li>
+</ul>
+
+
+
+<p></p>
+<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-217-released/">Patch My PC Publisher Preview Version 2.2.2.217 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-217-released/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Company Portal Not Installing During Autopilot Enrollment 0x87D1041C</title>
 		<link>https://patchmypc.com/blog/company-portal-not-installing-during-autopilot-enrollment-0x87d1041c/</link>
 					<comments>https://patchmypc.com/blog/company-portal-not-installing-during-autopilot-enrollment-0x87d1041c/#respond</comments>
@@ -1790,256 +1845,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/controlled-configuration-for-microsoft-defender-antivirus-settings/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>WSUS URLs redirect to HTTPS when HSTS is enabled</title>
-		<link>https://patchmypc.com/kb/wsus-urls-redirect-to-https-when-hsts-is-enabled/</link>
-					<comments>https://patchmypc.com/kb/wsus-urls-redirect-to-https-when-hsts-is-enabled/#respond</comments>
-		
-		<dc:creator><![CDATA[Ben Whitmore]]></dc:creator>
-		<pubDate>Tue, 05 May 2026 12:43:04 +0000</pubDate>
-				<category><![CDATA[Knowledge Base]]></category>
-		<category><![CDATA[443 Redirect]]></category>
-		<category><![CDATA[HSTS]]></category>
-		<category><![CDATA[HTTP 404]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=183824</guid>
-
-					<description><![CDATA[<p>WSUS content URLs may redirect from HTTP port 8530 to HTTPS port 443 when HSTS is enabled or cached for the WSUS host name. This article explains the symptoms, cause, verification steps, and how to clear cached HSTS state on affected clients.</p>
-<p>The post <a href="https://patchmypc.com/kb/wsus-urls-redirect-to-https-when-hsts-is-enabled/">WSUS URLs redirect to HTTPS when HSTS is enabled</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<h2 class="wp-block-heading" id="h-overview">Overview</h2>
-
-
-
-<p>WSUS content URLs may redirect from HTTP port 8530 to HTTPS port 443 when HSTS is enabled or cached for the WSUS host name.</p>
-
-
-
-<p>This can affect direct access to WSUS content files, such as CAB files, and may prevent expected HTTP access to WSUS content.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-symptoms">Symptoms</h2>
-
-
-
-<p>When browsing to a WSUS content URL over HTTP, the browser redirects the request to HTTPS on port 443 e.g: <code>http://&lt;WSUSServer>:8530/Content/&lt;ContentPath>.cab</code></p>
-
-
-
-<p>The issue may also occur when browsing to the WSUS anonymous check file. e.g: <code>http://&lt;WSUSServer>:8530/content/anonymousCheckFile.txt</code></p>
-
-
-
-<p>The redirect may only occur when the Default Web Site has an HTTPS binding on port 443.</p>
-
-
-
-<p>Instead of the intended WSUS content being downloaded, or the expected WSUS test file being displayed, the browser may return an HTTP 404 error. This can occur because the browser is redirected to the Default Web Site on port 443, where the WSUS content file does not exist.</p>
-
-
-
-<p>For example, the browser may try to access content from the Default Web Site content directory, which is typically <code>C:\inetpub\wwwroot\</code></p>
-
-
-
-<p>The requested WSUS content file would not normally exist in that location <code>C:\inetpub\wwwroot\Content\&lt;ContentPath>.cab</code></p>
-
-
-
-<h2 class="wp-block-heading" id="h-cause">Cause</h2>
-
-
-
-<p>This behavior can occur when HSTS is enabled on the WSUS Administration site.</p>
-
-
-
-<p>After a browser receives and caches the HSTS instruction, future HTTP requests to that host name are automatically changed to HTTPS by the browser.</p>
-
-
-
-<p>Disabling HSTS in IIS prevents new clients from receiving the HSTS instruction. However, clients that already cached HSTS may continue forcing HTTPS until the local HSTS state is cleared or expires.</p>
-
-
-
-<p>Use these steps to determine whether the redirect is caused by active HSTS on the server or cached HSTS on the client.</p>
-
-
-
-<h3 class="wp-block-heading">Confirm the server configuration</h3>
-
-
-
-<ol class="wp-block-list">
-<li>Confirm that the WSUS Administration site is bound to HTTP port 8530 and HTTPS port 8531.</li>
-
-
-
-<li>Confirm that HSTS is disabled on the WSUS Administration site, the Default Web Site, and any other IIS site using the same host name.</li>
-
-
-
-<li>Confirm that there are no IIS redirect rules in the WSUS Administration site or Default Web Site.</li>
-
-
-
-<li>Confirm that no custom response headers are configured that add the <code>Strict-Transport-Security</code> header.</li>
-</ol>
-
-
-
-<h3 class="wp-block-heading" id="h-test-from-an-affected-client-or-server">Test from an affected client or server</h3>
-
-
-
-<ol class="wp-block-list">
-<li>Browse to the WSUS content URL from the affected client e.g: <code>http://&lt;WSUSServer>:8530/content/anonymousCheckFile.txt </code></li>
-</ol>
-
-
-
-<ol start="2" class="wp-block-list">
-<li>If the request still redirects to HTTPS after HSTS has been disabled in IIS, the client may have cached HSTS state.</li>
-
-
-
-<li>Clear the local browser HSTS state for the WSUS host name.</li>
-
-
-
-<li>Clear the browser cache.</li>
-
-
-
-<li>Close and reopen the browser.</li>
-
-
-
-<li>Test the same URL again.</li>
-</ol>
-
-
-
-<h3 class="wp-block-heading" id="h-test-from-a-clean-client">Test from a clean client</h3>
-
-
-
-<ol class="wp-block-list">
-<li>Use a different client that has not previously browsed to the WSUS host name.</li>
-
-
-
-<li>Browse to the same WSUS content URL. e.g: <code>http://&lt;WSUSServer>:8530/content/anonymousCheckFile.txt</code></li>
-</ol>
-
-
-
-<ol start="3" class="wp-block-list">
-<li>If both clients still redirect, review IIS bindings, redirect rules and custom response headers.</li>
-
-
-
-<li>If the clean client works but the affected client redirects, the issue is likely cached HSTS state on the affected client.</li>
-
-
-
-<li>If both clients redirect after HSTS is disabled and the browser cache is cleared, confirm that HSTS is disabled on the WSUS Administration site, the Default Web Site, and any other IIS site using the same host name.</li>
-</ol>
-
-
-
-<h2 class="wp-block-heading" id="h-resolution">Resolution</h2>
-
-
-
-<p>Disable HSTS where HTTP access to WSUS content is required, then clear the cached HSTS state on affected clients.</p>
-
-
-
-<h3 class="wp-block-heading">Disable HSTS in IIS</h3>
-
-
-
-<ol class="wp-block-list">
-<li>Open IIS Manager.</li>
-
-
-
-<li>Select the affected IIS site (typically the WSUS Administration site).</li>
-
-
-
-<li>Open the HSTS settings.</li>
-
-
-
-<li>Clear the HSTS options.</li>
-
-
-
-<li>Set the max age value to <code>0</code>.</li>
-
-
-
-<li>Clear Enable.</li>
-
-
-
-<li>Select OK.</li>
-</ol>
-
-
-
-<figure class="wp-block-image size-full is-resized"><img decoding="async" width="1001" height="520" src="https://patchmypc.com/app/uploads/2026/05/image-1.png" alt="Disable HSTS in IIS" class="wp-image-183832" style="aspect-ratio:1.9250856421659956;width:869px;height:auto" srcset="https://patchmypc.com/app/uploads/2026/05/image-1.png 1001w, https://patchmypc.com/app/uploads/2026/05/image-1-300x156.png 300w, https://patchmypc.com/app/uploads/2026/05/image-1-768x399.png 768w" sizes="(max-width: 1001px) 100vw, 1001px" /></figure>
-
-
-
-<h3 class="wp-block-heading">Clear cached HSTS state in Microsoft Edge</h3>
-
-
-
-<ol class="wp-block-list">
-<li>Open Microsoft Edge.</li>
-
-
-
-<li>Browse to the following page. <code>edge://net-internals/#hsts</code></li>
-</ol>
-
-
-
-<ol start="3" class="wp-block-list">
-<li>In the Delete domain security policies section, enter the WSUS host name or parent domain.</li>
-
-
-
-<li>Select Delete.</li>
-
-
-
-<li>Clear the browser cache.</li>
-
-
-
-<li>Close and reopen Microsoft Edge.</li>
-
-
-
-<li>Browse to the WSUS content URL again.</li>
-</ol>
-
-
-
-<figure class="wp-block-image size-full is-resized"><img decoding="async" width="759" height="438" src="https://patchmypc.com/app/uploads/2026/05/image.png" alt="Clear HSTS Cache" class="wp-image-183831" style="aspect-ratio:1.732902857550569;width:653px;height:auto" srcset="https://patchmypc.com/app/uploads/2026/05/image.png 759w, https://patchmypc.com/app/uploads/2026/05/image-300x173.png 300w" sizes="(max-width: 759px) 100vw, 759px" /></figure>
-<p>The post <a href="https://patchmypc.com/kb/wsus-urls-redirect-to-https-when-hsts-is-enabled/">WSUS URLs redirect to HTTPS when HSTS is enabled</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/kb/wsus-urls-redirect-to-https-when-hsts-is-enabled/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
