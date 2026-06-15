@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 11 Jun 2026 13:26:06 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 15 Jun 2026 14:08:25 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,469 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>Autopatch Client Broker Fails During Autopilot Pre-Provisioning</title>
+		<link>https://patchmypc.com/blog/autopatch-client-broker-fails-during-autopilot-pre-provisioning/</link>
+					<comments>https://patchmypc.com/blog/autopatch-client-broker-fails-during-autopilot-pre-provisioning/#respond</comments>
+		
+		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
+		<pubDate>Mon, 15 Jun 2026 13:59:26 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=186949</guid>
+
+					<description><![CDATA[<p>When Autopatch Client Broker runs as a blocking app during Autopilot Pre Provisioning, one small Environment check can take down the MSI. Windows already removed the TenantInfo, the custom action still expects it, and ESP ends with 1603.</p>
+<p>The post <a href="https://patchmypc.com/blog/autopatch-client-broker-fails-during-autopilot-pre-provisioning/">Autopatch Client Broker Fails During Autopilot Pre-Provisioning</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>This blog will show you why configuring the <strong>Autopatch Client Broker</strong> as a blocking app in the&nbsp; Enrollment Status Page can break your enrollment. The issue is not the broker itself, but a custom action in the MSI that checks the Windows CloudDomainJoin TenantInfo registry key after Windows Autopilot pre-provisioning has already deleted it</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-autopatch-client-broker">The Autopatch Client Broker</h2>
+
+
+
+<p>Sometimes an installer fails because it cannot copy files. Sometimes it fails because the service behind it is unavailable. And sometimes it fails because the installer asks Windows a question after Windows has already removed the information to do so. This one belongs in that last category. The Windows Autopatch Client Broker can be deployed as a Win32 app.</p>
+
+
+
+<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="111" src="https://patchmypc.com/app/uploads/2026/06/image-10.png" alt="" class="wp-image-186950" srcset="https://patchmypc.com/app/uploads/2026/06/image-10.png 624w, https://patchmypc.com/app/uploads/2026/06/image-10-300x53.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>That sounds like a normal and supported approach, especially because the broker is a local component that helps Windows Autopatch understand whether a device is ready and healthy enough to be managed. Microsoft describes the broker, along with the Microsoft Cloud Managed Desktop Extension, as part of the readiness flow that collects device readiness results and sends them back to the Windows Autopatch service.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="409" src="https://patchmypc.com/app/uploads/2026/06/image-21-1024x409.png" alt="" class="wp-image-186963" srcset="https://patchmypc.com/app/uploads/2026/06/image-21-1024x409.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-21-300x120.png 300w, https://patchmypc.com/app/uploads/2026/06/image-21-768x306.png 768w, https://patchmypc.com/app/uploads/2026/06/image-21-1536x613.png 1536w, https://patchmypc.com/app/uploads/2026/06/image-21-2048x817.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>So far, nothing strange. The broker needs local configuration. It needs to know which environment it belongs to, which manifest it should use, and which service endpoint it should talk to. For a normal commercial tenant, that means the normal Autopatch endpoints. For a US government tenant, also known as Fairfax, that means different endpoints. That small environment check is where the story starts to get funny.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-autopatch-client-broker-and-the-autopilot-esp">The Autopatch client Broker and the Autopilot ESP</h2>
+
+
+
+<p>The issue only seems to occur when the Autopatch Client Broker is deployed as a required, blocking Win32 app during Autopilot pre-provisioning.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="160" src="https://patchmypc.com/app/uploads/2026/06/image-11.png" alt="" class="wp-image-186951" srcset="https://patchmypc.com/app/uploads/2026/06/image-11.png 624w, https://patchmypc.com/app/uploads/2026/06/image-11-300x77.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>Once you start the Autopilot Pre-Provisioning, the device will go through the Entra and Intune enrollment. Once that is done, the ESP will start installing required apps… This is the moment the Autopatch broker MSI starts as part of that required app flow. Instead of installing it cleanly, the Autopatch Client Broker <strong>MSI fails with error 1603</strong>.</p>
+
+
+
+<p>That alone would be annoying, but there is a second part that makes it worse. When the same MSI is installed later, after the device is fully enrolled and the Windows identity state has settled, it installs successfully? That&#8217;s a bit weird?</p>
+
+
+
+<p>That tells us something important. The installer is not simply broken. The timing is!&nbsp; The MSI log points directly to the failing custom action:</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="834" height="150" src="https://patchmypc.com/app/uploads/2026/06/image-7.jpg" alt="" class="wp-image-186955" srcset="https://patchmypc.com/app/uploads/2026/06/image-7.jpg 834w, https://patchmypc.com/app/uploads/2026/06/image-7-300x54.jpg 300w, https://patchmypc.com/app/uploads/2026/06/image-7-768x138.jpg 768w" sizes="(max-width: 834px) 100vw, 834px" /></figure>
+
+
+
+<p>Calling custom action CustomActions!ClientBroker.Setup.CustomActions.CustomActions.CreateRegistryKeyAndValues:&nbsp; CreateRegistryKeyAndValues: Begin</p>
+
+
+
+<p>That log line is the breadcrumb we need. The Autopatch Client Broker installer starts the <strong>CreateRegistryKeyAndValues</strong> custom action. That action then calls another function called <strong>OverrideEnvironmentRegistryKeys.</strong> Inside that function, the custom action hits a <strong>NullReferenceException.</strong> The MSI log says “<strong>ignore”,</strong> but the code does not ignore it. It catches the exception, logs the message, and then returns failure. Windows Installer receives that failure and turns it into a <strong>1603.</strong></p>
+
+
+
+<p>So the word <strong>“ignore</strong>” is doing a lot of heavy lifting there. The ESP does not ignore it. The Autopatch client broker MSI does not ignore it… With it, the required app fails.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-why-custom-actions-matter">Why custom actions matter</h2>
+
+
+
+<p>An MSI is not always just a package that copies files, creates folders, writes registry keys, and drops a shortcut somewhere. MSI packages can also contain custom actions. A custom action is extra code that runs during install, repair, upgrade, or uninstall.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="201" src="https://patchmypc.com/app/uploads/2026/06/image-14.png" alt="" class="wp-image-186957" srcset="https://patchmypc.com/app/uploads/2026/06/image-14.png 624w, https://patchmypc.com/app/uploads/2026/06/image-14-300x97.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>That extra code can be useful. It can create scheduled tasks, repair a missing file, write configuration that depends on runtime information, or perform checks that are difficult to express in the normal MSI tables.</p>
+
+
+
+<p>But that flexibility comes with risk. A normal MSI table is mostly declarative. A custom action is real code. If that code assumes something exists and that something does not yet exist, the whole installer can fail in an unexpected place just by looking at the files in the package.</p>
+
+
+
+<p>We have seen this kind of installer story before. In the <a href="https://patchmypc.com/blog/it1272653-company-portal-stuck-on-downloading/">IME incident around IT1272653</a>, the MSI behavior for the Intune Management Extension config file changed, and later Microsoft added a targeted custom action, EnsureAppConfigExists, to restore the missing config file from an embedded resource. In that case, a custom action became the safety net for a very specific installer problem.</p>
+
+
+
+<p>The Autopatch Client Broker MSI also contains a managed custom action DLL: CustomActions.dll. The failing action in that DLL is <strong>ClientBroker.Setup.CustomActions.CustomActions.CreateRegistryKeyAndValues</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="414" height="174" src="https://patchmypc.com/app/uploads/2026/06/image-13.png" alt="" class="wp-image-186959" srcset="https://patchmypc.com/app/uploads/2026/06/image-13.png 414w, https://patchmypc.com/app/uploads/2026/06/image-13-300x126.png 300w" sizes="(max-width: 414px) 100vw, 414px" /></figure>
+
+
+
+<p>That sounds boring enough to skip. It is not.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-check-that-should-have-been-harmless">The check that should have been harmless</h2>
+
+
+
+<p>The important part is not just that the custom action writes broker configuration. The important part is what it does after that. After the custom action prepares the normal broker configuration, it calls this function: <strong>OverrideEnvironmentRegistryKeys</strong>(subKey1, session);</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="203" src="https://patchmypc.com/app/uploads/2026/06/image-23-1024x203.png" alt="" class="wp-image-186965" srcset="https://patchmypc.com/app/uploads/2026/06/image-23-1024x203.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-23-300x60.png 300w, https://patchmypc.com/app/uploads/2026/06/image-23-768x152.png 768w, https://patchmypc.com/app/uploads/2026/06/image-23-1536x305.png 1536w, https://patchmypc.com/app/uploads/2026/06/image-23-2048x406.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>That function does not try to register the broker with Autopatch. It does not request a token, and it does not use that token to authenticate to the Autopatch service. The only simple job of the Override function is trying to detect which Microsoft cloud the device belongs to.</p>
+
+
+
+<p>The code opens this registry path: HKLM\SYSTEM\CurrentControlSet\Control\CloudDomainJoin\TenantInfo</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="101" src="https://patchmypc.com/app/uploads/2026/06/image-15.png" alt="" class="wp-image-186954" srcset="https://patchmypc.com/app/uploads/2026/06/image-15.png 624w, https://patchmypc.com/app/uploads/2026/06/image-15-300x49.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>Then it loops through the tenant subkeys and reads this value: AccessTokenUrl</p>
+
+
+
+<p>On a normal commercial tenant, that value looks like this: https://login.microsoftonline.com/&lt;TenantId&gt;/oauth2/token</p>
+
+
+
+<p>For example: https://login.microsoftonline.com/b79783df-131e-4d00-8303-6f66c0fa4bfb/oauth2/token</p>
+
+
+
+<p>For a US government tenant, the host is different: <strong>login.microsoftonline.us</strong></p>
+
+
+
+<p>That is all the custom action is checking. The code reads <strong>AccessTokenUrl</strong><strong>, </strong>converts it into a URI, and checks whether the host contains login.microsoftonline.us.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="143" src="https://patchmypc.com/app/uploads/2026/06/image-19-1024x143.png" alt="" class="wp-image-186958" srcset="https://patchmypc.com/app/uploads/2026/06/image-19-1024x143.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-19-300x42.png 300w, https://patchmypc.com/app/uploads/2026/06/image-19-768x107.png 768w, https://patchmypc.com/app/uploads/2026/06/image-19.png 1476w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>So the logic is simple. If the URL host is login.microsoftonline.com, the tenant is commercial, and this function does nothing. The Autopatch Client broker keeps the normal configuration that was already written earlier by the installer.</p>
+
+
+
+<p>If the URL host is login.microsoftonline.us, the tenant is Fairfax and the installer overwrites the broker configuration with Fairfax values. Those Fairfax values are written under the Autopatch Client Broker registry key: <strong>HKLM\SOFTWARE\Microsoft\WindowsAutopatch\ClientBroker</strong></p>
+
+
+
+<p>The values it writes are:<strong> </strong></p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Environment = Fairfax</strong></li>
+
+
+
+<li><strong>ServiceBaseUr</strong>i = https://services.autopatch.microsoft.us/device</li>
+
+
+
+<li><strong>ManifestDownloadUri</strong> = https://device.autopatch.microsoft.com/cdn/clientsetup/manifest_lts.json</li>
+</ul>
+
+
+
+<p>That means <strong>AccessTokenUrl</strong> is not used by the installer as a token source. It is used as a shortcut to answer one question. Which Microsoft cloud is this device joined to?</p>
+
+
+
+<h2 class="wp-block-heading" id="h-why-the-autopatch-client-broker-failed-to-be-installed">Why the Autopatch Client Broker failed to be installed</h2>
+
+
+
+<p>This is the part that makes the failure feel silly. On a commercial tenant, the function only needs to do nothing. It only needs to see that the host is login.microsoftonline.com, decide that no Fairfax override is required, and continue. But the code assumes the CloudDomainJoin <strong>TenantInfo</strong> registry key <strong>ALWAYS</strong> exists.</p>
+
+
+
+<p>It does this: RegistryKey registryKey1 = Registry.LocalMachine.OpenSubKey<strong>(&#8220;SYSTEM\\CurrentControlSet\\Control\\CloudDomainJoin\\TenantInfo&#8221;);</strong> And then immediately does this: <strong>registryKey1.GetSubKeyNames(); there</strong> is no null check.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="203" src="https://patchmypc.com/app/uploads/2026/06/image-22-1024x203.png" alt="" class="wp-image-186964" srcset="https://patchmypc.com/app/uploads/2026/06/image-22-1024x203.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-22-300x59.png 300w, https://patchmypc.com/app/uploads/2026/06/image-22-768x152.png 768w, https://patchmypc.com/app/uploads/2026/06/image-22.png 1474w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>So if Windows has <strong>NOT</strong> created TenantInfo yet, OpenSubKey() returns null. The next line then tries to call GetSubKeyNames() on a null object. That gives us the exact error from the MSI log:</p>
+
+
+
+<p><strong>System.NullReferenceException: Object reference not set to an instance of an object.</strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="20" src="https://patchmypc.com/app/uploads/2026/06/image-20-1024x20.png" alt="" class="wp-image-186962" srcset="https://patchmypc.com/app/uploads/2026/06/image-20-1024x20.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-20-300x6.png 300w, https://patchmypc.com/app/uploads/2026/06/image-20-768x15.png 768w, https://patchmypc.com/app/uploads/2026/06/image-20-1536x30.png 1536w, https://patchmypc.com/app/uploads/2026/06/image-20-2048x40.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>That is why the Autopatch Client Broker MSI can fail during ESP. That is why the Autopatch Client Broker MSI can fail during ESP. Autopatch itself does not have to be unreachable, the broker registration does not have to be broken, and the MSI does not have to fail while copying files. The failure occurs much earlier, in a much smaller piece of logic: the installer tries to check whether the tenant is Fairfax, but the Windows registry key it uses for that check does not yet exist.</p>
+
+
+
+<p>For a commercial tenant, that should not have been fatal. If <strong>TenantInfo</strong> is missing, the installer could simply keep the default commercial configuration and continue. Instead, it crashes.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-who-creates-accesstokenurl">Who creates AccessTokenUrl</h2>
+
+
+
+<p>The Autopatch MSI does not create AccessTokenUrl. Windows creates it as part of the device registration and <strong>CloudDomainJoin</strong> discovery flow. Looking inside dsreg.dll, the relevant strings line up nicely with that flow:</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="958" height="61" src="https://patchmypc.com/app/uploads/2026/06/image-12.png" alt="" class="wp-image-186952" srcset="https://patchmypc.com/app/uploads/2026/06/image-12.png 958w, https://patchmypc.com/app/uploads/2026/06/image-12-300x19.png 300w, https://patchmypc.com/app/uploads/2026/06/image-12-768x49.png 768w" sizes="(max-width: 958px) 100vw, 958px" /></figure>
+
+
+
+<ul class="wp-block-list">
+<li>TenantInfo::Discover</li>
+
+
+
+<li>DiscoveryResponseParser::ParseTenantInfoNode</li>
+
+
+
+<li>JoinStatusStorage::SaveTenantKey</li>
+
+
+
+<li>AccessTokenUrl</li>
+
+
+
+<li>AuthCodeUrl</li>
+
+
+
+<li>SYSTEM\CurrentControlSet\Control\CloudDomainJoin</li>
+</ul>
+
+
+
+<p>That tells us what is happening at a high level. Windows performs tenant discovery, parses the discovery response, and stores the tenant information under CloudDomainJoin.</p>
+
+
+
+<p>The expected registry layout on a healthy joined device is: HKLM\SYSTEM\CurrentControlSet\Control\CloudDomainJoin\TenantInfo\&lt;TenantId&gt;. Inside that tenant key, you normally find values such as:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>AccessTokenUrl</strong></li>
+
+
+
+<li><strong>AuthCodeUrl</strong></li>
+</ul>
+
+
+
+<p>Microsoft also documents that AuthCodeUrl and AccessTokenUrl under CloudDomainJoin\TenantInfo\&lt;TenantId&gt; are used in the PRT related authentication flow.</p>
+
+
+
+<p>So the key belongs to the Windows identity stack. The Autopatch installer is <strong>ONLY</strong> reading it. That distinction matters. The <strong>Autopatch Client broker</strong> MSI depends on identity metadata that is created by Windows during the join and discovery process. If the installer runs before that metadata exists, it fails.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-why-autopilot-pre-provisioning-creates-the-timing-problem">Why Autopilot Pre-Provisioning creates the timing problem</h2>
+
+
+
+<p>During Autopilot pre-provisioning, the device is not simply “joined” and done. It moves through a temporary identity flow first.</p>
+
+
+
+<p>Windows downloads the Autopilot profile, performs tenant discovery, registers the device, joins Entra ID, enrolls into MDM, processes policies, installs required apps, and later hands the device over to the user flow. During the technician phase, device-targeted apps can already be installed, which means a required Autopatch Client Broker Win32 app can run before the device has reached the same stable identity state you would expect after the user completed the full Autopilot flow.</p>
+
+
+
+<p>That detail matters here. As I explained in my <strong><a href="https://call4cloud.nl/autopilot-white-glove-pre-provisioning/">earlier White Glove flow</a></strong>, the tenant information is created during the join and discovery phase. After TPM trust is established, dsreg.dll performs discovery, sends the device registration request, the Entra device certificate arrives, and the device can proceed to MDM enrollment.</p>
+
+
+
+<p>At that moment, the device has enough identity information to create the CloudDomainJoin tenant metadata, including:&nbsp; <strong>HKLM\SYSTEM\CurrentControlSet\Control\CloudDomainJoin\TenantInfo\&lt;TenantId&gt;AccessTokenUrl</strong></p>
+
+
+
+<p>But pre-provisioning does NOT stop there. After the Intune MDM enrollment completes, the pre-provisioning flow cleans up the temporary Entra join state. The Entra device certificate has been removed, and with it, the local unjoin cleanup can also remove the <strong>CloudDomainJoin tenant information.</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="474" height="188" src="https://patchmypc.com/app/uploads/2026/06/image-8.jpg" alt="" class="wp-image-186960" srcset="https://patchmypc.com/app/uploads/2026/06/image-8.jpg 474w, https://patchmypc.com/app/uploads/2026/06/image-8-300x119.jpg 300w" sizes="(max-width: 474px) 100vw, 474px" /></figure>
+
+
+
+<h3 class="wp-block-heading" id="h-the-tenant-info-and-the-unjoin">The Tenant Info And the Unjoin</h3>
+
+
+
+<p>With the unjoin happening during Autopilot pre-provisioning, the flow looks like this</p>
+
+
+
+<ul class="wp-block-list">
+<li>That gives us the actual timing problem:</li>
+
+
+
+<li>Autopilot pre-provisioning starts</li>
+
+
+
+<li>Windows performs tenant discovery and device registration</li>
+
+
+
+<li>CloudDomainJoin TenantInfo is created</li>
+
+
+
+<li>MDM enrollment starts</li>
+
+
+
+<li>The local join cleanup removes the Entra certificate</li>
+
+
+
+<li>CloudDomainJoin TenantInfo is removed</li>
+
+
+
+<li>Required device context Win32 apps start installing</li>
+
+
+
+<li>The Autopatch Client Broker MSI runs</li>
+
+
+
+<li>The custom action tries to read CloudDomainJoin\TenantInfo</li>
+
+
+
+<li>TenantInfo is missing because the temporary join state was cleaned up</li>
+
+
+
+<li>The custom action crashes with a NullReferenceException</li>
+
+
+
+<li>The MSI returns 1603</li>
+
+
+
+<li> ESP reports the required app failure</li>
+</ul>
+
+
+
+<p>That explains why the same installer can fail during pre-provisioning and succeed later. Later, during the user flow, Windows completes the identity work again. The device is joined again, <code>TenantInfo</code> exists again, and <code>AccessTokenUrl</code> is present again. The Autopatch custom action can then read the value, see login.microsoftonline.com, skip the Fairfax override, and continue.</p>
+
+
+
+<p>So the real issue is not only that the <strong>Autopatch Client Broker</strong> runs too early. It runs in a phase where Windows may have already created the tenant information and then removed it again as part of the Autopilot pre-provisioning identity cleanup.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-practical-fix">The practical fix</h2>
+
+
+
+<p>The real fix belongs in the MSI. The Autopatch Client Broker installer should not fail due to an inability to read<strong> CloudDomainJoin\TenantInfo</strong>. That registry key is used only by the custom action to determine whether the tenant is commercial or Fairfax. If the key is missing, the installer could simply keep the default commercial configuration and continue.</p>
+
+
+
+<p>For now, the practical workaround is to stop treating the broker as an <strong>ESP blocking app.</strong> Keep the Autopatch Client Broker assigned as a required Win32 app, but do not make Autopilot wait for it during ESP or pre-provisioning. Once the device has finished the fragile identity phase, the Intune Management Extension can resume the required assignment and install it during a normal Win32 app check-in.</p>
+
+
+
+<p>To make it even safer, add a requirement script that only allows the install when CloudDomainJoin\TenantInfo exists and contains an AccessTokenUrl. That way, the MSI only runs when the exact registry state its custom action depends on is actually present.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-a-quick-note-about-update-readiness-checker">A quick note about Update Readiness Checker</h2>
+
+
+
+<p>There is also a bigger Autopatch story here. Microsoft is moving away from the Autopatch Client Broker and toward proactive update readiness checks in the Intune admin center.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="951" height="150" src="https://patchmypc.com/app/uploads/2026/06/image-16.png" alt="" class="wp-image-186956" srcset="https://patchmypc.com/app/uploads/2026/06/image-16.png 951w, https://patchmypc.com/app/uploads/2026/06/image-16-300x47.png 300w, https://patchmypc.com/app/uploads/2026/06/image-16-768x121.png 768w" sizes="(max-width: 951px) 100vw, 951px" /></figure>
+
+
+
+<p>The Update Readiness Checker evaluates Intune-managed Windows devices before updates are offered or deployed. It checks whether devices are ready for feature, quality, and hotpatch updates, and groups devices by result (passed, failed, or already on the update). </p>
+
+
+
+<p>That may also explain why Microsoft support might steer customers toward the newer update readiness experience when questions arise about the Autopatch Client Broker. Still, that does not change the installer issue shown here. If the Client Broker is deployed as a required Win32 app and marked as blocking during ESP, the MSI can still fail due to the custom action timing bug.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-conclusion">Conclusion</h2>
+
+
+
+<p>The Autopatch Client Broker MSI fails during Autopilot ESP because of a custom action inside <strong>CustomActions.dll</strong><strong>. </strong>That custom action reads AccessTokenUrl from the Windows CloudDomainJoin tenant information. It does not read that value to authenticate to Autopatch, and it does not use it to register the broker. It reads it only to detect whether the device belongs to the commercial cloud or Fairfax.</p>
+
+
+
+<p>If it detects login.microsoftonline.us, it writes Fairfax-specific Autopatch endpoints into the broker configuration. If it sees login.microsoftonline.com, it should simply keep the normal commercial configuration and continue.</p>
+
+
+
+<p>The problem is that during Autopilot ESP or pre-provisioning, the CloudDomainJoin\TenantInfo registry key is not guaranteed to exist yet. The custom action does not check for that. It assumes the key is there, calls GetSubKeyNames() on a null object, crashes with a NullReferenceException, and returns failure.</p>
+
+
+
+<p>That failure becomes MSI error 1603. The installer says “ignore” in the log, but nothing is ignored. And because the broker registry key may already exist before the crash, a weak Intune detection rule can still be fooled.</p>
+
+
+
+<p>So the real lesson is simple: the Autopatch Client Broker did not fail because Autopatch was unavailable. It failed because the installer tried to decide whether login.microsoftonline.com was actually login.microsoftonline.us, before Windows had created the registry data needed to answer that question.</p>
+<p>The post <a href="https://patchmypc.com/blog/autopatch-client-broker-fails-during-autopilot-pre-provisioning/">Autopatch Client Broker Fails During Autopilot Pre-Provisioning</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/blog/autopatch-client-broker-fails-during-autopilot-pre-provisioning/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Patch My PC Publisher Preview Version 2.2.2.217 Released</title>
 		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-217-released/</link>
 					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-217-released/#respond</comments>
@@ -100,7 +563,7 @@
 
 
 
-<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="268" src="https://patchmypc.com/app/uploads/2026/06/image-2.jpg" alt="0x87D1041C during autopilot" class="wp-image-186452" srcset="https://patchmypc.com/app/uploads/2026/06/image-2.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-2-300x129.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="268" src="https://patchmypc.com/app/uploads/2026/06/image-2.jpg" alt="0x87D1041C during autopilot" class="wp-image-186452" srcset="https://patchmypc.com/app/uploads/2026/06/image-2.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-2-300x129.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
 
 
 
@@ -1578,273 +2041,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-1-0-released/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Controlled Configuration for Microsoft Defender Antivirus settings</title>
-		<link>https://patchmypc.com/blog/controlled-configuration-for-microsoft-defender-antivirus-settings/</link>
-					<comments>https://patchmypc.com/blog/controlled-configuration-for-microsoft-defender-antivirus-settings/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Mon, 11 May 2026 07:23:56 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=184230</guid>
-
-					<description><![CDATA[<p>Controlled Configuration for Microsoft Defender antivirus settings is coming. Microsoft describes it as an extension of Tamper Protection, with Intune taking control of Defender policy enforcement.</p>
-<p>The post <a href="https://patchmypc.com/blog/controlled-configuration-for-microsoft-defender-antivirus-settings/">Controlled Configuration for Microsoft Defender Antivirus settings</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p>In this blog, we will look at something new coming: <strong>Controlled Configuration for Microsoft Defender antivirus setting</strong>s. It sounds like another Defender setting at first, but the pieces already sitting on the device tell a much bigger story. Almost a year ago, I noticed the first traces of it, and now that Microsoft has finally mentioned Controlled Configuration publicly, it is time to connect those dots.</p>
-
-
-
-<p><strong>Please Note: This blog is based on OSINT and purely my own investigation&#8230;.. nothing else&#8230; well&#8230; maybe the update of the<a href="https://learn.microsoft.com/en-us/intune/whats-new/in-development"> what&#8217;s in development pages from MSFT</a></strong></p>
-
-
-
-<h2 class="wp-block-heading" id="h-introduction-to-controlled-configuration">Introduction to Controlled Configuration</h2>
-
-
-
-<p>Almost a year ago (or even more), I stumbled upon something on one of my devices that immediately felt out of place. Buried in Program Files was a component called <strong>ControlConfigAdapter</strong>. I had never seen it before, Microsoft was not saying anything publicly about it, and the name was far too specific to ignore. So I started <strong>investigating….yes, investigating&#8230;&#8230;</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="198" src="https://patchmypc.com/app/uploads/2026/05/image-3.png" alt="ControlConfig Adapter" class="wp-image-184233" srcset="https://patchmypc.com/app/uploads/2026/05/image-3.png 624w, https://patchmypc.com/app/uploads/2026/05/image-3-300x95.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>At first, it was just a folder, just a name, and that familiar feeling that Windows had quietly dropped something important on the device without much explanation (as always). What made it even stranger was where it showed up. This ControlConfig adapter came along in the same agent package as the <strong><a href="https://call4cloud.nl/intune-device-inventory-agent/">device inventory agent MSI</a></strong>&#8230; That alone was enough to make me think about it, because device inventory and configuration enforcement are not exactly the same story. The more I investigated, the less this looked like a random device inventory extension and the more it looked like the plumbing for something much bigger&#8230; Something new for <strong>Defender.</strong></p>
-
-
-
-<h2 class="wp-block-heading" id="h-controlled-configuration-does-not-belong-to-device-inventory">Controlled Configuration does not belong to Device Inventory</h2>
-
-
-
-<p>The first surprise was simply that it existed. If you notice a new agent or component on the device and it appears next to an inventory agent, the natural assumption is that it likely belongs to the same device inventory agent. <strong>ControlConfigAdapter </strong>was sure not. While doing some additional investigation, the function names did not mention inventory, collection, or hardware state. They were talking about <strong>config payloads</strong>, <strong>policy status</strong>, <strong>payload import</strong>, and something called <strong>SCC state</strong>.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="492" height="180" src="https://patchmypc.com/app/uploads/2026/05/image-2.png" alt="Controlled Configuration Adapter" class="wp-image-184231" srcset="https://patchmypc.com/app/uploads/2026/05/image-2.png 492w, https://patchmypc.com/app/uploads/2026/05/image-2-300x110.png 300w" sizes="(max-width: 492px) 100vw, 492px" /></figure>
-
-
-
-<p>That already pushed it in a very different direction. Instead of looking like an additional part of the device inventory agent, it started to look like something that receives policy, hands it off, and tracks the result.&nbsp; That was the moment I started to believe it had something to do with Defender.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-controlled-configuration-payload-import-and-policy-state">Controlled Configuration payload import and policy state</h2>
-
-
-
-<p>Once I started following the functions, the story became clearer. The controlled configuration adapter has routines that line up around three big actions. First, it can import a <strong>configuration payload.</strong> One of the clearest examples is the function that logs, which calls <strong>MpImportConfigPayload.</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="603" height="143" src="https://patchmypc.com/app/uploads/2026/05/image-4.png" alt="" class="wp-image-184232" srcset="https://patchmypc.com/app/uploads/2026/05/image-4.png 603w, https://patchmypc.com/app/uploads/2026/05/image-4-300x71.png 300w" sizes="(max-width: 603px) 100vw, 603px" /></figure>
-
-
-
-<p>That alone is a strong hint that this adapter is not enforcing settings on its own. It looks more like a bridge that takes an incoming management payload and hands it to the <strong>Defender configuration</strong> layer through <strong>mpclient.dll</strong>.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="368" height="74" src="https://patchmypc.com/app/uploads/2026/05/image-5.png" alt="Controlled Configuration loading mpclient" class="wp-image-184236" srcset="https://patchmypc.com/app/uploads/2026/05/image-5.png 368w, https://patchmypc.com/app/uploads/2026/05/image-5-300x60.png 300w" sizes="(max-width: 368px) 100vw, 368px" /></figure>
-
-
-
-<p>Second, it can retrieve payload status. Another function calls <strong>MpGetConfigPayloadStatus</strong>, then reads the response and logs whether the payload was successfully retrieved. That tells you this is not a one-way push only. It also wants feedback from the Defender side.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="524" height="403" src="https://patchmypc.com/app/uploads/2026/05/image-9.png" alt="SCC Secure Controlled Config" class="wp-image-184239" srcset="https://patchmypc.com/app/uploads/2026/05/image-9.png 524w, https://patchmypc.com/app/uploads/2026/05/image-9-300x231.png 300w" sizes="(max-width: 524px) 100vw, 524px" /></figure>
-
-
-
-<p>Third, it keeps checking something called <strong>SCC state (secure controlled configuration?</strong>. Multiple functions revolve around reading that state, logging it, parsing versioned data, and turning it into policy reporting. So, there is an import path, a status path, and a state path.</p>
-
-
-
-<p>That combination matters. It means this adapter looks like a management bridge with full round-trip behavior. It takes the Secure Controlled configuration in, asks Defender to apply it, reads back the status, and exposes reporting on top of that.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-mof-file-tied-it-into-microsoft-device-management">The MOF file tied it into Microsoft device management</h2>
-
-
-
-<p>While looking through the Controlled Configuration adapter folder… something else caught my eye. Inside the folder, there was a MOF file. That MOF file was the missing piece.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="91" src="https://patchmypc.com/app/uploads/2026/05/image-11.png" alt="" class="wp-image-184235" srcset="https://patchmypc.com/app/uploads/2026/05/image-11.png 624w, https://patchmypc.com/app/uploads/2026/05/image-11-300x44.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>Instead of sitting in some private Defender-only corner, the provider is registered in the <strong>ROOT\MicrosoftDeviceManagement_Extensibility_ControlConfig</strong> namespace. The class is literally called <strong>ControlConfigAdapter</strong> and it inherits from <strong>OMI_BaseResource</strong>, which is exactly what we also noticed with the device inventory agent and how that one was connected to declared configuration.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="796" height="162" src="https://patchmypc.com/app/uploads/2026/05/image-14.png" alt="" class="wp-image-184244" srcset="https://patchmypc.com/app/uploads/2026/05/image-14.png 796w, https://patchmypc.com/app/uploads/2026/05/image-14-300x61.png 300w, https://patchmypc.com/app/uploads/2026/05/image-14-768x156.png 768w" sizes="(max-width: 796px) 100vw, 796px" /></figure>
-
-
-
-<p>The keys are also revealing. The class defines <strong>DocumentID</strong>, <strong>Version</strong>, <strong>MeID</strong>, <strong>PayloadName</strong>, <strong>SettingReportIDs</strong>, <strong>ReportNodeName</strong>, <strong>BaseReportNodeName</strong>, and <strong>ExtendedProperties</strong>. The actual payload is carried in <strong>ControlConfigPayload</strong> and the resource supports <strong>GetTargetResource</strong>, <strong>TestTargetResource</strong>, and <strong>SetTargetResource</strong>.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="154" src="https://patchmypc.com/app/uploads/2026/05/image-15-1024x154.png" alt="" class="wp-image-184245" srcset="https://patchmypc.com/app/uploads/2026/05/image-15-1024x154.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-15-300x45.png 300w, https://patchmypc.com/app/uploads/2026/05/image-15-768x116.png 768w, https://patchmypc.com/app/uploads/2026/05/image-15.png 1375w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>It tells you this adapter is designed to receive a declarative device configuration document, identify it properly, apply it, test it, and report back…. <strong>Get … Set … test …</strong>  That is where the adapter stopped looking like a local Defender helper and started looking like a native Defender enforcement bridge connected to <strong><a href="https://patchmypc.com/blog/mmp-c-the-future-of-windows-device-management-with-intune/">MMP-C and WinDC</a></strong></p>
-
-
-
-<h2 class="wp-block-heading" id="h-scc-kept-showing-up-in-the-mpclient">SCC kept showing up in the MPClient</h2>
-
-
-
-<p>Then there was the other breadcrumb that kept repeating itself as I investigated: <strong>SCC</strong>. It showed up everywhere. It showed up in the configuration tree under <strong>Features\SCC</strong> and <strong>Features\SCC\Notification</strong>.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="983" height="209" src="https://patchmypc.com/app/uploads/2026/05/image-16.png" alt="" class="wp-image-184246" srcset="https://patchmypc.com/app/uploads/2026/05/image-16.png 983w, https://patchmypc.com/app/uploads/2026/05/image-16-300x64.png 300w, https://patchmypc.com/app/uploads/2026/05/image-16-768x163.png 768w" sizes="(max-width: 983px) 100vw, 983px" /></figure>
-
-
-
-<p>The MPClient also contains trace strings such as <strong>Origin_SCC</strong>, <strong>Origin_SCC_Policy</strong>,, <strong>TamperProtection</strong>, and even a string named <strong>SecureControledConfig</strong> with the typo included.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="165" src="https://patchmypc.com/app/uploads/2026/05/image-17-1024x165.png" alt="" class="wp-image-184282" srcset="https://patchmypc.com/app/uploads/2026/05/image-17-1024x165.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-17-300x48.png 300w, https://patchmypc.com/app/uploads/2026/05/image-17-768x124.png 768w, https://patchmypc.com/app/uploads/2026/05/image-17.png 1309w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>So while Microsoft was not publicly explaining what <strong>SCC </strong>meant at the time, the Defender Client was already showing it. Whatever SCC is, it was being treated as a distinct policy source inside the Defender Agent. In other words, the function is not only concerned with whether a value exists. It is concerned with <strong>who owns the value</strong>, <strong>which source wins (sounds like tamper protection)</strong>, and whether local administrators are still allowed to merge or override settings.That starts to sound a lot stronger than classic tamper protection.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-controlled-configuration-in-defender">Controlled Configuration In Defender</h2>
-
-
-
-<p>One of the more interesting parts is that the Defender provider already seems to know about this state.&nbsp; Inside the <strong>ProtectionManagement</strong> MOF, the <strong>MSFT_MpComputerStatus</strong> class exposes a field called <strong>ControlledConfigurationState</strong>.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="616" height="84" src="https://patchmypc.com/app/uploads/2026/05/image-6.png" alt="" class="wp-image-184238" srcset="https://patchmypc.com/app/uploads/2026/05/image-6.png 616w, https://patchmypc.com/app/uploads/2026/05/image-6-300x41.png 300w" sizes="(max-width: 616px) 100vw, 616px" /></figure>
-
-
-
-<p>Which is also visible if you ask for the defender status</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="363" height="41" src="https://patchmypc.com/app/uploads/2026/05/image-8.png" alt="" class="wp-image-184234" srcset="https://patchmypc.com/app/uploads/2026/05/image-8.png 363w, https://patchmypc.com/app/uploads/2026/05/image-8-300x34.png 300w" sizes="(max-width: 363px) 100vw, 363px" /></figure>
-
-
-
-<p>That stood out immediately. It sits there next to other known Defender states, including <strong>IsTamperProtected</strong> and <strong>TamperProtectionSource</strong>. That means the Defender side is already prepared to expose a dedicated controlled configuration state. Not just tamper protection, but something better. That is a strong clue. It suggests that <strong>tamper protection and controlled configuration are not the same thing</strong>. They live next to each other in the Defender model.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-controlled-configuration-showing-up-in-the-what-s-in-development">Controlled Configuration showing up in the What’s in Development</h2>
-
-
-
-<p>For a long time, all of that lived only in the code, on the device, and in the adapter itself. That made it interesting, but still incomplete. You could see the plumbing, but there was no public sign yet that connected it to an actual product direction. That finally changed once <strong>Controlled Configuration</strong> appeared on Microsoft’s <strong><a href="https://learn.microsoft.com/en-us/intune/whats-new/in-development">What’s in development</a></strong> page.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="591" src="https://patchmypc.com/app/uploads/2026/05/image-13.png" alt="" class="wp-image-184243" srcset="https://patchmypc.com/app/uploads/2026/05/image-13.png 624w, https://patchmypc.com/app/uploads/2026/05/image-13-300x284.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>That matters more than it might seem. Because once Microsoft announced this <strong>Controlled Configuration for Microsoft Defender, </strong>the adapter suddenly stopped looking like an unfinished internal experiment and started looking exactly like what it had been hinting at all along. <strong>Tamper Protection v2 :)..</strong>&#8230; and it all started with the ControlConfig Adapter showing up on my devices last year!</p>
-
-
-
-<h2 class="wp-block-heading" id="h-controlled-configuration-for-defender-in-intune">Controlled Configuration For Defender in Intune</h2>
-
-
-
-<p>I need to be a bit careful here, because this part is still more about where the signs are pointing than about a fully public experience everyone can click through today… so the next few sentences… is all based on what I think it will look like (AKA not present of today).</p>
-
-
-
-<p>But based on the current Intune Portal configuration and the way this feature is described,<strong> Controlled Configuration</strong> seems like a setting that would naturally sit in the same general area as the <strong>Tamper Protection</strong> setting in the <strong>Defender Configuration.</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="166" src="https://patchmypc.com/app/uploads/2026/05/image-10.png" alt="tamper protection" class="wp-image-184237" srcset="https://patchmypc.com/app/uploads/2026/05/image-10.png 624w, https://patchmypc.com/app/uploads/2026/05/image-10-300x80.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>In other words, this feels like something that would belong alongside the <strong>Defender antivirus and endpoint security experience… </strong>So when I need to make a wild guess, it will look something like this…</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="216" src="https://patchmypc.com/app/uploads/2026/05/image-12.png" alt="controlled configuration turned on" class="wp-image-184240" srcset="https://patchmypc.com/app/uploads/2026/05/image-12.png 624w, https://patchmypc.com/app/uploads/2026/05/image-12-300x104.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>The Windows Security side also fits that direction. If the device is going to expose a <strong>Controlled Configuration State</strong>, then there is clearly already a local status concept for this feature. That means the experience is not only about sending policy down. It is also about showing whether the device is actually under that stronger configuration model.</p>
-
-
-
-<p><strong>Please note: The picture above and below are MOCKUPS!!!!! </strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="784" height="415" src="https://patchmypc.com/app/uploads/2026/05/image.jpg" alt="antivirus status showing the controlled configuration status" class="wp-image-184241" srcset="https://patchmypc.com/app/uploads/2026/05/image.jpg 784w, https://patchmypc.com/app/uploads/2026/05/image-300x159.jpg 300w, https://patchmypc.com/app/uploads/2026/05/image-768x407.jpg 768w" sizes="(max-width: 784px) 100vw, 784px" /></figure>
-
-
-
-<p>So while I would not present any portal layout as final, I would absolutely say this: if Microsoft rolls out Controlled Configuration, I would expect it to show up exactly where admins already manage Defender security posture, only with a much heavier focus on source of truth and enforcement.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-controlled-configuration-beats-defender-tamper-protection">Controlled Configuration beats Defender Tamper protection</h2>
-
-
-
-<p>Tamper protection is already useful, but it is also narrower. Tamper protection protects a defined set of Defender settings from being disabled or changed. It is very good at saying <strong>no</strong>, especially when something local tries to turn off protection or weaken it.</p>
-
-
-
-<p><strong>Controlled Configuration</strong> for defender looks way stronger and better. Everything about this adapter suggests it is not just there to block changes. It looks like it is there to make <strong>management authoritative</strong>. The document comes in through a management resource model. The payload gets handed to the Defender side. The adapter checks the status. SCC state is tracked. Strict policy mode and local admin merge behavior are part of the story. The Defender provider exposes a dedicated controlled configuration state. That is a very different posture.</p>
-
-
-
-<p><strong>Tamper protectio</strong>n says certain protected settings cannot be changed.<br><strong>Controlled configuration</strong> appears to say Intune owns the configuration, Defender applies it, and the device reports that managed state back. And the most interesting part is what happens to everything you did <strong>not</strong> explicitly configure.</p>
-
-
-
-<p>The wording Microsoft is using around this feature strongly suggests it is not only about locking configured settings. It is also about falling back to secure defaults for the rest. That is what makes this feel like more than a simple rename of tamper protection v2. It looks more like a larger managed enforcement model that may include <strong>tamper protection.</strong></p>
-
-
-
-<h2 class="wp-block-heading" id="h-closing-thoughts">Closing thoughts</h2>
-
-
-
-<p>When I first noticed <strong>ControlConfigAdapter</strong> on my device almost a year ago, it looked like one of those strange new components Windows sometimes drops on a machine long before anyone is ready to explain it. At that point all I had was a name, a folder, and a lot of unanswered questions. Now the picture is very different.</p>
-
-
-
-<p>The code shows payload import, status retrieval, and SCC state handling. The MOF ties it into Microsoft device management extensibility with the kind of metadata you would expect from <strong><a href="https://patchmypc.com/blog/mmp-c-the-future-of-windows-device-management-with-intune/">MMP C and WinDC</a></strong>. The Defender provider already exposes a <strong>ControlledConfigurationState</strong>. The configuration manager knows about SCC as a policy origin. And Microsoft has finally published Controlled Configuration in the &#8220;What&#8217;s in development&#8221; pages.  This does not look like a small cosmetic addition to tamper protection.<br>It looks like Microsoft is building a stronger model where Defender configuration is not only protected from tampering, but managed, enforced, and reported as a <strong>secure controlled state.</strong></p>
-
-
-
-<p></p>
-<p>The post <a href="https://patchmypc.com/blog/controlled-configuration-for-microsoft-defender-antivirus-settings/">Controlled Configuration for Microsoft Defender Antivirus settings</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/controlled-configuration-for-microsoft-defender-antivirus-settings/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
