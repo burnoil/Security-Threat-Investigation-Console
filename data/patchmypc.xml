@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Mon, 15 Jun 2026 14:08:25 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 15 Jun 2026 14:32:17 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -311,7 +311,11 @@
 
 
 
-<p>So the key belongs to the Windows identity stack. The Autopatch installer is <strong>ONLY</strong> reading it. That distinction matters. The <strong>Autopatch Client broker</strong> MSI depends on identity metadata that is created by Windows during the join and discovery process. If the installer runs before that metadata exists, it fails.</p>
+<p>So the key belongs to the Windows identity stack. The Autopatch installer is <strong>ONLY</strong> reading it. That distinction matters. The <strong>Autopatch Client broker</strong> MSI depends on identity metadata that is created by Windows during the join and discovery process. If the installer runs before that metadata exists, it fails on configuring the Environment.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="230" src="https://patchmypc.com/app/uploads/2026/06/image-24-1024x230.png" alt="" class="wp-image-186980" srcset="https://patchmypc.com/app/uploads/2026/06/image-24-1024x230.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-24-300x67.png 300w, https://patchmypc.com/app/uploads/2026/06/image-24-768x173.png 768w, https://patchmypc.com/app/uploads/2026/06/image-24.png 1258w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
@@ -409,7 +413,7 @@
 
 
 
-<p>That explains why the same installer can fail during pre-provisioning and succeed later. Later, during the user flow, Windows completes the identity work again. The device is joined again, <code>TenantInfo</code> exists again, and <code>AccessTokenUrl</code> is present again. The Autopatch custom action can then read the value, see login.microsoftonline.com, skip the Fairfax override, and continue.</p>
+<p>That explains why the same installer can fail during pre-provisioning and succeed later. Later, during the user flow, Windows completes the identity work again. The device is joined again, TenantInfo exists again, and AccessTokenUrl is present again. The Autopatch custom action can then read the value, see login.microsoftonline.com, skip the Fairfax override, and continue.</p>
 
 
 
@@ -421,7 +425,7 @@
 
 
 
-<p>The real fix belongs in the MSI. The Autopatch Client Broker installer should not fail due to an inability to read<strong> CloudDomainJoin\TenantInfo</strong>. That registry key is used only by the custom action to determine whether the tenant is commercial or Fairfax. If the key is missing, the installer could simply keep the default commercial configuration and continue.</p>
+<p>The real fix belongs in the MSI. The Autopatch Client Broker installer should not fail due to an inability to read <strong>CloudDomainJoin\TenantInfo</strong>. That registry key is used only by the custom action to determine whether the tenant is commercial or Fairfax. If the key is missing, the installer could simply keep the default commercial configuration and continue.</p>
 
 
 
@@ -445,7 +449,7 @@
 
 
 
-<p>The Update Readiness Checker evaluates Intune-managed Windows devices before updates are offered or deployed. It checks whether devices are ready for feature, quality, and hotpatch updates, and groups devices by result (passed, failed, or already on the update). </p>
+<p>The Update Readiness Checker evaluates Intune-managed Windows devices before updates are offered or deployed. It checks whether devices are ready for feature, quality, and hotpatch updates, and groups devices by result (passed, failed, or already on the update).&nbsp;</p>
 
 
 
