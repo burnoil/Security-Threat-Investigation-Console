@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Mon, 15 Jun 2026 18:52:36 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 16 Jun 2026 08:35:31 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -74,7 +74,7 @@
 
 
 
-<h2 class="wp-block-heading" id="h-the-autopatch-client-broker">The Autopatch Client Broker</h2>
+<h2 class="wp-block-heading" id="h-what-is-the-autopatch-client-broker">What is the Autopatch Client Broker</h2>
 
 
 
@@ -138,7 +138,7 @@
 
 
 
-<h2 class="wp-block-heading" id="h-why-custom-actions-matter">Why custom actions matter</h2>
+<h2 class="wp-block-heading" id="h-why-msi-custom-actions-are-important">Why MSI custom actions are important</h2>
 
 
 
@@ -268,7 +268,7 @@
 
 
 
-<p>So if Windows has <strong>NOT</strong> created TenantInfo yet, OpenSubKey() returns null. The next line then tries to call GetSubKeyNames() on a null object. That gives us the exact error from the MSI log:</p>
+<p>So if Windows has already removed TenantInfo during the pre-provisioning cleanup, OpenSubKey() returns null.</p>
 
 
 
@@ -280,7 +280,7 @@
 
 
 
-<p>That is why the Autopatch Client Broker MSI can fail during ESP. That is why the Autopatch Client Broker MSI can fail during ESP. Autopatch itself does not have to be unreachable, the broker registration does not have to be broken, and the MSI does not have to fail while copying files. The failure occurs much earlier, in a much smaller piece of logic: the installer tries to check whether the tenant is Fairfax, but the Windows registry key it uses for that check does not yet exist.</p>
+<p>That is why the Autopatch Client Broker MSI can fail during ESP.  Autopatch itself does not have to be unreachable, the broker registration does not have to be broken, and the MSI does not have to fail while copying files. The failure occurs much earlier, in a much smaller piece of logic: the installer tries to check whether the tenant is Fairfax, but the Windows registry key it uses for that check does not yet exist.</p>
 
 
 
@@ -288,11 +288,47 @@
 
 
 
+<h2 class="wp-block-heading">The worst part: detection still says installed</h2>
+
+
+
+<p>The ESP failure was only the first problem. The bigger problem was what the MSI left behind before it crashed. The Win32 app detection rule checks this registry path:</p>
+
+
+
+<p><strong>HKLM\SOFTWARE\Microsoft\WindowsAutopatch\ClientBroker\ProductInfo</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="806" height="165" src="https://patchmypc.com/app/uploads/2026/06/image-25.png" alt="" class="wp-image-187035" srcset="https://patchmypc.com/app/uploads/2026/06/image-25.png 806w, https://patchmypc.com/app/uploads/2026/06/image-25-300x61.png 300w, https://patchmypc.com/app/uploads/2026/06/image-25-768x157.png 768w" sizes="(max-width: 806px) 100vw, 806px" /></figure>
+
+
+
+<p>That is exactly the registry key the custom action creates before it calls<strong> <code>OverrideEnvironmentRegistryKeys()</code>.</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="279" height="141" src="https://patchmypc.com/app/uploads/2026/06/image-26.png" alt="" class="wp-image-187036"/></figure>
+
+
+
+<p>So the order matters. First, the custom action creates the broker registry key, creates the <code>ProductInfo</code> subkey, and writes the version value. Only after that does it call the environment override function that tries to read CloudDomainJoin\TenantInfo.</p>
+
+
+
+<p>When that Fairfax detection check crashes, the MSI returns 1603, but the detection registry key is already there. That leaves the device in a very annoying state. ESP sees the required app fail, but the next detection check can still report the app as installed because the registry evidence exists. From IME’s point of view, there is nothing left to retry.  So effectively, you can end up with no healthy broker installation, no completed MSI, and possibly no broker binary or scheduled tasks, while the Win32 app detection rule still says everything is installed.</p>
+
+
+
+<p>That still leaves one important question: why was the installer looking at CloudDomainJoin\TenantInfo in the first place? To answer that, we need to look at the value the custom action tries to read from that key: AccessTokenUrl.</p>
+
+
+
 <h2 class="wp-block-heading" id="h-who-creates-accesstokenurl">Who creates AccessTokenUrl</h2>
 
 
 
-<p>The Autopatch MSI does not create AccessTokenUrl. Windows creates it as part of the device registration and <strong>CloudDomainJoin</strong> discovery flow. Looking inside dsreg.dll, the relevant strings line up nicely with that flow:</p>
+<p>The Autopatch Client Broker MSI does <strong>NOT</strong> create AccessTokenUrl. Windows creates it as part of the device registration and <strong>CloudDomainJoin</strong> discovery flow. Looking inside dsreg.dll, the relevant strings line up nicely with that flow:</p>
 
 
 
