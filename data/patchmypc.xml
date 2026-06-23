@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Fri, 19 Jun 2026 07:29:58 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 23 Jun 2026 15:52:34 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,154 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>Patch My PC Publisher Preview Version 2.3.2.54 Released</title>
+		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/</link>
+					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/#respond</comments>
+		
+		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
+		<pubDate>Tue, 23 Jun 2026 15:52:33 +0000</pubDate>
+				<category><![CDATA[Preview Release]]></category>
+		<category><![CDATA[Templates]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=187519</guid>
+
+					<description><![CDATA[<p>This release contains a variety of features, improvements, and fixes, as noted below. 🖥️ Modernized User Experience The biggest change in this release is a ground-up redesign of how you interact with the Patch My PC Publisher. The focus is strictly on reducing clutter and speeding up your day-to-day workflow. 📊 Improved Application Views Managing ... <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/">Continue Reading  &#187;</a></p>
+<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/">Patch My PC Publisher Preview Version 2.3.2.54 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>This release contains a variety of features, improvements, and fixes, as noted below.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-modernized-user-experience"><strong><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f5a5.png" alt="🖥" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Modernized User Experience</strong></h2>
+
+
+
+<p>The biggest change in this release is a ground-up redesign of how you interact with the Patch My PC Publisher. The focus is strictly on reducing clutter and speeding up your day-to-day workflow.</p>
+
+
+
+<ul class="wp-block-list">
+<li>​<strong>Streamlined Left-Hand Navigation:</strong> A clean side menu replaces the original tabbed layout, letting you jump between sections instantly.</li>
+
+
+
+<li>​<strong>In-Window Integration:</strong> Gone are the days of endless pop-ups. Most configuration dialogs are now embedded directly into the main window.</li>
+
+
+
+<li>​<strong>Theme Support:</strong> You can now natively toggle between <strong>Light Mode</strong> and <strong>Dark Mode</strong> depending on your workspace preference.</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="h-improved-application-views"><strong><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f4ca.png" alt="📊" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Improved Application Views</strong></h2>
+
+
+
+<p>Managing your applications is much more visual with three distinct layout improvements:</p>
+
+
+
+<p>To pick up a draggable item, press the space bar. While dragging, use the arrow keys to move the item. Press space again to drop the item in its new position, or press escape to cancel.</p>
+
+
+
+<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>TextText</th><th>TextText</th><th>TextText</th></tr></thead><tbody><tr><td><strong>View Feature</strong></td><td><strong>What it Does</strong></td><td><strong>Why it Helps</strong></td></tr><tr><td><strong>Grid View</strong></td><td>Displays applications as visual cards with key details.</td><td>Allows for optional grouping of app variants to keep things neat.</td></tr><tr><td><strong>Stats View</strong></td><td>A built-in statistics panel providing high-level app insights.</td><td><strong>Interactive:</strong> Clicking any individual stat instantly filters your results.</td></tr><tr><td><strong>Tabbed Assignments</strong></td><td>Splitting assignment types across dedicated tabs.</td><td>Cleaner visual layout when managing large numbers of assignments.</td></tr></tbody></table></figure>
+
+
+
+<p>To pick up a draggable item, press the space bar. While dragging, use the arrow keys to move the item. Press space again to drop the item in its new position, or press escape to cancel.</p>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f4cd.png" alt="📍" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Note on the Progress Bar:</strong> The synchronization progress bar has a new home. You can now find it on the <strong>Service Status</strong> page located under the <strong>About</strong> tab.</p>
+</blockquote>
+
+
+
+<h2 class="wp-block-heading" id="h-enhanced-filtering-and-organization"><strong><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f50d.png" alt="🔍" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Enhanced Filtering and Organization</strong></h2>
+
+
+
+<p>Finding the specific products you need takes far fewer clicks.</p>
+
+
+
+<h4 class="wp-block-heading" id="advanced-filtering">Advanced Filtering</h4>
+
+
+
+<p>Quickly drill down into our massive catalog to locate specific apps and complex configurations with upgraded, high-performance filters.</p>
+
+
+
+<h4 class="wp-block-heading" id="separate-product-tabs">Separate Product Tabs</h4>
+
+
+
+<p>Products are now logically split into two dedicated sections to keep custom work isolated from standard vendor catalogs:</p>
+
+
+
+<ul class="wp-block-list">
+<li>​<strong>Catalog Products:</strong> Standard, pre-packaged third-party applications from Patch My PC.</li>
+
+
+
+<li>​<strong>Custom Products:</strong> In-house or custom-packaged applications using Patch My PC Cloud</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading" id="h-alerts-and-status-improvements"><strong><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f514.png" alt="🔔" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Alerts and Status Improvements</strong></h2>
+
+
+
+<p><strong>Dedicated Alerts Pages:</strong> Alerts have been broken out into separate, dedicated views so you can manage notifications without noise.​</p>
+
+
+
+<p><strong>Centralized Service Status:</strong> A dedicated health page housing your live sync progress.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-new-tools-amp-functional-changes"><strong><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f6e0.png" alt="🛠" class="wp-smiley" style="height: 1em; max-height: 1em;" /> New Tools &amp; Functional Changes</strong></h2>
+
+
+
+<h4 class="wp-block-heading" id="id-1.-show-dependencies">1. Show Dependencies</h4>
+
+
+
+<p>You can now view application dependencies directly in the Publisher, minimizing deployment failures down the line.</p>
+
+
+
+<h4 class="wp-block-heading" id="id-2.-configmgr-detection-script-signing">2. ConfigMgr Detection Script Signing</h4>
+
+
+
+<p>As an alternative to using your standard WSUS certificate, you can now supply a <strong>custom code signing certificate</strong> specifically to sign ConfigMgr detection scripts.</p>
+
+
+
+<h4 class="wp-block-heading" id="id-3.-webhooks-deprecation-notice">3. Webhooks Deprecation Notice</h4>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p>​<img src="https://s.w.org/images/core/emoji/17.0.2/72x72/26a0.png" alt="⚠" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Important:</strong> You can no longer create or copy legacy Microsoft Teams webhook alerts inside the Publisher. If you have existing legacy webhooks configured, they will continue to function normally for the time being, but planning a migration to modern alerting is highly recommended.</p>
+</blockquote>
+<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/">Patch My PC Publisher Preview Version 2.3.2.54 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Patch My PC Publisher Production Version 2.3.2.0 Released</title>
 		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-3-2-0-released/</link>
 					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-3-2-0-released/#respond</comments>
@@ -1843,47 +1991,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Patch My PC Publisher Production Version 2.2.2.0 Released</title>
-		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-2-0-released/</link>
-					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-2-0-released/#respond</comments>
-		
-		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
-		<pubDate>Wed, 13 May 2026 17:49:18 +0000</pubDate>
-				<category><![CDATA[Production Release]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=184548</guid>
-
-					<description><![CDATA[<p>This release contains a fix as noted below. This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&#160;MSI installer. Fixes</p>
-<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-2-0-released/">Patch My PC Publisher Production Version 2.2.2.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p>This release contains a fix as noted below.</p>
-
-
-
-<p>This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&nbsp;<strong><a href="https://patchmypc.com/publishing-service-setup-documentation">MSI installer</a></strong>.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-fixes">Fixes</h2>
-
-
-
-<ul class="wp-block-list">
-<li>Revert a change causing a notification with message &#8216;Update complete&#8217;, &#8216;&lt;app name> update complete&#8217;, or similar to appear.</li>
-</ul>
-
-
-
-<p></p>
-<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-2-0-released/">Patch My PC Publisher Production Version 2.2.2.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-2-2-0-released/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
