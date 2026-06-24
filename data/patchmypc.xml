@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 24 Jun 2026 19:26:56 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 24 Jun 2026 20:30:47 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -257,7 +257,11 @@
 
 
 
-<p>After adding the enterprise application exclusion that <a href="https://patchmypc.com/kb/how-does-microsoft-intune-multi/">Ben also mentions in the Patch My PC KB</a>, the same app auth flow completed successfully.</p>
+<h3 class="wp-block-heading" id="h-the-fix-for-x-msft-approval-justification">The Fix For x-msft-approval-justification</h3>
+
+
+
+<p>To fix this x-msft-approval-justification MAA issue you need to add the enterprise application exclusion that <a href="https://patchmypc.com/kb/how-does-microsoft-intune-multi/">Ben also mentions in the Patch My PC KB</a></p>
 
 
 
@@ -265,7 +269,7 @@
 
 
 
-<p>The app was created. The content version was committed. The Win32 app was updated with the committed content version. The script finished. Win32 app creation after MAA exclusion</p>
+<p>After adding the Patch My PC Cloud Enterprise Application to the exclusions, the same app auth flow completed successfully.</p>
 
 
 
@@ -321,7 +325,7 @@
 
 
 
-<p class="has-small-font-size"><strong>Note</strong>: Did you also spotted the userExclusion??  &#8211;> <strong>Select users that will be excluded from requiring Multi Admin Approval for this policy. This also impacts delegated authentication using user credentials.</strong></p>
+<p class="has-small-font-size"><strong>Note</strong>: Did you also spotted the userExclusion??  &#8211;&gt; <strong>Select users that will be excluded from requiring Multi Admin Approval for this policy. This also impacts delegated authentication using user credentials.</strong></p>
 
 
 
