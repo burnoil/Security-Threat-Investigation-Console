@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 24 Jun 2026 17:42:47 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 24 Jun 2026 18:19:06 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -29,15 +29,11 @@
 				<category><![CDATA[Blog]]></category>
 		<guid isPermaLink="false">https://patchmypc.com/?p=187608</guid>
 
-					<description><![CDATA[<p>This blog is about the moment Microsoft expanded Multi Admin Approval to app-based Graph automation, and how Intune app updates suddenly began failing with the x-msft-approval-justification error. We’ll show what changed (the App Exclusion for MAA), what the error looks like, why it affects third-party patching tools, and how the new app exclusion option keeps ... <a href="https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/">Continue Reading  &#187;</a></p>
+					<description><![CDATA[<p>This blog is about the moment Microsoft expanded Multi Admin Approval to app-based Graph automation, and how Intune app updates suddenly began failing with the x-msft-approval-justification error. We’ll show what changed in App MAA enforcement, what the x-msft-approval-justification error looks like, why Intune app automation started failing, and how the new app exclusion keeps trusted ... <a href="https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/">Continue Reading  &#187;</a></p>
 <p>The post <a href="https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/">Intune Multi Admin Approval: The x-msft-approval-justification Error</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p id="h-">This blog is about the moment Microsoft expanded Multi Admin Approval to app-based Graph automation, and how Intune app updates suddenly began failing with the <strong>x-msft-approval-justification</strong> error.</p>
-
-
-
-<p id="h-">We’ll show what changed (<span style="background-color: rgba(0, 0, 0, 0.2);"><strong>the App Exclusion for MAA</strong>), what the error looks like, why it affects</span> third-party patching tools, and how the new app exclusion option keeps trusted automation running.</p>
+<p id="h-">This blog is about the moment Microsoft expanded Multi Admin Approval to app-based Graph automation, and how Intune app updates suddenly began failing with the <strong>x-msft-approval-justification</strong> error. We’ll show what changed in App MAA enforcement, what the x-msft-approval-justification error looks like, why Intune app automation started failing, and how the new app exclusion keeps trusted patching automation running.</p>
 
 
 
@@ -293,23 +289,19 @@
 
 
 
-<p>From a security perspective, I get it. A service principal with write access to Intune apps is powerful. If that identity is abused, someone could change what gets deployed to devices. Microsoft saying app write actions should also be governed is not strange. But this is where the App MAA access policy starts to hit the automation flow.</p>
+<p>From a security perspective, I get it. A service principal with write access to Intune apps is powerful. If that identity is abused, someone could change what gets deployed to devices. Microsoft saying app write actions should also be governed is not strange. But this is where the App MAA access policy starts to hit automation.</p>
 
 
 
-<p>It is not only commercial third-party patching products that have this challenge, it affects all app-based authentication automation. If the automation writes Intune apps protected by an App MAA access policy, it now has to understand the MAA approval flow, or be excluded from that policy.</p>
+<p>It is not only commercial third-party patching products. It also affects internal scripts: app assignment updates, Win32 app creation, metadata changes, or that small helper tool someone built because the portal takes too long. If that automation uses app-based authentication and writes to Intune apps protected by an App MAA access policy, it must now understand the MAA approval flow or be excluded from that policy.</p>
 
 
 
-<p>That is where patching gets tricky.</p>
+<p>That is where patching gets tricky. During testing, the failure occurred when the script attempted to PATCH the Win32 app object with the committed content version. Because that PATCH is an app write action covered by App MAA, Intune expected an <strong>x-msft-approval-justification header. </strong>Without that header, the request failed. That is the difference.</p>
 
 
 
-<p>During testing, the failure occurred when the script attempted to PATCH the Win32 app object with the committed content version. Because that PATCH is an app write action covered by App MAA, Intune expected an x-msft-approval-justification header. Without that header, the request failed.</p>
-
-
-
-<p>That is the difference. This does not silently become a nice pending approval unless the automation was built to request approval in the first place. Without that MAA aware request flow, the app update just fails. For patching automation, that matters. A normal app update, assignment change, metadata change, or content version update can stop at the Graph request if it is protected by App MAA and the automation does not send the required approval headers.</p>
+<p>This does not silently become a nice pending approval unless the automation was built to request approval in the first place. Without that MAA aware request flow, the app update just fails. For patching automation, that matters. A normal app update, assignment change, metadata change, or content version update can stop at the Graph request if it is protected by App MAA and the automation does not send the required approval headers.</p>
 
 
 
@@ -329,7 +321,7 @@
 
 
 
-<p>Microsoft added the option to exclude specific enterprise applications from MAA enforcement for app-authenticated calls. A funny thing to add&#8230; I already spotted the App Exclusion last weekend&#8230; but graph didn&#8217;t permit the Pactch</p>
+<p>Microsoft added the option to exclude specific enterprise applications from MAA enforcement for app-authenticated calls. Funny enough, the App Exclusion option already showed up before the flow fully worked. You could see the setting, but Graph still did not allow the PATCH to go through. That changed once Microsoft finished rolling out the app exclusion behavior.</p>
 
 
 
