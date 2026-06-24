@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 24 Jun 2026 18:19:06 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 24 Jun 2026 19:26:56 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -117,7 +117,7 @@
 
 
 
-<p>Historically, Multi Admin Approval mostly made sense in the portal world. An admin opened the Intune admin center, changed an app, submitted the request, and another admin approved it. That flow can be annoying when you are in a hurry, but at least it is easy to understand. A human asked for a change. Another human approves it…. Yes IT Admins are human beings…</p>
+<p>Historically, Multi Admin Approval mostly made sense in the portal world. An admin opened the Intune admin center, changed an app, submitted the request, and another admin approved it. That flow can be annoying when you are in a hurry, but at least it is easy to understand. A human asked for a change. Another human approves it…. Yes, IT Admins are human beings…</p>
 
 
 
@@ -225,11 +225,7 @@
 
 
 
-<p>That last part is where the fun starts. The package was uploaded. The commit came back as successful. The file state showed commitFileSuccess.</p>
-
-
-
-<p>And then the final PATCH request failed. Not because the package was broken, or because the app registration suddenly lost access. It failed because Multi Admin Approval stepped in.</p>
+<p>That last part is where the fun starts. The package was uploaded. The commit came back as successful. The file state showed commitFile Success and then the final PATCH request failed. Not because the package was broken, or because the app registration suddenly lost access. It failed because Multi Admin Approval stepped in.</p>
 
 
 
@@ -249,11 +245,7 @@
 
 
 
-<p>So the content pipeline did its job. The failure happened when the automation tried to update the Win32 app with the committed content version. MAA Graph error before exclusion The important part is this message:</p>
-
-
-
-<p>Header &#8216;x-msft-approval-justification&#8217; is required to request approval</p>
+<p>So the content pipeline did its job. The failure happened when the automation tried to update the Win32 app with the committed content version. MAA Graph error before exclusion. The important part is this message: Header &#8216;x-msft-approval-justification&#8217; is required to request approval</p>
 
 
 
@@ -321,11 +313,15 @@
 
 
 
-<p>Microsoft added the option to exclude specific enterprise applications from MAA enforcement for app-authenticated calls. Funny enough, the App Exclusion option already showed up before the flow fully worked. You could see the setting, but Graph still did not allow the PATCH to go through. That changed once Microsoft finished rolling out the app exclusion behavior.</p>
+<p>Microsoft added the option to exclude specific enterprise applications from MAA enforcement for app-authenticated calls. Funny enough, the App Exclusion option already showed up before the flow fully worked. You could see the setting, but Graph still did not allow the PATCH to go through. That changed once Microsoft finished rolling out the app exclusion behavior. </p>
 
 
 
 <figure class="wp-block-image size-full"><img decoding="async" width="519" height="337" src="https://patchmypc.com/app/uploads/2026/06/image-63.png" alt="" class="wp-image-187638" srcset="https://patchmypc.com/app/uploads/2026/06/image-63.png 519w, https://patchmypc.com/app/uploads/2026/06/image-63-300x195.png 300w" sizes="(max-width: 519px) 100vw, 519px" /></figure>
+
+
+
+<p class="has-small-font-size"><strong>Note</strong>: Did you also spotted the userExclusion??  &#8211;> <strong>Select users that will be excluded from requiring Multi Admin Approval for this policy. This also impacts delegated authentication using user credentials.</strong></p>
 
 
 
