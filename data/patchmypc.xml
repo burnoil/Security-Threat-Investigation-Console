@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Tue, 23 Jun 2026 15:52:34 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 24 Jun 2026 14:11:34 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,357 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>Intune Multi Admin Approval: The x-msft-approval-justification Error</title>
+		<link>https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/</link>
+					<comments>https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/#respond</comments>
+		
+		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
+		<pubDate>Wed, 24 Jun 2026 14:08:29 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=187608</guid>
+
+					<description><![CDATA[<p>This blog is about the moment Microsoft expanded Multi Admin Approval to app-based Graph automation, and how Intune app updates suddenly began failing with the x-msft-approval-justification error. We’ll show what changed (the App Exclusion for MAA), what the error looks like, why it affects third-party patching tools, and how the new app exclusion option keeps ... <a href="https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/">Continue Reading  &#187;</a></p>
+<p>The post <a href="https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/">Intune Multi Admin Approval: The x-msft-approval-justification Error</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p id="h-">This blog is about the moment Microsoft expanded Multi Admin Approval to app-based Graph automation, and how Intune app updates suddenly began failing with the <strong>x-msft-approval-justification</strong> error.</p>
+
+
+
+<p id="h-">We’ll show what changed (<span style="background-color: rgba(0, 0, 0, 0.2);"><strong>the App Exclusion for MAA</strong>), what the error looks like, why it affects</span> third-party patching tools, and how the new app exclusion option keeps trusted automation running.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-introduction">Introduction</h2>
+
+
+
+<p>Some security features only get interesting when something breaks. Multi-Admin Approval in Microsoft Intune is one such feature. At first glance, it sounds simple. One admin wants to make a sensitive change. Another admin needs to approve it before Intune applies that change.</p>
+
+
+
+<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="351" src="https://patchmypc.com/app/uploads/2026/06/image-13.jpg" alt="Multi Admin Approval" class="wp-image-187611" srcset="https://patchmypc.com/app/uploads/2026/06/image-13.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-13-300x169.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>That is it. No magic. No fancy dashboard. Just another person standing between a request and the button that can change something important in your tenant. And honestly, that part makes sense.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-why-microsoft-is-pushing-multi-admin-approval">Why Microsoft Is Pushing Multi-Admin Approval</h2>
+
+
+
+<p>Microsoft is pretty clear about the reason. <strong><a href="https://learn.microsoft.com/en-us/intune/fundamentals/role-based-access-control/multi-admin-approval">Multi Admin Approval</a></strong>, or <strong>MAA</strong>, is designed to help protect Intune against a single compromised administrative account.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="42" src="https://patchmypc.com/app/uploads/2026/06/image-44-1024x42.png" alt="" class="wp-image-187612" srcset="https://patchmypc.com/app/uploads/2026/06/image-44-1024x42.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-44-300x12.png 300w, https://patchmypc.com/app/uploads/2026/06/image-44-768x32.png 768w, https://patchmypc.com/app/uploads/2026/06/image-44.png 1400w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>&nbsp;If one admin account gets stolen, that account should not be able to quietly make high-impact changes on its own.</p>
+
+
+
+<p>That matters because Intune is not just a portal with some policy settings. Intune is a control plane. It can deploy apps and scripts, and it can even wipe, retire, and delete devices, <a href="https://www.lumos.com/blog/stryker-hack">as we have all witnessed with the Stryker issue</a>.</p>
+
+
+
+<p>This is the real reason <strong>Multi Admin Approval</strong> exists. It is not about making admin life harder for fun. It is about preventing a compromised identity from becoming the only thing required to push a risky Intune change.</p>
+
+
+
+<p>An attacker with the right Intune permissions could change an app, deploy a script, modify a policy, or trigger a destructive device action. Multi Admin Approval forces that change into a second approval step before it becomes active.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="83" src="https://patchmypc.com/app/uploads/2026/06/image-45.png" alt="" class="wp-image-187614" srcset="https://patchmypc.com/app/uploads/2026/06/image-45.png 624w, https://patchmypc.com/app/uploads/2026/06/image-45-300x40.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>That is also why you will see people connect Multi Admin Approval to recent discussions around management plane abuse and remote wipe scenarios. The exact public details around some of those incidents can be messy, so I would be careful with hard claims. But the lesson is still valid: if your management plane is abused, the blast radius can be huge.</p>
+
+
+
+<p><strong>Multi Admin Approval</strong> helps with that. But we also need to stay honest. Multi-admin approval does not solve every single security problem. It does NOT stop the first account from being compromised, and it does not replace all other security measures you should have in place. It is another barrier. A useful one, yes. But still a barrier.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-four-eyes-principle-in-intune">The Four Eyes Principle In Intune</h2>
+
+
+
+<p>MAA is essentially the four-eyes principle in Intune. One admin creates the request. Another admin reviews it.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="110" src="https://patchmypc.com/app/uploads/2026/06/image-62-1024x110.png" alt="" class="wp-image-187637" srcset="https://patchmypc.com/app/uploads/2026/06/image-62-1024x110.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-62-300x32.png 300w, https://patchmypc.com/app/uploads/2026/06/image-62-768x82.png 768w, https://patchmypc.com/app/uploads/2026/06/image-62-1536x165.png 1536w, https://patchmypc.com/app/uploads/2026/06/image-62-2048x220.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>If it makes sense, the request gets approved. If it looks wrong, unexpected, or does not match the change ticket, it can be rejected. That is the clean version of the story.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="493" src="https://patchmypc.com/app/uploads/2026/06/image-59-1024x493.png" alt="" class="wp-image-187631" srcset="https://patchmypc.com/app/uploads/2026/06/image-59-1024x493.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-59-300x144.png 300w, https://patchmypc.com/app/uploads/2026/06/image-59-768x370.png 768w, https://patchmypc.com/app/uploads/2026/06/image-59.png 1373w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>In practice, the requester still needs to finish the change after approval. So the flow is not just approved and done. The original admin submits the change, the approver approves it, and then the requestor completes it so Intune can apply the change.</p>
+
+
+
+<p>That extra step is important. It gives organizations a place to slow down risky changes before they become real. And when we are talking about wipe, retire, delete, scripts, apps, or RBAC changes, slowing down is not always a bad thing.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-old-multi-admin-approval-behavior-was-easier-to-understand">The old multi-admin approval behavior was easier to understand</h2>
+
+
+
+<p>Historically, Multi Admin Approval mostly made sense in the portal world. An admin opened the Intune admin center, changed an app, submitted the request, and another admin approved it. That flow can be annoying when you are in a hurry, but at least it is easy to understand. A human asked for a change. Another human approves it…. Yes It Admins are human beings…</p>
+
+
+
+<p>That was also why many <strong>automation flows</strong> were <strong>NOT</strong> affected before. Third-party tools using application authentication, service principals, or app registrations could still do their job because they were not acting as a signed-in delegated admin.</p>
+
+
+
+<p>For third-party patching products, that distinction mattered a lot. Patch automation is not someone manually editing one app at a time. It is a service principal or app registration that creates and updates Intune apps, assignments, metadata, detection rules, and content via Microsoft Graph. That is the whole point.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-then-microsoft-changed-the-scope">Then Microsoft Changed The Scope</h2>
+
+
+
+<p>Microsoft has now documented that Multi Admin Approval also applies to automation using Microsoft Graph.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="623" height="477" src="https://patchmypc.com/app/uploads/2026/06/image-15.jpg" alt="" class="wp-image-187616" srcset="https://patchmypc.com/app/uploads/2026/06/image-15.jpg 623w, https://patchmypc.com/app/uploads/2026/06/image-15-300x230.jpg 300w" sizes="(max-width: 623px) 100vw, 623px" /></figure>
+
+
+
+<p>That includes service principals, automation scripts, and third-party applications when they modify protected Intune resources. Read-only calls are not affected, but writes, such as create, update, assign, delete, or similar changes, can be intercepted.</p>
+
+
+
+<p>That is the part that changes the conversation. This is no longer only about admins clicking around in the Intune portal. This is now also about every tool that writes into Intune through Graph. And yes, for a third-party patching company, that becomes a problem very quickly.</p>
+
+
+
+<p>If an App MAA Access policy protects Intune apps and a patching product attempts to create or update a Win32 app, the request can fail unless the automation supports the MAA approval flow or the application is excluded from enforcement.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="287" src="https://patchmypc.com/app/uploads/2026/06/image-48.png" alt="" class="wp-image-187613" srcset="https://patchmypc.com/app/uploads/2026/06/image-48.png 624w, https://patchmypc.com/app/uploads/2026/06/image-48-300x138.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>Microsoft documents both paths: update the automation to use the approval workflow, OR exclude a specific application from MAA enforcement when that code change is not immediately possible.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="421" height="354" src="https://patchmypc.com/app/uploads/2026/06/image-46.png" alt="" class="wp-image-187610" srcset="https://patchmypc.com/app/uploads/2026/06/image-46.png 421w, https://patchmypc.com/app/uploads/2026/06/image-46-300x252.png 300w" sizes="(max-width: 421px) 100vw, 421px" /></figure>
+
+
+
+<p>This is also why some older MAA guidance is now outdated. Earlier, it was fair to say that App Registrations and service principals were not covered in the same way as delegated admin actions were. That changed. App authenticated Graph calls are now part of the story.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-x-msft-approval-justification-multi-admin-approval-error">The x-msft-approval-justification <strong>Multi Admin Approval</strong> error</h2>
+
+
+
+<p>This is where most admins will first notice the change. Not in a nice warning. Not in a clean message saying your automation is now waiting for approval. It usually starts with a failed Graph call.</p>
+
+
+
+<p>When an application attempts to modify a protected Intune resource and Multi Admin Approval is in the way, Microsoft Graph can return an error indicating a missing approval header. The important part is that this is not always a normal permission problem. It can mean the request was caught by MAA and now needs to go through the approval flow.</p>
+
+
+
+<p>The error you want to look for is this one: <strong>Header &#8216;x-msft-approval-justification&#8217; is required to request approval</strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="294" src="https://patchmypc.com/app/uploads/2026/06/image-56-1024x294.png" alt="Header 'x-msft-approval-justification' is required to request approval" class="wp-image-187628" srcset="https://patchmypc.com/app/uploads/2026/06/image-56-1024x294.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-56-300x86.png 300w, https://patchmypc.com/app/uploads/2026/06/image-56-768x221.png 768w, https://patchmypc.com/app/uploads/2026/06/image-56-1536x442.png 1536w, https://patchmypc.com/app/uploads/2026/06/image-56-2048x589.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>That is the money shot. If you are troubleshooting Intune automation and you see <strong>x-msft-approval-justification</strong>, you are not just looking at a broken Graph request. You are looking at Multi Admin Approval enforcement.</p>
+
+
+
+<p>The app may still have the correct Graph permissions. The token may still be valid. The service principal may still be allowed to manage Intune apps. But MAA is now standing between the request and the actual change.</p>
+
+
+
+<p>Microsoft also documents that the first request needs a Base64 <strong><a href="https://learn.microsoft.com/en-us/intune/fundamentals/role-based-access-control/multi-admin-approval-graph-api#step-1-submit-a-request-with-a-justification-header">encoded x-msft-approval-justification</a></strong> header. After approval, the original request must be sent again with the x-msft-approval-code header. That flow makes sense when you own the automation code and can build the approval workflow around it.</p>
+
+
+
+<p>It becomes a lot harder when the automation is part of a third-party patching product that is expected to run quietly in the background. That is why the <strong>x-msft-approval-justification</strong> error matters. It tells you this is not just Microsoft Graph being broken. It may be Intune Multi Admin Approval doing exactly what it was told to do.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-multi-admin-approval-x-msft-approval-justification-test">The <strong>Multi Admin Approval</strong> x-msft-approval-justification Test.</h2>
+
+
+
+<p>To test it, we used a small test script. The important part is not the test app itself. The important part is how the script authenticates.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="170" src="https://patchmypc.com/app/uploads/2026/06/image-60-1024x170.png" alt="" class="wp-image-187632" srcset="https://patchmypc.com/app/uploads/2026/06/image-60-1024x170.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-60-300x50.png 300w, https://patchmypc.com/app/uploads/2026/06/image-60-768x127.png 768w, https://patchmypc.com/app/uploads/2026/06/image-60-1536x255.png 1536w, https://patchmypc.com/app/uploads/2026/06/image-60-2048x340.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>It does not use a signed-in Intune admin clicking around in the portal. It uses app auth. You feed it a tenant ID, an app ID, and a client secret. The app registration needs DeviceManagementApps.ReadWrite.All, and then the script connects to Microsoft Graph using the client secret credential.</p>
+
+
+
+<p>That matters because this is exactly the kind of flow many automation tools use. The script then builds a small .intunewin package, creates a Win32 app record in Intune, creates a content version, uploads the content to Azure Storage, commits the file content back to Intune, waits for commitFileSuccess, and finally updates the Win32 app with the committed content version.</p>
+
+
+
+<p>That last part is where the fun starts. The package was uploaded. The commit came back as successful. The file state showed commitFileSuccess.</p>
+
+
+
+<p>And then the final PATCH request failed. Not because the package was broken, or because the app registration suddenly lost access. It failed because Multi Admin Approval stepped in.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="294" src="https://patchmypc.com/app/uploads/2026/06/image-61-1024x294.png" alt="Header 'x-msft-approval-justification' is required to request approval" class="wp-image-187633" srcset="https://patchmypc.com/app/uploads/2026/06/image-61-1024x294.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-61-300x86.png 300w, https://patchmypc.com/app/uploads/2026/06/image-61-768x221.png 768w, https://patchmypc.com/app/uploads/2026/06/image-61-1536x442.png 1536w, https://patchmypc.com/app/uploads/2026/06/image-61.png 1903w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<h2 class="wp-block-heading" id="h-the-before-and-after-x-msft-approval-justification-proof">The Before And After x-msft-approval-justification Proof</h2>
+
+
+
+<p>This is where the theory becomes visible. In the failing run, the script already uploaded the Win32 content. The blocks were committed to Azure Storage. The upload state was verified. The commit request was sent. Intune returned commitFileSuccess.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="83" src="https://patchmypc.com/app/uploads/2026/06/image-49.png" alt="Header 'x-msft-approval-justification' is required to request approval" class="wp-image-187622" srcset="https://patchmypc.com/app/uploads/2026/06/image-49.png 624w, https://patchmypc.com/app/uploads/2026/06/image-49-300x40.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>So the content pipeline did its job. The failure happened when the automation tried to update the Win32 app with the committed content version. MAA Graph error before exclusion The important part is this message:</p>
+
+
+
+<p>Header &#8216;x-msft-approval-justification&#8217; is required to request approval</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="294" src="https://patchmypc.com/app/uploads/2026/06/image-57-1024x294.png" alt="Header 'x-msft-approval-justification' is required to request approval" class="wp-image-187629" srcset="https://patchmypc.com/app/uploads/2026/06/image-57-1024x294.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-57-300x86.png 300w, https://patchmypc.com/app/uploads/2026/06/image-57-768x221.png 768w, https://patchmypc.com/app/uploads/2026/06/image-57-1536x442.png 1536w, https://patchmypc.com/app/uploads/2026/06/image-57.png 1903w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>That tells us this is not a normal Win32 app upload issue. It is Multi Admin Approval enforcement. You can see the same type of response in Graph as well. The request fails with Bad Request 400, and the response body points directly to the missing MAA approval header. If you see x-msft-approval-justification in the error, you are no longer looking at a generic Graph permission issue. You are looking at an Intune change that is being forced into the <strong>Multi Admin Approval flow.</strong></p>
+
+
+
+<p>After adding the enterprise application exclusion that <a href="https://patchmypc.com/kb/how-does-microsoft-intune-multi/">Ben also mentions in the Patch My PC KB</a>, the same app auth flow completed successfully.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="337" src="https://patchmypc.com/app/uploads/2026/06/image-50.png" alt="" class="wp-image-187615" srcset="https://patchmypc.com/app/uploads/2026/06/image-50.png 624w, https://patchmypc.com/app/uploads/2026/06/image-50-300x162.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>The app was created. The content version was committed. The Win32 app was updated with the committed content version. The script finished. Win32 app creation after MAA exclusion</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="164" src="https://patchmypc.com/app/uploads/2026/06/image-58-1024x164.png" alt="" class="wp-image-187630" srcset="https://patchmypc.com/app/uploads/2026/06/image-58-1024x164.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-58-300x48.png 300w, https://patchmypc.com/app/uploads/2026/06/image-58-768x123.png 768w, https://patchmypc.com/app/uploads/2026/06/image-58-1536x246.png 1536w, https://patchmypc.com/app/uploads/2026/06/image-58.png 1943w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>That is the difference the exclusion makes. MAA still protects the workload, but the trusted automation identity is no longer forced through a manual approval flow. For patching, that distinction matters. You keep the approval barrier for risky human changes, but you do not turn every normal app update into a stuck approval request.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-multi-admin-approval-app-access-policy-exclusion"><strong>Multi Admin Approval</strong> App Access Policy Exclusion</h2>
+
+
+
+<p>The practical answer for trusted automation is the exclusion that just showed up in your tenants!!</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="709" height="173" src="https://patchmypc.com/app/uploads/2026/06/image-55.png" alt="" class="wp-image-187626" srcset="https://patchmypc.com/app/uploads/2026/06/image-55.png 709w, https://patchmypc.com/app/uploads/2026/06/image-55-300x73.png 300w" sizes="(max-width: 709px) 100vw, 709px" /></figure>
+
+
+
+<p>Microsoft added the option to exclude specific enterprise applications from MAA enforcement for app-authenticated calls. A funny thing to add&#8230; I already spotted the App Exclusion last weekend&#8230; but graph didn&#8217;t permit the Pactch</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="519" height="337" src="https://patchmypc.com/app/uploads/2026/06/image-63.png" alt="" class="wp-image-187638" srcset="https://patchmypc.com/app/uploads/2026/06/image-63.png 519w, https://patchmypc.com/app/uploads/2026/06/image-63-300x195.png 300w" sizes="(max-width: 519px) 100vw, 519px" /></figure>
+
+
+
+<p>But with the App Exclusion active for the App MAA policy, customers can keep Multi Admin Approval enabled for human admins while still allowing trusted automation to continue running.</p>
+
+
+
+<p>That is the balance. You do not disable the entire security feature just because patching needs to work. You exclude the trusted app identity that performs the patching automation while keeping the rest of the MAA policy in place.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="337" src="https://patchmypc.com/app/uploads/2026/06/image-53.png" alt="" class="wp-image-187623" srcset="https://patchmypc.com/app/uploads/2026/06/image-53.png 624w, https://patchmypc.com/app/uploads/2026/06/image-53-300x162.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<h2 class="wp-block-heading" id="h-multi-admin-approval-needs-a-real-process">Multi-Admin Approval Needs A Real Process</h2>
+
+
+
+<p>The mistake would be treating MAA as a checkbox. If you enable it without thinking, you can break automation. If you protect RBAC before your approver groups and role assignments are correct, you can create your own admin headache. Also, if no one monitors the approval queue, urgent changes can sit there. If every normal patching update needs manual approval, your patch process becomes slower by design.</p>
+
+
+
+<p>So yes, enable Multi Admin Approval where it makes sense. Implement it for high-impact areas. Use it for wipe, retire, delete, scripts, apps, RBAC, and other sensitive Intune changes where a second set of eyes makes sense.</p>
+
+
+
+<p>But also document who approves, how fast they approve, document what gets excluded, and document which automation identities are trusted. Security without process just becomes another place where things fail quietly.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-real-multi-admin-approval-takeaway">The Real <strong>Multi Admin Approval</strong> Takeaway</h2>
+
+
+
+<p>Multi Admin Approval is <strong>NOT</strong> bad. Microsoft recommending it is not strange. Intune has too much power for one compromised admin account to be the only thing standing between an attacker and a destructive change.</p>
+
+
+
+<p>But MAA is not the whole castle. It is one more gate.</p>
+
+
+
+<p>For human admin actions, that gate makes sense. Automation needs more care. Third-party patching tools do not work like a person in the portal. They need predictable Graph access to keep apps updated and devices patched. That is why the MAA App Access Policy exclusion story matters so much.</p>
+
+
+
+<p>Because at the end of the day, a security feature that delays patching can become a risk in itself.</p>
+<p>The post <a href="https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/">Intune Multi Admin Approval: The x-msft-approval-justification Error</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Patch My PC Publisher Preview Version 2.3.2.54 Released</title>
 		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/</link>
 					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/#respond</comments>
@@ -314,7 +665,7 @@
 
 
 
-<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="111" src="https://patchmypc.com/app/uploads/2026/06/image-10.png" alt="" class="wp-image-186950" srcset="https://patchmypc.com/app/uploads/2026/06/image-10.png 624w, https://patchmypc.com/app/uploads/2026/06/image-10-300x53.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="111" src="https://patchmypc.com/app/uploads/2026/06/image-10.png" alt="" class="wp-image-186950" srcset="https://patchmypc.com/app/uploads/2026/06/image-10.png 624w, https://patchmypc.com/app/uploads/2026/06/image-10-300x53.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
 
 
 
@@ -1704,293 +2055,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/intune-last-check-in-when-devices-appear-active-but-cannot-sync/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Download IntuneWin Files from Microsoft Intune V2</title>
-		<link>https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/</link>
-					<comments>https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Thu, 14 May 2026 07:31:49 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=184605</guid>
-
-					<description><![CDATA[<p>Download IntuneWin files from Microsoft Intune with the rebuilt IntuneWin Downloader. This version makes it easier to find assigned Win32 apps and recover the original app content when the source files are no longer available.</p>
-<p>The post <a href="https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/">Download IntuneWin Files from Microsoft Intune V2</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p>In the first version of the IntuneWin Downloader, the goal was simple: <strong>Download IntuneWin</strong> content from Intune and recover the original Win32 app source files when they were no longer available locally. That blog walked through the IME style flow: find the Intune MDM device certificate, discover the SideCar Gateway, request ContentInfo, download the encrypted content, decrypt it, and extract the package. It also made one thing very clear: this only works when the app is still assigned to the device or user. It was never about bypassing Intune assignments.</p>
-
-
-
-<p>That first version worked, but it still felt a bit rough around the edges. You needed the AppId, you needed the right token to be present in the local TokenBroker cache, and when the cache contained multiple tokens, picking the right one could become a bit of a gamble.</p>
-
-
-
-<p>So I went back into the IME flow. Not to change what the tool was doing, but to make the <strong>IntuneWin Downloader</strong> behave more like the IME and Company Portal. With it&#8230; The tool looks like this.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="659" src="https://patchmypc.com/app/uploads/2026/05/image-30-1024x659.png" alt="Download IntuneWin files  straight from intune using WAM for the tokens" class="wp-image-184622" srcset="https://patchmypc.com/app/uploads/2026/05/image-30-1024x659.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-30-300x193.png 300w, https://patchmypc.com/app/uploads/2026/05/image-30-768x494.png 768w, https://patchmypc.com/app/uploads/2026/05/image-30.png 1248w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<h2 class="wp-block-heading" id="h-the-first-version-chasing-the-tbres-token">The first version: chasing the .tbres token</h2>
-
-
-
-<p><strong><a href="https://patchmypc.com/blog/download-intunewin-win32-app-files-from-intune/">The first version of the tool relied on the local TokenBroker cache. </a></strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="774" height="438" src="https://patchmypc.com/app/uploads/2026/05/image-20.png" alt="" class="wp-image-184608" srcset="https://patchmypc.com/app/uploads/2026/05/image-20.png 774w, https://patchmypc.com/app/uploads/2026/05/image-20-300x170.png 300w, https://patchmypc.com/app/uploads/2026/05/image-20-768x435.png 768w" sizes="(max-width: 774px) 100vw, 774px" /></figure>
-
-
-
-<p>The idea was straightforward. The Intune Management Extension already requires a bearer token when communicating with the SideCar Gateway. That token could often be found in the user’s local TokenBroker cache as a .tbres file.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="770" height="189" src="https://patchmypc.com/app/uploads/2026/05/image-35.png" alt="" class="wp-image-184636" srcset="https://patchmypc.com/app/uploads/2026/05/image-35.png 770w, https://patchmypc.com/app/uploads/2026/05/image-35-300x74.png 300w, https://patchmypc.com/app/uploads/2026/05/image-35-768x189.png 768w" sizes="(max-width: 770px) 100vw, 770px" /></figure>
-
-
-
-<p>So the script would look through the cache, decrypt ResponseBytes using DPAPI in the current user context, search for a JWT, and then use that token for the SideCar calls. That worked, but it had some weak spots.</p>
-
-
-
-<p>The token had to exist in the tbres cache. The Intunewin Download script had to run as the same user who owned that cache. The cache had to contain a still-valid token. And when the decrypted response contained multiple JWTs, the script had to ensure it did not grab the wrong one. That last part is where things became interesting. A token can be valid and not expired, yet still be completely useless for the endpoint you are calling. If the audience does not match what SideCar expects, the request will fail anyway. So, yes, the .tbres approach was useful. But it was not the cleanest way forward.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-moment-wam-changed-the-intunewin-download"><strong>The moment WAM changed the IntuneWin Download</strong></h2>
-
-
-
-<p>The newer version no longer depends on scraping .tbres files. Instead of hunting for a cached token, the tool now asks <strong><a href="https://learn.microsoft.com/en-us/entra/identity-platform/reference-entra-id-wam-api">WAM directly</a></strong>.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="628" height="166" src="https://patchmypc.com/app/uploads/2026/05/image-25.png" alt="" class="wp-image-184613" srcset="https://patchmypc.com/app/uploads/2026/05/image-25.png 628w, https://patchmypc.com/app/uploads/2026/05/image-25-300x79.png 300w" sizes="(max-width: 628px) 100vw, 628px" /></figure>
-
-
-
-<p><strong>WAM, or Web Account Manager,</strong> is the Windows broker layer that apps use to request tokens for signed-in accounts. The important part is that the tool no longer needs to rely on the assumption that the right token already exists in the cache. It can request the token itself, using the correct client and resource pair.</p>
-
-
-
-<p>That changed the tool from this:</p>
-
-
-
-<ul class="wp-block-list">
-<li>Find TokenBroker cache</li>
-
-
-
-<li>Decrypt .tbres</li>
-
-
-
-<li>Extract token</li>
-
-
-
-<li>Hope it is the right one</li>
-
-
-
-<li>Call SideCar</li>
-</ul>
-
-
-
-<p>into this:</p>
-
-
-
-<ul class="wp-block-list">
-<li>Ask WAM for the right token</li>
-
-
-
-<li>Use the MDM device certificate</li>
-
-
-
-<li>Call the right Intune client-side endpoint</li>
-
-
-
-<li>Download the content</li>
-
-
-
-<li>Process the package</li>
-</ul>
-
-
-
-<p>That sounds small, but it makes the flow much more reliable.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-two-different-lanes-two-different-tokens-to-download-the-intunewin">Two different lanes, two different tokens to download the IntuneWin</h2>
-
-
-
-<p>The next lesson was that “Intune token” is too vague. The <strong>Company Portal and IME do not use one magic token for everything</strong>. The Company Portal catalog and the IME SideCar flow are different lanes, and each lane expects a token with the correct audience.</p>
-
-
-
-<p>For the Company Portal catalog lane, the tool uses the Company Portal client and the IWService resource.</p>
-
-
-
-<p><strong>Company Portal</strong><br>ClientId&nbsp; = 9ba1a5c7-f17a-4de9-a1f1-6178c8d51223<br>Resource&nbsp; = b8066b99-6e67-41be-abfa-75db1a2c8809</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="708" height="70" src="https://patchmypc.com/app/uploads/2026/05/image-24.png" alt="" class="wp-image-184612" srcset="https://patchmypc.com/app/uploads/2026/05/image-24.png 708w, https://patchmypc.com/app/uploads/2026/05/image-24-300x30.png 300w" sizes="(max-width: 708px) 100vw, 708px" /></figure>
-
-
-
-<p>That token is used to talk to the IWService catalog endpoint. This is the lane that helps us list apps with a friendly name and an AppId, without having to manually copy the AppId from the Intune portal. For the IME SideCar lane, the tool uses the IME SideCar client and resource pair.</p>
-
-
-
-<p><strong>IME SideCar</strong><br>ClientId&nbsp; = fc0f3af4-6835-4174-b806-f7db311fd2f3<br>Resource&nbsp; = 26a4ae64-5862-427f-a9b0-044e62572a4f</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="750" height="144" src="https://patchmypc.com/app/uploads/2026/05/image-23.png" alt="" class="wp-image-184611" srcset="https://patchmypc.com/app/uploads/2026/05/image-23.png 750w, https://patchmypc.com/app/uploads/2026/05/image-23-300x58.png 300w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
-
-
-
-<p>That token is used for the SideCar GetContentInfo flow. This split is important. The Company Portal token can help you discover apps, but it is not the token that SideCar wants when you request content. The SideCar token can help you resolve content, but it is not the cleanest way to list the Company Portal catalog. So the new tool uses both lanes for what they do best.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-discovering-the-apps-with-the-company-portal-catalog">Discovering the apps with the Company Portal catalog</h2>
-
-
-
-<p>The first version required you to know the AppId. That was annoying. Yes, you could get it from the Intune portal. Yes, you could use Graph. But the Company Portal already has a catalog view of apps relevant to the user and device. So the better approach was to use the Company Portal catalog lane for discovery&#8230; which just worked perfectly.</p>
-
-
-
-<p>The tool now requests a WAM token for the Company Portal IWService resource and calls the IWService catalog endpoint. From there, it builds the app list in the UI. That gives us the display name and AppId without having to manually search for them. The important thing is that this is only used for discovery. It does not download anything yet. It only answers the question: <strong>Which apps does the Company Portal know about?</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="895" height="80" src="https://patchmypc.com/app/uploads/2026/05/image-26.png" alt="" class="wp-image-184614" srcset="https://patchmypc.com/app/uploads/2026/05/image-26.png 895w, https://patchmypc.com/app/uploads/2026/05/image-26-300x27.png 300w, https://patchmypc.com/app/uploads/2026/05/image-26-768x69.png 768w" sizes="(max-width: 895px) 100vw, 895px" /></figure>
-
-
-
-<p> The download still happens through the IME SideCar flow.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-downloading-the-intunewin-still-belongs-to-sidecar">Downloading the IntuneWin still belongs to SideCar</h2>
-
-
-
-<p>Once you select an app, the tool switches lanes. It takes the selected AppId and calls SideCar GetContentInfo using the SideCar WAM token and the local Intune MDM device certificate. That part still follows the same idea as the original blog. The device identity matters. The MDM certificate matters. The SideCar Gateway matters. The app assignment still matters.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="211" src="https://patchmypc.com/app/uploads/2026/05/image-27-1024x211.png" alt="" class="wp-image-184616" srcset="https://patchmypc.com/app/uploads/2026/05/image-27-1024x211.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-27-300x62.png 300w, https://patchmypc.com/app/uploads/2026/05/image-27-768x158.png 768w, https://patchmypc.com/app/uploads/2026/05/image-27.png 1141w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>The tool first discovers the correct SideCar Gateway URI for the tenant and scale unit. Then it sends the GetContentInfo request for the selected AppId and ApplicationVersion.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="748" height="175" src="https://patchmypc.com/app/uploads/2026/05/image-28.png" alt="" class="wp-image-184618" srcset="https://patchmypc.com/app/uploads/2026/05/image-28.png 748w, https://patchmypc.com/app/uploads/2026/05/image-28-300x70.png 300w" sizes="(max-width: 748px) 100vw, 748px" /></figure>
-
-
-
-<p>If SideCar allows the current device or user to resolve the content, it returns the metadata needed to download and process the package. If SideCar rejects it, the tool does not magically work around that.</p>
-
-
-
-<p>And that is exactly how it should be.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-regular-win32-apps-versus-catalog-apps">Regular Win32 apps versus catalog apps</h2>
-
-
-
-<p>The original IntuneWin flow is built around encrypted content. A regular Win32 app returns encrypted content metadata. The tool downloads the .intunewin content, uses the returned encryption information, decrypts the payload with AES, and extracts the resulting zip.</p>
-
-
-
-<p>That is the classic path. But Enterprise App Management catalog apps can behave differently. For some of those apps, the metadata returns: ProfileIdentifier = NoEncryption</p>
-
-
-
-<p>That changes the processing flow. When NoEncryption is enabled, there is no AES key or IV to use in the classic way. The tool should not keep trying to decrypt something that was not returned as an encrypted IntuneWin payload. Instead, it treats the downloaded content as the decoded zip and extracts it directly.</p>
-
-
-
-<p>That was one of those small details that only becomes obvious once the tool starts working against more than just manually uploaded Win32 apps.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-what-the-intunwin-download-tool-does-now">What the Intunwin Download tool does now</h2>
-
-
-
-<p>The current flow looks like this. The tool starts by initializing the local Intune identity context. It locates the MDM device certificate and extracts the device identity. It then discovers the SideCar Gateway URI for the device’s Intune environment.</p>
-
-
-
-<p>For app discovery, it requests a Company Portal IWService token through WAM and loads the Company Portal catalog. That gives the UI a clean list of apps with display names and AppIDs.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="657" src="https://patchmypc.com/app/uploads/2026/05/image-33-1024x657.png" alt="Download IntuneWin files  straight from intune using WAM for the tokens" class="wp-image-184631" srcset="https://patchmypc.com/app/uploads/2026/05/image-33-1024x657.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-33-300x193.png 300w, https://patchmypc.com/app/uploads/2026/05/image-33-768x493.png 768w, https://patchmypc.com/app/uploads/2026/05/image-33.png 1217w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>For downloading, it requests an IME SideCar token through WAM, calls <strong>GetContentInfo with the MDM device certificate</strong>, downloads the content, and then processes it based on the returned metadata.&nbsp; If the metadata contains regular encryption information, the tool decrypts and extracts the IntuneWin content.If the metadata says NoEncryption, it skips AES decryption and extracts the downloaded zip directly.</p>
-
-
-
-<p>And because large app packages can take some time, the tool now shows a separate download progress dialog instead of making the UI look frozen while the content is being downloaded. </p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="452" src="https://patchmypc.com/app/uploads/2026/05/image-34-1024x452.png" alt="Download IntuneWin files  straight from intune using WAM for the tokens" class="wp-image-184632" srcset="https://patchmypc.com/app/uploads/2026/05/image-34-1024x452.png 1024w, https://patchmypc.com/app/uploads/2026/05/image-34-300x132.png 300w, https://patchmypc.com/app/uploads/2026/05/image-34-768x339.png 768w, https://patchmypc.com/app/uploads/2026/05/image-34.png 1246w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p><strong>Please Note</strong>: You can download the<a href="https://github.com/call4cloud-code/Intunewin-Downloader-Public"> Intunewin Downloader here. </a></p>
-
-
-
-<h2 class="wp-block-heading" id="h-conclusion">Conclusion</h2>
-
-
-
-<p>Recovering IntuneWin content from Intune was already possible, as long as the app was still assigned and the device could resolve the content. The first version showed that by following the IME flow and manually pulling the pieces together. This newer version takes the next step.</p>
-
-
-
-<p>It uses WAM instead of hunting through .tbres files, uses the Company Portal catalog for AppId discovery, uses the IME SideCar lane for content resolution, and handles both encrypted Win32 packages and catalog apps that return NoEncryption.</p>
-
-
-
-<p></p>
-<p>The post <a href="https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/">Download IntuneWin Files from Microsoft Intune V2</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/download-intunewin-files-from-microsoft-intune/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
