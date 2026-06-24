@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 24 Jun 2026 14:11:34 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 24 Jun 2026 17:42:47 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -73,23 +73,15 @@
 
 
 
-<p>That matters because Intune is not just a portal with some policy settings. Intune is a control plane. It can deploy apps and scripts, and it can even wipe, retire, and delete devices, <a href="https://www.lumos.com/blog/stryker-hack">as we have all witnessed with the Stryker issue</a>.</p>
+<p>That is exactly why the <a href="https://www.lumos.com/blog/stryker-hack">Stryker incident ended up in so many Intune security discussions.</a> Stryker confirmed a cyberattack caused a global disruption to its Microsoft environment. Public reporting then linked the disruption to abuse of Microsoft Intune, with reports saying attackers compromised an Intune admin account and used it to trigger a large-scale device wipe. Some reports mention around 80,000 wiped devices, while the attacker claims went as high as 200,000. So I would not treat every number as gospel, but the lesson is clear: a trusted management tool can become a weapon when the admin identity behind it is compromised.</p>
 
 
 
-<p>This is the real reason <strong>Multi Admin Approval</strong> exists. It is not about making admin life harder for fun. It is about preventing a compromised identity from becoming the only thing required to push a risky Intune change.</p>
-
-
-
-<p>An attacker with the right Intune permissions could change an app, deploy a script, modify a policy, or trigger a destructive device action. Multi Admin Approval forces that change into a second approval step before it becomes active.</p>
+<p>That is where MAA comes in. After that type of incident, many organizations began to view Multi Admin Approval differently. Not as another annoying checkbox, but as a way to prevent one compromised admin account from immediately triggering something destructive. With MAA enabled for device actions, a wipe request does not run automatically just because one admin account requested it. A second admin has to approve it first.</p>
 
 
 
 <figure class="wp-block-image size-full"><img decoding="async" width="624" height="83" src="https://patchmypc.com/app/uploads/2026/06/image-45.png" alt="" class="wp-image-187614" srcset="https://patchmypc.com/app/uploads/2026/06/image-45.png 624w, https://patchmypc.com/app/uploads/2026/06/image-45-300x40.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>That is also why you will see people connect Multi Admin Approval to recent discussions around management plane abuse and remote wipe scenarios. The exact public details around some of those incidents can be messy, so I would be careful with hard claims. But the lesson is still valid: if your management plane is abused, the blast radius can be huge.</p>
 
 
 
@@ -129,7 +121,7 @@
 
 
 
-<p>Historically, Multi Admin Approval mostly made sense in the portal world. An admin opened the Intune admin center, changed an app, submitted the request, and another admin approved it. That flow can be annoying when you are in a hurry, but at least it is easy to understand. A human asked for a change. Another human approves it…. Yes It Admins are human beings…</p>
+<p>Historically, Multi Admin Approval mostly made sense in the portal world. An admin opened the Intune admin center, changed an app, submitted the request, and another admin approved it. That flow can be annoying when you are in a hurry, but at least it is easy to understand. A human asked for a change. Another human approves it…. Yes IT Admins are human beings…</p>
 
 
 
@@ -181,7 +173,7 @@
 
 
 
-<h2 class="wp-block-heading" id="h-the-x-msft-approval-justification-multi-admin-approval-error">The x-msft-approval-justification <strong>Multi Admin Approval</strong> error</h2>
+<h2 class="wp-block-heading" id="h-the-x-msft-approval-justification-multi-admin-approval-nbsp-error">The x-msft-approval-justification <strong>Multi Admin Approval</strong>&nbsp;error</h2>
 
 
 
@@ -293,7 +285,35 @@
 
 
 
-<p>That is the difference the exclusion makes. MAA still protects the workload, but the trusted automation identity is no longer forced through a manual approval flow. For patching, that distinction matters. You keep the approval barrier for risky human changes, but you do not turn every normal app update into a stuck approval request.</p>
+<p>That is the difference the exclusion makes. MAA still protects the workload, but the trusted automation identity is no longer required to go through a manual approval flow. For patching, that distinction matters. You keep the approval barrier for risky human changes, but you do not turn every normal app update into a stuck approval request.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-automation-is-now-part-of-the-app-maa-story"><strong><strong>Automation Is Now Part Of The App MAA Story</strong></strong></h2>
+
+
+
+<p>From a security perspective, I get it. A service principal with write access to Intune apps is powerful. If that identity is abused, someone could change what gets deployed to devices. Microsoft saying app write actions should also be governed is not strange. But this is where the App MAA access policy starts to hit the automation flow.</p>
+
+
+
+<p>It is not only commercial third-party patching products that have this challenge, it affects all app-based authentication automation. If the automation writes Intune apps protected by an App MAA access policy, it now has to understand the MAA approval flow, or be excluded from that policy.</p>
+
+
+
+<p>That is where patching gets tricky.</p>
+
+
+
+<p>During testing, the failure occurred when the script attempted to PATCH the Win32 app object with the committed content version. Because that PATCH is an app write action covered by App MAA, Intune expected an x-msft-approval-justification header. Without that header, the request failed.</p>
+
+
+
+<p>That is the difference. This does not silently become a nice pending approval unless the automation was built to request approval in the first place. Without that MAA aware request flow, the app update just fails. For patching automation, that matters. A normal app update, assignment change, metadata change, or content version update can stop at the Graph request if it is protected by App MAA and the automation does not send the required approval headers.</p>
+
+
+
+<p>That is not great for patching, and it is not great for app automation in general. If it writes to Intune apps, and an App MAA access policy protects that workload, it is now part of the Multi Admin Approval story.</p>
 
 
 
