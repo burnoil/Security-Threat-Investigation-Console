@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 24 Jun 2026 20:30:47 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 25 Jun 2026 10:52:44 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -253,7 +253,7 @@
 
 
 
-<p>That tells us this is not a normal Win32 app upload issue. It is Multi Admin Approval enforcement. You can see the same type of response in Graph as well. The request fails with Bad Request 400, and the response body points directly to the missing MAA approval header. If you see x-msft-approval-justification in the error, you are no longer looking at a generic Graph permission issue. You are looking at an Intune change that is being forced into the <strong>Multi Admin Approval flow.</strong></p>
+<p>That tells us this is not a normal Win32 app upload issue. It is Multi Admin Approval enforcement. You can see the same type of response in Graph as well. The request fails with<strong> Bad Request 403,</strong> and the response body points directly to the missing MAA approval header. If you see x-msft-approval-justification in the error, you are no longer looking at a generic Graph permission issue. You are looking at an Intune change that is being forced into the <strong>Multi Admin Approval flow.</strong></p>
 
 
 
