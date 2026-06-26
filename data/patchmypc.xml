@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 25 Jun 2026 10:52:44 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 26 Jun 2026 08:46:23 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,6 +20,311 @@
 	1	</sy:updateFrequency>
 	
 	<item>
+		<title>Intune EPM System Settings: Network and Time Sync Elevation</title>
+		<link>https://patchmypc.com/blog/intune-epm-system-settings-network-and-time-sync-elevation/</link>
+					<comments>https://patchmypc.com/blog/intune-epm-system-settings-network-and-time-sync-elevation/#respond</comments>
+		
+		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
+		<pubDate>Fri, 26 Jun 2026 08:44:27 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=187187</guid>
+
+					<description><![CDATA[<p>A look at how Intune EPM appears to be moving beyond file elevation with a System Settings experience for Network Settings and Time Sync.</p>
+<p>The post <a href="https://patchmypc.com/blog/intune-epm-system-settings-network-and-time-sync-elevation/">Intune EPM System Settings: Network and Time Sync Elevation</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p>This blog looks at a new <strong><a href="https://learn.microsoft.com/en-us/intune/epm/overview">Endpoint Privilege Management</a> / EPM</strong> system settings experience that appears to be in the works, starting with <strong>Network Settings and Time Sync.</strong> With Microsoft announcing it in the &#8220;<a href="https://techcommunity.microsoft.com/blog/microsoftintuneblog/what%E2%80%99s-new-in-microsoft-intune-%E2%80%93-june/4491983">What’s new in Microsoft Intune – June</a>&#8221; &#8230; looks like I am okay to talk about it!</p>
+
+
+
+<p>So, I’ll walk through the flight names, the <code>EpmElevate.exe</code> helper, the claim validation, and why this looks like more than just another file elevation rule.</p>
+
+
+
+<p><strong>Please note: </strong>I am not in any private preview! This is all based on OSINT and my own investigation.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-introduction">Introduction</h2>
+
+
+
+<p>Endpoint Privilege Management has always worked best when the elevation target is obvious. You define a rule for an executable, MSI, or PowerShell script, EPM matches the file, and the user can perform that specific action without becoming a local administrator.</p>
+
+
+
+<p>That model works well for applications and installers, but Windows administration does not always use a simple executable. Changing the configuration of a network adapter or changing the Time is just different.</p>
+
+
+
+<p>Those actions never fitted comfortably into the normal EPM file elevation model. While looking through the latest EPM components, I noticed several new flight names suggesting Microsoft was working to address that gap.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-the-epm-flights-that-showed-the-epm-system-settings">The EPM flights that showed the EPM system settings</h2>
+
+
+
+<p>While investigating the EPM files on my own test device, I noticed that some new constants appeared inside the EPM agent</p>
+
+
+
+<ul class="wp-block-list">
+<li>EnableNetworkSettings</li>
+
+
+
+<li>EnableTimeSync</li>
+
+
+
+<li>EnableElevationRuleSystemSettingsEnrichment</li>
+</ul>
+
+
+
+<p>The first two are fairly clear. Microsoft is working on network settings and time synchronization scenarios. The other one that also feels important is: <strong>EnableElevationRuleSystemSettingsEnrichment</strong></p>
+
+
+
+<p>A normal EPM rule describes a file. It can use the filename, path, publisher, certificate, or file hash to decide whether elevation is allowed. A system setting needs more context than that.</p>
+
+
+
+<p>EPM does not only need to know which executable started. It also needs to understand which Windows setting the user is trying to change and whether that specific action is permitted by policy. That flight name suggests Microsoft is adding that extra context to the elevation rule.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-finding-epmelevate-exe">Finding EpmElevate.exe</h2>
+
+
+
+<p>The next clue was already sitting inside the Microsoft EPM Agent folder. C:\Program Files\Microsoft EPM Agent\EPMService\EpmElevate.exe</p>
+
+
+
+<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="306" src="https://patchmypc.com/app/uploads/2026/06/image-9.jpg" alt="" class="wp-image-187194" srcset="https://patchmypc.com/app/uploads/2026/06/image-9.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-9-300x147.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>At first, the filename made it look like a generic EPM elevation helper. After decompiling it, it became clear that the executable contains dedicated implementations for network settings and time synchronization. The binary contains three relevant windows:</p>
+
+
+
+<ul class="wp-block-list">
+<li>NetworkSettings.MainWindow</li>
+
+
+
+<li>TimeSync.MainWindow</li>
+
+
+
+<li>CombinedSettings.CombinedSettingsWindow</li>
+</ul>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img decoding="async" width="559" height="135" src="https://patchmypc.com/app/uploads/2026/06/image-37.png" alt="" class="wp-image-187188" style="width:559px;height:auto" srcset="https://patchmypc.com/app/uploads/2026/06/image-37.png 559w, https://patchmypc.com/app/uploads/2026/06/image-37-300x72.png 300w" sizes="(max-width: 559px) 100vw, 559px" /></figure>
+
+
+
+<p>That means EPM can open a standalone network window, a standalone time sync window, or one combined system settings window containing both experiences. The command line parser confirms how those windows are selected. The (<strong>EpmElevate.exe -SystemSettings NetworkSettings</strong>)  argument opens the Network Settings window.  When looking at the time sync settings, we notice that this command line will do the trick: <strong>EpmElevate.exe -SystemSettings TimeSync</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="276" src="https://patchmypc.com/app/uploads/2026/06/image-39.png" alt="EPM system settings: Network Settings And Time Sync" class="wp-image-187191" srcset="https://patchmypc.com/app/uploads/2026/06/image-39.png 624w, https://patchmypc.com/app/uploads/2026/06/image-39-300x133.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p>When both options are passed, EPM opens the combined window.</p>
+
+
+
+<p>EpmElevate.exe -SystemSettings NetworkSettings TimeSync</p>
+
+
+
+<p>The combined window is called:</p>
+
+
+
+<p>Endpoint Privilege Management &#8211; System Settings</p>
+
+
+
+<p>So the code does not contain a generic selection screen that asks the user what they want to manage. EPM decides which panels are available before starting the executable and then passes the appropriate arguments.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-trying-to-launch-the-epm-system-settings-manually">Trying to launch the EPM System Settings manually</h2>
+
+
+
+<p>Finding the command line naturally led to the next test. I tried launching EpmElevate.exe manually with the system settings arguments and without elevating it with EPM. The executable started, but immediately closed.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="552" height="201" src="https://patchmypc.com/app/uploads/2026/06/image-36.png" alt="" class="wp-image-187189" srcset="https://patchmypc.com/app/uploads/2026/06/image-36.png 552w, https://patchmypc.com/app/uploads/2026/06/image-36-300x109.png 300w" sizes="(max-width: 552px) 100vw, 552px" /></figure>
+
+
+
+<p>The log explained why.</p>
+
+
+
+<p>EpmElevate claim validation failed:<br>Required claim MEMEPM_RULE_ID is missing or empty.<br>Process was not launched through the EPM pipeline.<br>Exiting with ACCESS_DENIED.</p>
+
+
+
+<p>The executable validates several EPM claims before parsing the system settings arguments.</p>
+
+
+
+<ul class="wp-block-list">
+<li>MEMEPM_RULE_ID</li>
+
+
+
+<li>MEMEPM_POLICY_ID</li>
+
+
+
+<li>MEMEPM_INITIATING_PROCESS</li>
+</ul>
+
+
+
+<p>The initiating process must also be: EpmService. This is an important part of the design. Running the executable as an administrator is not enough. Launching it as SYSTEM does not help either.</p>
+
+
+
+<p>EpmElevate.exe expects to be started by the EPM service with the correct EPM claims attached to its process token. Without those claims, it refuses to continue.</p>
+
+
+
+<p>Microsoft did not simply install a privileged network and time configuration tool on the device. The helper only works when EPM launches it from an approved policy context.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-a-system-settings-rule-is-probably-required">A system settings rule is probably required</h2>
+
+
+
+<p>The claim validation also tells us that an EPM rule is likely part of the final experience. EpmElevate.exe explicitly requires a rule ID and a policy ID. The expected flow appears to be straightforward.</p>
+
+
+
+<p>An administrator configures a system settings rule in Intune. That rule allows Network Settings, Time Sync, or both.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="375" height="472" src="https://patchmypc.com/app/uploads/2026/06/image-40.png" alt="" class="wp-image-187192" srcset="https://patchmypc.com/app/uploads/2026/06/image-40.png 375w, https://patchmypc.com/app/uploads/2026/06/image-40-238x300.png 238w" sizes="(max-width: 375px) 100vw, 375px" /></figure>
+
+
+
+<p>After adding the rule, I tried shortcuts I created before… but still no luck</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="361" height="189" src="https://patchmypc.com/app/uploads/2026/06/image-38.png" alt="EPM system settings: Network Settings And Time Sync" class="wp-image-187190" srcset="https://patchmypc.com/app/uploads/2026/06/image-38.png 361w, https://patchmypc.com/app/uploads/2026/06/image-38-300x157.png 300w" sizes="(max-width: 361px) 100vw, 361px" /></figure>
+
+
+
+<h2 class="wp-block-heading" id="h-the-network-settings-and-time-sync-system-settings">The Network Settings and Time Sync System Settings</h2>
+
+
+
+<p>The implementation is already present in the EPM Agent, but the full Intune configuration does not appear to be available yet.</p>
+
+
+
+<p>A quick note here: I am not in a private preview, I do not have access to a flighted tenant, and I do not have any inside knowledge about how this should be enabled. This is based on what is already present in the client side components.</p>
+
+
+
+<h3 class="wp-block-heading" id="h-network-settings">Network Settings</h3>
+
+
+
+<p>The Network Settings window is not just hinted at by a string or flight name. The EPM Elevate code contains an actual <code>NetworkSettings.MainWindow</code> implementation.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="1002" height="166" src="https://patchmypc.com/app/uploads/2026/06/image-41.png" alt="EPM system settings: Network Settings And Time Sync" class="wp-image-187197" srcset="https://patchmypc.com/app/uploads/2026/06/image-41.png 1002w, https://patchmypc.com/app/uploads/2026/06/image-41-300x50.png 300w, https://patchmypc.com/app/uploads/2026/06/image-41-768x127.png 768w" sizes="(max-width: 1002px) 100vw, 1002px" /></figure>
+
+
+
+<p>&nbsp;Its constructor initializes the network configuration service, loads the WPF components, applies the base window setup, and prepares the refresh timer. In other words, this is already real client-side UI logic, not just a future placeholder… Well enough words… let’s look at it…</p>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img decoding="async" width="987" height="484" src="https://patchmypc.com/app/uploads/2026/06/image-42.png" alt="Network Settings EPM" class="wp-image-187198" style="aspect-ratio:2.0392919125303712;width:634px;height:auto" srcset="https://patchmypc.com/app/uploads/2026/06/image-42.png 987w, https://patchmypc.com/app/uploads/2026/06/image-42-300x147.png 300w, https://patchmypc.com/app/uploads/2026/06/image-42-768x377.png 768w" sizes="(max-width: 987px) 100vw, 987px" /></figure>
+
+
+
+<p>Once we select the proper adapter we want to change, we will get this screen.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="842" height="845" src="https://patchmypc.com/app/uploads/2026/06/image-43.png" alt="Network Settings EPM" class="wp-image-187199" srcset="https://patchmypc.com/app/uploads/2026/06/image-43.png 842w, https://patchmypc.com/app/uploads/2026/06/image-43-300x300.png 300w, https://patchmypc.com/app/uploads/2026/06/image-43-150x150.png 150w, https://patchmypc.com/app/uploads/2026/06/image-43-768x771.png 768w" sizes="(max-width: 842px) 100vw, 842px" /></figure>
+
+
+
+<h3 class="wp-block-heading" id="h-time-sync">Time Sync</h3>
+
+
+
+<p>For Time Sync, the code focuses on Windows Time synchronization and NTP configuration. So this should not be described as changing the system clock manually. It is about synchronising time and changing the configured time server.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="517" src="https://patchmypc.com/app/uploads/2026/06/image-12.jpg" alt="Time Zone EPM system settings" class="wp-image-187195" srcset="https://patchmypc.com/app/uploads/2026/06/image-12.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-12-300x249.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<h2 class="wp-block-heading" id="h-what-is-still-missing">What is still missing?</h2>
+
+
+
+<p>After configuring an EPM elevation rule and trying to allow <code>EpmElevate.exe</code>, there still seems to be a missing connection.</p>
+
+
+
+<p>Manually creating a shortcut with the right parameters is not user-friendly, and it also does not appear to be the intended flow. There needs to be an entry point. A place where the user can start the action without knowing anything about <code>EpmElevate.exe</code>, command line arguments, or EPM claims.</p>
+
+
+
+<p>That place would probably be Company Portal. At the moment, I cannot find the matching Company Portal implementation in the latest version I checked. That might mean the Company Portal side is not there yet, hidden behind flighting, or still being worked on.&nbsp; So the device side pieces are visible, but the full user experience is not complete yet.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-closing-thoughts">Closing thoughts</h2>
+
+
+
+<p>EPM appears to be moving beyond normal file elevation.</p>
+
+
+
+<p>That does not mean users are getting unrestricted access to Windows Settings, and it certainly does not mean they are becoming local administrators. It looks more controlled than that. An administrator approves a specific system setting. The Company Portal gives the user a place to start the action. EPM validates the rule and policy, then launches a trusted helper that performs only the allowed configuration.</p>
+
+
+
+<p>Network adapter settings and time synchronization appear to be the first two examples of this new model. That is a useful direction for EPM. Instead of trying to find the right executable to elevate, administrators can approve the Windows action itself.</p>
+
+
+
+<p></p>
+<p>The post <a href="https://patchmypc.com/blog/intune-epm-system-settings-network-and-time-sync-elevation/">Intune EPM System Settings: Network and Time Sync Elevation</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/blog/intune-epm-system-settings-network-and-time-sync-elevation/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Intune Multi Admin Approval: The x-msft-approval-justification Error</title>
 		<link>https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/</link>
 					<comments>https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/#respond</comments>
@@ -45,7 +350,7 @@
 
 
 
-<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="351" src="https://patchmypc.com/app/uploads/2026/06/image-13.jpg" alt="Multi Admin Approval" class="wp-image-187611" srcset="https://patchmypc.com/app/uploads/2026/06/image-13.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-13-300x169.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="351" src="https://patchmypc.com/app/uploads/2026/06/image-13.jpg" alt="Multi Admin Approval" class="wp-image-187611" srcset="https://patchmypc.com/app/uploads/2026/06/image-13.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-13-300x169.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
 
 
 
@@ -1774,299 +2079,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/intune-management-extension-release-notes/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>The Illusion of Intune “Last Check-in”: When Devices Appear Active but Cannot Sync</title>
-		<link>https://patchmypc.com/blog/intune-last-check-in-when-devices-appear-active-but-cannot-sync/</link>
-					<comments>https://patchmypc.com/blog/intune-last-check-in-when-devices-appear-active-but-cannot-sync/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Tue, 19 May 2026 07:48:49 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=168056</guid>
-
-					<description><![CDATA[<p>The Intune portal can show a fresh Last check in even when the MDM certificate on the device has already expired. That timestamp only proves the device was able to touch the service. It does not prove that policy sync, app delivery, or real management is still working.</p>
-<p>The post <a href="https://patchmypc.com/blog/intune-last-check-in-when-devices-appear-active-but-cannot-sync/">The Illusion of Intune “Last Check-in”: When Devices Appear Active but Cannot Sync</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p>This blog exposes the gap between what Intune shows as <strong>Last check-in (last sync) </strong>and what the device is actually capable of once the <strong>MDM certificate has expired.</strong></p>
-
-
-
-<p class="has-small-font-size"><em>Please note: This blog is based on my own testing and analysis, including decompiling publicly available Windows binaries. No NDA covered information, internal documentation, or private sources were used.</em></p>
-
-
-
-<h2 class="wp-block-heading" id="h-introduction">Introduction</h2>
-
-
-
-<p>I ran into this while digging into a set of devices where the Intune MDM certificate simply refused to renew. The certificate had expired, long past its expiration date, yet the device still showed a perfectly fresh <strong>Last check-in (Last Sync Time) </strong>timestamp in the Intune portal.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="80" src="https://patchmypc.com/app/uploads/2025/11/image-66-1024x80.png" alt="" class="wp-image-170302" srcset="https://patchmypc.com/app/uploads/2025/11/image-66-1024x80.png 1024w, https://patchmypc.com/app/uploads/2025/11/image-66-300x24.png 300w, https://patchmypc.com/app/uploads/2025/11/image-66-768x60.png 768w, https://patchmypc.com/app/uploads/2025/11/image-66.png 1313w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>At first glance, that made no sense. An expired certificate should block authentication. (as shown below, the certificate was expired on 11-1-2024)</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="210" src="https://patchmypc.com/app/uploads/2025/11/image-24.jpg" alt="" class="wp-image-168058" srcset="https://patchmypc.com/app/uploads/2025/11/image-24.jpg 624w, https://patchmypc.com/app/uploads/2025/11/image-24-300x101.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>No authentication means no check-in. At least, that is what most IT admins assume. But the Last Check-In <strong>(Last Sync Time) </strong>timestamps kept updating.</p>
-
-
-
-<figure class="wp-block-image size-large"><a href="https://patchmypc.com/app/uploads/2025/11/image-63-scaled.png"><img decoding="async" width="1024" height="223" src="https://patchmypc.com/app/uploads/2025/11/image-63-1024x223.png" alt="" class="wp-image-170297" srcset="https://patchmypc.com/app/uploads/2025/11/image-63-1024x223.png 1024w, https://patchmypc.com/app/uploads/2025/11/image-63-300x65.png 300w, https://patchmypc.com/app/uploads/2025/11/image-63-768x167.png 768w, https://patchmypc.com/app/uploads/2025/11/image-63-1536x335.png 1536w, https://patchmypc.com/app/uploads/2025/11/image-63-2048x446.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></figure>
-
-
-
-<p>Not just in the Intune portal. The registry under the OMADM account key showed the same thing.<br><strong>ServerLastAccessTime and ServerLastSuccessTime</strong> moved forward every time the device reached out.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="215" src="https://patchmypc.com/app/uploads/2025/11/image-64-1024x215.png" alt="" class="wp-image-170298" srcset="https://patchmypc.com/app/uploads/2025/11/image-64-1024x215.png 1024w, https://patchmypc.com/app/uploads/2025/11/image-64-300x63.png 300w, https://patchmypc.com/app/uploads/2025/11/image-64-768x161.png 768w, https://patchmypc.com/app/uploads/2025/11/image-64-1536x322.png 1536w, https://patchmypc.com/app/uploads/2025/11/image-64.png 1670w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p>The device looked healthy, while the certificate was clearly invalid.<br>So I started digging into the OMADM flow.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-omadm-account-structure-behind-the-scenes">The OMADM account structure behind the scenes</h2>
-
-
-
-<p>Every Intune-enrolled device keeps a local record of its MDM account underHKLM\software\microsoft\provisioning\OMADM\Accounts\&lt;AccountGUID></p>
-
-
-
-<p>Inside that key sits a packed structure the client calls <strong>AcctInfo (AccountInfo)</strong>. That block contains the server URL, retry timers, flags, and, more interesting for this story, the timestamps Intune uses for the last check in:</p>
-
-
-
-<ul class="wp-block-list">
-<li><strong>ServerLastAccessTime</strong></li>
-
-
-
-<li><strong>ServerLastSuccessTime</strong></li>
-
-
-
-<li><strong>LastSessionResult</strong></li>
-</ul>
-
-
-
-<p>When the device talks to Intune, the OMADM client does not just fire off a web request. It first loads this AcctInfo structure, runs a session setup, and only then starts sending SyncML. You can picture the simple version of the flow like this:</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="446" height="1024" src="https://patchmypc.com/app/uploads/2025/11/image-65-446x1024.png" alt="" class="wp-image-170300" srcset="https://patchmypc.com/app/uploads/2025/11/image-65-446x1024.png 446w, https://patchmypc.com/app/uploads/2025/11/image-65-131x300.png 131w, https://patchmypc.com/app/uploads/2025/11/image-65-768x1762.png 768w, https://patchmypc.com/app/uploads/2025/11/image-65.png 813w" sizes="(max-width: 446px) 100vw, 446px" /></figure>
-
-
-
-<ul class="wp-block-list">
-<li>&nbsp;&nbsp;&nbsp; A[MDM scheduled sync or manual sync] &#8211;&gt; B[OmadmAccountManager]</li>
-
-
-
-<li>&nbsp;&nbsp;&nbsp; B &#8211;&gt; C[OmaDmGetAcctInfoFromKey&lt;br&gt;Read AcctInfo from HKLM\&#8230;Accounts\&lt;GUID&gt;]</li>
-
-
-
-<li>&nbsp;&nbsp;&nbsp; C &#8211;&gt; D[SyncmlSessionStateManager::InitiateSession]</li>
-
-
-
-<li>&nbsp;&nbsp;&nbsp; D &#8211;&gt; E[Build SyncML request&lt;br&gt;select auth settings&lt;br&gt;prepare connection]</li>
-
-
-
-<li>&nbsp;&nbsp;&nbsp; E &#8211;&gt; F[Send request to Intune service]</li>
-
-
-
-<li>&nbsp;&nbsp;&nbsp; F &#8211;&gt; G[Receive SyncML response&lt;br&gt;with server time]</li>
-
-
-
-<li>&nbsp;&nbsp;&nbsp; G &#8211;&gt; H[StoreServerLastTime&lt;br&gt;update timestamps in AcctInfo]</li>
-
-
-
-<li>&nbsp;&nbsp;&nbsp; H &#8211;&gt; I[InternalSaveAcctInfoToKey&lt;br&gt;write back to registry]</li>
-
-
-
-<li>&nbsp;&nbsp;&nbsp; I &#8211;&gt; J[Intune reads these values&lt;br&gt;and shows Last check in]</li>
-
-
-
-<li>&nbsp;&nbsp;&nbsp; F -.-&gt; K[TLS handshake uses MDM cert&lt;br&gt;but expiry is not enforced here]</li>
-</ul>
-
-
-
-<h3 class="wp-block-heading" id="h-the-corrosponding-explanation">The Corrosponding Explanation</h3>
-
-
-
-<p>Step A is whatever kicked off the sync. That might be the regular DMClient schedule, a manual sync request from the portal, or the user pressing the sync button. Step B is where OmadmAccountManager wakes up and starts working with the local account. It calls OmaDmGetAcctInfoFromKey, which reads the AcctInfo block from the registry and unpacks it into memory.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="585" height="309" src="https://patchmypc.com/app/uploads/2025/11/image-59.png" alt="" class="wp-image-168062" srcset="https://patchmypc.com/app/uploads/2025/11/image-59.png 585w, https://patchmypc.com/app/uploads/2025/11/image-59-300x158.png 300w" sizes="(max-width: 585px) 100vw, 585px" /></figure>
-
-
-
-<p>With that state in hand, SyncmlSessionStateManager::InitiateSession sets up the session.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="531" height="102" src="https://patchmypc.com/app/uploads/2025/11/image-58.png" alt="" class="wp-image-168061" srcset="https://patchmypc.com/app/uploads/2025/11/image-58.png 531w, https://patchmypc.com/app/uploads/2025/11/image-58-300x58.png 300w" sizes="(max-width: 531px) 100vw, 531px" /></figure>
-
-
-
-<p>It populates the authentication fields, selects the app auth index, checks the account flags, and prepares the first SyncML envelope. None of that cares about certificate validity yet. Only after that setup does the client send the actual request to Intune. The TLS handshake uses the MDM certificate and its private key, but the code path here does not block on an expired NotAfter date. As long as the private key is available, the connection can be established, and the server can respond.</p>
-
-
-
-<p>When the first response arrives, <strong>StoreServerLastTime</strong> extracts the server time from that response, converts it to ISO format, and updates the timestamps in the in-memory <strong>AcctInfo. InternalSaveAcctInfoToKey</strong> then writes that updated structure back into the OMADM account key in the registry.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="975" height="269" src="https://patchmypc.com/app/uploads/2025/11/image-61.png" alt="" class="wp-image-168065" srcset="https://patchmypc.com/app/uploads/2025/11/image-61.png 975w, https://patchmypc.com/app/uploads/2025/11/image-61-300x83.png 300w, https://patchmypc.com/app/uploads/2025/11/image-61-768x212.png 768w" sizes="(max-width: 975px) 100vw, 975px" /></figure>
-
-
-
-<p>Intune reads those values and displays them as a fresh last check-in, even though the certificate used for the handshake has already expired. The certificate will become relevant later in the session, when policy and management operations are attempted, but the timestamps are already updated at this early stage.</p>
-
-
-
-<p><strong>And that is exactly what was happening.</strong></p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-surprising-part-certificate-expiry-is-not-checked-on-the-device">The Surprising Part: Certificate Expiry Is Not Checked on The Device</h2>
-
-
-
-<p>While going through the decompiled code for the SyncML session startup, one thing became immediately obvious. The OMADM client on the device itself does not check whether the MDM certificate has expired. The entire setup phase in <strong>SyncmlSessionStateManager::InitiateSession</strong> reads the account information, prepares the SyncML envelope, selects the authentication method, and establishes the connection. Not once does it validate the certificate’s <strong>NotAfter date.</strong></p>
-
-
-
-<p>Even the function that writes the<strong> timestamps</strong>,<strong>StoreServerLastTime,</strong> simply accepts the timestamp from the server and writes it directly into the AcctInfo structure without verifying whether the session certificate is valid or has expired.</p>
-
-
-
-<p>So from the device’s perspective, a session with Intune can begin even if the certificate is completely out of date. This raised a new question: how does the device even reach Intune without a valid certificate?</p>
-
-
-
-<h2 class="wp-block-heading" id="h-why-the-tls-handshake-still-works">Why the TLS Handshake Still Works</h2>
-
-
-
-<p>TLS should block expired certificates, right? But in this case, it does not. And there is a simple reason why. If Microsoft enforced strict certificate validity for client authentication, a device with a broken or expired management certificate would never be able to recover. The renewal flow would be impossible because the device would not even be allowed to start the session needed to request a new certificate.</p>
-
-
-
-<p>Instead, the TLS handshake accepts expired certificates as long as the private key still exists. That allows the device to authenticate just enough for Intune to identify which device is attempting the connection. Intune then sends its initial SyncML response header, which includes a server timestamp.</p>
-
-
-
-<p>The OMADM client receives that timestamp, stores it in the AcctInfo structure, and updates the registry. Once that happens, the Last check-in value in the portal moves forward, even though the certificate has expired.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="210" src="https://patchmypc.com/app/uploads/2025/11/image-27.jpg" alt="" class="wp-image-168063" srcset="https://patchmypc.com/app/uploads/2025/11/image-27.jpg 624w, https://patchmypc.com/app/uploads/2025/11/image-27-300x101.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p>Only after this early handshake does the server begin enforcing the certificate validity for real management operations. And that is where everything fails.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-device-looks-healthy-but-management-is-gone">The Device Looks Healthy, but Management Is Gone?</h2>
-
-
-
-<p>After the timestamp update, the device tries to request new policies or fetch the latest configuration. This is where the expired certificate finally causes trouble. All meaningful operations fail silently. Policies are not updating, and because the IME also uses the Intune Certificate, none of the Win32 apps will be installed. </p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="773" height="62" src="https://patchmypc.com/app/uploads/2025/11/image-67.png" alt="" class="wp-image-170375" srcset="https://patchmypc.com/app/uploads/2025/11/image-67.png 773w, https://patchmypc.com/app/uploads/2025/11/image-67-300x24.png 300w, https://patchmypc.com/app/uploads/2025/11/image-67-768x62.png 768w" sizes="(max-width: 773px) 100vw, 773px" /></figure>
-
-
-
-<p>The only thing that continues to work is the initial contact with the service.</p>
-
-
-
-<p>This creates a situation that feels a bit misleading in the Intune portal.<br>The device appears online. The last check-in value is up to date. Nothing looks broken at first glance. But behind the scenes, the device is no longer managed at all. It can “<strong>touch</strong>” the service, but cannot communicate in a meaningful way.”</p>
-
-
-
-<h2 class="wp-block-heading" id="h-why-this-last-check-in-behaviour-exists">Why This Last Check-In Behaviour Exists</h2>
-
-
-
-<p>This is not a bug. It is necessary. Without this behaviour, <strong><a href="https://patchmypc.com/blog/automatic-intune-certificate-recovery/">certificate recovery</a></strong> and <strong>renewal (expired certs)</strong> could never work. </p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="715" height="249" src="https://patchmypc.com/app/uploads/2025/11/image-19.png" alt="" class="wp-image-179278" srcset="https://patchmypc.com/app/uploads/2025/11/image-19.png 715w, https://patchmypc.com/app/uploads/2025/11/image-19-300x104.png 300w" sizes="(max-width: 715px) 100vw, 715px" /></figure>
-
-
-
-<p>A system (Enrollment Services) that refused <strong>expired certificates</strong> at the first connection would trap devices permanently. They would be stuck in an expired state with no way out except for a wipe or a hardware reset.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="202" height="674" src="https://patchmypc.com/app/uploads/2025/11/image-50.png" alt="" class="wp-image-179280" srcset="https://patchmypc.com/app/uploads/2025/11/image-50.png 202w, https://patchmypc.com/app/uploads/2025/11/image-50-90x300.png 90w" sizes="(max-width: 202px) 100vw, 202px" /></figure>
-
-
-
-<p>So Microsoft allows just enough of the session to proceed to support renewal. The timestamps are updated during that early stage, which can give the impression that the device is still healthy even when it is not.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-real-problem-you-cannot-trust-last-check-in">The Real Problem: You Cannot Trust Last Check In</h2>
-
-
-
-<p>This leads to one unavoidable conclusion.<br><strong>The Last check in value cannot be used as a device health indicator.</strong><br>It only indicates that the device was able to contact Intune.</p>
-
-
-
-<ul class="wp-block-list">
-<li>It does not tell you that the device could retrieve the latest policies.</li>
-
-
-
-<li>It does not tell you that the certificate is valid.</li>
-
-
-
-<li>It does not tell you that management is still working.</li>
-</ul>
-
-
-
-<p>An expired certificate can still move the <strong>Last-check in</strong> date forward while management is completely dead. If you truly want to know if a device is still under management, you have to look beyond that single value. Start with the Management certificate expiration date itself, and from there on sort by last check-in. That is where the truth sits.</p>
-<p>The post <a href="https://patchmypc.com/blog/intune-last-check-in-when-devices-appear-active-but-cannot-sync/">The Illusion of Intune “Last Check-in”: When Devices Appear Active but Cannot Sync</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/intune-last-check-in-when-devices-appear-active-but-cannot-sync/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
