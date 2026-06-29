@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Fri, 26 Jun 2026 18:41:25 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 29 Jun 2026 06:22:59 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -178,7 +178,7 @@
 
 
 
-<p><strong>Please note: </strong>I am not in any private preview! This is all based on OSINT and my own investigation.</p>
+<p><strong>Please note: </strong>I am not in any private preview! This is all based on OSINT and my own investigation. Also, this feature is not enabled in all tenants yet&#8230;..</p>
 
 
 
@@ -236,7 +236,7 @@
 
 
 
-<p>The next clue was already sitting inside the Microsoft EPM Agent folder. C:\Program Files\Microsoft EPM Agent\EPMService\EpmElevate.exe</p>
+<p>The next clue was already sitting inside the Microsoft EPM Agent folder. C:\Program Files\Microsoft EPM Agent\EPMElevate\EpmElevate.exe</p>
 
 
 
@@ -424,11 +424,11 @@
 
 
 
-<p>After configuring an EPM elevation rule and trying to allow <code>EpmElevate.exe</code>, there still seems to be a missing connection.</p>
+<p>After configuring an EPM elevation rule and allowing EpmElevate.exe, there still seems to be a missing connection.</p>
 
 
 
-<p>Manually creating a shortcut with the right parameters is not user-friendly, and it also does not appear to be the intended flow. There needs to be an entry point. A place where the user can start the action without knowing anything about <code>EpmElevate.exe</code>, command line arguments, or EPM claims.</p>
+<p>Manually creating a shortcut with the correct parameters is not user-friendly and does not appear to be the intended flow. There needs to be an entry point. A place where the user can start the action without knowing anything about <code>EpmElevate.exe</code>, command-line arguments or EPM claims.</p>
 
 
 
