@@ -33,11 +33,11 @@
 <p>The post <a href="https://patchmypc.com/blog/five-eyes-intelligence-alliance-says-its-time-to-speed-up-patching/">Five Eyes Intelligence Alliance Says It’s Time to Speed Up Patching</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p>Four days ago, on June 22, 2026, the Five Eyes intelligence alliance <a href="https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/4523810/five-eyes-cyber-security-agencies-statement/" target="_blank" rel="noreferrer noopener">released a joint statement</a>. The message, echoed through the government channels of its member countries, was simple: Get rid of unsupported systems, tighten firewall rules, implement tiered administrative access, test your BCP/DR plans, and patch your freaking computers. </p>
+<p class="wp-block-paragraph">Four days ago, on June 22, 2026, the Five Eyes intelligence alliance <a href="https://www.nsa.gov/Press-Room/News-Highlights/Article/Article/4523810/five-eyes-cyber-security-agencies-statement/" target="_blank" rel="noreferrer noopener">released a joint statement</a>. The message, echoed through the government channels of its member countries, was simple: Get rid of unsupported systems, tighten firewall rules, implement tiered administrative access, test your BCP/DR plans, and patch your freaking computers. </p>
 
 
 
-<p>It reads as follows:&nbsp;&nbsp;</p>
+<p class="wp-block-paragraph">It reads as follows:&nbsp;&nbsp;</p>
 
 
 
@@ -71,7 +71,7 @@
 
 
 
-<p>You might be thinking, &#8220;Thank you, Captain&nbsp;Obvious.&nbsp;This seems like table stakes.”&nbsp;And&nbsp;that&#8217;s&nbsp;fair. But their motivation for&nbsp;delivering&nbsp;this message&nbsp;more firmly&nbsp;than ever before is&nbsp;the&nbsp;mounting pressure created by how fast Frontier Model AI tools are improving.&nbsp;</p>
+<p class="wp-block-paragraph">You might be thinking, &#8220;Thank you, Captain&nbsp;Obvious.&nbsp;This seems like table stakes.”&nbsp;And&nbsp;that&#8217;s&nbsp;fair. But their motivation for&nbsp;delivering&nbsp;this message&nbsp;more firmly&nbsp;than ever before is&nbsp;the&nbsp;mounting pressure created by how fast Frontier Model AI tools are improving.&nbsp;</p>
 
 
 
@@ -79,7 +79,7 @@
 
 
 
-<p>Five Eyes is an intelligence-sharing alliance between the United States, the United Kingdom, Canada, Australia, and New Zealand. The group, which traces its origins to secret meetings of World War II-era code breakers from the U.S. and the U.K., occasionally shares joint statements on topics like terrorism, online safety, telecommunications, and cybersecurity. Each of the five nations has at <em>least</em> one agency dedicated to Cyber Defense. The USA, for example, has CISA and the NSA, Canada has the CCCS, Australia has the ASD, the UK has the NCSC, and New Zealand has the NCSC-NZ. All of these groups have a unique set of priorities and opinions and conduct independent cybersecurity research to inform their respective nations’ cybersecurity posture. </p>
+<p class="wp-block-paragraph">Five Eyes is an intelligence-sharing alliance between the United States, the United Kingdom, Canada, Australia, and New Zealand. The group, which traces its origins to secret meetings of World War II-era code breakers from the U.S. and the U.K., occasionally shares joint statements on topics like terrorism, online safety, telecommunications, and cybersecurity. Each of the five nations has at <em>least</em> one agency dedicated to Cyber Defense. The USA, for example, has CISA and the NSA, Canada has the CCCS, Australia has the ASD, the UK has the NCSC, and New Zealand has the NCSC-NZ. All of these groups have a unique set of priorities and opinions and conduct independent cybersecurity research to inform their respective nations’ cybersecurity posture. </p>
 
 
 
@@ -87,23 +87,23 @@
 
 
 
-<p>The joint statement is blunt. It&nbsp;gives equal weight to each of its five recommendations&nbsp;(And, sure,&nbsp;the statement&nbsp;might have been written by AI, but that&nbsp;doesn&#8217;t&nbsp;minimize its truth).&nbsp;&nbsp;</p>
+<p class="wp-block-paragraph">The joint statement is blunt. It&nbsp;gives equal weight to each of its five recommendations&nbsp;(And, sure,&nbsp;the statement&nbsp;might have been written by AI, but that&nbsp;doesn&#8217;t&nbsp;minimize its truth).&nbsp;&nbsp;</p>
 
 
 
-<p>I want to focus on the second point. After almost two decades of working with companies to help accelerate patching, it causes me physical pain to see &#8220;Accelerate patching processes&#8221; included on the action list.&nbsp;&nbsp;</p>
+<p class="wp-block-paragraph">I want to focus on the second point. After almost two decades of working with companies to help accelerate patching, it causes me physical pain to see &#8220;Accelerate patching processes&#8221; included on the action list.&nbsp;&nbsp;</p>
 
 
 
-<p>I feel that, of the items on the list, this one is the most likely to be rapidly abused by bad actors and impacted by the availability of AI. Historically, busy admins might have&#8230; skipped certain patches. Well, no more! I looked back at stats from January 20th to April 6th for Google Chrome. </p>
+<p class="wp-block-paragraph">I feel that, of the items on the list, this one is the most likely to be rapidly abused by bad actors and impacted by the availability of AI. Historically, busy admins might have&#8230; skipped certain patches. Well, no more! I looked back at stats from January 20th to April 6th for Google Chrome. </p>
 
 
 
-<p>Google Chrome released ~117 security fixes in the three months before Mythos was released.  </p>
+<p class="wp-block-paragraph">Google Chrome released ~117 security fixes in the three months before Mythos was released.  </p>
 
 
 
-<p>Post Mythos release, from April 7th to June 23 ~ 1,074 security fixes were made, 429 of those were in a <a href="https://chromereleases.googleblog.com/2026/06/stable-channel-update-for-desktop.html" target="_blank" rel="noreferrer noopener">single build on June 2nd</a>. </p>
+<p class="wp-block-paragraph">Post Mythos release, from April 7th to June 23 ~ 1,074 security fixes were made, 429 of those were in a <a href="https://chromereleases.googleblog.com/2026/06/stable-channel-update-for-desktop.html" target="_blank" rel="noreferrer noopener">single build on June 2nd</a>. </p>
 
 
 
@@ -111,7 +111,7 @@
 
 
 
-<p>This means, if your patch management process requires a week of testing on average, you&#8217;re living with 97 vulnerabilities. For every week that goes by after, every machine that fails to patch has another 97 vulnerabilities for a single application. This. Ends. Poorly.  </p>
+<p class="wp-block-paragraph">This means, if your patch management process requires a week of testing on average, you&#8217;re living with 97 vulnerabilities. For every week that goes by after, every machine that fails to patch has another 97 vulnerabilities for a single application. This. Ends. Poorly.  </p>
 
 
 
@@ -119,7 +119,7 @@
 
 
 
-<p>Patch My PC exists to solve the patching-speed problem for third-party applications. The average time to prepare, test, and build an application manually is 2-4 hours per application. Most IT Departments are chronically understaffed, overworked and constantly having to fight fires. Patch My PC automates the discovery, packaging, and deployment of third-party updates across your environment so that when a vendor drops a critical fix, you aren&#8217;t spending time learning about it, testing it, and figuring out new command line switches.  </p>
+<p class="wp-block-paragraph">Patch My PC exists to solve the patching-speed problem for third-party applications. The average time to prepare, test, and build an application manually is 2-4 hours per application. Most IT Departments are chronically understaffed, overworked and constantly having to fight fires. Patch My PC automates the discovery, packaging, and deployment of third-party updates across your environment so that when a vendor drops a critical fix, you aren&#8217;t spending time learning about it, testing it, and figuring out new command line switches.  </p>
 
 
 
@@ -127,27 +127,27 @@
 
 
 
-<p> </p>
+<p class="wp-block-paragraph"> </p>
 
 
 
-<p>You&#8217;re just deploying it and reporting on it. </p>
+<p class="wp-block-paragraph">You&#8217;re just deploying it and reporting on it. </p>
 
 
 
-<p>Deploying is the first half of the story, though; you have to be able to report on the success of the patches. What were the success or failure rates? What version is currently there? As my auditors like to say, &#8220;If it&#8217;s not documented, it didn&#8217;t happen.&#8221; If you want to know more about how we think we can help, schedule a demo here: <a href="https://patchmypc.com/demo/" target="_blank" rel="noreferrer noopener">Schedule a Live Demo with an Engineer Patch My PC</a>. </p>
+<p class="wp-block-paragraph">Deploying is the first half of the story, though; you have to be able to report on the success of the patches. What were the success or failure rates? What version is currently there? As my auditors like to say, &#8220;If it&#8217;s not documented, it didn&#8217;t happen.&#8221; If you want to know more about how we think we can help, schedule a demo here: <a href="https://patchmypc.com/demo/" target="_blank" rel="noreferrer noopener">Schedule a Live Demo with an Engineer Patch My PC</a>. </p>
 
 
 
-<p>Oh, and I&#8217;ll admit I&#8217;m opinionated about how we can help, but if we aren&#8217;t the right choice for you, that&#8217;s OK.  </p>
+<p class="wp-block-paragraph">Oh, and I&#8217;ll admit I&#8217;m opinionated about how we can help, but if we aren&#8217;t the right choice for you, that&#8217;s OK.  </p>
 
 
 
-<p>The important takeaway is that doing nothing, hoping applications will update automatically, or assuming your users will update when prompted is a nonviable strategy. </p>
+<p class="wp-block-paragraph">The important takeaway is that doing nothing, hoping applications will update automatically, or assuming your users will update when prompted is a nonviable strategy. </p>
 
 
 
-<p></p>
+<p class="wp-block-paragraph"></p>
 <p>The post <a href="https://patchmypc.com/blog/five-eyes-intelligence-alliance-says-its-time-to-speed-up-patching/">Five Eyes Intelligence Alliance Says It’s Time to Speed Up Patching</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
@@ -170,15 +170,15 @@
 <p>The post <a href="https://patchmypc.com/blog/intune-epm-system-settings-network-and-time-sync-elevation/">Intune EPM System Settings: Network and Time Sync Elevation</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p>This blog looks at a new <strong><a href="https://learn.microsoft.com/en-us/intune/epm/overview">Endpoint Privilege Management</a> / EPM</strong> system settings experience that appears to be in the works, starting with <strong>Network Settings and Time Sync.</strong> With Microsoft announcing it in the &#8220;<a href="https://techcommunity.microsoft.com/blog/microsoftintuneblog/what%E2%80%99s-new-in-microsoft-intune-%E2%80%93-june/4491983">What’s new in Microsoft Intune – June</a>&#8221; &#8230; looks like I am okay to talk about it!</p>
+<p class="wp-block-paragraph">This blog looks at a new <strong><a href="https://learn.microsoft.com/en-us/intune/epm/overview">Endpoint Privilege Management</a> / EPM</strong> system settings experience that appears to be in the works, starting with <strong>Network Settings and Time Sync.</strong> With Microsoft announcing it in the &#8220;<a href="https://techcommunity.microsoft.com/blog/microsoftintuneblog/what%E2%80%99s-new-in-microsoft-intune-%E2%80%93-june/4491983">What’s new in Microsoft Intune – June</a>&#8221; &#8230; looks like I am okay to talk about it!</p>
 
 
 
-<p>So, I’ll walk through the flight names, the <code>EpmElevate.exe</code> helper, the claim validation, and why this looks like more than just another file elevation rule.</p>
+<p class="wp-block-paragraph">So, I’ll walk through the flight names, the <code>EpmElevate.exe</code> helper, the claim validation, and why this looks like more than just another file elevation rule.</p>
 
 
 
-<p><strong>Please note: </strong>I am not in any private preview! This is all based on OSINT and my own investigation. Also, this feature is not enabled in all tenants yet&#8230;..</p>
+<p class="wp-block-paragraph"><strong>Please note: </strong>I am not in any private preview! This is all based on OSINT and my own investigation. Also, this feature is not enabled in all tenants yet&#8230;..</p>
 
 
 
@@ -186,15 +186,15 @@
 
 
 
-<p>Endpoint Privilege Management has always worked best when the elevation target is obvious. You define a rule for an executable, MSI, or PowerShell script, EPM matches the file, and the user can perform that specific action without becoming a local administrator.</p>
+<p class="wp-block-paragraph">Endpoint Privilege Management has always worked best when the elevation target is obvious. You define a rule for an executable, MSI, or PowerShell script, EPM matches the file, and the user can perform that specific action without becoming a local administrator.</p>
 
 
 
-<p>That model works well for applications and installers, but Windows administration does not always use a simple executable. Changing the configuration of a network adapter or changing the Time is just different.</p>
+<p class="wp-block-paragraph">That model works well for applications and installers, but Windows administration does not always use a simple executable. Changing the configuration of a network adapter or changing the Time is just different.</p>
 
 
 
-<p>Those actions never fitted comfortably into the normal EPM file elevation model. While looking through the latest EPM components, I noticed several new flight names suggesting Microsoft was working to address that gap.</p>
+<p class="wp-block-paragraph">Those actions never fitted comfortably into the normal EPM file elevation model. While looking through the latest EPM components, I noticed several new flight names suggesting Microsoft was working to address that gap.</p>
 
 
 
@@ -202,7 +202,7 @@
 
 
 
-<p>While investigating the EPM files on my own test device, I noticed that some new constants appeared inside the EPM agent</p>
+<p class="wp-block-paragraph">While investigating the EPM files on my own test device, I noticed that some new constants appeared inside the EPM agent</p>
 
 
 
@@ -220,15 +220,15 @@
 
 
 
-<p>The first two are fairly clear. Microsoft is working on network settings and time synchronization scenarios. The other one that also feels important is: <strong>EnableElevationRuleSystemSettingsEnrichment</strong></p>
+<p class="wp-block-paragraph">The first two are fairly clear. Microsoft is working on network settings and time synchronization scenarios. The other one that also feels important is: <strong>EnableElevationRuleSystemSettingsEnrichment</strong></p>
 
 
 
-<p>A normal EPM rule describes a file. It can use the filename, path, publisher, certificate, or file hash to decide whether elevation is allowed. A system setting needs more context than that.</p>
+<p class="wp-block-paragraph">A normal EPM rule describes a file. It can use the filename, path, publisher, certificate, or file hash to decide whether elevation is allowed. A system setting needs more context than that.</p>
 
 
 
-<p>EPM does not only need to know which executable started. It also needs to understand which Windows setting the user is trying to change and whether that specific action is permitted by policy. That flight name suggests Microsoft is adding that extra context to the elevation rule.</p>
+<p class="wp-block-paragraph">EPM does not only need to know which executable started. It also needs to understand which Windows setting the user is trying to change and whether that specific action is permitted by policy. That flight name suggests Microsoft is adding that extra context to the elevation rule.</p>
 
 
 
@@ -236,7 +236,7 @@
 
 
 
-<p>The next clue was already sitting inside the Microsoft EPM Agent folder. C:\Program Files\Microsoft EPM Agent\EPMElevate\EpmElevate.exe</p>
+<p class="wp-block-paragraph">The next clue was already sitting inside the Microsoft EPM Agent folder. C:\Program Files\Microsoft EPM Agent\EPMElevate\EpmElevate.exe</p>
 
 
 
@@ -244,7 +244,7 @@
 
 
 
-<p>At first, the filename made it look like a generic EPM elevation helper. After decompiling it, it became clear that the executable contains dedicated implementations for network settings and time synchronization. The binary contains three relevant windows:</p>
+<p class="wp-block-paragraph">At first, the filename made it look like a generic EPM elevation helper. After decompiling it, it became clear that the executable contains dedicated implementations for network settings and time synchronization. The binary contains three relevant windows:</p>
 
 
 
@@ -266,7 +266,7 @@
 
 
 
-<p>That means EPM can open a standalone network window, a standalone time sync window, or one combined system settings window containing both experiences. The command line parser confirms how those windows are selected. The (<strong>EpmElevate.exe -SystemSettings NetworkSettings</strong>)  argument opens the Network Settings window.  When looking at the time sync settings, we notice that this command line will do the trick: <strong>EpmElevate.exe -SystemSettings TimeSync</strong></p>
+<p class="wp-block-paragraph">That means EPM can open a standalone network window, a standalone time sync window, or one combined system settings window containing both experiences. The command line parser confirms how those windows are selected. The (<strong>EpmElevate.exe -SystemSettings NetworkSettings</strong>)  argument opens the Network Settings window.  When looking at the time sync settings, we notice that this command line will do the trick: <strong>EpmElevate.exe -SystemSettings TimeSync</strong></p>
 
 
 
@@ -274,23 +274,23 @@
 
 
 
-<p>When both options are passed, EPM opens the combined window.</p>
+<p class="wp-block-paragraph">When both options are passed, EPM opens the combined window.</p>
 
 
 
-<p>EpmElevate.exe -SystemSettings NetworkSettings TimeSync</p>
+<p class="wp-block-paragraph">EpmElevate.exe -SystemSettings NetworkSettings TimeSync</p>
 
 
 
-<p>The combined window is called:</p>
+<p class="wp-block-paragraph">The combined window is called:</p>
 
 
 
-<p>Endpoint Privilege Management &#8211; System Settings</p>
+<p class="wp-block-paragraph">Endpoint Privilege Management &#8211; System Settings</p>
 
 
 
-<p>So the code does not contain a generic selection screen that asks the user what they want to manage. EPM decides which panels are available before starting the executable and then passes the appropriate arguments.</p>
+<p class="wp-block-paragraph">So the code does not contain a generic selection screen that asks the user what they want to manage. EPM decides which panels are available before starting the executable and then passes the appropriate arguments.</p>
 
 
 
@@ -298,7 +298,7 @@
 
 
 
-<p>Finding the command line naturally led to the next test. I tried launching EpmElevate.exe manually with the system settings arguments and without elevating it with EPM. The executable started, but immediately closed.</p>
+<p class="wp-block-paragraph">Finding the command line naturally led to the next test. I tried launching EpmElevate.exe manually with the system settings arguments and without elevating it with EPM. The executable started, but immediately closed.</p>
 
 
 
@@ -306,15 +306,15 @@
 
 
 
-<p>The log explained why.</p>
+<p class="wp-block-paragraph">The log explained why.</p>
 
 
 
-<p>EpmElevate claim validation failed:<br>Required claim MEMEPM_RULE_ID is missing or empty.<br>Process was not launched through the EPM pipeline.<br>Exiting with ACCESS_DENIED.</p>
+<p class="wp-block-paragraph">EpmElevate claim validation failed:<br>Required claim MEMEPM_RULE_ID is missing or empty.<br>Process was not launched through the EPM pipeline.<br>Exiting with ACCESS_DENIED.</p>
 
 
 
-<p>The executable validates several EPM claims before parsing the system settings arguments.</p>
+<p class="wp-block-paragraph">The executable validates several EPM claims before parsing the system settings arguments.</p>
 
 
 
@@ -332,15 +332,15 @@
 
 
 
-<p>The initiating process must also be: EpmService. This is an important part of the design. Running the executable as an administrator is not enough. Launching it as SYSTEM does not help either.</p>
+<p class="wp-block-paragraph">The initiating process must also be: EpmService. This is an important part of the design. Running the executable as an administrator is not enough. Launching it as SYSTEM does not help either.</p>
 
 
 
-<p>EpmElevate.exe expects to be started by the EPM service with the correct EPM claims attached to its process token. Without those claims, it refuses to continue.</p>
+<p class="wp-block-paragraph">EpmElevate.exe expects to be started by the EPM service with the correct EPM claims attached to its process token. Without those claims, it refuses to continue.</p>
 
 
 
-<p>Microsoft did not simply install a privileged network and time configuration tool on the device. The helper only works when EPM launches it from an approved policy context.</p>
+<p class="wp-block-paragraph">Microsoft did not simply install a privileged network and time configuration tool on the device. The helper only works when EPM launches it from an approved policy context.</p>
 
 
 
@@ -348,11 +348,11 @@
 
 
 
-<p>The claim validation also tells us that an EPM rule is likely part of the final experience. EpmElevate.exe explicitly requires a rule ID and a policy ID. The expected flow appears to be straightforward.</p>
+<p class="wp-block-paragraph">The claim validation also tells us that an EPM rule is likely part of the final experience. EpmElevate.exe explicitly requires a rule ID and a policy ID. The expected flow appears to be straightforward.</p>
 
 
 
-<p>An administrator configures a system settings rule in Intune. That rule allows Network Settings, Time Sync, or both.</p>
+<p class="wp-block-paragraph">An administrator configures a system settings rule in Intune. That rule allows Network Settings, Time Sync, or both.</p>
 
 
 
@@ -360,7 +360,7 @@
 
 
 
-<p>After adding the rule, I tried shortcuts I created before… but still no luck</p>
+<p class="wp-block-paragraph">After adding the rule, I tried shortcuts I created before… but still no luck</p>
 
 
 
@@ -372,11 +372,11 @@
 
 
 
-<p>The implementation is already present in the EPM Agent, but the full Intune configuration does not appear to be available yet.</p>
+<p class="wp-block-paragraph">The implementation is already present in the EPM Agent, but the full Intune configuration does not appear to be available yet.</p>
 
 
 
-<p>A quick note here: I am not in a private preview, I do not have access to a flighted tenant, and I do not have any inside knowledge about how this should be enabled. This is based on what is already present in the client side components.</p>
+<p class="wp-block-paragraph">A quick note here: I am not in a private preview, I do not have access to a flighted tenant, and I do not have any inside knowledge about how this should be enabled. This is based on what is already present in the client side components.</p>
 
 
 
@@ -384,7 +384,7 @@
 
 
 
-<p>The Network Settings window is not just hinted at by a string or flight name. The EPM Elevate code contains an actual <code>NetworkSettings.MainWindow</code> implementation.</p>
+<p class="wp-block-paragraph">The Network Settings window is not just hinted at by a string or flight name. The EPM Elevate code contains an actual <code>NetworkSettings.MainWindow</code> implementation.</p>
 
 
 
@@ -392,7 +392,7 @@
 
 
 
-<p>&nbsp;Its constructor initializes the network configuration service, loads the WPF components, applies the base window setup, and prepares the refresh timer. In other words, this is already real client-side UI logic, not just a future placeholder… Well enough words… let’s look at it…</p>
+<p class="wp-block-paragraph">&nbsp;Its constructor initializes the network configuration service, loads the WPF components, applies the base window setup, and prepares the refresh timer. In other words, this is already real client-side UI logic, not just a future placeholder… Well enough words… let’s look at it…</p>
 
 
 
@@ -400,7 +400,7 @@
 
 
 
-<p>Once we select the proper adapter we want to change, we will get this screen.</p>
+<p class="wp-block-paragraph">Once we select the proper adapter we want to change, we will get this screen.</p>
 
 
 
@@ -412,7 +412,7 @@
 
 
 
-<p>For Time Sync, the code focuses on Windows Time synchronization and NTP configuration. So this should not be described as changing the system clock manually. It is about synchronising time and changing the configured time server.</p>
+<p class="wp-block-paragraph">For Time Sync, the code focuses on Windows Time synchronization and NTP configuration. So this should not be described as changing the system clock manually. It is about synchronising time and changing the configured time server.</p>
 
 
 
@@ -424,15 +424,15 @@
 
 
 
-<p>After configuring an EPM elevation rule and allowing EpmElevate.exe, there still seems to be a missing connection.</p>
+<p class="wp-block-paragraph">After configuring an EPM elevation rule and allowing EpmElevate.exe, there still seems to be a missing connection.</p>
 
 
 
-<p>Manually creating a shortcut with the correct parameters is not user-friendly and does not appear to be the intended flow. There needs to be an entry point. A place where the user can start the action without knowing anything about <code>EpmElevate.exe</code>, command-line arguments or EPM claims.</p>
+<p class="wp-block-paragraph">Manually creating a shortcut with the correct parameters is not user-friendly and does not appear to be the intended flow. There needs to be an entry point. A place where the user can start the action without knowing anything about <code>EpmElevate.exe</code>, command-line arguments or EPM claims.</p>
 
 
 
-<p>That place would probably be Company Portal. At the moment, I cannot find the matching Company Portal implementation in the latest version I checked. That might mean the Company Portal side is not there yet, hidden behind flighting, or still being worked on.&nbsp; So the device side pieces are visible, but the full user experience is not complete yet.</p>
+<p class="wp-block-paragraph">That place would probably be Company Portal. At the moment, I cannot find the matching Company Portal implementation in the latest version I checked. That might mean the Company Portal side is not there yet, hidden behind flighting, or still being worked on.&nbsp; So the device side pieces are visible, but the full user experience is not complete yet.</p>
 
 
 
@@ -440,19 +440,19 @@
 
 
 
-<p>EPM appears to be moving beyond normal file elevation.</p>
+<p class="wp-block-paragraph">EPM appears to be moving beyond normal file elevation.</p>
 
 
 
-<p>That does not mean users are getting unrestricted access to Windows Settings, and it certainly does not mean they are becoming local administrators. It looks more controlled than that. An administrator approves a specific system setting. The Company Portal gives the user a place to start the action. EPM validates the rule and policy, then launches a trusted helper that performs only the allowed configuration.</p>
+<p class="wp-block-paragraph">That does not mean users are getting unrestricted access to Windows Settings, and it certainly does not mean they are becoming local administrators. It looks more controlled than that. An administrator approves a specific system setting. The Company Portal gives the user a place to start the action. EPM validates the rule and policy, then launches a trusted helper that performs only the allowed configuration.</p>
 
 
 
-<p>Network adapter settings and time synchronization appear to be the first two examples of this new model. That is a useful direction for EPM. Instead of trying to find the right executable to elevate, administrators can approve the Windows action itself.</p>
+<p class="wp-block-paragraph">Network adapter settings and time synchronization appear to be the first two examples of this new model. That is a useful direction for EPM. Instead of trying to find the right executable to elevate, administrators can approve the Windows action itself.</p>
 
 
 
-<p></p>
+<p class="wp-block-paragraph"></p>
 <p>The post <a href="https://patchmypc.com/blog/intune-epm-system-settings-network-and-time-sync-elevation/">Intune EPM System Settings: Network and Time Sync Elevation</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
@@ -475,7 +475,7 @@
 <p>The post <a href="https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/">Intune Multi Admin Approval: The x-msft-approval-justification Error</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p id="h-">This blog is about the moment Microsoft expanded Multi Admin Approval to app-based Graph automation, and how Intune app updates suddenly began failing with the <strong>x-msft-approval-justification</strong> error. We’ll show what changed in App MAA enforcement, what the x-msft-approval-justification error looks like, why Intune app automation started failing, and how the new app exclusion keeps trusted patching automation running.</p>
+<p class="wp-block-paragraph" id="h-">This blog is about the moment Microsoft expanded Multi Admin Approval to app-based Graph automation, and how Intune app updates suddenly began failing with the <strong>x-msft-approval-justification</strong> error. We’ll show what changed in App MAA enforcement, what the x-msft-approval-justification error looks like, why Intune app automation started failing, and how the new app exclusion keeps trusted patching automation running.</p>
 
 
 
@@ -483,7 +483,7 @@
 
 
 
-<p>Some security features only get interesting when something breaks. Multi-Admin Approval in Microsoft Intune is one such feature. At first glance, it sounds simple. One admin wants to make a sensitive change. Another admin needs to approve it before Intune applies that change.</p>
+<p class="wp-block-paragraph">Some security features only get interesting when something breaks. Multi-Admin Approval in Microsoft Intune is one such feature. At first glance, it sounds simple. One admin wants to make a sensitive change. Another admin needs to approve it before Intune applies that change.</p>
 
 
 
@@ -491,7 +491,7 @@
 
 
 
-<p>That is it. No magic. No fancy dashboard. Just another person standing between a request and the button that can change something important in your tenant. And honestly, that part makes sense.</p>
+<p class="wp-block-paragraph">That is it. No magic. No fancy dashboard. Just another person standing between a request and the button that can change something important in your tenant. And honestly, that part makes sense.</p>
 
 
 
@@ -499,7 +499,7 @@
 
 
 
-<p>Microsoft is pretty clear about the reason. <strong><a href="https://learn.microsoft.com/en-us/intune/fundamentals/role-based-access-control/multi-admin-approval">Multi Admin Approval</a></strong>, or <strong>MAA</strong>, is designed to help protect Intune against a single compromised administrative account.</p>
+<p class="wp-block-paragraph">Microsoft is pretty clear about the reason. <strong><a href="https://learn.microsoft.com/en-us/intune/fundamentals/role-based-access-control/multi-admin-approval">Multi Admin Approval</a></strong>, or <strong>MAA</strong>, is designed to help protect Intune against a single compromised administrative account.</p>
 
 
 
@@ -507,15 +507,15 @@
 
 
 
-<p>&nbsp;If one admin account gets stolen, that account should not be able to quietly make high-impact changes on its own.</p>
+<p class="wp-block-paragraph">&nbsp;If one admin account gets stolen, that account should not be able to quietly make high-impact changes on its own.</p>
 
 
 
-<p>That is exactly why the <a href="https://www.lumos.com/blog/stryker-hack">Stryker incident ended up in so many Intune security discussions.</a> Stryker confirmed a cyberattack caused a global disruption to its Microsoft environment. Public reporting then linked the disruption to abuse of Microsoft Intune, with reports saying attackers compromised an Intune admin account and used it to trigger a large-scale device wipe. Some reports mention around 80,000 wiped devices, while the attacker claims went as high as 200,000. So I would not treat every number as gospel, but the lesson is clear: a trusted management tool can become a weapon when the admin identity behind it is compromised.</p>
+<p class="wp-block-paragraph">That is exactly why the <a href="https://www.lumos.com/blog/stryker-hack">Stryker incident ended up in so many Intune security discussions.</a> Stryker confirmed a cyberattack caused a global disruption to its Microsoft environment. Public reporting then linked the disruption to abuse of Microsoft Intune, with reports saying attackers compromised an Intune admin account and used it to trigger a large-scale device wipe. Some reports mention around 80,000 wiped devices, while the attacker claims went as high as 200,000. So I would not treat every number as gospel, but the lesson is clear: a trusted management tool can become a weapon when the admin identity behind it is compromised.</p>
 
 
 
-<p>That is where MAA comes in. After that type of incident, many organizations began to view Multi Admin Approval differently. Not as another annoying checkbox, but as a way to prevent one compromised admin account from immediately triggering something destructive. With MAA enabled for device actions, a wipe request does not run automatically just because one admin account requested it. A second admin has to approve it first.</p>
+<p class="wp-block-paragraph">That is where MAA comes in. After that type of incident, many organizations began to view Multi Admin Approval differently. Not as another annoying checkbox, but as a way to prevent one compromised admin account from immediately triggering something destructive. With MAA enabled for device actions, a wipe request does not run automatically just because one admin account requested it. A second admin has to approve it first.</p>
 
 
 
@@ -523,7 +523,7 @@
 
 
 
-<p><strong>Multi Admin Approval</strong> helps with that. But we also need to stay honest. Multi-admin approval does not solve every single security problem. It does NOT stop the first account from being compromised, and it does not replace all other security measures you should have in place. It is another barrier. A useful one, yes. But still a barrier.</p>
+<p class="wp-block-paragraph"><strong>Multi Admin Approval</strong> helps with that. But we also need to stay honest. Multi-admin approval does not solve every single security problem. It does NOT stop the first account from being compromised, and it does not replace all other security measures you should have in place. It is another barrier. A useful one, yes. But still a barrier.</p>
 
 
 
@@ -531,7 +531,7 @@
 
 
 
-<p>MAA is essentially the four-eyes principle in Intune. One admin creates the request. Another admin reviews it.</p>
+<p class="wp-block-paragraph">MAA is essentially the four-eyes principle in Intune. One admin creates the request. Another admin reviews it.</p>
 
 
 
@@ -539,7 +539,7 @@
 
 
 
-<p>If it makes sense, the request gets approved. If it looks wrong, unexpected, or does not match the change ticket, it can be rejected. That is the clean version of the story.</p>
+<p class="wp-block-paragraph">If it makes sense, the request gets approved. If it looks wrong, unexpected, or does not match the change ticket, it can be rejected. That is the clean version of the story.</p>
 
 
 
@@ -547,11 +547,11 @@
 
 
 
-<p>In practice, the requester still needs to finish the change after approval. So the flow is not just approved and done. The original admin submits the change, the approver approves it, and then the requestor completes it so Intune can apply the change.</p>
+<p class="wp-block-paragraph">In practice, the requester still needs to finish the change after approval. So the flow is not just approved and done. The original admin submits the change, the approver approves it, and then the requestor completes it so Intune can apply the change.</p>
 
 
 
-<p>That extra step is important. It gives organizations a place to slow down risky changes before they become real. And when we are talking about wipe, retire, delete, scripts, apps, or RBAC changes, slowing down is not always a bad thing.</p>
+<p class="wp-block-paragraph">That extra step is important. It gives organizations a place to slow down risky changes before they become real. And when we are talking about wipe, retire, delete, scripts, apps, or RBAC changes, slowing down is not always a bad thing.</p>
 
 
 
@@ -559,15 +559,15 @@
 
 
 
-<p>Historically, Multi Admin Approval mostly made sense in the portal world. An admin opened the Intune admin center, changed an app, submitted the request, and another admin approved it. That flow can be annoying when you are in a hurry, but at least it is easy to understand. A human asked for a change. Another human approves it…. Yes, IT Admins are human beings…</p>
+<p class="wp-block-paragraph">Historically, Multi Admin Approval mostly made sense in the portal world. An admin opened the Intune admin center, changed an app, submitted the request, and another admin approved it. That flow can be annoying when you are in a hurry, but at least it is easy to understand. A human asked for a change. Another human approves it…. Yes, IT Admins are human beings…</p>
 
 
 
-<p>That was also why many <strong>automation flows</strong> were <strong>NOT</strong> affected before. Third-party tools using application authentication, service principals, or app registrations could still do their job because they were not acting as a signed-in delegated admin.</p>
+<p class="wp-block-paragraph">That was also why many <strong>automation flows</strong> were <strong>NOT</strong> affected before. Third-party tools using application authentication, service principals, or app registrations could still do their job because they were not acting as a signed-in delegated admin.</p>
 
 
 
-<p>For third-party patching products, that distinction mattered a lot. Patch automation is not someone manually editing one app at a time. It is a service principal or app registration that creates and updates Intune apps, assignments, metadata, detection rules, and content via Microsoft Graph. That is the whole point.</p>
+<p class="wp-block-paragraph">For third-party patching products, that distinction mattered a lot. Patch automation is not someone manually editing one app at a time. It is a service principal or app registration that creates and updates Intune apps, assignments, metadata, detection rules, and content via Microsoft Graph. That is the whole point.</p>
 
 
 
@@ -575,7 +575,7 @@
 
 
 
-<p>Microsoft has now documented that Multi Admin Approval also applies to automation using Microsoft Graph.</p>
+<p class="wp-block-paragraph">Microsoft has now documented that Multi Admin Approval also applies to automation using Microsoft Graph.</p>
 
 
 
@@ -583,15 +583,15 @@
 
 
 
-<p>That includes service principals, automation scripts, and third-party applications when they modify protected Intune resources. Read-only calls are not affected, but writes, such as create, update, assign, delete, or similar changes, can be intercepted.</p>
+<p class="wp-block-paragraph">That includes service principals, automation scripts, and third-party applications when they modify protected Intune resources. Read-only calls are not affected, but writes, such as create, update, assign, delete, or similar changes, can be intercepted.</p>
 
 
 
-<p>That is the part that changes the conversation. This is no longer only about admins clicking around in the Intune portal. This is now also about every tool that writes into Intune through Graph. And yes, for a third-party patching company, that becomes a problem very quickly.</p>
+<p class="wp-block-paragraph">That is the part that changes the conversation. This is no longer only about admins clicking around in the Intune portal. This is now also about every tool that writes into Intune through Graph. And yes, for a third-party patching company, that becomes a problem very quickly.</p>
 
 
 
-<p>If an App MAA Access policy protects Intune apps and a patching product attempts to create or update a Win32 app, the request can fail unless the automation supports the MAA approval flow or the application is excluded from enforcement.</p>
+<p class="wp-block-paragraph">If an App MAA Access policy protects Intune apps and a patching product attempts to create or update a Win32 app, the request can fail unless the automation supports the MAA approval flow or the application is excluded from enforcement.</p>
 
 
 
@@ -599,7 +599,7 @@
 
 
 
-<p>Microsoft documents both paths: update the automation to use the approval workflow, OR exclude a specific application from MAA enforcement when that code change is not immediately possible.</p>
+<p class="wp-block-paragraph">Microsoft documents both paths: update the automation to use the approval workflow, OR exclude a specific application from MAA enforcement when that code change is not immediately possible.</p>
 
 
 
@@ -607,7 +607,7 @@
 
 
 
-<p>This is also why some older MAA guidance is now outdated. Earlier, it was fair to say that App Registrations and service principals were not covered in the same way as delegated admin actions were. That changed. App authenticated Graph calls are now part of the story.</p>
+<p class="wp-block-paragraph">This is also why some older MAA guidance is now outdated. Earlier, it was fair to say that App Registrations and service principals were not covered in the same way as delegated admin actions were. That changed. App authenticated Graph calls are now part of the story.</p>
 
 
 
@@ -615,15 +615,15 @@
 
 
 
-<p>This is where most admins will first notice the change. Not in a nice warning. Not in a clean message saying your automation is now waiting for approval. It usually starts with a failed Graph call.</p>
+<p class="wp-block-paragraph">This is where most admins will first notice the change. Not in a nice warning. Not in a clean message saying your automation is now waiting for approval. It usually starts with a failed Graph call.</p>
 
 
 
-<p>When an application attempts to modify a protected Intune resource and Multi Admin Approval is in the way, Microsoft Graph can return an error indicating a missing approval header. The important part is that this is not always a normal permission problem. It can mean the request was caught by MAA and now needs to go through the approval flow.</p>
+<p class="wp-block-paragraph">When an application attempts to modify a protected Intune resource and Multi Admin Approval is in the way, Microsoft Graph can return an error indicating a missing approval header. The important part is that this is not always a normal permission problem. It can mean the request was caught by MAA and now needs to go through the approval flow.</p>
 
 
 
-<p>The error you want to look for is this one: <strong>Header &#8216;x-msft-approval-justification&#8217; is required to request approval</strong></p>
+<p class="wp-block-paragraph">The error you want to look for is this one: <strong>Header &#8216;x-msft-approval-justification&#8217; is required to request approval</strong></p>
 
 
 
@@ -631,19 +631,19 @@
 
 
 
-<p>That is the money shot. If you are troubleshooting Intune automation and you see <strong>x-msft-approval-justification</strong>, you are not just looking at a broken Graph request. You are looking at Multi Admin Approval enforcement.</p>
+<p class="wp-block-paragraph">That is the money shot. If you are troubleshooting Intune automation and you see <strong>x-msft-approval-justification</strong>, you are not just looking at a broken Graph request. You are looking at Multi Admin Approval enforcement.</p>
 
 
 
-<p>The app may still have the correct Graph permissions. The token may still be valid. The service principal may still be allowed to manage Intune apps. But MAA is now standing between the request and the actual change.</p>
+<p class="wp-block-paragraph">The app may still have the correct Graph permissions. The token may still be valid. The service principal may still be allowed to manage Intune apps. But MAA is now standing between the request and the actual change.</p>
 
 
 
-<p>Microsoft also documents that the first request needs a Base64 <strong><a href="https://learn.microsoft.com/en-us/intune/fundamentals/role-based-access-control/multi-admin-approval-graph-api#step-1-submit-a-request-with-a-justification-header">encoded x-msft-approval-justification</a></strong> header. After approval, the original request must be sent again with the x-msft-approval-code header. That flow makes sense when you own the automation code and can build the approval workflow around it.</p>
+<p class="wp-block-paragraph">Microsoft also documents that the first request needs a Base64 <strong><a href="https://learn.microsoft.com/en-us/intune/fundamentals/role-based-access-control/multi-admin-approval-graph-api#step-1-submit-a-request-with-a-justification-header">encoded x-msft-approval-justification</a></strong> header. After approval, the original request must be sent again with the x-msft-approval-code header. That flow makes sense when you own the automation code and can build the approval workflow around it.</p>
 
 
 
-<p>It becomes a lot harder when the automation is part of a third-party patching product that is expected to run quietly in the background. That is why the <strong>x-msft-approval-justification</strong> error matters. It tells you this is not just Microsoft Graph being broken. It may be Intune Multi Admin Approval doing exactly what it was told to do.</p>
+<p class="wp-block-paragraph">It becomes a lot harder when the automation is part of a third-party patching product that is expected to run quietly in the background. That is why the <strong>x-msft-approval-justification</strong> error matters. It tells you this is not just Microsoft Graph being broken. It may be Intune Multi Admin Approval doing exactly what it was told to do.</p>
 
 
 
@@ -651,7 +651,7 @@
 
 
 
-<p>To test it, we used a small test script. The important part is not the test app itself. The important part is how the script authenticates.</p>
+<p class="wp-block-paragraph">To test it, we used a small test script. The important part is not the test app itself. The important part is how the script authenticates.</p>
 
 
 
@@ -659,15 +659,15 @@
 
 
 
-<p>It does not use a signed-in Intune admin clicking around in the portal. It uses app auth. You feed it a tenant ID, an app ID, and a client secret. The app registration needs DeviceManagementApps.ReadWrite.All, and then the script connects to Microsoft Graph using the client secret credential.</p>
+<p class="wp-block-paragraph">It does not use a signed-in Intune admin clicking around in the portal. It uses app auth. You feed it a tenant ID, an app ID, and a client secret. The app registration needs DeviceManagementApps.ReadWrite.All, and then the script connects to Microsoft Graph using the client secret credential.</p>
 
 
 
-<p>That matters because this is exactly the kind of flow many automation tools use. The script then builds a small .intunewin package, creates a Win32 app record in Intune, creates a content version, uploads the content to Azure Storage, commits the file content back to Intune, waits for commitFileSuccess, and finally updates the Win32 app with the committed content version.</p>
+<p class="wp-block-paragraph">That matters because this is exactly the kind of flow many automation tools use. The script then builds a small .intunewin package, creates a Win32 app record in Intune, creates a content version, uploads the content to Azure Storage, commits the file content back to Intune, waits for commitFileSuccess, and finally updates the Win32 app with the committed content version.</p>
 
 
 
-<p>That last part is where the fun starts. The package was uploaded. The commit came back as successful. The file state showed commitFile Success and then the final PATCH request failed. Not because the package was broken, or because the app registration suddenly lost access. It failed because Multi Admin Approval stepped in.</p>
+<p class="wp-block-paragraph">That last part is where the fun starts. The package was uploaded. The commit came back as successful. The file state showed commitFile Success and then the final PATCH request failed. Not because the package was broken, or because the app registration suddenly lost access. It failed because Multi Admin Approval stepped in.</p>
 
 
 
@@ -679,7 +679,7 @@
 
 
 
-<p>This is where the theory becomes visible. In the failing run, the script already uploaded the Win32 content. The blocks were committed to Azure Storage. The upload state was verified. The commit request was sent. Intune returned commitFileSuccess.</p>
+<p class="wp-block-paragraph">This is where the theory becomes visible. In the failing run, the script already uploaded the Win32 content. The blocks were committed to Azure Storage. The upload state was verified. The commit request was sent. Intune returned commitFileSuccess.</p>
 
 
 
@@ -687,7 +687,7 @@
 
 
 
-<p>So the content pipeline did its job. The failure happened when the automation tried to update the Win32 app with the committed content version. MAA Graph error before exclusion. The important part is this message: Header &#8216;x-msft-approval-justification&#8217; is required to request approval</p>
+<p class="wp-block-paragraph">So the content pipeline did its job. The failure happened when the automation tried to update the Win32 app with the committed content version. MAA Graph error before exclusion. The important part is this message: Header &#8216;x-msft-approval-justification&#8217; is required to request approval</p>
 
 
 
@@ -695,7 +695,7 @@
 
 
 
-<p>That tells us this is not a normal Win32 app upload issue. It is Multi Admin Approval enforcement. You can see the same type of response in Graph as well. The request fails with<strong> Bad Request 403,</strong> and the response body points directly to the missing MAA approval header. If you see x-msft-approval-justification in the error, you are no longer looking at a generic Graph permission issue. You are looking at an Intune change that is being forced into the <strong>Multi Admin Approval flow.</strong></p>
+<p class="wp-block-paragraph">That tells us this is not a normal Win32 app upload issue. It is Multi Admin Approval enforcement. You can see the same type of response in Graph as well. The request fails with<strong> Bad Request 403,</strong> and the response body points directly to the missing MAA approval header. If you see x-msft-approval-justification in the error, you are no longer looking at a generic Graph permission issue. You are looking at an Intune change that is being forced into the <strong>Multi Admin Approval flow.</strong></p>
 
 
 
@@ -703,7 +703,7 @@
 
 
 
-<p>To fix this x-msft-approval-justification MAA issue you need to add the enterprise application exclusion that <a href="https://patchmypc.com/kb/how-does-microsoft-intune-multi/">Ben also mentions in the Patch My PC KB</a></p>
+<p class="wp-block-paragraph">To fix this x-msft-approval-justification MAA issue you need to add the enterprise application exclusion that <a href="https://patchmypc.com/kb/how-does-microsoft-intune-multi/">Ben also mentions in the Patch My PC KB</a></p>
 
 
 
@@ -711,7 +711,7 @@
 
 
 
-<p>After adding the Patch My PC Cloud Enterprise Application to the exclusions, the same app auth flow completed successfully.</p>
+<p class="wp-block-paragraph">After adding the Patch My PC Cloud Enterprise Application to the exclusions, the same app auth flow completed successfully.</p>
 
 
 
@@ -719,7 +719,7 @@
 
 
 
-<p>That is the difference the exclusion makes. MAA still protects the workload, but the trusted automation identity is no longer required to go through a manual approval flow. For patching, that distinction matters. You keep the approval barrier for risky human changes, but you do not turn every normal app update into a stuck approval request.</p>
+<p class="wp-block-paragraph">That is the difference the exclusion makes. MAA still protects the workload, but the trusted automation identity is no longer required to go through a manual approval flow. For patching, that distinction matters. You keep the approval barrier for risky human changes, but you do not turn every normal app update into a stuck approval request.</p>
 
 
 
@@ -727,23 +727,23 @@
 
 
 
-<p>From a security perspective, I get it. A service principal with write access to Intune apps is powerful. If that identity is abused, someone could change what gets deployed to devices. Microsoft saying app write actions should also be governed is not strange. But this is where the App MAA access policy starts to hit automation.</p>
+<p class="wp-block-paragraph">From a security perspective, I get it. A service principal with write access to Intune apps is powerful. If that identity is abused, someone could change what gets deployed to devices. Microsoft saying app write actions should also be governed is not strange. But this is where the App MAA access policy starts to hit automation.</p>
 
 
 
-<p>It is not only commercial third-party patching products. It also affects internal scripts: app assignment updates, Win32 app creation, metadata changes, or that small helper tool someone built because the portal takes too long. If that automation uses app-based authentication and writes to Intune apps protected by an App MAA access policy, it must now understand the MAA approval flow or be excluded from that policy.</p>
+<p class="wp-block-paragraph">It is not only commercial third-party patching products. It also affects internal scripts: app assignment updates, Win32 app creation, metadata changes, or that small helper tool someone built because the portal takes too long. If that automation uses app-based authentication and writes to Intune apps protected by an App MAA access policy, it must now understand the MAA approval flow or be excluded from that policy.</p>
 
 
 
-<p>That is where patching gets tricky. During testing, the failure occurred when the script attempted to PATCH the Win32 app object with the committed content version. Because that PATCH is an app write action covered by App MAA, Intune expected an <strong>x-msft-approval-justification header. </strong>Without that header, the request failed. That is the difference.</p>
+<p class="wp-block-paragraph">That is where patching gets tricky. During testing, the failure occurred when the script attempted to PATCH the Win32 app object with the committed content version. Because that PATCH is an app write action covered by App MAA, Intune expected an <strong>x-msft-approval-justification header. </strong>Without that header, the request failed. That is the difference.</p>
 
 
 
-<p>This does not silently become a nice pending approval unless the automation was built to request approval in the first place. Without that MAA aware request flow, the app update just fails. For patching automation, that matters. A normal app update, assignment change, metadata change, or content version update can stop at the Graph request if it is protected by App MAA and the automation does not send the required approval headers.</p>
+<p class="wp-block-paragraph">This does not silently become a nice pending approval unless the automation was built to request approval in the first place. Without that MAA aware request flow, the app update just fails. For patching automation, that matters. A normal app update, assignment change, metadata change, or content version update can stop at the Graph request if it is protected by App MAA and the automation does not send the required approval headers.</p>
 
 
 
-<p>That is not great for patching, and it is not great for app automation in general. If it writes to Intune apps, and an App MAA access policy protects that workload, it is now part of the Multi Admin Approval story.</p>
+<p class="wp-block-paragraph">That is not great for patching, and it is not great for app automation in general. If it writes to Intune apps, and an App MAA access policy protects that workload, it is now part of the Multi Admin Approval story.</p>
 
 
 
@@ -751,7 +751,7 @@
 
 
 
-<p>The practical answer for trusted automation is the exclusion that just showed up in your tenants!!</p>
+<p class="wp-block-paragraph">The practical answer for trusted automation is the exclusion that just showed up in your tenants!!</p>
 
 
 
@@ -759,7 +759,7 @@
 
 
 
-<p>Microsoft added the option to exclude specific enterprise applications from MAA enforcement for app-authenticated calls. Funny enough, the App Exclusion option already showed up before the flow fully worked. You could see the setting, but Graph still did not allow the PATCH to go through. That changed once Microsoft finished rolling out the app exclusion behavior. </p>
+<p class="wp-block-paragraph">Microsoft added the option to exclude specific enterprise applications from MAA enforcement for app-authenticated calls. Funny enough, the App Exclusion option already showed up before the flow fully worked. You could see the setting, but Graph still did not allow the PATCH to go through. That changed once Microsoft finished rolling out the app exclusion behavior. </p>
 
 
 
@@ -767,15 +767,15 @@
 
 
 
-<p class="has-small-font-size"><strong>Note</strong>: Did you also spotted the userExclusion??  &#8211;&gt; <strong>Select users that will be excluded from requiring Multi Admin Approval for this policy. This also impacts delegated authentication using user credentials.</strong></p>
+<p class="has-small-font-size wp-block-paragraph"><strong>Note</strong>: Did you also spotted the userExclusion??  &#8211;&gt; <strong>Select users that will be excluded from requiring Multi Admin Approval for this policy. This also impacts delegated authentication using user credentials.</strong></p>
 
 
 
-<p>But with the App Exclusion active for the App MAA policy, customers can keep Multi Admin Approval enabled for human admins while still allowing trusted automation to continue running.</p>
+<p class="wp-block-paragraph">But with the App Exclusion active for the App MAA policy, customers can keep Multi Admin Approval enabled for human admins while still allowing trusted automation to continue running.</p>
 
 
 
-<p>That is the balance. You do not disable the entire security feature just because patching needs to work. You exclude the trusted app identity that performs the patching automation while keeping the rest of the MAA policy in place.</p>
+<p class="wp-block-paragraph">That is the balance. You do not disable the entire security feature just because patching needs to work. You exclude the trusted app identity that performs the patching automation while keeping the rest of the MAA policy in place.</p>
 
 
 
@@ -787,15 +787,15 @@
 
 
 
-<p>The mistake would be treating MAA as a checkbox. If you enable it without thinking, you can break automation. If you protect RBAC before your approver groups and role assignments are correct, you can create your own admin headache. Also, if no one monitors the approval queue, urgent changes can sit there. If every normal patching update needs manual approval, your patch process becomes slower by design.</p>
+<p class="wp-block-paragraph">The mistake would be treating MAA as a checkbox. If you enable it without thinking, you can break automation. If you protect RBAC before your approver groups and role assignments are correct, you can create your own admin headache. Also, if no one monitors the approval queue, urgent changes can sit there. If every normal patching update needs manual approval, your patch process becomes slower by design.</p>
 
 
 
-<p>So yes, enable Multi Admin Approval where it makes sense. Implement it for high-impact areas. Use it for wipe, retire, delete, scripts, apps, RBAC, and other sensitive Intune changes where a second set of eyes makes sense.</p>
+<p class="wp-block-paragraph">So yes, enable Multi Admin Approval where it makes sense. Implement it for high-impact areas. Use it for wipe, retire, delete, scripts, apps, RBAC, and other sensitive Intune changes where a second set of eyes makes sense.</p>
 
 
 
-<p>But also document who approves, how fast they approve, document what gets excluded, and document which automation identities are trusted. Security without process just becomes another place where things fail quietly.</p>
+<p class="wp-block-paragraph">But also document who approves, how fast they approve, document what gets excluded, and document which automation identities are trusted. Security without process just becomes another place where things fail quietly.</p>
 
 
 
@@ -803,19 +803,19 @@
 
 
 
-<p>Multi Admin Approval is <strong>NOT</strong> bad. Microsoft recommending it is not strange. Intune has too much power for one compromised admin account to be the only thing standing between an attacker and a destructive change.</p>
+<p class="wp-block-paragraph">Multi Admin Approval is <strong>NOT</strong> bad. Microsoft recommending it is not strange. Intune has too much power for one compromised admin account to be the only thing standing between an attacker and a destructive change.</p>
 
 
 
-<p>But MAA is not the whole castle. It is one more gate.</p>
+<p class="wp-block-paragraph">But MAA is not the whole castle. It is one more gate.</p>
 
 
 
-<p>For human admin actions, that gate makes sense. Automation needs more care. Third-party patching tools do not work like a person in the portal. They need predictable Graph access to keep apps updated and devices patched. That is why the MAA App Access Policy exclusion story matters so much.</p>
+<p class="wp-block-paragraph">For human admin actions, that gate makes sense. Automation needs more care. Third-party patching tools do not work like a person in the portal. They need predictable Graph access to keep apps updated and devices patched. That is why the MAA App Access Policy exclusion story matters so much.</p>
 
 
 
-<p>Because at the end of the day, a security feature that delays patching can become a risk in itself.</p>
+<p class="wp-block-paragraph">Because at the end of the day, a security feature that delays patching can become a risk in itself.</p>
 <p>The post <a href="https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/">Intune Multi Admin Approval: The x-msft-approval-justification Error</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
@@ -839,7 +839,7 @@
 <p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/">Patch My PC Publisher Preview Version 2.3.2.54 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p>This release contains a variety of features, improvements, and fixes, as noted below.</p>
+<p class="wp-block-paragraph">This release contains a variety of features, improvements, and fixes, as noted below.</p>
 
 
 
@@ -847,7 +847,7 @@
 
 
 
-<p>The biggest change in this release is a ground-up redesign of how you interact with the Patch My PC Publisher. The focus is strictly on reducing clutter and speeding up your day-to-day workflow.</p>
+<p class="wp-block-paragraph">The biggest change in this release is a ground-up redesign of how you interact with the Patch My PC Publisher. The focus is strictly on reducing clutter and speeding up your day-to-day workflow.</p>
 
 
 
@@ -869,11 +869,11 @@
 
 
 
-<p>Managing your applications is much more visual with three distinct layout improvements:</p>
+<p class="wp-block-paragraph">Managing your applications is much more visual with three distinct layout improvements:</p>
 
 
 
-<p>To pick up a draggable item, press the space bar. While dragging, use the arrow keys to move the item. Press space again to drop the item in its new position, or press escape to cancel.</p>
+<p class="wp-block-paragraph">To pick up a draggable item, press the space bar. While dragging, use the arrow keys to move the item. Press space again to drop the item in its new position, or press escape to cancel.</p>
 
 
 
@@ -881,12 +881,12 @@
 
 
 
-<p>To pick up a draggable item, press the space bar. While dragging, use the arrow keys to move the item. Press space again to drop the item in its new position, or press escape to cancel.</p>
+<p class="wp-block-paragraph">To pick up a draggable item, press the space bar. While dragging, use the arrow keys to move the item. Press space again to drop the item in its new position, or press escape to cancel.</p>
 
 
 
 <blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
-<p><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f4cd.png" alt="📍" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Note on the Progress Bar:</strong> The synchronization progress bar has a new home. You can now find it on the <strong>Service Status</strong> page located under the <strong>About</strong> tab.</p>
+<p class="wp-block-paragraph"><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f4cd.png" alt="📍" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Note on the Progress Bar:</strong> The synchronization progress bar has a new home. You can now find it on the <strong>Service Status</strong> page located under the <strong>About</strong> tab.</p>
 </blockquote>
 
 
@@ -895,7 +895,7 @@
 
 
 
-<p>Finding the specific products you need takes far fewer clicks.</p>
+<p class="wp-block-paragraph">Finding the specific products you need takes far fewer clicks.</p>
 
 
 
@@ -903,7 +903,7 @@
 
 
 
-<p>Quickly drill down into our massive catalog to locate specific apps and complex configurations with upgraded, high-performance filters.</p>
+<p class="wp-block-paragraph">Quickly drill down into our massive catalog to locate specific apps and complex configurations with upgraded, high-performance filters.</p>
 
 
 
@@ -911,7 +911,7 @@
 
 
 
-<p>Products are now logically split into two dedicated sections to keep custom work isolated from standard vendor catalogs:</p>
+<p class="wp-block-paragraph">Products are now logically split into two dedicated sections to keep custom work isolated from standard vendor catalogs:</p>
 
 
 
@@ -929,11 +929,11 @@
 
 
 
-<p><strong>Dedicated Alerts Pages:</strong> Alerts have been broken out into separate, dedicated views so you can manage notifications without noise.​</p>
+<p class="wp-block-paragraph"><strong>Dedicated Alerts Pages:</strong> Alerts have been broken out into separate, dedicated views so you can manage notifications without noise.​</p>
 
 
 
-<p><strong>Centralized Service Status:</strong> A dedicated health page housing your live sync progress.</p>
+<p class="wp-block-paragraph"><strong>Centralized Service Status:</strong> A dedicated health page housing your live sync progress.</p>
 
 
 
@@ -945,7 +945,7 @@
 
 
 
-<p>You can now view application dependencies directly in the Publisher, minimizing deployment failures down the line.</p>
+<p class="wp-block-paragraph">You can now view application dependencies directly in the Publisher, minimizing deployment failures down the line.</p>
 
 
 
@@ -953,7 +953,7 @@
 
 
 
-<p>As an alternative to using your standard WSUS certificate, you can now supply a <strong>custom code signing certificate</strong> specifically to sign ConfigMgr detection scripts.</p>
+<p class="wp-block-paragraph">As an alternative to using your standard WSUS certificate, you can now supply a <strong>custom code signing certificate</strong> specifically to sign ConfigMgr detection scripts.</p>
 
 
 
@@ -962,7 +962,7 @@
 
 
 <blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
-<p>​<img src="https://s.w.org/images/core/emoji/17.0.2/72x72/26a0.png" alt="⚠" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Important:</strong> You can no longer create or copy legacy Microsoft Teams webhook alerts inside the Publisher. If you have existing legacy webhooks configured, they will continue to function normally for the time being, but planning a migration to modern alerting is highly recommended.</p>
+<p class="wp-block-paragraph">​<img src="https://s.w.org/images/core/emoji/17.0.2/72x72/26a0.png" alt="⚠" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Important:</strong> You can no longer create or copy legacy Microsoft Teams webhook alerts inside the Publisher. If you have existing legacy webhooks configured, they will continue to function normally for the time being, but planning a migration to modern alerting is highly recommended.</p>
 </blockquote>
 <p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/">Patch My PC Publisher Preview Version 2.3.2.54 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
@@ -987,11 +987,11 @@
 <p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-3-2-0-released/">Patch My PC Publisher Production Version 2.3.2.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p>This release contains a variety of improvements and fixes, as noted below.</p>
+<p class="wp-block-paragraph">This release contains a variety of improvements and fixes, as noted below.</p>
 
 
 
-<p>This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&nbsp;<strong><a href="https://patchmypc.com/publishing-service-setup-documentation">MSI installer</a></strong>.</p>
+<p class="wp-block-paragraph">This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&nbsp;<strong><a href="https://patchmypc.com/publishing-service-setup-documentation">MSI installer</a></strong>.</p>
 
 
 
@@ -1047,7 +1047,7 @@
 
 
 
-<p></p>
+<p class="wp-block-paragraph"></p>
 <p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-3-2-0-released/">Patch My PC Publisher Production Version 2.3.2.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
@@ -1070,7 +1070,7 @@
 <p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-224-released/">Patch My PC Publisher Preview Version 2.2.2.224 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p>This release contains a fix as noted below.</p>
+<p class="wp-block-paragraph">This release contains a fix as noted below.</p>
 
 
 
@@ -1084,7 +1084,7 @@
 
 
 
-<p></p>
+<p class="wp-block-paragraph"></p>
 <p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-224-released/">Patch My PC Publisher Preview Version 2.2.2.224 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
@@ -1107,7 +1107,7 @@
 <p>The post <a href="https://patchmypc.com/blog/autopatch-client-broker-fails-during-autopilot-pre-provisioning/">Autopatch Client Broker Fails During Autopilot Pre-Provisioning</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p>This blog will show you why configuring the <strong>Autopatch Client Broker</strong> as a blocking app in the&nbsp; Enrollment Status Page can break your enrollment. The issue is not the broker itself, but a custom action in the MSI that checks the Windows CloudDomainJoin TenantInfo registry key after Windows Autopilot pre-provisioning has already deleted it</p>
+<p class="wp-block-paragraph">This blog will show you why configuring the <strong>Autopatch Client Broker</strong> as a blocking app in the&nbsp; Enrollment Status Page can break your enrollment. The issue is not the broker itself, but a custom action in the MSI that checks the Windows CloudDomainJoin TenantInfo registry key after Windows Autopilot pre-provisioning has already deleted it</p>
 
 
 
@@ -1115,7 +1115,7 @@
 
 
 
-<p>Sometimes an installer fails because it cannot copy files. Sometimes it fails because the service behind it is unavailable. And sometimes it fails because the installer asks Windows a question after Windows has already removed the information to do so. This one belongs in that last category. The Windows Autopatch Client Broker can be deployed as a Win32 app.</p>
+<p class="wp-block-paragraph">Sometimes an installer fails because it cannot copy files. Sometimes it fails because the service behind it is unavailable. And sometimes it fails because the installer asks Windows a question after Windows has already removed the information to do so. This one belongs in that last category. The Windows Autopatch Client Broker can be deployed as a Win32 app.</p>
 
 
 
@@ -1123,7 +1123,7 @@
 
 
 
-<p>That sounds like a normal and supported approach, especially because the broker is a local component that helps Windows Autopatch understand whether a device is ready and healthy enough to be managed. Microsoft describes the broker, along with the Microsoft Cloud Managed Desktop Extension, as part of the readiness flow that collects device readiness results and sends them back to the Windows Autopatch service.</p>
+<p class="wp-block-paragraph">That sounds like a normal and supported approach, especially because the broker is a local component that helps Windows Autopatch understand whether a device is ready and healthy enough to be managed. Microsoft describes the broker, along with the Microsoft Cloud Managed Desktop Extension, as part of the readiness flow that collects device readiness results and sends them back to the Windows Autopatch service.</p>
 
 
 
@@ -1131,7 +1131,7 @@
 
 
 
-<p>So far, nothing strange. The broker needs local configuration. It needs to know which environment it belongs to, which manifest it should use, and which service endpoint it should talk to. For a normal commercial tenant, that means the normal Autopatch endpoints. For a US government tenant, also known as Fairfax, that means different endpoints. That small environment check is where the story starts to get funny.</p>
+<p class="wp-block-paragraph">So far, nothing strange. The broker needs local configuration. It needs to know which environment it belongs to, which manifest it should use, and which service endpoint it should talk to. For a normal commercial tenant, that means the normal Autopatch endpoints. For a US government tenant, also known as Fairfax, that means different endpoints. That small environment check is where the story starts to get funny.</p>
 
 
 
@@ -1139,7 +1139,7 @@
 
 
 
-<p>The issue only seems to occur when the Autopatch Client Broker is deployed as a required, blocking Win32 app during Autopilot pre-provisioning.</p>
+<p class="wp-block-paragraph">The issue only seems to occur when the Autopatch Client Broker is deployed as a required, blocking Win32 app during Autopilot pre-provisioning.</p>
 
 
 
@@ -1147,15 +1147,15 @@
 
 
 
-<p>Once you start the Autopilot Pre-Provisioning, the device will go through the Entra and Intune enrollment. Once that is done, the ESP will start installing required apps… This is the moment the Autopatch broker MSI starts as part of that required app flow. Instead of installing it cleanly, the Autopatch Client Broker <strong>MSI fails with error 1603</strong>.</p>
+<p class="wp-block-paragraph">Once you start the Autopilot Pre-Provisioning, the device will go through the Entra and Intune enrollment. Once that is done, the ESP will start installing required apps… This is the moment the Autopatch broker MSI starts as part of that required app flow. Instead of installing it cleanly, the Autopatch Client Broker <strong>MSI fails with error 1603</strong>.</p>
 
 
 
-<p>That alone would be annoying, but there is a second part that makes it worse. When the same MSI is installed later, after the device is fully enrolled and the Windows identity state has settled, it installs successfully? That&#8217;s a bit weird?</p>
+<p class="wp-block-paragraph">That alone would be annoying, but there is a second part that makes it worse. When the same MSI is installed later, after the device is fully enrolled and the Windows identity state has settled, it installs successfully? That&#8217;s a bit weird?</p>
 
 
 
-<p>That tells us something important. The installer is not simply broken. The timing is!&nbsp; The MSI log points directly to the failing custom action:</p>
+<p class="wp-block-paragraph">That tells us something important. The installer is not simply broken. The timing is!&nbsp; The MSI log points directly to the failing custom action:</p>
 
 
 
@@ -1163,15 +1163,15 @@
 
 
 
-<p>Calling custom action CustomActions!ClientBroker.Setup.CustomActions.CustomActions.CreateRegistryKeyAndValues:&nbsp; CreateRegistryKeyAndValues: Begin</p>
+<p class="wp-block-paragraph">Calling custom action CustomActions!ClientBroker.Setup.CustomActions.CustomActions.CreateRegistryKeyAndValues:&nbsp; CreateRegistryKeyAndValues: Begin</p>
 
 
 
-<p>That log line is the breadcrumb we need. The Autopatch Client Broker installer starts the <strong>CreateRegistryKeyAndValues</strong> custom action. That action then calls another function called <strong>OverrideEnvironmentRegistryKeys.</strong> Inside that function, the custom action hits a <strong>NullReferenceException.</strong> The MSI log says “<strong>ignore”,</strong> but the code does not ignore it. It catches the exception, logs the message, and then returns failure. Windows Installer receives that failure and turns it into a <strong>1603.</strong></p>
+<p class="wp-block-paragraph">That log line is the breadcrumb we need. The Autopatch Client Broker installer starts the <strong>CreateRegistryKeyAndValues</strong> custom action. That action then calls another function called <strong>OverrideEnvironmentRegistryKeys.</strong> Inside that function, the custom action hits a <strong>NullReferenceException.</strong> The MSI log says “<strong>ignore”,</strong> but the code does not ignore it. It catches the exception, logs the message, and then returns failure. Windows Installer receives that failure and turns it into a <strong>1603.</strong></p>
 
 
 
-<p>So the word <strong>“ignore</strong>” is doing a lot of heavy lifting there. The ESP does not ignore it. The Autopatch client broker MSI does not ignore it… With it, the required app fails.</p>
+<p class="wp-block-paragraph">So the word <strong>“ignore</strong>” is doing a lot of heavy lifting there. The ESP does not ignore it. The Autopatch client broker MSI does not ignore it… With it, the required app fails.</p>
 
 
 
@@ -1179,7 +1179,7 @@
 
 
 
-<p>An MSI is not always just a package that copies files, creates folders, writes registry keys, and drops a shortcut somewhere. MSI packages can also contain custom actions. A custom action is extra code that runs during install, repair, upgrade, or uninstall.</p>
+<p class="wp-block-paragraph">An MSI is not always just a package that copies files, creates folders, writes registry keys, and drops a shortcut somewhere. MSI packages can also contain custom actions. A custom action is extra code that runs during install, repair, upgrade, or uninstall.</p>
 
 
 
@@ -1187,19 +1187,19 @@
 
 
 
-<p>That extra code can be useful. It can create scheduled tasks, repair a missing file, write configuration that depends on runtime information, or perform checks that are difficult to express in the normal MSI tables.</p>
+<p class="wp-block-paragraph">That extra code can be useful. It can create scheduled tasks, repair a missing file, write configuration that depends on runtime information, or perform checks that are difficult to express in the normal MSI tables.</p>
 
 
 
-<p>But that flexibility comes with risk. A normal MSI table is mostly declarative. A custom action is real code. If that code assumes something exists and that something does not yet exist, the whole installer can fail in an unexpected place just by looking at the files in the package.</p>
+<p class="wp-block-paragraph">But that flexibility comes with risk. A normal MSI table is mostly declarative. A custom action is real code. If that code assumes something exists and that something does not yet exist, the whole installer can fail in an unexpected place just by looking at the files in the package.</p>
 
 
 
-<p>We have seen this kind of installer story before. In the <a href="https://patchmypc.com/blog/it1272653-company-portal-stuck-on-downloading/">IME incident around IT1272653</a>, the MSI behavior for the Intune Management Extension config file changed, and later Microsoft added a targeted custom action, EnsureAppConfigExists, to restore the missing config file from an embedded resource. In that case, a custom action became the safety net for a very specific installer problem.</p>
+<p class="wp-block-paragraph">We have seen this kind of installer story before. In the <a href="https://patchmypc.com/blog/it1272653-company-portal-stuck-on-downloading/">IME incident around IT1272653</a>, the MSI behavior for the Intune Management Extension config file changed, and later Microsoft added a targeted custom action, EnsureAppConfigExists, to restore the missing config file from an embedded resource. In that case, a custom action became the safety net for a very specific installer problem.</p>
 
 
 
-<p>The Autopatch Client Broker MSI also contains a managed custom action DLL: CustomActions.dll. The failing action in that DLL is <strong>ClientBroker.Setup.CustomActions.CustomActions.CreateRegistryKeyAndValues</strong></p>
+<p class="wp-block-paragraph">The Autopatch Client Broker MSI also contains a managed custom action DLL: CustomActions.dll. The failing action in that DLL is <strong>ClientBroker.Setup.CustomActions.CustomActions.CreateRegistryKeyAndValues</strong></p>
 
 
 
@@ -1207,7 +1207,7 @@
 
 
 
-<p>That sounds boring enough to skip. It is not.</p>
+<p class="wp-block-paragraph">That sounds boring enough to skip. It is not.</p>
 
 
 
@@ -1215,7 +1215,7 @@
 
 
 
-<p>The important part is not just that the custom action writes broker configuration. The important part is what it does after that. After the custom action prepares the normal broker configuration, it calls this function: <strong>OverrideEnvironmentRegistryKeys</strong>(subKey1, session);</p>
+<p class="wp-block-paragraph">The important part is not just that the custom action writes broker configuration. The important part is what it does after that. After the custom action prepares the normal broker configuration, it calls this function: <strong>OverrideEnvironmentRegistryKeys</strong>(subKey1, session);</p>
 
 
 
@@ -1223,11 +1223,11 @@
 
 
 
-<p>That function does not try to register the broker with Autopatch. It does not request a token, and it does not use that token to authenticate to the Autopatch service. The only simple job of the Override function is trying to detect which Microsoft cloud the device belongs to.</p>
+<p class="wp-block-paragraph">That function does not try to register the broker with Autopatch. It does not request a token, and it does not use that token to authenticate to the Autopatch service. The only simple job of the Override function is trying to detect which Microsoft cloud the device belongs to.</p>
 
 
 
-<p>The code opens this registry path: HKLM\SYSTEM\CurrentControlSet\Control\CloudDomainJoin\TenantInfo</p>
+<p class="wp-block-paragraph">The code opens this registry path: HKLM\SYSTEM\CurrentControlSet\Control\CloudDomainJoin\TenantInfo</p>
 
 
 
@@ -1235,23 +1235,23 @@
 
 
 
-<p>Then it loops through the tenant subkeys and reads this value: AccessTokenUrl</p>
+<p class="wp-block-paragraph">Then it loops through the tenant subkeys and reads this value: AccessTokenUrl</p>
 
 
 
-<p>On a normal commercial tenant, that value looks like this: https://login.microsoftonline.com/&lt;TenantId&gt;/oauth2/token</p>
+<p class="wp-block-paragraph">On a normal commercial tenant, that value looks like this: https://login.microsoftonline.com/&lt;TenantId&gt;/oauth2/token</p>
 
 
 
-<p>For example: https://login.microsoftonline.com/b79783df-131e-4d00-8303-6f66c0fa4bfb/oauth2/token</p>
+<p class="wp-block-paragraph">For example: https://login.microsoftonline.com/b79783df-131e-4d00-8303-6f66c0fa4bfb/oauth2/token</p>
 
 
 
-<p>For a US government tenant, the host is different: <strong>login.microsoftonline.us</strong></p>
+<p class="wp-block-paragraph">For a US government tenant, the host is different: <strong>login.microsoftonline.us</strong></p>
 
 
 
-<p>That is all the custom action is checking. The code reads <strong>AccessTokenUrl</strong><strong>, </strong>converts it into a URI, and checks whether the host contains login.microsoftonline.us.</p>
+<p class="wp-block-paragraph">That is all the custom action is checking. The code reads <strong>AccessTokenUrl</strong><strong>, </strong>converts it into a URI, and checks whether the host contains login.microsoftonline.us.</p>
 
 
 
@@ -1259,15 +1259,15 @@
 
 
 
-<p>So the logic is simple. If the URL host is login.microsoftonline.com, the tenant is commercial, and this function does nothing. The Autopatch Client broker keeps the normal configuration that was already written earlier by the installer.</p>
+<p class="wp-block-paragraph">So the logic is simple. If the URL host is login.microsoftonline.com, the tenant is commercial, and this function does nothing. The Autopatch Client broker keeps the normal configuration that was already written earlier by the installer.</p>
 
 
 
-<p>If the URL host is login.microsoftonline.us, the tenant is Fairfax and the installer overwrites the broker configuration with Fairfax values. Those Fairfax values are written under the Autopatch Client Broker registry key: <strong>HKLM\SOFTWARE\Microsoft\WindowsAutopatch\ClientBroker</strong></p>
+<p class="wp-block-paragraph">If the URL host is login.microsoftonline.us, the tenant is Fairfax and the installer overwrites the broker configuration with Fairfax values. Those Fairfax values are written under the Autopatch Client Broker registry key: <strong>HKLM\SOFTWARE\Microsoft\WindowsAutopatch\ClientBroker</strong></p>
 
 
 
-<p>The values it writes are:<strong> </strong></p>
+<p class="wp-block-paragraph">The values it writes are:<strong> </strong></p>
 
 
 
@@ -1285,7 +1285,7 @@
 
 
 
-<p>That means <strong>AccessTokenUrl</strong> is not used by the installer as a token source. It is used as a shortcut to answer one question. Which Microsoft cloud is this device joined to?</p>
+<p class="wp-block-paragraph">That means <strong>AccessTokenUrl</strong> is not used by the installer as a token source. It is used as a shortcut to answer one question. Which Microsoft cloud is this device joined to?</p>
 
 
 
@@ -1293,11 +1293,11 @@
 
 
 
-<p>This is the part that makes the failure feel silly. On a commercial tenant, the function only needs to do nothing. It only needs to see that the host is login.microsoftonline.com, decide that no Fairfax override is required, and continue. But the code assumes the CloudDomainJoin <strong>TenantInfo</strong> registry key <strong>ALWAYS</strong> exists.</p>
+<p class="wp-block-paragraph">This is the part that makes the failure feel silly. On a commercial tenant, the function only needs to do nothing. It only needs to see that the host is login.microsoftonline.com, decide that no Fairfax override is required, and continue. But the code assumes the CloudDomainJoin <strong>TenantInfo</strong> registry key <strong>ALWAYS</strong> exists.</p>
 
 
 
-<p>It does this: RegistryKey registryKey1 = Registry.LocalMachine.OpenSubKey<strong>(&#8220;SYSTEM\\CurrentControlSet\\Control\\CloudDomainJoin\\TenantInfo&#8221;);</strong> And then immediately does this: <strong>registryKey1.GetSubKeyNames(); there</strong> is no null check.</p>
+<p class="wp-block-paragraph">It does this: RegistryKey registryKey1 = Registry.LocalMachine.OpenSubKey<strong>(&#8220;SYSTEM\\CurrentControlSet\\Control\\CloudDomainJoin\\TenantInfo&#8221;);</strong> And then immediately does this: <strong>registryKey1.GetSubKeyNames(); there</strong> is no null check.</p>
 
 
 
@@ -1305,11 +1305,11 @@
 
 
 
-<p>So if Windows has already removed TenantInfo during the pre-provisioning cleanup, OpenSubKey() returns null.</p>
+<p class="wp-block-paragraph">So if Windows has already removed TenantInfo during the pre-provisioning cleanup, OpenSubKey() returns null.</p>
 
 
 
-<p><strong>System.NullReferenceException: Object reference not set to an instance of an object.</strong></p>
+<p class="wp-block-paragraph"><strong>System.NullReferenceException: Object reference not set to an instance of an object.</strong></p>
 
 
 
@@ -1317,11 +1317,11 @@
 
 
 
-<p>That is why the Autopatch Client Broker MSI can fail during ESP.  Autopatch itself does not have to be unreachable, the broker registration does not have to be broken, and the MSI does not have to fail while copying files. The failure occurs much earlier, in a much smaller piece of logic: the installer tries to check whether the tenant is Fairfax, but the Windows registry key it uses for that check does not yet exist.</p>
+<p class="wp-block-paragraph">That is why the Autopatch Client Broker MSI can fail during ESP.  Autopatch itself does not have to be unreachable, the broker registration does not have to be broken, and the MSI does not have to fail while copying files. The failure occurs much earlier, in a much smaller piece of logic: the installer tries to check whether the tenant is Fairfax, but the Windows registry key it uses for that check does not yet exist.</p>
 
 
 
-<p>For a commercial tenant, that should not have been fatal. If <strong>TenantInfo</strong> is missing, the installer could simply keep the default commercial configuration and continue. Instead, it crashes.</p>
+<p class="wp-block-paragraph">For a commercial tenant, that should not have been fatal. If <strong>TenantInfo</strong> is missing, the installer could simply keep the default commercial configuration and continue. Instead, it crashes.</p>
 
 
 
@@ -1329,11 +1329,11 @@
 
 
 
-<p>The ESP failure was only the first problem. The bigger problem was what the MSI left behind before it crashed. The Win32 app detection rule checks this registry path:</p>
+<p class="wp-block-paragraph">The ESP failure was only the first problem. The bigger problem was what the MSI left behind before it crashed. The Win32 app detection rule checks this registry path:</p>
 
 
 
-<p><strong>HKLM\SOFTWARE\Microsoft\WindowsAutopatch\ClientBroker\ProductInfo</strong></p>
+<p class="wp-block-paragraph"><strong>HKLM\SOFTWARE\Microsoft\WindowsAutopatch\ClientBroker\ProductInfo</strong></p>
 
 
 
@@ -1341,7 +1341,7 @@
 
 
 
-<p>That is exactly the registry key the custom action creates before it calls<strong> <code>OverrideEnvironmentRegistryKeys()</code>.</strong></p>
+<p class="wp-block-paragraph">That is exactly the registry key the custom action creates before it calls<strong> <code>OverrideEnvironmentRegistryKeys()</code>.</strong></p>
 
 
 
@@ -1349,15 +1349,15 @@
 
 
 
-<p>So the order matters. First, the custom action creates the broker registry key, creates the <code>ProductInfo</code> subkey, and writes the version value. Only after that does it call the environment override function that tries to read CloudDomainJoin\TenantInfo.</p>
+<p class="wp-block-paragraph">So the order matters. First, the custom action creates the broker registry key, creates the <code>ProductInfo</code> subkey, and writes the version value. Only after that does it call the environment override function that tries to read CloudDomainJoin\TenantInfo.</p>
 
 
 
-<p>When that Fairfax detection check crashes, the MSI returns 1603, but the detection registry key is already there. That leaves the device in a very annoying state. ESP sees the required app fail, but the next detection check can still report the app as installed because the registry evidence exists. From IME’s point of view, there is nothing left to retry.  So effectively, you can end up with no healthy broker installation, no completed MSI, and possibly no broker binary or scheduled tasks, while the Win32 app detection rule still says everything is installed.</p>
+<p class="wp-block-paragraph">When that Fairfax detection check crashes, the MSI returns 1603, but the detection registry key is already there. That leaves the device in a very annoying state. ESP sees the required app fail, but the next detection check can still report the app as installed because the registry evidence exists. From IME’s point of view, there is nothing left to retry.  So effectively, you can end up with no healthy broker installation, no completed MSI, and possibly no broker binary or scheduled tasks, while the Win32 app detection rule still says everything is installed.</p>
 
 
 
-<p>That still leaves one important question: why was the installer looking at CloudDomainJoin\TenantInfo in the first place? To answer that, we need to look at the value the custom action tries to read from that key: AccessTokenUrl.</p>
+<p class="wp-block-paragraph">That still leaves one important question: why was the installer looking at CloudDomainJoin\TenantInfo in the first place? To answer that, we need to look at the value the custom action tries to read from that key: AccessTokenUrl.</p>
 
 
 
@@ -1365,7 +1365,7 @@
 
 
 
-<p>The Autopatch Client Broker MSI does <strong>NOT</strong> create AccessTokenUrl. Windows creates it as part of the device registration and <strong>CloudDomainJoin</strong> discovery flow. Looking inside dsreg.dll, the relevant strings line up nicely with that flow:</p>
+<p class="wp-block-paragraph">The Autopatch Client Broker MSI does <strong>NOT</strong> create AccessTokenUrl. Windows creates it as part of the device registration and <strong>CloudDomainJoin</strong> discovery flow. Looking inside dsreg.dll, the relevant strings line up nicely with that flow:</p>
 
 
 
@@ -1399,11 +1399,11 @@
 
 
 
-<p>That tells us what is happening at a high level. Windows performs tenant discovery, parses the discovery response, and stores the tenant information under CloudDomainJoin.</p>
+<p class="wp-block-paragraph">That tells us what is happening at a high level. Windows performs tenant discovery, parses the discovery response, and stores the tenant information under CloudDomainJoin.</p>
 
 
 
-<p>The expected registry layout on a healthy joined device is: HKLM\SYSTEM\CurrentControlSet\Control\CloudDomainJoin\TenantInfo\&lt;TenantId&gt;. Inside that tenant key, you normally find values such as:</p>
+<p class="wp-block-paragraph">The expected registry layout on a healthy joined device is: HKLM\SYSTEM\CurrentControlSet\Control\CloudDomainJoin\TenantInfo\&lt;TenantId&gt;. Inside that tenant key, you normally find values such as:</p>
 
 
 
@@ -1417,11 +1417,11 @@
 
 
 
-<p>Microsoft also documents that AuthCodeUrl and AccessTokenUrl under CloudDomainJoin\TenantInfo\&lt;TenantId&gt; are used in the PRT related authentication flow.</p>
+<p class="wp-block-paragraph">Microsoft also documents that AuthCodeUrl and AccessTokenUrl under CloudDomainJoin\TenantInfo\&lt;TenantId&gt; are used in the PRT related authentication flow.</p>
 
 
 
-<p>So the key belongs to the Windows identity stack. The Autopatch installer is <strong>ONLY</strong> reading it. That distinction matters. The <strong>Autopatch Client broker</strong> MSI depends on identity metadata that is created by Windows during the join and discovery process. If the installer runs before that metadata exists, it fails on configuring the Environment.</p>
+<p class="wp-block-paragraph">So the key belongs to the Windows identity stack. The Autopatch installer is <strong>ONLY</strong> reading it. That distinction matters. The <strong>Autopatch Client broker</strong> MSI depends on identity metadata that is created by Windows during the join and discovery process. If the installer runs before that metadata exists, it fails on configuring the Environment.</p>
 
 
 
@@ -1433,23 +1433,23 @@
 
 
 
-<p>During Autopilot pre-provisioning, the device is not simply “joined” and done. It moves through a temporary identity flow first.</p>
+<p class="wp-block-paragraph">During Autopilot pre-provisioning, the device is not simply “joined” and done. It moves through a temporary identity flow first.</p>
 
 
 
-<p>Windows downloads the Autopilot profile, performs tenant discovery, registers the device, joins Entra ID, enrolls into MDM, processes policies, installs required apps, and later hands the device over to the user flow. During the technician phase, device-targeted apps can already be installed, which means a required Autopatch Client Broker Win32 app can run before the device has reached the same stable identity state you would expect after the user completed the full Autopilot flow.</p>
+<p class="wp-block-paragraph">Windows downloads the Autopilot profile, performs tenant discovery, registers the device, joins Entra ID, enrolls into MDM, processes policies, installs required apps, and later hands the device over to the user flow. During the technician phase, device-targeted apps can already be installed, which means a required Autopatch Client Broker Win32 app can run before the device has reached the same stable identity state you would expect after the user completed the full Autopilot flow.</p>
 
 
 
-<p>That detail matters here. As I explained in my <strong><a href="https://call4cloud.nl/autopilot-white-glove-pre-provisioning/">earlier White Glove flow</a></strong>, the tenant information is created during the join and discovery phase. After TPM trust is established, dsreg.dll performs discovery, sends the device registration request, the Entra device certificate arrives, and the device can proceed to MDM enrollment.</p>
+<p class="wp-block-paragraph">That detail matters here. As I explained in my <strong><a href="https://call4cloud.nl/autopilot-white-glove-pre-provisioning/">earlier White Glove flow</a></strong>, the tenant information is created during the join and discovery phase. After TPM trust is established, dsreg.dll performs discovery, sends the device registration request, the Entra device certificate arrives, and the device can proceed to MDM enrollment.</p>
 
 
 
-<p>At that moment, the device has enough identity information to create the CloudDomainJoin tenant metadata, including:&nbsp; <strong>HKLM\SYSTEM\CurrentControlSet\Control\CloudDomainJoin\TenantInfo\&lt;TenantId&gt;AccessTokenUrl</strong></p>
+<p class="wp-block-paragraph">At that moment, the device has enough identity information to create the CloudDomainJoin tenant metadata, including:&nbsp; <strong>HKLM\SYSTEM\CurrentControlSet\Control\CloudDomainJoin\TenantInfo\&lt;TenantId&gt;AccessTokenUrl</strong></p>
 
 
 
-<p>But pre-provisioning does NOT stop there. After the Intune MDM enrollment completes, the pre-provisioning flow cleans up the temporary Entra join state. The Entra device certificate has been removed, and with it, the local unjoin cleanup can also remove the <strong>CloudDomainJoin tenant information.</strong></p>
+<p class="wp-block-paragraph">But pre-provisioning does NOT stop there. After the Intune MDM enrollment completes, the pre-provisioning flow cleans up the temporary Entra join state. The Entra device certificate has been removed, and with it, the local unjoin cleanup can also remove the <strong>CloudDomainJoin tenant information.</strong></p>
 
 
 
@@ -1461,7 +1461,7 @@
 
 
 
-<p>With the unjoin happening during Autopilot pre-provisioning, the flow looks like this</p>
+<p class="wp-block-paragraph">With the unjoin happening during Autopilot pre-provisioning, the flow looks like this</p>
 
 
 
@@ -1523,11 +1523,11 @@
 
 
 
-<p>That explains why the same installer can fail during pre-provisioning and succeed later. Later, during the user flow, Windows completes the identity work again. The device is joined again, TenantInfo exists again, and AccessTokenUrl is present again. The Autopatch custom action can then read the value, see login.microsoftonline.com, skip the Fairfax override, and continue.</p>
+<p class="wp-block-paragraph">That explains why the same installer can fail during pre-provisioning and succeed later. Later, during the user flow, Windows completes the identity work again. The device is joined again, TenantInfo exists again, and AccessTokenUrl is present again. The Autopatch custom action can then read the value, see login.microsoftonline.com, skip the Fairfax override, and continue.</p>
 
 
 
-<p>So the real issue is not only that the <strong>Autopatch Client Broker</strong> runs too early. It runs in a phase where Windows may have already created the tenant information and then removed it again as part of the Autopilot pre-provisioning identity cleanup.</p>
+<p class="wp-block-paragraph">So the real issue is not only that the <strong>Autopatch Client Broker</strong> runs too early. It runs in a phase where Windows may have already created the tenant information and then removed it again as part of the Autopilot pre-provisioning identity cleanup.</p>
 
 
 
@@ -1535,15 +1535,15 @@
 
 
 
-<p>The real fix belongs in the MSI. The Autopatch Client Broker installer should not fail due to an inability to read <strong>CloudDomainJoin\TenantInfo</strong>. That registry key is used only by the custom action to determine whether the tenant is commercial or Fairfax. If the key is missing, the installer could simply keep the default commercial configuration and continue.</p>
+<p class="wp-block-paragraph">The real fix belongs in the MSI. The Autopatch Client Broker installer should not fail due to an inability to read <strong>CloudDomainJoin\TenantInfo</strong>. That registry key is used only by the custom action to determine whether the tenant is commercial or Fairfax. If the key is missing, the installer could simply keep the default commercial configuration and continue.</p>
 
 
 
-<p>For now, the practical workaround is to stop treating the broker as an <strong>ESP blocking app.</strong> Keep the Autopatch Client Broker assigned as a required Win32 app, but do not make Autopilot wait for it during ESP or pre-provisioning. Once the device has finished the fragile identity phase, the Intune Management Extension can resume the required assignment and install it during a normal Win32 app check-in.</p>
+<p class="wp-block-paragraph">For now, the practical workaround is to stop treating the broker as an <strong>ESP blocking app.</strong> Keep the Autopatch Client Broker assigned as a required Win32 app, but do not make Autopilot wait for it during ESP or pre-provisioning. Once the device has finished the fragile identity phase, the Intune Management Extension can resume the required assignment and install it during a normal Win32 app check-in.</p>
 
 
 
-<p>To make it even safer, add a requirement script that only allows the install when CloudDomainJoin\TenantInfo exists and contains an AccessTokenUrl. That way, the MSI only runs when the exact registry state its custom action depends on is actually present.</p>
+<p class="wp-block-paragraph">To make it even safer, add a requirement script that only allows the install when CloudDomainJoin\TenantInfo exists and contains an AccessTokenUrl. That way, the MSI only runs when the exact registry state its custom action depends on is actually present.</p>
 
 
 
@@ -1551,7 +1551,7 @@
 
 
 
-<p>There is also a bigger Autopatch story here. Microsoft is moving away from the Autopatch Client Broker and toward proactive update readiness checks in the Intune admin center.</p>
+<p class="wp-block-paragraph">There is also a bigger Autopatch story here. Microsoft is moving away from the Autopatch Client Broker and toward proactive update readiness checks in the Intune admin center.</p>
 
 
 
@@ -1559,11 +1559,11 @@
 
 
 
-<p>The Update Readiness Checker evaluates Intune-managed Windows devices before updates are offered or deployed. It checks whether devices are ready for feature, quality, and hotpatch updates, and groups devices by result (passed, failed, or already on the update).&nbsp;</p>
+<p class="wp-block-paragraph">The Update Readiness Checker evaluates Intune-managed Windows devices before updates are offered or deployed. It checks whether devices are ready for feature, quality, and hotpatch updates, and groups devices by result (passed, failed, or already on the update).&nbsp;</p>
 
 
 
-<p>That may also explain why Microsoft support might steer customers toward the newer update readiness experience when questions arise about the Autopatch Client Broker. Still, that does not change the installer issue shown here. If the Client Broker is deployed as a required Win32 app and marked as blocking during ESP, the MSI can still fail due to the custom action timing bug.</p>
+<p class="wp-block-paragraph">That may also explain why Microsoft support might steer customers toward the newer update readiness experience when questions arise about the Autopatch Client Broker. Still, that does not change the installer issue shown here. If the Client Broker is deployed as a required Win32 app and marked as blocking during ESP, the MSI can still fail due to the custom action timing bug.</p>
 
 
 
@@ -1571,23 +1571,23 @@
 
 
 
-<p>The Autopatch Client Broker MSI fails during Autopilot ESP because of a custom action inside <strong>CustomActions.dll</strong><strong>. </strong>That custom action reads AccessTokenUrl from the Windows CloudDomainJoin tenant information. It does not read that value to authenticate to Autopatch, and it does not use it to register the broker. It reads it only to detect whether the device belongs to the commercial cloud or Fairfax.</p>
+<p class="wp-block-paragraph">The Autopatch Client Broker MSI fails during Autopilot ESP because of a custom action inside <strong>CustomActions.dll</strong><strong>. </strong>That custom action reads AccessTokenUrl from the Windows CloudDomainJoin tenant information. It does not read that value to authenticate to Autopatch, and it does not use it to register the broker. It reads it only to detect whether the device belongs to the commercial cloud or Fairfax.</p>
 
 
 
-<p>If it detects login.microsoftonline.us, it writes Fairfax-specific Autopatch endpoints into the broker configuration. If it sees login.microsoftonline.com, it should simply keep the normal commercial configuration and continue.</p>
+<p class="wp-block-paragraph">If it detects login.microsoftonline.us, it writes Fairfax-specific Autopatch endpoints into the broker configuration. If it sees login.microsoftonline.com, it should simply keep the normal commercial configuration and continue.</p>
 
 
 
-<p>The problem is that during Autopilot ESP or pre-provisioning, the CloudDomainJoin\TenantInfo registry key is not guaranteed to exist yet. The custom action does not check for that. It assumes the key is there, calls GetSubKeyNames() on a null object, crashes with a NullReferenceException, and returns failure.</p>
+<p class="wp-block-paragraph">The problem is that during Autopilot ESP or pre-provisioning, the CloudDomainJoin\TenantInfo registry key is not guaranteed to exist yet. The custom action does not check for that. It assumes the key is there, calls GetSubKeyNames() on a null object, crashes with a NullReferenceException, and returns failure.</p>
 
 
 
-<p>That failure becomes MSI error 1603. The installer says “ignore” in the log, but nothing is ignored. And because the broker registry key may already exist before the crash, a weak Intune detection rule can still be fooled.</p>
+<p class="wp-block-paragraph">That failure becomes MSI error 1603. The installer says “ignore” in the log, but nothing is ignored. And because the broker registry key may already exist before the crash, a weak Intune detection rule can still be fooled.</p>
 
 
 
-<p>So the real lesson is simple: the Autopatch Client Broker did not fail because Autopatch was unavailable. It failed because the installer tried to decide whether login.microsoftonline.com was actually login.microsoftonline.us, before Windows had created the registry data needed to answer that question.</p>
+<p class="wp-block-paragraph">So the real lesson is simple: the Autopatch Client Broker did not fail because Autopatch was unavailable. It failed because the installer tried to decide whether login.microsoftonline.com was actually login.microsoftonline.us, before Windows had created the registry data needed to answer that question.</p>
 <p>The post <a href="https://patchmypc.com/blog/autopatch-client-broker-fails-during-autopilot-pre-provisioning/">Autopatch Client Broker Fails During Autopilot Pre-Provisioning</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
@@ -1610,7 +1610,7 @@
 <p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-217-released/">Patch My PC Publisher Preview Version 2.2.2.217 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p>This release contains a variety of improvements and fixes, as noted below.</p>
+<p class="wp-block-paragraph">This release contains a variety of improvements and fixes, as noted below.</p>
 
 
 
@@ -1642,7 +1642,7 @@
 
 
 
-<p></p>
+<p class="wp-block-paragraph"></p>
 <p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-217-released/">Patch My PC Publisher Preview Version 2.2.2.217 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
@@ -1665,7 +1665,7 @@
 <p>The post <a href="https://patchmypc.com/blog/company-portal-not-installing-during-autopilot-enrollment-0x87d1041c/">Company Portal Not Installing During Autopilot Enrollment 0x87D1041C</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p>The Company Portal suddenly stopped installing during <strong>Autopilot pre-provisioning</strong> after the <strong>May Windows update,</strong> leaving devices stuck with error <strong>0x87D1041C</strong>. In this blog, we uncover what changed, why system context deployments failed, and how a Microsoft flight rollback restored the Company Portal installation.</p>
+<p class="wp-block-paragraph">The Company Portal suddenly stopped installing during <strong>Autopilot pre-provisioning</strong> after the <strong>May Windows update,</strong> leaving devices stuck with error <strong>0x87D1041C</strong>. In this blog, we uncover what changed, why system context deployments failed, and how a Microsoft flight rollback restored the Company Portal installation.</p>
 
 
 
@@ -1673,7 +1673,7 @@
 
 
 
-<p>It started with <strong><a href="https://www.linkedin.com/in/sandy-tsang/">Sandy</a></strong> asking why <strong>Company Portal</strong> had suddenly failed to be installed during <strong>Autopilot pre-provisioning</strong> <strong>(0x87D1041C)</strong></p>
+<p class="wp-block-paragraph">It started with <strong><a href="https://www.linkedin.com/in/sandy-tsang/">Sandy</a></strong> asking why <strong>Company Portal</strong> had suddenly failed to be installed during <strong>Autopilot pre-provisioning</strong> <strong>(0x87D1041C)</strong></p>
 
 
 
@@ -1681,11 +1681,11 @@
 
 
 
-<p>It was pretty clear that nothing had changed in Intune. <strong><a href="https://patchmypc.com/blog/launching-the-company-portal-automatically-after-autopilot/">The Company Portal </a></strong>was still deployed via the Microsoft Store in system context, and the same Autopilot configuration had worked without issues before. The only real difference was that the device had been installed with the May Windows update. With the May update installed, the Company Portal now failed with <strong>0x87D1041C…</strong></p>
+<p class="wp-block-paragraph">It was pretty clear that nothing had changed in Intune. <strong><a href="https://patchmypc.com/blog/launching-the-company-portal-automatically-after-autopilot/">The Company Portal </a></strong>was still deployed via the Microsoft Store in system context, and the same Autopilot configuration had worked without issues before. The only real difference was that the device had been installed with the May Windows update. With the May update installed, the Company Portal now failed with <strong>0x87D1041C…</strong></p>
 
 
 
-<p>which just means that the application was not detected after installation completed successfully. The <strong>0x87D1041C</strong> error indicated that the installation had finished, but Intune could not detect the app afterward. That appeared to be exactly what was happening. The Company Portal package was present under C:\Program Files\WindowsApps.</p>
+<p class="wp-block-paragraph">which just means that the application was not detected after installation completed successfully. The <strong>0x87D1041C</strong> error indicated that the installation had finished, but Intune could not detect the app afterward. That appeared to be exactly what was happening. The Company Portal package was present under C:\Program Files\WindowsApps.</p>
 
 
 
@@ -1693,7 +1693,7 @@
 
 
 
-<p>But the Enrollment Status Page still reported that the installation had failed with <strong>0x87D1041C.&nbsp; The Company Portal was assigned in system context, so it would be installed during Autopilot pre-provi</strong>sioning.</p>
+<p class="wp-block-paragraph">But the Enrollment Status Page still reported that the installation had failed with <strong>0x87D1041C.&nbsp; The Company Portal was assigned in system context, so it would be installed during Autopilot pre-provi</strong>sioning.</p>
 
 
 
@@ -1701,11 +1701,11 @@
 
 
 
-<p>Changing the assignment to user context delayed the installation until after the user signed in. That prevented the ESP from failing on the required app, but it also meant Company Portal was no longer installed during pre-provisioning. Noticing that changing the install behavior fixed the issue confirmed that the Store package itself was fine, but it was not a good solution. During Autopilot pre-provisioning, Company Portal needs to be installed before the device is handed over to the user. Waiting for the user to sign in defeats the purpose of assigning it in the system context.</p>
+<p class="wp-block-paragraph">Changing the assignment to user context delayed the installation until after the user signed in. That prevented the ESP from failing on the required app, but it also meant Company Portal was no longer installed during pre-provisioning. Noticing that changing the install behavior fixed the issue confirmed that the Store package itself was fine, but it was not a good solution. During Autopilot pre-provisioning, Company Portal needs to be installed before the device is handed over to the user. Waiting for the user to sign in defeats the purpose of assigning it in the system context.</p>
 
 
 
-<p>Sandy was not the only one seeing this. Similar reports appeared on Reddit and <strong><a href="https://techcommunity.microsoft.com/discussions/microsoft-intune/company-portal-no-longer-installing-during-autopilot-enrollment/4519066">Microsoft forums </a></strong>after the May update. Company Portal had worked before the update, failed afterward, and returned the same detection error. Something inside the Windows Store installation flow had changed.</p>
+<p class="wp-block-paragraph">Sandy was not the only one seeing this. Similar reports appeared on Reddit and <strong><a href="https://techcommunity.microsoft.com/discussions/microsoft-intune/company-portal-no-longer-installing-during-autopilot-enrollment/4519066">Microsoft forums </a></strong>after the May update. Company Portal had worked before the update, failed afterward, and returned the same detection error. Something inside the Windows Store installation flow had changed.</p>
 
 
 
@@ -1713,7 +1713,7 @@
 
 
 
-<p>Installing the Microsoft Store app involves more than placing package files in the <strong>WindowsApps</strong> folder.</p>
+<p class="wp-block-paragraph">Installing the Microsoft Store app involves more than placing package files in the <strong>WindowsApps</strong> folder.</p>
 
 
 
@@ -1721,7 +1721,7 @@
 
 
 
-<p>Windows first obtains the Store package, stages its content on the device, and then registers or provisions it in the correct scope. The presence of the package under WindowsApps indicates that the content reached the device, but it does not confirm that the final registration completed successfully. To find where that process had changed, we focused on three Windows components:</p>
+<p class="wp-block-paragraph">Windows first obtains the Store package, stages its content on the device, and then registers or provisions it in the correct scope. The presence of the package under WindowsApps indicates that the content reached the device, but it does not confirm that the final registration completed successfully. To find where that process had changed, we focused on three Windows components:</p>
 
 
 
@@ -1739,15 +1739,15 @@
 
 
 
-<p><strong>InstallService.dll</strong> controls the Store installation workflow. It searches for the correct package, prepares the installation session, downloads the content, and determines which installation path to use.</p>
+<p class="wp-block-paragraph"><strong>InstallService.dll</strong> controls the Store installation workflow. It searches for the correct package, prepares the installation session, downloads the content, and determines which installation path to use.</p>
 
 
 
-<p><strong>AppXDeploymentClient.dll</strong> exposes the package management operations for staging, registering, and provisioning AppX and MSIX packages.</p>
+<p class="wp-block-paragraph"><strong>AppXDeploymentClient.dll</strong> exposes the package management operations for staging, registering, and provisioning AppX and MSIX packages.</p>
 
 
 
-<p><strong>AppXDeploymentServer.dll</strong> performs the underlying deployment work. It processes the package manifest, updates the package repository, and records the package state for the device and its users.</p>
+<p class="wp-block-paragraph"><strong>AppXDeploymentServer.dll</strong> performs the underlying deployment work. It processes the package manifest, updates the package repository, and records the package state for the device and its users.</p>
 
 
 
@@ -1755,7 +1755,7 @@
 
 
 
-<p>Because the Company Portal was already present under WindowsApps, the package download and staging process had clearly completed. The failure appeared to be happening later, when Windows decided how the package should be registered. That brought us back to <strong>InstallService.dll</strong><strong>.</strong></p>
+<p class="wp-block-paragraph">Because the Company Portal was already present under WindowsApps, the package download and staging process had clearly completed. The failure appeared to be happening later, when Windows decided how the package should be registered. That brought us back to <strong>InstallService.dll</strong><strong>.</strong></p>
 
 
 
@@ -1763,7 +1763,7 @@
 
 
 
-<p>We compared the May version of InstallService.dll with the version from the April update. The most interesting change appeared inside: <strong>UWAInstallWork::_DoNormalInstall</strong></p>
+<p class="wp-block-paragraph">We compared the May version of InstallService.dll with the version from the April update. The most interesting change appeared inside: <strong>UWAInstallWork::_DoNormalInstall</strong></p>
 
 
 
@@ -1771,7 +1771,7 @@
 
 
 
-<p>This function controls the normal Store installation flow. It prepares the update session, downloads the required files, and eventually chooses how the application should be installed. Inside the May version, we found a new feature: <strong>FixInstallUnderSystemContext </strong>with the corresponding feature ID: <strong>61372494</strong></p>
+<p class="wp-block-paragraph">This function controls the normal Store installation flow. It prepares the update session, downloads the required files, and eventually chooses how the application should be installed. Inside the May version, we found a new feature: <strong>FixInstallUnderSystemContext </strong>with the corresponding feature ID: <strong>61372494</strong></p>
 
 
 
@@ -1783,7 +1783,7 @@
 
 
 
-<p>The Fix Installed Under System Context name immediately stood out. <strong><a href="https://patchmypc.com/blog/intune-company-portal-app-refreshed/">The Company Portal </a></strong>was failing only when deployed in the system context during autopilot pre-provisioning, and there was a newly introduced feature specifically intended to change exactly that installation path… that couldn’t be a coincidence, right? The next step was to find out what the feature actually did.</p>
+<p class="wp-block-paragraph">The Fix Installed Under System Context name immediately stood out. <strong><a href="https://patchmypc.com/blog/intune-company-portal-app-refreshed/">The Company Portal </a></strong>was failing only when deployed in the system context during autopilot pre-provisioning, and there was a newly introduced feature specifically intended to change exactly that installation path… that couldn’t be a coincidence, right? The next step was to find out what the feature actually did.</p>
 
 
 
@@ -1791,7 +1791,7 @@
 
 
 
-<p>When FixInstallUnderSystemContext is active, InstallService.dll loads an additional configuration value:<strong>FIXINSTALLUNDERSYSTEMCONTEXT </strong>When both the feature and its configuration value are enabled, InstallService logs: <strong>Enumerating all users if run in system context.</strong></p>
+<p class="wp-block-paragraph">When FixInstallUnderSystemContext is active, InstallService.dll loads an additional configuration value:<strong>FIXINSTALLUNDERSYSTEMCONTEXT </strong>When both the feature and its configuration value are enabled, InstallService logs: <strong>Enumerating all users if run in system context.</strong></p>
 
 
 
@@ -1799,7 +1799,7 @@
 
 
 
-<p>With it, the installation will then be redirected into: <strong>UWAInstallWork::_DoInstallForAllLoggedOnUsers</strong></p>
+<p class="wp-block-paragraph">With it, the installation will then be redirected into: <strong>UWAInstallWork::_DoInstallForAllLoggedOnUsers</strong></p>
 
 
 
@@ -1807,11 +1807,11 @@
 
 
 
-<p>Instead of continuing only through the normal system installation path, <strong>InstallService</strong> begins looking for logged-on users and tries to register the Store package for them.</p>
+<p class="wp-block-paragraph">Instead of continuing only through the normal system installation path, <strong>InstallService</strong> begins looking for logged-on users and tries to register the Store package for them.</p>
 
 
 
-<p>That may work during a normal user session, but Autopilot pre-provisioning is different. The device is being prepared before the actual user receives it, so there may not be a normal user session available yet.&nbsp; To understand the impact, we opened <strong>_DoInstallForAllLoggedOnUsers.</strong></p>
+<p class="wp-block-paragraph">That may work during a normal user session, but Autopilot pre-provisioning is different. The device is being prepared before the actual user receives it, so there may not be a normal user session available yet.&nbsp; To understand the impact, we opened <strong>_DoInstallForAllLoggedOnUsers.</strong></p>
 
 
 
@@ -1819,7 +1819,7 @@
 
 
 
-<p>The function starts with: <strong>TokenHelpers::GetAllLoggedInUserTokens(&#8230;) The InstallService</strong> collects the available logged-on user tokens and then processes each user individually.</p>
+<p class="wp-block-paragraph">The function starts with: <strong>TokenHelpers::GetAllLoggedInUserTokens(&#8230;) The InstallService</strong> collects the available logged-on user tokens and then processes each user individually.</p>
 
 
 
@@ -1827,15 +1827,15 @@
 
 
 
-<p>For every token, it retrieves the user SID and searches for packages that should be registered for that user. The logging inside the function shows this clearly: <strong>Attempting to register update for User. </strong>When no applicable package is found, InstallService logs: <strong>Nothing to register for User. Skipping Install.&nbsp;</strong></p>
+<p class="wp-block-paragraph">For every token, it retrieves the user SID and searches for packages that should be registered for that user. The logging inside the function shows this clearly: <strong>Attempting to register update for User. </strong>When no applicable package is found, InstallService logs: <strong>Nothing to register for User. Skipping Install.&nbsp;</strong></p>
 
 
 
-<p>The important detail is what happens when there is no normal logged-on user. During Autopilot pre-provisioning, the real user has not yet signed in. If the function does not find a usable user token, there is no user for whom Company Portal can be registered.</p>
+<p class="wp-block-paragraph">The important detail is what happens when there is no normal logged-on user. During Autopilot pre-provisioning, the real user has not yet signed in. If the function does not find a usable user token, there is no user for whom Company Portal can be registered.</p>
 
 
 
-<p>The package may already have been downloaded and staged, but the registration step expected by Intune is never completed. <strong>InstallService</strong> can still finish the operation without returning a package installation failure. Intune then checks whether Company Portal is installed, cannot find it in the expected state, and reports <strong>0x87D1041C.</strong></p>
+<p class="wp-block-paragraph">The package may already have been downloaded and staged, but the registration step expected by Intune is never completed. <strong>InstallService</strong> can still finish the operation without returning a package installation failure. Intune then checks whether Company Portal is installed, cannot find it in the expected state, and reports <strong>0x87D1041C.</strong></p>
 
 
 
@@ -1843,7 +1843,7 @@
 
 
 
-<p>That also explains why the user context assignment continued to work. Once the user signs in, InstallService has a real user token and can register Company Portal for that user. The problem only occurs when the installation is expected to complete before the user session ends.</p>
+<p class="wp-block-paragraph">That also explains why the user context assignment continued to work. Once the user signs in, InstallService has a real user token and can register Company Portal for that user. The problem only occurs when the installation is expected to complete before the user session ends.</p>
 
 
 
@@ -1851,7 +1851,7 @@
 
 
 
-<p>Finding the feature inside the DLL did not prove that it was also enabled by default. Microsoft regularly ships feature code before enabling it<strong><a href="https://support.microsoft.com/en-us/windows/delivering-continuous-innovation-in-windows-11-b0aa0a27-ea9a-4365-9224-cb155e517f12"> (it should be turned off by default!!)</a></strong></p>
+<p class="wp-block-paragraph">Finding the feature inside the DLL did not prove that it was also enabled by default. Microsoft regularly ships feature code before enabling it<strong><a href="https://support.microsoft.com/en-us/windows/delivering-continuous-innovation-in-windows-11-b0aa0a27-ea9a-4365-9224-cb155e517f12"> (it should be turned off by default!!)</a></strong></p>
 
 
 
@@ -1859,7 +1859,7 @@
 
 
 
-<p>The feature can remain dormant until it is activated through Windows feature management or a service-side configuration.  Let’s check if that was the same with this <strong>FixInstallUnderSystemContext function. </strong>When inspecting the InstallService OneSettings configuration. Inside the JSON payload, we found: <strong>&#8220;FIXINSTALLUNDERSYSTEMCONTEXT&#8221;: &#8220;1&#8221;</strong></p>
+<p class="wp-block-paragraph">The feature can remain dormant until it is activated through Windows feature management or a service-side configuration.  Let’s check if that was the same with this <strong>FixInstallUnderSystemContext function. </strong>When inspecting the InstallService OneSettings configuration. Inside the JSON payload, we found: <strong>&#8220;FIXINSTALLUNDERSYSTEMCONTEXT&#8221;: &#8220;1&#8221;</strong></p>
 
 
 
@@ -1867,11 +1867,11 @@
 
 
 
-<p>The new code was not only simply present inside the May binary… The Controlled feature rollout service also had enabled it on all devices. That explained why the issue appeared without any change to the Intune assignment. The May update introduced the new <strong>InstallService</strong> behavior, while <strong>OneSettings </strong>activated the code path on Windows.</p>
+<p class="wp-block-paragraph">The new code was not only simply present inside the May binary… The Controlled feature rollout service also had enabled it on all devices. That explained why the issue appeared without any change to the Intune assignment. The May update introduced the new <strong>InstallService</strong> behavior, while <strong>OneSettings </strong>activated the code path on Windows.</p>
 
 
 
-<p>From that moment, a Store installation started by LocalSystem could be redirected into a flow that depended on logged-on user tokens. During Autopilot pre-provisioning, that was exactly the wrong moment to depend on a user session.</p>
+<p class="wp-block-paragraph">From that moment, a Store installation started by LocalSystem could be redirected into a flow that depended on logged-on user tokens. During Autopilot pre-provisioning, that was exactly the wrong moment to depend on a user session.</p>
 
 
 
@@ -1879,7 +1879,7 @@
 
 
 
-<p>On Friday, we shared the findings with Microsoft. We explained that Company Portal only failed in system context, while the user context assignment still worked. We also shared the difference between the April and May versions of InstallService.dll, the new <strong>FixInstallUnderSystemContext</strong> feature, and the OneSettings value that enabled it.</p>
+<p class="wp-block-paragraph">On Friday, we shared the findings with Microsoft. We explained that Company Portal only failed in system context, while the user context assignment still worked. We also shared the difference between the April and May versions of InstallService.dll, the new <strong>FixInstallUnderSystemContext</strong> feature, and the OneSettings value that enabled it.</p>
 
 
 
@@ -1887,7 +1887,7 @@
 
 
 
-<p>The following Monday…. the Sccinstallservice.json was updated (yes… I build a tracked.. more in this in an upcoming blog). The updated JSON was now showing that the flight was reverted.</p>
+<p class="wp-block-paragraph">The following Monday…. the Sccinstallservice.json was updated (yes… I build a tracked.. more in this in an upcoming blog). The updated JSON was now showing that the flight was reverted.</p>
 
 
 
@@ -1895,7 +1895,7 @@
 
 
 
-<p>We repeated the Autopilot pre-provisioning test with Company Portal still assigned in the system context. This time, Company Portal installed successfully again. Nothing had changed in Intune. The application assignment was the same, the Enrollment Status Page configuration was the same, and the Company Portal was still expected to install before the user received the device…and others were reporting the same</p>
+<p class="wp-block-paragraph">We repeated the Autopilot pre-provisioning test with Company Portal still assigned in the system context. This time, Company Portal installed successfully again. Nothing had changed in Intune. The application assignment was the same, the Enrollment Status Page configuration was the same, and the Company Portal was still expected to install before the user received the device…and others were reporting the same</p>
 
 
 
@@ -1903,11 +1903,11 @@
 
 
 
-<p>The only change was that the <strong>InstallService</strong> flight had been turned off. We cannot claim that our message was the only reason Microsoft reverted the flight. Other customers were reporting the same issue, and Microsoft may already have been investigating it.</p>
+<p class="wp-block-paragraph">The only change was that the <strong>InstallService</strong> flight had been turned off. We cannot claim that our message was the only reason Microsoft reverted the flight. Other customers were reporting the same issue, and Microsoft may already have been investigating it.</p>
 
 
 
-<p>The timing was still hard to ignore. We shared the InstallService findings on Friday, the flight was reverted on Monday, and Company Portal immediately started installing again.</p>
+<p class="wp-block-paragraph">The timing was still hard to ignore. We shared the InstallService findings on Friday, the flight was reverted on Monday, and Company Portal immediately started installing again.</p>
 
 
 
@@ -1915,23 +1915,23 @@
 
 
 
-<p>FixInstallUnderSystemContext was probably intended to improve Store installations started by LocalSystem. The problem was how that new behavior interacted with Autopilot pre-provisioning. A system context installation that runs before the user receives the device cannot depend on a normal user session being available.</p>
+<p class="wp-block-paragraph">FixInstallUnderSystemContext was probably intended to improve Store installations started by LocalSystem. The problem was how that new behavior interacted with Autopilot pre-provisioning. A system context installation that runs before the user receives the device cannot depend on a normal user session being available.</p>
 
 
 
-<p>By redirecting the installation into the logged-on user&#8217;s path, InstallService changed the final package state. Company Portal reached the device, but it was not registered in the context Intune expected to detect.</p>
+<p class="wp-block-paragraph">By redirecting the installation into the logged-on user&#8217;s path, InstallService changed the final package state. Company Portal reached the device, but it was not registered in the context Intune expected to detect.</p>
 
 
 
-<p>That is why the Store installation appeared successful while the Enrollment Status Page still failed with <strong>0x87D1041C.</strong></p>
+<p class="wp-block-paragraph">That is why the Store installation appeared successful while the Enrollment Status Page still failed with <strong>0x87D1041C.</strong></p>
 
 
 
-<p>The most interesting part was not that Company Portal disappeared. It never did. It was already sitting inside WindowsApps.</p>
+<p class="wp-block-paragraph">The most interesting part was not that Company Portal disappeared. It never did. It was already sitting inside WindowsApps.</p>
 
 
 
-<p>Windows had simply stopped finishing the part that made it usable and detectable during Autopilot pre-provisioning.</p>
+<p class="wp-block-paragraph">Windows had simply stopped finishing the part that made it usable and detectable during Autopilot pre-provisioning.</p>
 <p>The post <a href="https://patchmypc.com/blog/company-portal-not-installing-during-autopilot-enrollment-0x87d1041c/">Company Portal Not Installing During Autopilot Enrollment 0x87D1041C</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
@@ -1954,7 +1954,7 @@
 <p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-98-released/">Patch My PC Publisher Preview Version 2.2.2.98 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p>This release contains a variety of fixes as noted below.</p>
+<p class="wp-block-paragraph">This release contains a variety of fixes as noted below.</p>
 
 
 
@@ -1984,7 +1984,7 @@
 
 
 
-<p></p>
+<p class="wp-block-paragraph"></p>
 <p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-98-released/">Patch My PC Publisher Preview Version 2.2.2.98 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
