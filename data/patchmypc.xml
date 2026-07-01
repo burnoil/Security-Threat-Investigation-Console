@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 01 Jul 2026 05:09:57 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 01 Jul 2026 08:36:05 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -20,7 +20,7 @@
 	1	</sy:updateFrequency>
 	
 	<item>
-		<title>Autopilot 0x800705b4: App Control Blocks the Intune Management Extension</title>
+		<title>Autopilot 0x800705b4: App Control Blocks the IME Installation</title>
 		<link>https://patchmypc.com/blog/autopilot-0x800705b4-app-control-blocks-the-intune-management-extension/</link>
 					<comments>https://patchmypc.com/blog/autopilot-0x800705b4-app-control-blocks-the-intune-management-extension/#respond</comments>
 		
@@ -30,7 +30,7 @@
 		<guid isPermaLink="false">https://patchmypc.com/?p=187148</guid>
 
 					<description><![CDATA[<p>This blog looks at an Autopilot failure where the device gets stuck at Preparing your device for mobile management and ends with 0x800705b4. The root cause was not Autopilot itself, but App Control for Business blocking a new IME MSI custom action dependency during installation. Introduction The device went through the first parts of the ... <a href="https://patchmypc.com/blog/autopilot-0x800705b4-app-control-blocks-the-intune-management-extension/">Continue Reading  &#187;</a></p>
-<p>The post <a href="https://patchmypc.com/blog/autopilot-0x800705b4-app-control-blocks-the-intune-management-extension/">Autopilot 0x800705b4: App Control Blocks the Intune Management Extension</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+<p>The post <a href="https://patchmypc.com/blog/autopilot-0x800705b4-app-control-blocks-the-intune-management-extension/">Autopilot 0x800705b4: App Control Blocks the IME Installation</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
 <p class="wp-block-paragraph">This blog looks at an Autopilot failure where the device gets stuck at <strong>Preparing your device for mobile management</strong> and ends with <strong>0x800705b4</strong>. The root cause was not Autopilot itself, but App Control for Business blocking a new IME MSI custom action dependency during installation.</p>
@@ -171,7 +171,11 @@
 
 
 
-<p class="wp-block-paragraph">When comparing SideCarSetupCustomActions.dll between 1.99.101.0 and 1.101.103.0, the custom action entry points were essentially the same. The old version referenced Microsoft.Deployment.WindowsInstaller. The new version referenced WixToolset.Dtf.WindowsInstaller. Both still targeted .NET Framework 4.7.2.</p>
+<p class="wp-block-paragraph">When comparing SideCarSetupCustomActions.dll between 1.99.101.0 and 1.101.103.0, the custom action entry points were essentially the same. The old version referenced Microsoft.Deployment.WindowsInstaller. The new version referenced <strong>WixToolset.Dtf.WindowsInstaller</strong>. Both still targeted .NET Framework 4.7.2.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="717" height="56" src="https://patchmypc.com/app/uploads/2026/06/image-80.png" alt="" class="wp-image-188104" srcset="https://patchmypc.com/app/uploads/2026/06/image-80.png 717w, https://patchmypc.com/app/uploads/2026/06/image-80-300x23.png 300w" sizes="(max-width: 717px) 100vw, 717px" /></figure>
 
 
 
@@ -267,7 +271,15 @@
 
 
 
-<p class="wp-block-paragraph">Microsoft appears to have fixed the WDAC trust problem in Intune Management Extension 1.103.101.0. The interesting part is how they fixed it. Microsoft did not replace or re-sign WixToolset.Dtf.WindowsInstaller.dll. The DLL in 1.103.101.0 is byte-for-byte identical to the one included with 1.101.111.0. It still has the embedded WiX Toolset and .NET Foundation signature. Instead, Microsoft updated IntuneWindowsAgent.cat. This Microsoft-signed catalog contains the Authenticode hashes of files that belong to the IME package.</p>
+<p class="wp-block-paragraph">Microsoft appears to have fixed the WDAC trust problem in Intune Management Extension 1.103.101.0.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="775" height="20" src="https://patchmypc.com/app/uploads/2026/06/image-82.png" alt="" class="wp-image-188110" srcset="https://patchmypc.com/app/uploads/2026/06/image-82.png 775w, https://patchmypc.com/app/uploads/2026/06/image-82-300x8.png 300w, https://patchmypc.com/app/uploads/2026/06/image-82-768x20.png 768w" sizes="(max-width: 775px) 100vw, 775px" /></figure>
+
+
+
+<p class="wp-block-paragraph"> The interesting part is how they fixed it. Microsoft did not replace or re-sign WixToolset.Dtf.WindowsInstaller.dll. The DLL in 1.103.101.0 is byte-for-byte identical to the one included with 1.101.111.0. It still has the embedded WiX Toolset and .NET Foundation signature. Instead, Microsoft updated IntuneWindowsAgent.cat. This Microsoft-signed catalog contains the Authenticode hashes of files that belong to the IME package.</p>
 
 
 
@@ -304,7 +316,7 @@
 
 
 <p class="wp-block-paragraph"></p>
-<p>The post <a href="https://patchmypc.com/blog/autopilot-0x800705b4-app-control-blocks-the-intune-management-extension/">Autopilot 0x800705b4: App Control Blocks the Intune Management Extension</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+<p>The post <a href="https://patchmypc.com/blog/autopilot-0x800705b4-app-control-blocks-the-intune-management-extension/">Autopilot 0x800705b4: App Control Blocks the IME Installation</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/autopilot-0x800705b4-app-control-blocks-the-intune-management-extension/feed/</wfw:commentRss>
