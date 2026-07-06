@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Mon, 06 Jul 2026 11:15:18 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 06 Jul 2026 14:46:47 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -1667,7 +1667,6 @@
 		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
 		<pubDate>Tue, 23 Jun 2026 15:52:33 +0000</pubDate>
 				<category><![CDATA[Preview Release]]></category>
-		<category><![CDATA[Templates]]></category>
 		<guid isPermaLink="false">https://patchmypc.com/?p=187519</guid>
 
 					<description><![CDATA[<p>This release contains a variety of features, improvements, and fixes, as noted below. 🖥️ Modernized User Experience The biggest change in this release is a ground-up redesign of how you interact with the Patch My PC Publisher. The focus is strictly on reducing clutter and speeding up your day-to-day workflow. 📊 Improved Application Views Managing ... <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/">Continue Reading  &#187;</a></p>
@@ -1815,7 +1814,6 @@
 		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
 		<pubDate>Fri, 19 Jun 2026 07:29:57 +0000</pubDate>
 				<category><![CDATA[Production Release]]></category>
-		<category><![CDATA[Templates]]></category>
 		<guid isPermaLink="false">https://patchmypc.com/?p=187263</guid>
 
 					<description><![CDATA[<p>This release contains a variety of improvements and fixes, as noted below. This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&#160;MSI installer. Improvements Fixes</p>
