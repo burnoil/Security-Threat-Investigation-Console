@@ -10,9 +10,57 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Wed, 08 Jul 2026 10:26:30 -0500</pubDate>
+    <pubDate>Wed, 08 Jul 2026 12:44:27 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-403: (0Day) Ollama downloadBlob Improper Validation of Array Index Denial-of-Service Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-27277</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-403/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to create a denial-of-service condition on affected installations of Ollama. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-402: (0Day) Glarysoft Glary Utilities Link Following Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-27004</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-402/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Glarysoft Glary Utilities. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.3.]]></description>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-401: (0Day) AnyDesk Support Information Link Following Denial-of-Service Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-26645</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-401/</link>
+      <description><![CDATA[This vulnerability allows local attackers to create a denial-of-service condition on affected installations of AnyDesk. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 4.7.]]></description>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-400: (0Day) AnyDesk Screen Recording Link Following Denial-of-Service Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-26591</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-400/</link>
+      <description><![CDATA[This vulnerability allows local attackers to create a denial-of-service condition on affected installations of AnyDesk. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 4.7.]]></description>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-399: (0Day) (Pwn2Own) Lorex 2K Indoor Wi-Fi Security Camera Device Management Server Improper Certificate Validation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-26851</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-399/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Lorex 2K Indoor Wi-Fi Security Cameras. User interaction is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-398: (0Day) (Pwn2Own) Lorex 2K Indoor Wi-Fi Security Camera CDeviceOperator Format String Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-25884</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-398/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Lorex 2K Indoor Wi-Fi Security Cameras. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-397: X.Org Server CreateSaverWindow Use-After-Free Information Disclosure Vulnerability]]></title>
@@ -1563,54 +1611,6 @@
       <guid isPermaLink="false">ZDI-CAN-28268</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-204/</link>
       <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Canon imageCLASS MF654Cdw printers. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2025-14232.]]></description>
-      <pubDate>Mon, 16 Mar 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-203: (Pwn2Own) Canon imageCLASS MF654Cdw XML SOAP Request Parsing Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28346</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-203/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Canon imageCLASS MF654Cdw printers. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2025-14231.]]></description>
-      <pubDate>Mon, 16 Mar 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-202: (Pwn2Own) QNAP TS-453E  Hyper Data Protector Plugin query_original_file_size SQL Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28475</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-202/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of QNAP TS-453E. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.0. The following CVEs are assigned: CVE-2025-59389.]]></description>
-      <pubDate>Mon, 16 Mar 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-201: (Pwn2Own) QNAP TS-453E Hyper Data Protector Plugin Hard-Coded Credentials Authentication Bypass Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28358</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-201/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to bypass authentication on affected installations of QNAP TS-453E devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.3. The following CVEs are assigned: CVE-2025-59388.]]></description>
-      <pubDate>Mon, 16 Mar 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-200: (Pwn2Own) QNAP TS-453E nvrlog_event_add msg SQL Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28436</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-200/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of QNAP TS-453E devices. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.0. The following CVEs are assigned: CVE-2025-62849.]]></description>
-      <pubDate>Mon, 16 Mar 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-199: (Pwn2Own) QNAP TS-453E conn_log_tool Format String Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28435</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-199/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of QNAP TS-453E devices. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 5.5. The following CVEs are assigned: CVE-2025-62848.]]></description>
-      <pubDate>Mon, 16 Mar 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-198: (Pwn2Own) QNAP TS-453E malware_remover Code Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28324</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-198/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of QNAP TS-453E devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2025-11837.]]></description>
       <pubDate>Mon, 16 Mar 2026 00:00:00 -0500</pubDate>
     </item>
     
