@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 09 Jul 2026 14:55:12 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 09 Jul 2026 17:44:40 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -380,6 +380,62 @@ New-ItemProperty -LiteralPath $path -Name 'MdmComplianceUrl' -Value 'https://por
 
 
 <p class="wp-block-paragraph">That is why knowing the ASU to which the tenant belongs matters. It does not replace the logs, but it helps explain why the issue may be scoped instead of global.</p>
+
+
+
+<h2 id="h-microsoft-fixed-it-or" class="wp-block-heading">Microsoft fixed it&#8230;? Or ?</h2>
+
+
+
+<p class="wp-block-paragraph">In the incident, Microsoft mentioned that they fixed it&#8230; But&#8230; well, not 100%&#8230; as everyone needs to make a ghost change to the MMD policy to wake up the fix.</p>
+
+
+
+<p class="wp-block-paragraph">Please re-apply your Mobility (MDM) configuration in the Entra admin portal:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Navigate to the Mobility (MDM and WIP) page within the Entra portal.</li>
+
+
+
+<li>Re-apply the updates you have previously made to either the &#8220;MDM user scope&#8221; or the &#8220;Disable MDM enrollment when adding work or school account on Windows&#8221; toggle.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">Suggested steps:</p>
+
+
+
+<ol class="wp-block-list">
+<li>Open the Mobility (MDM and WIP) page.</li>
+
+
+
+<li>Select your configured MDM provider (for example, Microsoft Intune).</li>
+
+
+
+<li>First, make a dummy change to one of the impacted settings (e.g. change MDM user scope from &#8220;all&#8221; to &#8220;none&#8221; or toggle &#8220;Disable MDM enrollment when adding work or school account on Windows&#8221;.</li>
+
+
+
+<li>Click Save.</li>
+
+
+
+<li>Revert the temporary changes back to the initial, desired state.</li>
+
+
+
+<li>Click Save again.<br>This action re-triggers the policy update process and fixes the unhealthy policy state for the tenant.</li>
+</ol>
+
+
+
+<p class="wp-block-paragraph">After taking those steps&#8230; take a cup of coffee and wait an Intune minute&#8230; and if you already enrolled your device and want to enroll it manually in Intune&#8230; you need to run dsregcmd /refreshprt.</p>
 
 
 
