@@ -19,6 +19,14 @@
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	
+
+<image>
+	<url>https://patchmypc.com/app/uploads/2025/06/PMPC-Logomark-WebIcon-150x150.png</url>
+	<title>Patch My PC</title>
+	<link>https://patchmypc.com/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
 	<item>
 		<title>Autopilot failing with 0x81036501: Expected MDM URI was not found</title>
 		<link>https://patchmypc.com/blog/autopilot-failing-with-0x81036501-expected-mdm-uri-was-not-found/</link>
