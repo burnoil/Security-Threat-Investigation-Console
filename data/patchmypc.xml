@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 09 Jul 2026 17:44:40 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 07 Jul 2026 08:01:00 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,479 +28,6 @@
 	<height>32</height>
 </image> 
 	<item>
-		<title>Autopilot failing with 0x81036501: Expected MDM URI was not found</title>
-		<link>https://patchmypc.com/blog/autopilot-failing-with-0x81036501-expected-mdm-uri-was-not-found/</link>
-					<comments>https://patchmypc.com/blog/autopilot-failing-with-0x81036501-expected-mdm-uri-was-not-found/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Thu, 09 Jul 2026 11:16:06 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=188639</guid>
-
-					<description><![CDATA[<p>During incident IT1420224, Autopilot devices in tenants hosted on ASU 0102 failed to enroll into Intune with 0x81036501: Expected MDM URI was not found. This investigation walks through the logs, the missing MDM enrollment URL claim, and how a backend migration from Azure AD Graph to Microsoft Graph broke the enrollment path.</p>
-<p>The post <a href="https://patchmypc.com/blog/autopilot-failing-with-0x81036501-expected-mdm-uri-was-not-found/">Autopilot failing with 0x81036501: Expected MDM URI was not found</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p class="wp-block-paragraph">This blog is about incident<strong> IT1420224</strong>, in which Autopilot devices in tenants hosted on ASU 0102 failed to enroll in Intune and returned error<strong> 0x81036501</strong>: &#8220;<strong>Expected MDM URI was not found.</strong>&#8220;</p>
-
-
-
-<h2 id="h-device-not-enrolling-into-intune" class="wp-block-heading">Device Not Enrolling into Intune</h2>
-
-
-
-<p class="wp-block-paragraph">This one did not start with a clear red flag on the device. That was the annoying part. The devices entered the Autopilot flow, and at first glance, nothing indicated that anything was wrong. The devices just moved into the Entra enrollment flow but skipped the entire Intune Enrollment, including the Enrollment status page.</p>
-
-
-
-<p class="wp-block-paragraph">Multiple devices from different tenants were analyzed, and both failed in the same way. That was the first important clue. When multiple different devices fail identically, I do not immediately assume a local Windows issue or a random network problem. It’s also obvious that we checked the settings you would normally check when the device failed to enroll into Intune: the MDM Scope, and if the user has a valid Intune License</p>
-
-
-
-<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="267" src="https://patchmypc.com/app/uploads/2026/07/image.jpeg" alt="" class="wp-image-188640" srcset="https://patchmypc.com/app/uploads/2026/07/image.jpeg 624w, https://patchmypc.com/app/uploads/2026/07/image-300x128.jpeg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Of course, the MDM Scope itself wasn’t the problem (otherwise I wouldn’t be writing this blog). So, after checking the obvious things and even checking if there wasn&#8217;t a hidden <strong><a href="https://patchmypc.com/blog/windows-mdm-url-missing/">invalid MDM Policy in Graph</a></strong>, I needed to look further</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="973" height="694" src="https://patchmypc.com/app/uploads/2026/07/image-18.png" alt="" class="wp-image-188678" srcset="https://patchmypc.com/app/uploads/2026/07/image-18.png 973w, https://patchmypc.com/app/uploads/2026/07/image-18-300x214.png 300w, https://patchmypc.com/app/uploads/2026/07/image-18-768x548.png 768w" sizes="(max-width: 973px) 100vw, 973px" /></figure>
-
-
-
-<p class="wp-block-paragraph"> To do so, I needed to know whether the devices were communicating via the same backend path and whether the issue was scoped to a single tenant, a single region, a dedicated scale unit, or something even broader.</p>
-
-
-
-<h2 id="h-first-narrowing-down-the-scope" class="wp-block-heading">First, narrowing down the scope</h2>
-
-
-
-<p class="wp-block-paragraph">Before diving into the logs, we need to check the scope of impact. The question was simple: Is this happening only to one device, or are we looking at a tenant backend issue that returns the same broken result to multiple devices?</p>
-
-
-
-<p class="wp-block-paragraph">That is why we first checked which tenants were having the same issue and where they were located. It is just about narrowing down the blast radius. If all failing devices are connected to the same tenant backend path ( Azure Scale Unit), you stop chasing random local causes and start looking at the service path that creates the enrollment response.</p>
-
-
-
-<p class="wp-block-paragraph">That matters because a wrong tenant setting usually follows the tenant everywhere. A backend issue can be more selective. A code change or fix can roll out to a subset of the affected environments first. One tenant can look perfectly fine while another tenant based in a different ASU can have issues. Guess what?&nbsp; Everyone that had the same issue was located in the same<strong> ASU 0102!</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="658" height="259" src="https://patchmypc.com/app/uploads/2026/07/image-4.jpg" alt="" class="wp-image-188641" srcset="https://patchmypc.com/app/uploads/2026/07/image-4.jpg 658w, https://patchmypc.com/app/uploads/2026/07/image-4-300x118.jpg 300w" sizes="(max-width: 658px) 100vw, 658px" /></figure>
-
-
-
-<p class="wp-block-paragraph">So the investigation started with the scope. Multiple devices, same failure, different tenants, and the same Azure Scale unit: why did Windows never receive the MDM information it expected?</p>
-
-
-
-<h2 id="h-0x81036501-expected-mdm-uri-was-not-found" class="wp-block-heading">0x81036501 Expected MDM URI was not found</h2>
-
-
-
-<p class="wp-block-paragraph">The useful clue finally showed up in the ModernDeployment diagnostics logs. Both devices failed during DeviceDiscovery with the same <strong>HRESULT: 0x81036501</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="658" height="249" src="https://patchmypc.com/app/uploads/2026/07/image-3.jpg" alt="0x81036501" class="wp-image-188648" srcset="https://patchmypc.com/app/uploads/2026/07/image-3.jpg 658w, https://patchmypc.com/app/uploads/2026/07/image-3-300x114.jpg 300w" sizes="(max-width: 658px) 100vw, 658px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The more specific log line was even better: <strong>Expected MDM URI was not found. </strong>That was pretty much the only useful thing the device told us. It said Windows expected an MDM URI and did not find one. &nbsp;Guess what again…. Dsregcmd /status showed us the same thing.. no <strong>MDMUrl information..</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="658" height="129" src="https://patchmypc.com/app/uploads/2026/07/image-5.jpg" alt="" class="wp-image-188643" srcset="https://patchmypc.com/app/uploads/2026/07/image-5.jpg 658w, https://patchmypc.com/app/uploads/2026/07/image-5-300x59.jpg 300w" sizes="(max-width: 658px) 100vw, 658px" /></figure>
-
-
-
-<p class="wp-block-paragraph">If this <strong>MDMUrl</strong> is not populated on the device… no Intune enrollment will happen (unless you manually configure it)</p>
-
-
-
-<pre class="wp-block-code"><code>$key = 'SYSTEM\CurrentControlSet\Control\CloudDomainJoin\TenantInfo\*'
-
-$keyinfo = Get-Item "HKLM:$key"
-
-$url = $keyinfo.name
-
-$url = $url.Split("\")&#91;-1]
-
-$path = "HKLM:\SYSTEM\CurrentControlSet\Control\CloudDomainJoin\TenantInfo\$url"
-
-New-ItemProperty -LiteralPath $path -Name 'MdmEnrollmentUrl' -Value 'https://enrollment.manage.microsoft.com/enrollmentserver/discovery.svc' -PropertyType String -Force -ea SilentlyContinue;
-
-New-ItemProperty -LiteralPath $path -Name 'MdmTermsOfUseUrl' -Value 'https://portal.manage.microsoft.com/TermsofUse.aspx' -PropertyType String -Force -ea SilentlyContinue;
-
-New-ItemProperty -LiteralPath $path -Name 'MdmComplianceUrl' -Value 'https://portal.manage.microsoft.com/?portalAction=Compliance' -PropertyType String -Force -ea SilentlyContinue;</code></pre>
-
-
-
-<p class="wp-block-paragraph"></p>
-
-
-
-<h2 id="h-why-0x81036501-mattered" class="wp-block-heading">Why 0x81036501 mattered</h2>
-
-
-
-<p class="wp-block-paragraph">That error code sounded familiar. I wrote about 0x81036501 on Call4Cloud before. The root cause in that older case was different, but the meaning of the failure was already pointing in the same direction: Autopilot discovery could not find valid MDM information. <a href="https://call4cloud.nl/wrath-of-the-0x81036501-mdm-error/">Call4Cloud: Wrath of the 0x81036501 MDM Error</a></p>
-
-
-
-<p class="wp-block-paragraph">This time, the important part was not the generic wording about checking whether the tenant is provisioned for exactly one MDM. That wording can be useful, but it can also send you down the wrong path if you stop there.&nbsp; The important part besides the <strong> 0x81036501</strong> error message was: <strong>Mobile Device Management MDM is not configured</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="658" height="165" src="https://patchmypc.com/app/uploads/2026/07/image-6.jpg" alt="" class="wp-image-188644" srcset="https://patchmypc.com/app/uploads/2026/07/image-6.jpg 658w, https://patchmypc.com/app/uploads/2026/07/image-6-300x75.jpg 300w" sizes="(max-width: 658px) 100vw, 658px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That is much more specific. Windows was expecting the MDM enrollment URI during the join and discovery flow. For Intune, that URI normally comes from the MDM enrollment <strong>URL claim in the ID token.</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="718" height="39" src="https://patchmypc.com/app/uploads/2026/07/image-8.png" alt="" class="wp-image-188652" srcset="https://patchmypc.com/app/uploads/2026/07/image-8.png 718w, https://patchmypc.com/app/uploads/2026/07/image-8-300x16.png 300w" sizes="(max-width: 718px) 100vw, 718px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The claim that Windows really needs to enroll into Intune is: <strong>MDM_Enrollment_URL</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="336" height="229" src="https://patchmypc.com/app/uploads/2026/07/image-7.png" alt="mdm_enrollment_URL  neededd" class="wp-image-188647" srcset="https://patchmypc.com/app/uploads/2026/07/image-7.png 336w, https://patchmypc.com/app/uploads/2026/07/image-7-300x204.png 300w" sizes="(max-width: 336px) 100vw, 336px" /></figure>
-
-
-
-<p class="wp-block-paragraph">For Microsoft Intune, that value normally points to the same thing you configured in the MDM scope settings:</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="267" src="https://patchmypc.com/app/uploads/2026/07/image-1.jpeg" alt="MDM scope" class="wp-image-188642" srcset="https://patchmypc.com/app/uploads/2026/07/image-1.jpeg 624w, https://patchmypc.com/app/uploads/2026/07/image-1-300x128.jpeg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p class="wp-block-paragraph">When that claim is present, Windows knows where to continue for Intune enrollment. When that claim is missing, Windows can still have enough information to continue the Entra join part, but it does not have the pointer it needs for automatic MDM enrollment.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="576" src="https://patchmypc.com/app/uploads/2026/07/image-17-1024x576.png" alt="" class="wp-image-188663" srcset="https://patchmypc.com/app/uploads/2026/07/image-17-1024x576.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-17-300x169.png 300w, https://patchmypc.com/app/uploads/2026/07/image-17-768x432.png 768w, https://patchmypc.com/app/uploads/2026/07/image-17-1536x864.png 1536w, https://patchmypc.com/app/uploads/2026/07/image-17.png 1672w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That explains the behavior. Entra join can move forward, but the Intune side never really starts.</p>
-
-
-
-<h2 id="h-health-message-it1420224" class="wp-block-heading">Health Message: IT1420224</h2>
-
-
-
-<p class="wp-block-paragraph">After capturing a Fiddler trace, it was indeed obvious what was happening. Somehow, tenants that are located in the ASU 0102 failed to retrieve the <a href="https://patchmypc.com/blog/windows-mdm-url-missing">MDM_Enrollment_URI because the claim was missing in the returned token</a>.</p>
-
-
-
-<p class="wp-block-paragraph">With this evidence, it was pretty easy to contact MSFT and explain what was happening… Within a couple of hours, Microsoft published a new service health incident, which explained why that URI was missing.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="658" height="106" src="https://patchmypc.com/app/uploads/2026/07/image-9.png" alt="0x81036501 IT1420224" class="wp-image-188646" srcset="https://patchmypc.com/app/uploads/2026/07/image-9.png 658w, https://patchmypc.com/app/uploads/2026/07/image-9-300x48.png 300w" sizes="(max-width: 658px) 100vw, 658px" /></figure>
-
-
-
-<p class="wp-block-paragraph">As shown above, In incident <strong>IT1420224,</strong> Microsoft explained that a backend change migrated the <strong>Mobility Management Policy Service from Azure AD Graph to Microsoft Graph</strong>. During that migration, the Mobile Device Management enrollment URL claim was omitted from tokens during device enrollment.</p>
-
-
-
-<p class="wp-block-paragraph">That confirmed the direction of the investigation. The issue was that the backend in ASU 0102 issued a token without the MDM enrollment URL claim that Windows needed.</p>
-
-
-
-<p class="wp-block-paragraph">In other words, the token could still be valid. Entra join could still happen. But automatic Intune enrollment had no place to go.</p>
-
-
-
-<h2 id="h-why-azure-ad-graph-matters-here" class="wp-block-heading">Why Azure AD Graph matters here</h2>
-
-
-
-<p class="wp-block-paragraph">Azure AD Graph was already legacy. Microsoft has been moving customers and internal services away from Azure AD Graph for years. Microsoft Graph is the modern API surface, and Azure AD Graph is on its retirement path.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="658" height="209" src="https://patchmypc.com/app/uploads/2026/07/image-8.jpg" alt="" class="wp-image-188650" srcset="https://patchmypc.com/app/uploads/2026/07/image-8.jpg 658w, https://patchmypc.com/app/uploads/2026/07/image-8-300x95.jpg 300w" sizes="(max-width: 658px) 100vw, 658px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Microsoft’s migration guidance states that Azure AD Graph entered its retirement cycle after the three-year deprecation notice ended on June 30, 2023. It also explains that new applications created after August 31, 2024 cannot use Azure AD Graph unless they explicitly opt in for extended access. <a href="https://learn.microsoft.com/en-us/graph/migrate-azure-ad-graph-overview">Microsoft: Migrate your apps from Azure AD Graph to Microsoft Graph</a></p>
-
-
-
-<p class="wp-block-paragraph">So the move to Microsoft Graph makes sense… maybe just a couple of years too late… but is that only me thinking that? But this incident shows why this type of migration can still break something very specific.</p>
-
-
-
-<p class="wp-block-paragraph">This was probably not a simple rename from graph.windows.net to graph.microsoft.com. The old Azure AD Graph model and the newer Microsoft Graph model do not look the same… not at all</p>
-
-
-
-<h2 id="h-the-old-azure-ad-graph-path-was-not-one-object" class="wp-block-heading">The old Azure AD Graph path was not one object</h2>
-
-
-
-<p class="wp-block-paragraph">Inside the old internal Azure AD Graph policy, a policy called <strong>DefaultMDMPolicy</strong> was exposed.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="28" src="https://patchmypc.com/app/uploads/2026/07/image-12-1024x28.png" alt="" class="wp-image-188651" srcset="https://patchmypc.com/app/uploads/2026/07/image-12-1024x28.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-12-300x8.png 300w, https://patchmypc.com/app/uploads/2026/07/image-12-768x21.png 768w, https://patchmypc.com/app/uploads/2026/07/image-12-1536x42.png 1536w, https://patchmypc.com/app/uploads/2026/07/image-12.png 1939w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That object had policyType 5 and tenantDefaultPolicy 5. Inside policyDetail, it pointed to the Microsoft Intune AppId.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="157" src="https://patchmypc.com/app/uploads/2026/07/image-13-1024x157.png" alt="" class="wp-image-188655" srcset="https://patchmypc.com/app/uploads/2026/07/image-13-1024x157.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-13-300x46.png 300w, https://patchmypc.com/app/uploads/2026/07/image-13-768x118.png 768w, https://patchmypc.com/app/uploads/2026/07/image-13.png 1123w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That object told Entra that MDM enrollment was enabled. It told Entra that it applied to all users, enrollment during registration was not disabled, and it also told Entra which MDM application to use.</p>
-
-
-
-<p class="wp-block-paragraph">But it did not contain the actual enrollment URL. That is the first important finding. <strong>DefaultMDMPolicy</strong> was not the final source for the MDM URI. It was more like a pointer to the MDM application.</p>
-
-
-
-<h2 id="h-the-second-lookup-resolved-microsoft-intune" class="wp-block-heading">The second lookup resolved Microsoft Intune</h2>
-
-
-
-<p class="wp-block-paragraph">The AppId in DefaultMDMPolicy was: 0000000a-0000-0000-c000-000000000000</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="364" height="219" src="https://patchmypc.com/app/uploads/2026/07/image-10.png" alt="" class="wp-image-188654" srcset="https://patchmypc.com/app/uploads/2026/07/image-10.png 364w, https://patchmypc.com/app/uploads/2026/07/image-10-300x180.png 300w" sizes="(max-width: 364px) 100vw, 364px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That AppId resolves to the Microsoft Intune service principal. The interesting field on that service principal is appData. That is where the actual EnrollmentURL values were stored in the old Azure AD Graph response.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="866" height="234" src="https://patchmypc.com/app/uploads/2026/07/image-14.png" alt="" class="wp-image-188653" srcset="https://patchmypc.com/app/uploads/2026/07/image-14.png 866w, https://patchmypc.com/app/uploads/2026/07/image-14-300x81.png 300w, https://patchmypc.com/app/uploads/2026/07/image-14-768x208.png 768w" sizes="(max-width: 866px) 100vw, 866px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That gives us the old lookup chain. The MDM policy pointed to Intune. The Intune service principal contained the URL. The backend then had to take that EnrollmentUrl and put it into the ID token as mdm_enrollment_url.</p>
-
-
-
-<h2 id="h-the-old-working-ad-graph-flow" class="wp-block-heading">The old working AD Graph flow</h2>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="265" height="1024" src="https://patchmypc.com/app/uploads/2026/07/image-15-265x1024.png" alt="" class="wp-image-188656" srcset="https://patchmypc.com/app/uploads/2026/07/image-15-265x1024.png 265w, https://patchmypc.com/app/uploads/2026/07/image-15-78x300.png 78w, https://patchmypc.com/app/uploads/2026/07/image-15.png 309w" sizes="(max-width: 265px) 100vw, 265px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That is the important part. The old Deprecated AD Graph path was not just one simple property. It was policy, AppId, service principal, appData, EnrollmentUrl, and then finally the token claim.</p>
-
-
-
-<h2 id="h-the-microsoft-graph-model-is-shaped-differently" class="wp-block-heading">The Microsoft Graph model is shaped differently</h2>
-
-
-
-<p class="wp-block-paragraph">Microsoft Graph exposes the mobility management policy differently.</p>
-
-
-
-<p class="wp-block-paragraph">The Microsoft Graph beta endpoint is GET <strong>https://graph.microsoft.com/beta/policies/mobileDeviceManagementPolicies</strong>. Microsoft documents the resource as a device auto-enrollment policy for a mobility management application configured in Microsoft Entra ID. The object exposes fields such as discoveryUrl, complianceUrl, termsOfUseUrl, appliesTo, isValid, and isMdmEnrollmentDuringRegistrationDisabled. <a href="https://learn.microsoft.com/en-us/graph/api/resources/mobiledevicemanagementpolicy?view=graph-rest-beta">Microsoft Graph mobileDeviceManagementPolicy resource</a></p>
-
-
-
-<p class="wp-block-paragraph">That is a different shape than the old Azure AD Graph model. The Microsoft Graph path looks more like this:</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="99" src="https://patchmypc.com/app/uploads/2026/07/image-11-1024x99.png" alt="" class="wp-image-188649" srcset="https://patchmypc.com/app/uploads/2026/07/image-11-1024x99.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-11-300x29.png 300w, https://patchmypc.com/app/uploads/2026/07/image-11-768x74.png 768w, https://patchmypc.com/app/uploads/2026/07/image-11.png 1243w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That difference is probably where the migration broke apart (assuming… no facts). The backend still had to produce the same token claim Windows expects, but it now had to do that from a different object model.</p>
-
-
-
-<h2 id="h-what-likely-caused-the-0x81036501" class="wp-block-heading">What likely caused the 0x81036501</h2>
-
-
-
-<p class="wp-block-paragraph">The most likely failure is that the new Microsoft Graph-based lookup did not fully reproduce the old Azure AD Graph-based behavior.</p>
-
-
-
-<p class="wp-block-paragraph">The old code probably knew how to walk the old chain. It could find <strong>DefaultMDMPolicy, </strong>read the Intune AppId, resolve the Microsoft Intune service principal, parse appData, extract EnrollmentUrl, and add that value to the token as mdm_enrollment_url.</p>
-
-
-
-<p class="wp-block-paragraph">The new code had to walk a different shape. It needed to query Microsoft Graph, read the mobility management policy, take discoveryUrl, and map that value back into the same <strong>mdm_enrollment_url claim.</strong></p>
-
-
-
-<p class="wp-block-paragraph">Somewhere in that lookup or mapping path, the enrollment URL was not added to the token.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="354" height="1024" src="https://patchmypc.com/app/uploads/2026/07/image-16-354x1024.png" alt="" class="wp-image-188660" srcset="https://patchmypc.com/app/uploads/2026/07/image-16-354x1024.png 354w, https://patchmypc.com/app/uploads/2026/07/image-16-104x300.png 104w, https://patchmypc.com/app/uploads/2026/07/image-16.png 377w" sizes="(max-width: 354px) 100vw, 354px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That is why the device only showed <strong>0x81036501.</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="658" height="249" src="https://patchmypc.com/app/uploads/2026/07/image-7.jpg" alt="0x81036501" class="wp-image-188645" srcset="https://patchmypc.com/app/uploads/2026/07/image-7.jpg 658w, https://patchmypc.com/app/uploads/2026/07/image-7-300x114.jpg 300w" sizes="(max-width: 658px) 100vw, 658px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The device was not the component querying Microsoft Graph. The Microsoft backend was. The device only saw the final result: <strong>the MDM URI was missing: 0x81036501.</strong></p>
-
-
-
-<h2 id="h-why-the-asu-mattered" class="wp-block-heading">Why the ASU mattered:</h2>
-
-
-
-<p class="wp-block-paragraph">The ASU check mattered because it helped keep the investigation grounded.</p>
-
-
-
-<p class="wp-block-paragraph">When you see multiple devices fail identically, it is easy to keep staring at the device. But if multiple devices in different tenants have the same issue… maybe its time to look at the Azure Scale Unit.</p>
-
-
-
-<p class="wp-block-paragraph">This also matches the way Microsoft described the fix. The service health updates did not say admins needed to change their MDM user scope or fix a tenant setting. Microsoft said a code fix was completed, moved into internal testing, and then started rolling out to a subset of the affected environment for validation before broader deployment.</p>
-
-
-
-<p class="wp-block-paragraph">That is why knowing the ASU to which the tenant belongs matters. It does not replace the logs, but it helps explain why the issue may be scoped instead of global.</p>
-
-
-
-<h2 id="h-microsoft-fixed-it-or" class="wp-block-heading">Microsoft fixed it&#8230;? Or ?</h2>
-
-
-
-<p class="wp-block-paragraph">In the incident, Microsoft mentioned that they fixed it&#8230; But&#8230; well, not 100%&#8230; as everyone needs to make a ghost change to the MMD policy to wake up the fix.</p>
-
-
-
-<p class="wp-block-paragraph">Please re-apply your Mobility (MDM) configuration in the Entra admin portal:</p>
-
-
-
-<ul class="wp-block-list">
-<li>Navigate to the Mobility (MDM and WIP) page within the Entra portal.</li>
-
-
-
-<li>Re-apply the updates you have previously made to either the &#8220;MDM user scope&#8221; or the &#8220;Disable MDM enrollment when adding work or school account on Windows&#8221; toggle.</li>
-</ul>
-
-
-
-<p class="wp-block-paragraph">Suggested steps:</p>
-
-
-
-<ol class="wp-block-list">
-<li>Open the Mobility (MDM and WIP) page.</li>
-
-
-
-<li>Select your configured MDM provider (for example, Microsoft Intune).</li>
-
-
-
-<li>First, make a dummy change to one of the impacted settings (e.g. change MDM user scope from &#8220;all&#8221; to &#8220;none&#8221; or toggle &#8220;Disable MDM enrollment when adding work or school account on Windows&#8221;.</li>
-
-
-
-<li>Click Save.</li>
-
-
-
-<li>Revert the temporary changes back to the initial, desired state.</li>
-
-
-
-<li>Click Save again.<br>This action re-triggers the policy update process and fixes the unhealthy policy state for the tenant.</li>
-</ol>
-
-
-
-<p class="wp-block-paragraph">After taking those steps&#8230; take a cup of coffee and wait an Intune minute&#8230; and if you already enrolled your device and want to enroll it manually in Intune&#8230; you need to run dsregcmd /refreshprt.</p>
-
-
-
-<h2 id="h-summary" class="wp-block-heading">Summary</h2>
-
-
-
-<p class="wp-block-paragraph">Windows started Autopilot device discovery. Windows expected an MDM URI. The backend issued a token without the <strong>MDM enrollment URL claim. </strong>Windows could not find a valid MDM and retried for roughly 14 minutes. The flow ended with 0x81036501.</p>
-
-
-
-<p class="wp-block-paragraph">The broken part was the translation between the backend policy lookup and the token claim Windows needed.</p>
-
-
-
-<p class="wp-block-paragraph">In the old Azure AD Graph path, the backend could resolve the <strong>EnrollmentUr</strong>l through <strong>DefaultMDMPolicy </strong>and the Microsoft Intune service principal. In the Microsoft Graph path, it had to resolve discoveryUrl from <strong>mobileDeviceManagementPolicie</strong>s and still emit the same <strong>mdm_enrollment_url claim.</strong></p>
-
-
-
-<p class="wp-block-paragraph">That conversion/migration failed badly.</p>
-
-
-
-<h2 id="h-closing-thoughts" class="wp-block-heading">Closing thoughts</h2>
-
-
-
-<p class="wp-block-paragraph">The strange part is not that Microsoft is moving away from Azure AD Graph. That migration makes sense. Azure AD Graph has been legacy for years, and Microsoft Graph is clearly the path forward.</p>
-
-
-
-<p class="wp-block-paragraph">The strange part is that this kind of migration is still happening inside an enrollment critical backend path in 2026, and that it was enough to break all Intune enrollments for tenants in a specific Azure Scale Unit.</p>
-
-
-
-<p class="wp-block-paragraph">That is what makes this incident interesting. The device was not broken. The tenant settings were not broken. The license was not missing. The MDM scope was not wrong.</p>
-
-
-
-<p class="wp-block-paragraph">Windows simply asked for the information it needed to continue, and the backend returned a token <strong>without the MDM enrollment URL claim.</strong></p>
-
-
-
-<p class="wp-block-paragraph">And when that one claim is missing, Autopilot has no idea where to go next.</p>
-
-
-
-<p class="wp-block-paragraph">So yes, moving from Azure AD Graph to Microsoft Graph is the right direction. But doing it this late, on a path that determines whether a device can enroll in Intune at all, feels a bit too late to still be discovering these kinds of gaps in production.</p>
-<p>The post <a href="https://patchmypc.com/blog/autopilot-failing-with-0x81036501-expected-mdm-uri-was-not-found/">Autopilot failing with 0x81036501: Expected MDM URI was not found</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/autopilot-failing-with-0x81036501-expected-mdm-uri-was-not-found/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
 		<title>Patch My PC Publisher Preview Version 2.3.2.193 Released</title>
 		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-193-released/</link>
 					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-193-released/#respond</comments>
@@ -622,7 +149,7 @@ New-ItemProperty -LiteralPath $path -Name 'MdmComplianceUrl' -Value 'https://por
 
 
 
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="177" src="https://patchmypc.com/app/uploads/2026/01/image-36.png" alt="controlled feature rollout using the vivetool" class="wp-image-171552" srcset="https://patchmypc.com/app/uploads/2026/01/image-36.png 624w, https://patchmypc.com/app/uploads/2026/01/image-36-300x85.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="177" src="https://patchmypc.com/app/uploads/2026/01/image-36.png" alt="controlled feature rollout using the vivetool" class="wp-image-171552" srcset="https://patchmypc.com/app/uploads/2026/01/image-36.png 624w, https://patchmypc.com/app/uploads/2026/01/image-36-300x85.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
 
 
 
@@ -2450,6 +1977,43 @@ New-ItemProperty -LiteralPath $path -Name 'MdmComplianceUrl' -Value 'https://por
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-3-2-0-released/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Patch My PC Publisher Preview Version 2.2.2.224 Released</title>
+		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-224-released/</link>
+					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-224-released/#respond</comments>
+		
+		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
+		<pubDate>Mon, 15 Jun 2026 18:52:35 +0000</pubDate>
+				<category><![CDATA[Preview Release]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=187006</guid>
+
+					<description><![CDATA[<p>This release contains a fix as noted below. Fixes</p>
+<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-224-released/">Patch My PC Publisher Preview Version 2.2.2.224 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">This release contains a fix as noted below.</p>
+
+
+
+<h2 class="wp-block-heading" id="h-fixes">Fixes</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Fixed a bug causing tools like the Intune Scan Wizard, Intune App Manager, and Intune Auto-Publishing rules to fail to load all tenants when an MSP had more than 22 tenants configured.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph"></p>
+<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-224-released/">Patch My PC Publisher Preview Version 2.2.2.224 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-224-released/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
