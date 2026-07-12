@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Tue, 07 Jul 2026 08:01:00 +0000</lastBuildDate>
+	<lastBuildDate>Sun, 12 Jul 2026 08:28:15 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,261 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>The Intune MDM Device Certificate KSP Renewal Bug: Why the Bit4id Provider Caused it</title>
+		<link>https://patchmypc.com/blog/the-intune-mdm-device-certificate-ksp-renewal-bug-why-23h2-devices-stopped-renewing/</link>
+					<comments>https://patchmypc.com/blog/the-intune-mdm-device-certificate-ksp-renewal-bug-why-23h2-devices-stopped-renewing/#respond</comments>
+		
+		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
+		<pubDate>Sun, 12 Jul 2026 08:28:14 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=167644</guid>
+
+					<description><![CDATA[<p>A third party smart card KSP caused the Intune MDM certificate renewal flow in Windows 11 to fail before the actual renewal checks even started, leaving devices with expired certificates and almost no useful errors. This blog explains why only specific devices were affected, how the November update changed the Windows renewal flow, and why the same fix could still depend on feature rollout in Windows 11 24H2.</p>
+<p>The post <a href="https://patchmypc.com/blog/the-intune-mdm-device-certificate-ksp-renewal-bug-why-23h2-devices-stopped-renewing/">The Intune MDM Device Certificate KSP Renewal Bug: Why the Bit4id Provider Caused it</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">This blog is about a specific <strong>Intune Certificate KSP Renewal bug</strong> in Windows that caused Intune MDM device certificates to stop renewing on some Windows 11 23H2 devices and could quietly affect 24H2 as well when the same feature flag isn’t enabled.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Please Note:</strong> The issue only appears on machines with a specific third-party KSP (smart card) installed, producing no meaningful errors and making the renewal task appear to skip due to timing, when it’s actually failing well before that check.</p>
+
+
+
+<p class="wp-block-paragraph">The November 23h2 update finally introduced the missing fix inside Windows, and this post walks through how the problem appears, why only specific devices were impacted, and how the updated renewal flow resolves it.</p>
+
+
+
+<p class="has-small-font-size wp-block-paragraph"><em>Please note: This blog is based on my own testing and analysis, including the decompilation of publicly available Windows binaries. No NDA covered information, internal documentation, or private sources were used.</em></p>
+
+
+
+<h2 id="h-introduction" class="wp-block-heading"><strong>Introduction</strong></h2>
+
+
+
+<p class="wp-block-paragraph">It started with a message from someone on Reddit who had been watching their <strong><a href="https://learn.microsoft.com/en-us/intune/device-enrollment/guide">Intune MDM device certificates</a></strong> quietly expire without any warning. These were standard Windows devices that had never missed an Intune Certificate renewal cycle before. Suddenly, they stopped renewing altogether. Not early, Not late, Not at all. Even triggering the scheduled renewal task manually produced the same line every single time:</p>
+
+
+
+<p class="wp-block-paragraph"><strong>“Current time is earlier than last renew time plus wait period. Skip renew.”</strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="331" src="https://patchmypc.com/app/uploads/2025/11/image-43-1024x331.png" alt="" class="wp-image-167655" srcset="https://patchmypc.com/app/uploads/2025/11/image-43-1024x331.png 1024w, https://patchmypc.com/app/uploads/2025/11/image-43-300x97.png 300w, https://patchmypc.com/app/uploads/2025/11/image-43-768x249.png 768w, https://patchmypc.com/app/uploads/2025/11/image-43.png 1400w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">There was nothing in the logs that explained why this was happening. The devices kept reporting as compliant. They kept receiving policies. They synced normally. Nothing in Intune looked suspicious. Yet the certificates stayed untouched. The only workaround that worked was wiping the device and re-enrolling it, which is not something anyone wants to do at scale. That was when the question landed with me: Is something inside Windows itself broken?</p>
+
+
+
+<h2 id="h-where-the-ksp-investigation-really-began" class="wp-block-heading">Where the KSP Investigation Really Began</h2>
+
+
+
+<p class="wp-block-paragraph">The first surprise was that none of the usual indicators lined up. The registry still showed a <strong>RenewErrorCode of 0, </strong>which typically indicates the device encountered no errors during the renewa<strong>l.</strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="119" src="https://patchmypc.com/app/uploads/2025/11/image-44-1024x119.png" alt="" class="wp-image-167656" srcset="https://patchmypc.com/app/uploads/2025/11/image-44-1024x119.png 1024w, https://patchmypc.com/app/uploads/2025/11/image-44-300x35.png 300w, https://patchmypc.com/app/uploads/2025/11/image-44-768x89.png 768w, https://patchmypc.com/app/uploads/2025/11/image-44-1536x179.png 1536w, https://patchmypc.com/app/uploads/2025/11/image-44.png 1650w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">That was odd, as the service clearly believed a renewal was needed. Intune had already pushed the full MDM enrollment policy back down to the device, and that only happens when the service thinks the renewal window is open. So maybe the server initiated the renewal, but the device refused to take the first step. The scheduled task exhibited the same behavior across all affected devices.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="181" src="https://patchmypc.com/app/uploads/2025/11/image-45-1024x181.png" alt="" class="wp-image-167657" srcset="https://patchmypc.com/app/uploads/2025/11/image-45-1024x181.png 1024w, https://patchmypc.com/app/uploads/2025/11/image-45-300x53.png 300w, https://patchmypc.com/app/uploads/2025/11/image-45-768x136.png 768w, https://patchmypc.com/app/uploads/2025/11/image-45-1536x271.png 1536w, https://patchmypc.com/app/uploads/2025/11/image-45-2048x361.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">It insisted that the renewal window had not been reached, even for devices that had already passed their renewal date. Some certificates had been expired for weeks. Even devices still within their renewal window refused to initiate anything. The timing logic seemed stuck in a nonsensical state.</p>
+
+
+
+<p class="wp-block-paragraph">At that point, it felt like the entire Windows certificate renewal flow was no longer responding to the conditions it had previously. Nothing in Intune had changed. Nothing visible (at least at that point in time) in Windows had changed. And then something else happened that made the situation even stranger.</p>
+
+
+
+<h2 id="h-when-every-device-suddenly-renewed-in-bulk" class="wp-block-heading">When Every Device Suddenly Renewed in Bulk</h2>
+
+
+
+<p class="wp-block-paragraph">The next week, she reached out again with something completely unexpected. Every device that had been stuck for weeks had its Intune MDM Device certificate renewed. Even the expired ones came back to life without anyone touching them. Nothing had been changed on the Intune side. Nothing in the scheduled task changed. Yet the certificate renewal pipeline came online as if someone had flipped a switch.</p>
+
+
+
+<p class="wp-block-paragraph">That made no sense, so we went back to the devices and pulled the logs again. The first clue surfaced in the System event log. Each device had rebooted because TrustedInstaller requested it.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="86" src="https://patchmypc.com/app/uploads/2025/11/image-20.jpg" alt="" class="wp-image-167648" srcset="https://patchmypc.com/app/uploads/2025/11/image-20.jpg 624w, https://patchmypc.com/app/uploads/2025/11/image-20-300x41.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p class="wp-block-paragraph">That was the single consistent pattern across all affected machines. Checking the Software Distribution event log showed the reason for the reboot. Every device had installed the same cumulative update: the November update for Windows 11 23H2.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="41" src="https://patchmypc.com/app/uploads/2025/11/image-19.jpg" alt="" class="wp-image-167647" srcset="https://patchmypc.com/app/uploads/2025/11/image-19.jpg 624w, https://patchmypc.com/app/uploads/2025/11/image-19-300x20.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p class="wp-block-paragraph">That was when everything clicked. The renewal pipeline did not magically recover. It recovered the moment the November update was installed. That meant the fix was built into Windows itself. From that point, the entire investigation moved into the code.</p>
+
+
+
+<h2 id="h-what-changed-inside-windows-ksp-feature" class="wp-block-heading">What Changed Inside Windows: KSP Feature</h2>
+
+
+
+<p class="wp-block-paragraph">The real turning point came when I compared the October 23H2 build with the November 23H2 build. The November update introduced an updated Cert Renewal flow with a function called <strong>ProcessRenewalRequestWithRetry</strong>. This function was gated by the <strong>Bypass3rdPartyKPSInRenew</strong> feature. (Please take a couple of seconds to look at the name of that feature)</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="251" src="https://patchmypc.com/app/uploads/2025/11/image-46-1024x251.png" alt="" class="wp-image-167658" srcset="https://patchmypc.com/app/uploads/2025/11/image-46-1024x251.png 1024w, https://patchmypc.com/app/uploads/2025/11/image-46-300x73.png 300w, https://patchmypc.com/app/uploads/2025/11/image-46-768x188.png 768w, https://patchmypc.com/app/uploads/2025/11/image-46-1536x376.png 1536w, https://patchmypc.com/app/uploads/2025/11/image-46-2048x502.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">This function was utterly absent from the October 23H2 build. Without it, Windows had no choice but to revert to the older renewal routine. <strong>This is where the missing piece belonged, and the November update finally delivered it.</strong></p>
+
+
+
+<h2 class="wp-block-heading">How the Old Renewal Flow Actually Worked</h2>
+
+
+
+<p class="wp-block-paragraph">The legacy Certificate renewal path inside Windows always followed the same pattern. Before the CertEnroll could build a renewal request, the system initialized <em><strong>ALL</strong></em> available Key Storage Providers (PSZ in the picture).</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="718" height="176" src="https://patchmypc.com/app/uploads/2025/11/image-55.png" alt="" class="wp-image-167867" srcset="https://patchmypc.com/app/uploads/2025/11/image-55.png 718w, https://patchmypc.com/app/uploads/2025/11/image-55-300x74.png 300w" sizes="(max-width: 718px) 100vw, 718px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The behavior was unconditional. The provider used by the MDM certificate made no difference, and any connection to the enrollment key was irrelevant. The old renewal flow simply went through each and very Key Storage Provider (KSP) on the system and tried to initialize them one by one. The old certificate renewal flow simply enumerated every KSP present on the device and attempted to initialize them one by one.</p>
+
+
+
+<p class="wp-block-paragraph">That behaviour was fine on a clean Windows installation using only Microsoft KSPs. But the moment a third-party KSP was installed, the certificate renewal pipeline became fragile. If any of those storage providers returned an error during initialization, the entire CertEnroll builder failed, and the Intune Certificate renewal step stopped instantly.</p>
+
+
+
+<p class="wp-block-paragraph">Because the old code didn’t retry, didn’t bypass the failure, and didn’t repair anything, the process exited quietly before the timing logic even ran. The device then logged the misleading line: <strong>“Current time is earlier than last renew time plus wait period. Skip renew.”</strong></p>
+
+
+
+<h2 id="h-how-the-updated-renewal-flow-fixes-the-ksp-initialization" class="wp-block-heading">How the Updated Renewal Flow Fixes The KSP Initialization</h2>
+
+
+
+<p class="wp-block-paragraph">The November build added <strong>ProcessRenewalRequestWithRetry </strong>and its helper <strong>SetUpLimitedCertRequest, </strong>and they change the behaviour exactly at the point where the old flow failed. Instead of initializing every <strong>KSP</strong> on the machine, Windows now initializes only the KSP that actually belongs to the Intune MDM certificate. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="650" height="157" src="https://patchmypc.com/app/uploads/2025/11/image-40.png" alt="" class="wp-image-167651" srcset="https://patchmypc.com/app/uploads/2025/11/image-40.png 650w, https://patchmypc.com/app/uploads/2025/11/image-40-300x72.png 300w" sizes="(max-width: 650px) 100vw, 650px" /></figure>
+
+
+
+<p class="wp-block-paragraph">That behavior is controlled by the <strong>Bypass3rdPartyKPSInRenew</strong> feature. This avoids triggering the failing provider entirely. Because this new logic wraps everything in a retry loop, Windows can now detect when the stored provider or container values don’t match the actual key, switch to <strong>SetUpLimitedCertRequest, </strong>attempt a fallback via Initialize From Certificate, and finally repair the provider/container values via <strong>SetNewContainerAndProvider</strong>.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="620" height="492" src="https://patchmypc.com/app/uploads/2025/11/image-41.png" alt="" class="wp-image-167650" srcset="https://patchmypc.com/app/uploads/2025/11/image-41.png 620w, https://patchmypc.com/app/uploads/2025/11/image-41-300x238.png 300w" sizes="(max-width: 620px) 100vw, 620px" /></figure>
+
+
+
+<p class="wp-block-paragraph">What used to be a single-point-of-failure became a recoverable and self-correcting flow.</p>
+
+
+
+<h2 id="h-the-real-world-pattern-why-only-some-devices-broke" class="wp-block-heading">The Real-World Pattern: Why Only Some Devices Broke</h2>
+
+
+
+<p class="wp-block-paragraph">Once we began comparing devices across tenants, a clear pattern showed up. The devices that renewed cleanly had nothing unusual installed. Only the Microsoft KSPs were present, and the Intune Cert renewal flow never failed. The devices that kept failing all had one thing in common: a third-party KSP was installed. In our case, it was a commonly used <strong>smart card reader called Bit4ID </strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="611" height="305" src="https://patchmypc.com/app/uploads/2025/11/image-56.png" alt="" class="wp-image-167870" srcset="https://patchmypc.com/app/uploads/2025/11/image-56.png 611w, https://patchmypc.com/app/uploads/2025/11/image-56-300x150.png 300w" sizes="(max-width: 611px) 100vw, 611px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Those machines behaved exactly the way the old flow breaks. The moment the legacy renewal logic initialized all providers, it hit that third-party KSP, the provider returned an error during initialization, CertEnroll collapsed, and the renewal attempt vanished without a trace.</p>
+
+
+
+<p class="wp-block-paragraph">That aligned perfectly with what the <strong>Bypass3rdPartyKPSInRenew</strong> feature is designed to avoid.<br>The legacy flow initializes <em>every</em> registered provider before building the renewal request.<br>If a single one of the KSPs misbehaves, such as the Bit4id KSP does on some systems, the entire renewal flow halts without leaving an error behind. No event, no entry in the task history, nothing in the MDM logs.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>The devices that never had Bit4id?</strong><br>Renewal kept working as expected.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>The devices that did have Bit4id?</strong><br>Renewal stayed dead until the November update arrived, the moment the feature that bypasses third-party KSPs became active.</p>
+
+
+
+<p class="wp-block-paragraph">This was the missing correlation that made everything click.</p>
+
+
+
+<h2 id="h-one-more-twist-the-fix-was-in-24h2-too-but-not-yet-flighted" class="wp-block-heading">One More Twist: The Fix Was in 24H2 Too, but not yet Flighted</h2>
+
+
+
+<p class="wp-block-paragraph">There was one more detail that only became clear after testing the same renewal CSP on a 24H2 device.<br>Even though 24H2 already shipped with the new renewal engine, the behaviour was identical to the broken 23H2 October build. The device ignored the modern renewal flow, skipped the limited cert request path, and did nothing when the renew CSP was triggered manually.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="456" src="https://patchmypc.com/app/uploads/2025/11/image-42.png" alt="" class="wp-image-167654" srcset="https://patchmypc.com/app/uploads/2025/11/image-42.png 624w, https://patchmypc.com/app/uploads/2025/11/image-42-300x219.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p class="wp-block-paragraph">That made no sense at first, because the 24H2 DLL clearly contained the full renewal pipeline and the KPS fix. So, I checked the feature state. The <strong>Bypass3rdPartyKPSInRenew</strong> feature, which I showed you before, that unlocks the ProcessRenewalRequestWithRetry path, was disabled. Not missing&#8230;.Disabled.</p>
+
+
+
+<figure class="wp-block-image size-full"><a href="https://patchmypc.com/app/uploads/2025/11/image-22.jpg"><img decoding="async" width="624" height="177" src="https://patchmypc.com/app/uploads/2025/11/image-22.jpg" alt="" class="wp-image-167652" srcset="https://patchmypc.com/app/uploads/2025/11/image-22.jpg 624w, https://patchmypc.com/app/uploads/2025/11/image-22-300x85.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></a></figure>
+
+
+
+<p class="wp-block-paragraph">After enabling it with ViVeTool, rebooting, and running the renewal CSP again, the certificate was renewed immediately. No delays. No errors. It simply worked. </p>
+
+
+
+<p class="wp-block-paragraph">This confirmed two things: First, Microsoft had already shipped the fix inside 24H2.<br>Second, the fix was being rolled out gradually through feature flight (controlled feature rollout) and was not enabled by default on all systems.  This also explains why the broken behavior was visible on both 23H2 and 24H2 devices until the <strong>KSP fix </strong>was promoted through cumulative updates and feature rollouts. If you want to read my blog about the controlled feature rollout, you can find it here:</p>
+
+
+
+<p class="wp-block-paragraph">Insert LINK</p>
+
+
+
+<h2 id="h-closing-thoughts" class="wp-block-heading">Closing Thoughts</h2>
+
+
+
+<p class="wp-block-paragraph">The renewal failures on Windows 11 23H2 were never about timing or Intune. The legacy flow failed when it tried to initialize every KSP on the device, and a single misbehaving provider was enough to stop the process without any trace. The November update finally added the missing repair logic: it bypasses irrelevant KSPs, checks the real key state, rebuilds the request when needed, and corrects the provider and container values so renewal can continue.</p>
+
+
+
+<p class="wp-block-paragraph">Once that logic was enabled, every stuck device resumed after a single reboot. Nothing changed in Intune. Only Windows did. This updated flow is clearly the direction Windows will follow going forward—far more resilient, far less dependent on assumptions, and no longer vulnerable to a single faulty KSP.</p>
+
+
+
+<p class="wp-block-paragraph"></p>
+<p>The post <a href="https://patchmypc.com/blog/the-intune-mdm-device-certificate-ksp-renewal-bug-why-23h2-devices-stopped-renewing/">The Intune MDM Device Certificate KSP Renewal Bug: Why the Bit4id Provider Caused it</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/blog/the-intune-mdm-device-certificate-ksp-renewal-bug-why-23h2-devices-stopped-renewing/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Patch My PC Publisher Preview Version 2.3.2.193 Released</title>
 		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-193-released/</link>
 					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-193-released/#respond</comments>
@@ -149,7 +404,7 @@
 
 
 
-<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="624" height="177" src="https://patchmypc.com/app/uploads/2026/01/image-36.png" alt="controlled feature rollout using the vivetool" class="wp-image-171552" srcset="https://patchmypc.com/app/uploads/2026/01/image-36.png 624w, https://patchmypc.com/app/uploads/2026/01/image-36-300x85.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="177" src="https://patchmypc.com/app/uploads/2026/01/image-36.png" alt="controlled feature rollout using the vivetool" class="wp-image-171552" srcset="https://patchmypc.com/app/uploads/2026/01/image-36.png 624w, https://patchmypc.com/app/uploads/2026/01/image-36-300x85.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
 
 
 
@@ -1977,43 +2232,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-3-2-0-released/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Patch My PC Publisher Preview Version 2.2.2.224 Released</title>
-		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-224-released/</link>
-					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-224-released/#respond</comments>
-		
-		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
-		<pubDate>Mon, 15 Jun 2026 18:52:35 +0000</pubDate>
-				<category><![CDATA[Preview Release]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=187006</guid>
-
-					<description><![CDATA[<p>This release contains a fix as noted below. Fixes</p>
-<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-224-released/">Patch My PC Publisher Preview Version 2.2.2.224 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p class="wp-block-paragraph">This release contains a fix as noted below.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-fixes">Fixes</h2>
-
-
-
-<ul class="wp-block-list">
-<li>Fixed a bug causing tools like the Intune Scan Wizard, Intune App Manager, and Intune Auto-Publishing rules to fail to load all tenants when an MSP had more than 22 tenants configured.</li>
-</ul>
-
-
-
-<p class="wp-block-paragraph"></p>
-<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-224-released/">Patch My PC Publisher Preview Version 2.2.2.224 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-2-2-224-released/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
