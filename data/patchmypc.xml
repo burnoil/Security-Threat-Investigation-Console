@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Mon, 13 Jul 2026 17:32:45 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 13 Jul 2026 18:42:59 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -37,7 +37,7 @@
 				<category><![CDATA[Preview Release]]></category>
 		<guid isPermaLink="false">https://patchmypc.com/?p=188986</guid>
 
-					<description><![CDATA[<p>This release contains a variety of improvements and fixes, as noted below. New Features and Improvements User Interface Enhancements Intune Improvements Bug Fixes Publishing and Synchronization Application and Service Reliability User Interface Accessibility Improvements Keyboard Navigation</p>
+					<description><![CDATA[<p>This release contains a variety of improvements and fixes, as noted below. New Features and Improvements User Interface Enhancements Intune Improvements ConfigMgr Improvements Bug Fixes Publishing and Synchronization Application and Service Reliability User Interface Accessibility Improvements Keyboard Navigation</p>
 <p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-287-released/">Patch My PC Publisher Preview Version 2.3.2.287 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
@@ -76,10 +76,6 @@
 
 
 <ul class="wp-block-list">
-<li>Fixed an issue where the retained-app safeguard could incorrectly prevent valid Intune application re-creation.</li>
-
-
-
 <li>Resolved multiple Intune assignment-related issues.</li>
 
 
@@ -92,11 +88,21 @@
 
 
 
-<li>Corrected an issue that could extract ZIP file contents to an incorrect folder when using delayed application upgrades.</li>
-
-
-
 <li>Fixed an issue where a stale client secret could be used by the Graph Mail OAuth token provider.</li>
+</ul>
+
+
+
+<h3 id="h-configmgr-improvements" class="wp-block-heading">ConfigMgr Improvements</h3>
+
+
+
+<ul class="wp-block-list">
+<li>Fixed an issue where the retained-app safeguard could incorrectly prevent valid Intune application re-creation.</li>
+
+
+
+<li>Corrected an issue that could extract ZIP file contents to an incorrect folder when using delayed application upgrades.</li>
 </ul>
 
 
