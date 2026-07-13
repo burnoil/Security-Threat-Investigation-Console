@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Sun, 12 Jul 2026 08:28:15 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 13 Jul 2026 12:44:48 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,183 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Deploying Claude Desktop Device-Wide: MSIX as a Custom App in Patch My PC </title>
+		<link>https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/</link>
+					<comments>https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/#respond</comments>
+		
+		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
+		<pubDate>Mon, 13 Jul 2026 12:38:17 +0000</pubDate>
+				<category><![CDATA[Knowledge Base]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=188924</guid>
+
+					<description><![CDATA[<p>Anthropic distributes Claude Desktop for Windows as an MSIX package, and like all MSIX&#160;packages&#160;it installs per user.&#160;That’s&#160;fine for a single machine, but it creates a problem in managed environments: the obvious Intune route of uploading the MSIX as a Line-of-Business (LOB) app often&#160;fails for&#160;exactly the users&#160;you’re&#160;deploying to.&#160; In this post,&#160;I’ll&#160;show you why the LOB approach ... <a href="https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/">Continue Reading  &#187;</a></p>
+<p>The post <a href="https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/">Deploying Claude Desktop Device-Wide: MSIX as a Custom App in Patch My PC </a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">Anthropic distributes Claude Desktop for Windows as an MSIX package, and like all MSIX&nbsp;packages&nbsp;it installs per user.&nbsp;That’s&nbsp;fine for a single machine, but it creates a problem in managed environments: the obvious Intune route of uploading the MSIX as a Line-of-Business (LOB) app often&nbsp;fails for&nbsp;exactly the users&nbsp;you’re&nbsp;deploying to.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">In this post,&nbsp;I’ll&nbsp;show you why the LOB approach falls short and how to deploy Claude Desktop device-wide instead, using Patch My PC’s Custom Apps feature with a scripted installation.&nbsp;</p>
+
+
+
+<h2 id="h-why-the-msix-lob-approach-can-fail-nbsp" class="wp-block-heading"><strong>Why the MSIX LOB approach can fail</strong>&nbsp;</h2>
+
+
+
+<p class="wp-block-paragraph">When you upload an MSIX as an LOB app, Intune installs it in the <strong>user context</strong>. Standard users may hit installation failures when the deployment requires permissions their account&nbsp;doesn’t&nbsp;have. Even when it succeeds, the app is installed only for that user. Anyone else who signs&nbsp;in to&nbsp;the device gets nothing.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">For device-wide deployment, the&nbsp;better&nbsp;approach is to <strong>provision</strong> the package at the operating system level with Add-AppxProvisionedPackage. Provisioning stages the package in the Windows image, so&nbsp;it’s&nbsp;installed for every user on the device, including users who sign in for the first time later. Because the Patch My PC agent runs in the SYSTEM context, it has the permissions provisioning requires; your end users never need admin rights.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Patch My PC’s <strong>Custom Apps with scripted installation</strong> makes this straightforward: you bring the installer and the PowerShell, and the platform handles packaging, delivery, and detection. (Custom Apps are handy well beyond this scenario: deploying registry keys, PSADT-based changes, and detection rules built on them. The <a href="https://psappdeploytoolkit.com/" target="_blank" rel="noreferrer noopener">Get-ADTRegistryKey</a> function in PSADT is a nice&nbsp;example.)&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Let’s&nbsp;go and&nbsp;build&nbsp;it!&nbsp;</p>
+
+
+
+<h2 id="h-step-by-step-claude-desktop-as-a-custom-app-nbsp" class="wp-block-heading"><strong>Step-by-step: Claude Desktop as a Custom App</strong>&nbsp;</h2>
+
+
+
+<p class="wp-block-paragraph">1. <strong>Enable Preview Features.</strong> Go to <strong>Settings &gt; Company</strong>, enable <strong>Preview Features</strong>, and refresh your browser</p>
+
+
+
+<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="585" src="https://patchmypc.com/app/uploads/2026/07/image-45-1024x585.png" alt="" class="wp-image-188936" srcset="https://patchmypc.com/app/uploads/2026/07/image-45-1024x585.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-45-300x171.png 300w, https://patchmypc.com/app/uploads/2026/07/image-45-768x439.png 768w, https://patchmypc.com/app/uploads/2026/07/image-45.png 1526w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">    2. <strong>Add the app.</strong> Open the Patch My PC Cloud portal, go to <strong>App Catalog</strong>, and click <strong>Add App</strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="489" src="https://patchmypc.com/app/uploads/2026/07/image-46-1024x489.png" alt="" class="wp-image-188938" srcset="https://patchmypc.com/app/uploads/2026/07/image-46-1024x489.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-46-300x143.png 300w, https://patchmypc.com/app/uploads/2026/07/image-46-768x367.png 768w, https://patchmypc.com/app/uploads/2026/07/image-46-1536x733.png 1536w, https://patchmypc.com/app/uploads/2026/07/image-46.png 1630w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<ol class="wp-block-list"></ol>
+
+
+
+<ol start="3" class="wp-block-list">
+<li><strong>Select&nbsp;scripted&nbsp;installation.</strong> Under <strong>Install Method</strong>, choose <strong>Installation Script</strong>, not <strong>Installer File</strong>. The installer file method&nbsp;won’t&nbsp;work for this scenario because we need to control how the package is provisioned.&nbsp;</li>
+</ol>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="597" src="https://patchmypc.com/app/uploads/2026/07/image-47-1024x597.png" alt="" class="wp-image-188939" srcset="https://patchmypc.com/app/uploads/2026/07/image-47-1024x597.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-47-300x175.png 300w, https://patchmypc.com/app/uploads/2026/07/image-47-768x448.png 768w, https://patchmypc.com/app/uploads/2026/07/image-47.png 1290w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<ol start="4" class="wp-block-list">
+<li><strong>Download the MSIX.</strong> Get the Claude Desktop installer from the Claude Help Center: <a href="https://support.claude.com/en/articles/12622703-deploy-claude-desktop-for-windows" target="_blank" rel="noreferrer noopener">Deploy Claude Desktop for Windows | Claude Help Center</a>&nbsp;</li>
+</ol>
+
+
+
+<ol start="5" class="wp-block-list">
+<li><strong>Upload the MSIX as an extra file.</strong> Add Claude.msix under <strong>Extra Files</strong> (not as the script itself).&nbsp;</li>
+</ol>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="1002" height="588" src="https://patchmypc.com/app/uploads/2026/07/image-48.png" alt="" class="wp-image-188940" srcset="https://patchmypc.com/app/uploads/2026/07/image-48.png 1002w, https://patchmypc.com/app/uploads/2026/07/image-48-300x176.png 300w, https://patchmypc.com/app/uploads/2026/07/image-48-768x451.png 768w" sizes="(max-width: 1002px) 100vw, 1002px" /></figure>
+
+
+
+<ol start="6" class="wp-block-list">
+<li><strong>Add the install script.</strong>&nbsp;</li>
+</ol>
+
+
+
+<pre class="wp-block-code"><code>Add-AppxProvisionedPackage&nbsp;-Online -PackagePath&nbsp;"$PSScriptRoot\Claude.msix" -SkipLicense&nbsp;-Regions "all"&nbsp;</code></pre>
+
+
+
+<ol start="7" class="wp-block-list">
+<li><strong>Fill in the General Information fields</strong>: app name, vendor, description, and icon.&nbsp;</li>
+</ol>
+
+
+
+<ol start="8" class="wp-block-list">
+<li><strong>Configure the uninstall script.</strong> Because the package is provisioned, remove both the provisioned package (so&nbsp;new users&nbsp;don’t&nbsp;get it) and the installed package for existing users:&nbsp;</li>
+</ol>
+
+
+
+<pre class="wp-block-code"><code>Get-AppxProvisionedPackage&nbsp;-Online | Where-Object&nbsp;{ $_.DisplayName&nbsp;-match "Claude" }&nbsp;| Remove-AppxProvisionedPackage&nbsp;-Online&nbsp;
+
+Get-AppxPackage&nbsp;-AllUsers&nbsp;*Claude* | Remove-AppxPackage&nbsp;-AllUsers</code></pre>
+
+
+
+<ol start="9" class="wp-block-list">
+<li><strong>Add a custom detection script.</strong> The built-in automatic detection rules&nbsp;won’t&nbsp;work here, so select <strong>Use Custom Script</strong> and check for the provisioned package:&nbsp;</li>
+</ol>
+
+
+
+<pre class="wp-block-code"><code>$claude&nbsp;= Get-AppxProvisionedPackage&nbsp;-Online | Where-Object&nbsp;{ $_.DisplayName&nbsp;-match "Claude" }&nbsp;
+
+if ($claude) {&nbsp;
+
+&nbsp;&nbsp;&nbsp; Write-Output "Installed"&nbsp;
+
+&nbsp;&nbsp;&nbsp; exit 0&nbsp;
+
+}&nbsp;
+
+exit 1</code></pre>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="936" height="558" src="https://patchmypc.com/app/uploads/2026/07/image-42.png" alt="" class="wp-image-188930" srcset="https://patchmypc.com/app/uploads/2026/07/image-42.png 936w, https://patchmypc.com/app/uploads/2026/07/image-42-300x179.png 300w, https://patchmypc.com/app/uploads/2026/07/image-42-768x458.png 768w" sizes="(max-width: 936px) 100vw, 936px" /></figure>
+
+
+
+<ol start="10" class="wp-block-list">
+<li><strong>Review the summary and click Create.</strong>&nbsp;</li>
+</ol>
+
+
+
+<ol start="11" class="wp-block-list">
+<li><strong>Deploy&nbsp;and test. </strong>&nbsp;</li>
+</ol>
+
+
+
+<p class="wp-block-paragraph">Assign the app to a small group of test devices first. I always recommend&nbsp;an Available deployment&nbsp;to a handful of test machines before&nbsp;going Required&nbsp;to production. New to deployments? This guide&nbsp;covers it: Deploy an App using Patch My PC Cloud | Getting Started.&nbsp;</p>
+
+
+
+<h2 id="h-wrapping-up-nbsp" class="wp-block-heading"><strong>Wrapping up</strong>&nbsp;</h2>
+
+
+
+<p class="wp-block-paragraph">That’s&nbsp;all it takes: one install command, a matching uninstall, and a short detection script, and Claude Desktop is provisioned device-wide for every current and future user, with no admin rights&nbsp;required&nbsp;on the endpoint. The same pattern works for any per-user MSIX you need to deploy machine-wide.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Good luck, and feel free to contact support if you have any questions.&nbsp;</p>
+<p>The post <a href="https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/">Deploying Claude Desktop Device-Wide: MSIX as a Custom App in Patch My PC </a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>The Intune MDM Device Certificate KSP Renewal Bug: Why the Bit4id Provider Caused it</title>
 		<link>https://patchmypc.com/blog/the-intune-mdm-device-certificate-ksp-renewal-bug-why-23h2-devices-stopped-renewing/</link>
 					<comments>https://patchmypc.com/blog/the-intune-mdm-device-certificate-ksp-renewal-bug-why-23h2-devices-stopped-renewing/#respond</comments>
@@ -69,7 +246,7 @@
 
 
 
-<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="331" src="https://patchmypc.com/app/uploads/2025/11/image-43-1024x331.png" alt="" class="wp-image-167655" srcset="https://patchmypc.com/app/uploads/2025/11/image-43-1024x331.png 1024w, https://patchmypc.com/app/uploads/2025/11/image-43-300x97.png 300w, https://patchmypc.com/app/uploads/2025/11/image-43-768x249.png 768w, https://patchmypc.com/app/uploads/2025/11/image-43.png 1400w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="331" src="https://patchmypc.com/app/uploads/2025/11/image-43-1024x331.png" alt="" class="wp-image-167655" srcset="https://patchmypc.com/app/uploads/2025/11/image-43-1024x331.png 1024w, https://patchmypc.com/app/uploads/2025/11/image-43-300x97.png 300w, https://patchmypc.com/app/uploads/2025/11/image-43-768x249.png 768w, https://patchmypc.com/app/uploads/2025/11/image-43.png 1400w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
@@ -2149,89 +2326,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Patch My PC Publisher Production Version 2.3.2.0 Released</title>
-		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-3-2-0-released/</link>
-					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-3-2-0-released/#respond</comments>
-		
-		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
-		<pubDate>Fri, 19 Jun 2026 07:29:57 +0000</pubDate>
-				<category><![CDATA[Production Release]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=187263</guid>
-
-					<description><![CDATA[<p>This release contains a variety of improvements and fixes, as noted below. This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&#160;MSI installer. Improvements Fixes</p>
-<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-3-2-0-released/">Patch My PC Publisher Production Version 2.3.2.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p class="wp-block-paragraph">This release contains a variety of improvements and fixes, as noted below.</p>
-
-
-
-<p class="wp-block-paragraph">This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&nbsp;<strong><a href="https://patchmypc.com/publishing-service-setup-documentation">MSI installer</a></strong>.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-improvements">Improvements</h2>
-
-
-
-<ul class="wp-block-list">
-<li>Update validation for pre/post script argument configuration.​</li>
-
-
-
-<li>Update logging for WSUS update republishing</li>
-</ul>
-
-
-
-<h2 class="wp-block-heading" id="h-fixes">Fixes</h2>
-
-
-
-<ul class="wp-block-list">
-<li>Fixed a bug causing tools like the Intune Scan Wizard, Intune App Manager, and Intune Auto-Publishing rules to fail to load all tenants when an MSP had more than 22 tenants configured.​</li>
-
-
-
-<li>Ensure the Cancel button stops loading Intune applications in the Intune Application Manager.​</li>
-
-
-
-<li>Fix a bug that causes the Availability and Deadline time configuration in the Intune assignment manager to reset when reopened.​</li>
-
-
-
-<li>Ensure Auto-Publishing rules are saved as expected for Intune and ConfigMgr scan wizards.​</li>
-
-
-
-<li>Refresh button in the Intune Filter Editor view now properly clears the cache and pulls the up-to-date list of filters from Intune.​</li>
-
-
-
-<li>Fixed a bug causing the selected products to not show as selected within the Intune Scan Wizard. This could cause a product to be unselected unexpectedly.​</li>
-
-
-
-<li>Ensure Azure chunk uploading respects the configured upload timeout.​</li>
-
-
-
-<li>Fix a bug causing Selective Sync, and Republish to not process as expected in some cases.</li>
-</ul>
-
-
-
-<p class="wp-block-paragraph"></p>
-<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-3-2-0-released/">Patch My PC Publisher Production Version 2.3.2.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-2-3-2-0-released/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
