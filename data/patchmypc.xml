@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Mon, 13 Jul 2026 12:44:48 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 13 Jul 2026 17:32:45 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,181 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Patch My PC Publisher Preview Version 2.3.2.287 Released</title>
+		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-287-released/</link>
+					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-287-released/#respond</comments>
+		
+		<dc:creator><![CDATA[Brian Hall]]></dc:creator>
+		<pubDate>Mon, 13 Jul 2026 17:32:44 +0000</pubDate>
+				<category><![CDATA[Preview Release]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=188986</guid>
+
+					<description><![CDATA[<p>This release contains a variety of improvements and fixes, as noted below. New Features and Improvements User Interface Enhancements Intune Improvements Bug Fixes Publishing and Synchronization Application and Service Reliability User Interface Accessibility Improvements Keyboard Navigation</p>
+<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-287-released/">Patch My PC Publisher Preview Version 2.3.2.287 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">This release contains a variety of improvements and fixes, as noted below.</p>
+
+
+
+<h2 id="h-new-features-and-improvements" class="wp-block-heading">New Features and Improvements</h2>
+
+
+
+<h3 id="h-user-interface-enhancements" class="wp-block-heading">User Interface Enhancements</h3>
+
+
+
+<ul class="wp-block-list">
+<li>Reorganized the Publisher settings and navigation layout to improve usability and streamline workflows.</li>
+
+
+
+<li>Added a confirmation prompt before running Publishing Service Sync from the <strong>Run Publishing Service Sync</strong> button.</li>
+
+
+
+<li>Improved the behavior of information filters, making it more intuitive to clear and reset filters throughout the Publisher UI.</li>
+
+
+
+<li>Added support for delaying in-place updates for Intune Applications and Updates.</li>
+</ul>
+
+
+
+<h3 id="h-intune-improvements" class="wp-block-heading">Intune Improvements</h3>
+
+
+
+<ul class="wp-block-list">
+<li>Fixed an issue where the retained-app safeguard could incorrectly prevent valid Intune application re-creation.</li>
+
+
+
+<li>Resolved multiple Intune assignment-related issues.</li>
+
+
+
+<li>Fixed an issue where the Intune application secret could expire after restarting Publisher.</li>
+
+
+
+<li>Fixed preview version display on the About tab.</li>
+
+
+
+<li>Corrected an issue that could extract ZIP file contents to an incorrect folder when using delayed application upgrades.</li>
+
+
+
+<li>Fixed an issue where a stale client secret could be used by the Graph Mail OAuth token provider.</li>
+</ul>
+
+
+
+<h2 id="h-bug-fixes" class="wp-block-heading">Bug Fixes</h2>
+
+
+
+<h3 id="h-publishing-and-synchronization" class="wp-block-heading">Publishing and Synchronization</h3>
+
+
+
+<ul class="wp-block-list">
+<li>Fixed an issue that could trigger a duplicate publish synchronization operation.</li>
+
+
+
+<li>Preserved catalog process lists when the saved process pattern is empty.</li>
+</ul>
+
+
+
+<h3 id="h-application-and-service-reliability" class="wp-block-heading">Application and Service Reliability</h3>
+
+
+
+<ul class="wp-block-list">
+<li>Resolved a Newtonsoft.Json version mismatch that could cause a <code>JToken.WriteTo</code> <code>MissingMethodException</code>.</li>
+
+
+
+<li>Updated logging to correctly honor a custom runtime log path and added additional test coverage.</li>
+
+
+
+<li>Fixed validation issues when editing webhooks.</li>
+
+
+
+<li>Consolidated System.Net.Http assembly references to improve reliability.</li>
+</ul>
+
+
+
+<h3 id="h-user-interface" class="wp-block-heading">User Interface</h3>
+
+
+
+<ul class="wp-block-list">
+<li>Disabled <strong>Export to CSV</strong> until a query has been executed.</li>
+
+
+
+<li>Fixed license date formatting issues and added support for copying cloud portal links.</li>
+
+
+
+<li>Corrected various UI issues across the <strong>General</strong>, <strong>WSUS</strong>, and <strong>Cloud</strong> tabs.</li>
+
+
+
+<li>Fixed an issue where expanding <strong>Alerts</strong> on the <strong>Advanced</strong> tab could incorrectly redirect to the <strong>About</strong> tab.</li>
+
+
+
+<li>Standardized GroupBox header font sizes throughout the <strong>Advanced</strong> tab.</li>
+</ul>
+
+
+
+<h2 id="h-accessibility-improvements" class="wp-block-heading">Accessibility Improvements</h2>
+
+
+
+<h3 id="h-keyboard-navigation" class="wp-block-heading">Keyboard Navigation</h3>
+
+
+
+<ul class="wp-block-list">
+<li>Improved synchronization between grid selections and dropdown selections when using keyboard navigation.</li>
+
+
+
+<li>Added keyboard access support for DataGrid column headers.</li>
+
+
+
+<li>Corrected DataGrid tab navigation and focus traversal behavior.</li>
+
+
+
+<li>Resolved keyboard navigation conflicts throughout the application.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph"></p>
+<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-287-released/">Patch My PC Publisher Preview Version 2.3.2.287 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-287-released/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Deploying Claude Desktop Device-Wide: MSIX as a Custom App in Patch My PC </title>
 		<link>https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/</link>
 					<comments>https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/#respond</comments>
@@ -2179,153 +2354,6 @@ exit 1</code></pre>
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/intune-multi-admin-approval-the-x-msft-approval-justification-error/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Patch My PC Publisher Preview Version 2.3.2.54 Released</title>
-		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/</link>
-					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/#respond</comments>
-		
-		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
-		<pubDate>Tue, 23 Jun 2026 15:52:33 +0000</pubDate>
-				<category><![CDATA[Preview Release]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=187519</guid>
-
-					<description><![CDATA[<p>This release contains a variety of features, improvements, and fixes, as noted below. 🖥️ Modernized User Experience The biggest change in this release is a ground-up redesign of how you interact with the Patch My PC Publisher. The focus is strictly on reducing clutter and speeding up your day-to-day workflow. 📊 Improved Application Views Managing ... <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/">Continue Reading  &#187;</a></p>
-<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/">Patch My PC Publisher Preview Version 2.3.2.54 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p class="wp-block-paragraph">This release contains a variety of features, improvements, and fixes, as noted below.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-modernized-user-experience"><strong><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f5a5.png" alt="🖥" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Modernized User Experience</strong></h2>
-
-
-
-<p class="wp-block-paragraph">The biggest change in this release is a ground-up redesign of how you interact with the Patch My PC Publisher. The focus is strictly on reducing clutter and speeding up your day-to-day workflow.</p>
-
-
-
-<ul class="wp-block-list">
-<li>​<strong>Streamlined Left-Hand Navigation:</strong> A clean side menu replaces the original tabbed layout, letting you jump between sections instantly.</li>
-
-
-
-<li>​<strong>In-Window Integration:</strong> Gone are the days of endless pop-ups. Most configuration dialogs are now embedded directly into the main window.</li>
-
-
-
-<li>​<strong>Theme Support:</strong> You can now natively toggle between <strong>Light Mode</strong> and <strong>Dark Mode</strong> depending on your workspace preference.</li>
-</ul>
-
-
-
-<h2 class="wp-block-heading" id="h-improved-application-views"><strong><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f4ca.png" alt="📊" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Improved Application Views</strong></h2>
-
-
-
-<p class="wp-block-paragraph">Managing your applications is much more visual with three distinct layout improvements:</p>
-
-
-
-<p class="wp-block-paragraph">To pick up a draggable item, press the space bar. While dragging, use the arrow keys to move the item. Press space again to drop the item in its new position, or press escape to cancel.</p>
-
-
-
-<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>TextText</th><th>TextText</th><th>TextText</th></tr></thead><tbody><tr><td><strong>View Feature</strong></td><td><strong>What it Does</strong></td><td><strong>Why it Helps</strong></td></tr><tr><td><strong>Grid View</strong></td><td>Displays applications as visual cards with key details.</td><td>Allows for optional grouping of app variants to keep things neat.</td></tr><tr><td><strong>Stats View</strong></td><td>A built-in statistics panel providing high-level app insights.</td><td><strong>Interactive:</strong> Clicking any individual stat instantly filters your results.</td></tr><tr><td><strong>Tabbed Assignments</strong></td><td>Splitting assignment types across dedicated tabs.</td><td>Cleaner visual layout when managing large numbers of assignments.</td></tr></tbody></table></figure>
-
-
-
-<p class="wp-block-paragraph">To pick up a draggable item, press the space bar. While dragging, use the arrow keys to move the item. Press space again to drop the item in its new position, or press escape to cancel.</p>
-
-
-
-<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
-<p class="wp-block-paragraph"><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f4cd.png" alt="📍" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Note on the Progress Bar:</strong> The synchronization progress bar has a new home. You can now find it on the <strong>Service Status</strong> page located under the <strong>About</strong> tab.</p>
-</blockquote>
-
-
-
-<h2 class="wp-block-heading" id="h-enhanced-filtering-and-organization"><strong><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f50d.png" alt="🔍" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Enhanced Filtering and Organization</strong></h2>
-
-
-
-<p class="wp-block-paragraph">Finding the specific products you need takes far fewer clicks.</p>
-
-
-
-<h4 class="wp-block-heading" id="advanced-filtering">Advanced Filtering</h4>
-
-
-
-<p class="wp-block-paragraph">Quickly drill down into our massive catalog to locate specific apps and complex configurations with upgraded, high-performance filters.</p>
-
-
-
-<h4 class="wp-block-heading" id="separate-product-tabs">Separate Product Tabs</h4>
-
-
-
-<p class="wp-block-paragraph">Products are now logically split into two dedicated sections to keep custom work isolated from standard vendor catalogs:</p>
-
-
-
-<ul class="wp-block-list">
-<li>​<strong>Catalog Products:</strong> Standard, pre-packaged third-party applications from Patch My PC.</li>
-
-
-
-<li>​<strong>Custom Products:</strong> In-house or custom-packaged applications using Patch My PC Cloud</li>
-</ul>
-
-
-
-<h2 class="wp-block-heading" id="h-alerts-and-status-improvements"><strong><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f514.png" alt="🔔" class="wp-smiley" style="height: 1em; max-height: 1em;" /> Alerts and Status Improvements</strong></h2>
-
-
-
-<p class="wp-block-paragraph"><strong>Dedicated Alerts Pages:</strong> Alerts have been broken out into separate, dedicated views so you can manage notifications without noise.​</p>
-
-
-
-<p class="wp-block-paragraph"><strong>Centralized Service Status:</strong> A dedicated health page housing your live sync progress.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-new-tools-amp-functional-changes"><strong><img src="https://s.w.org/images/core/emoji/17.0.2/72x72/1f6e0.png" alt="🛠" class="wp-smiley" style="height: 1em; max-height: 1em;" /> New Tools &amp; Functional Changes</strong></h2>
-
-
-
-<h4 class="wp-block-heading" id="id-1.-show-dependencies">1. Show Dependencies</h4>
-
-
-
-<p class="wp-block-paragraph">You can now view application dependencies directly in the Publisher, minimizing deployment failures down the line.</p>
-
-
-
-<h4 class="wp-block-heading" id="id-2.-configmgr-detection-script-signing">2. ConfigMgr Detection Script Signing</h4>
-
-
-
-<p class="wp-block-paragraph">As an alternative to using your standard WSUS certificate, you can now supply a <strong>custom code signing certificate</strong> specifically to sign ConfigMgr detection scripts.</p>
-
-
-
-<h4 class="wp-block-heading" id="id-3.-webhooks-deprecation-notice">3. Webhooks Deprecation Notice</h4>
-
-
-
-<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
-<p class="wp-block-paragraph">​<img src="https://s.w.org/images/core/emoji/17.0.2/72x72/26a0.png" alt="⚠" class="wp-smiley" style="height: 1em; max-height: 1em;" /> <strong>Important:</strong> You can no longer create or copy legacy Microsoft Teams webhook alerts inside the Publisher. If you have existing legacy webhooks configured, they will continue to function normally for the time being, but planning a migration to modern alerting is highly recommended.</p>
-</blockquote>
-<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/">Patch My PC Publisher Preview Version 2.3.2.54 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-54-released/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
