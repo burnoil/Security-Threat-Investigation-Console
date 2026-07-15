@@ -10,9 +10,17 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Wed, 15 Jul 2026 08:57:25 -0500</pubDate>
+    <pubDate>Wed, 15 Jul 2026 10:40:54 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-404: Delta Electronics DTM Soft Project File Parsing Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-27843</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-404/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Delta Electronics DTM Soft. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-12578.]]></description>
+      <pubDate>Wed, 15 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-403: (0Day) Ollama downloadBlob Improper Validation of Array Index Denial-of-Service Vulnerability]]></title>
@@ -1603,14 +1611,6 @@
       <guid isPermaLink="false">ZDI-CAN-28334</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-205/</link>
       <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Canon imageCLASS MF654Cdw printers. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2025-14234.]]></description>
-      <pubDate>Mon, 16 Mar 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-204: (Pwn2Own) Canon imageCLASS MF654Cdw XPS Parser Stack-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28268</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-204/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Canon imageCLASS MF654Cdw printers. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2025-14232.]]></description>
       <pubDate>Mon, 16 Mar 2026 00:00:00 -0500</pubDate>
     </item>
     
