@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-15T03:23:00Z",
-  "commit": "522e18d",
+  "generatedAt": "2026-07-15T06:21:31Z",
+  "commit": "547a543",
   "feeds": {
-    "kev": { "generatedAt": "2026-07-15T03:23:00Z" },
-    "patchmypc": { "generatedAt": "2026-07-15T03:23:00Z" },
-    "zdi": { "generatedAt": "2026-07-15T03:23:00Z" }
+    "kev": { "generatedAt": "2026-07-15T06:21:31Z" },
+    "patchmypc": { "generatedAt": "2026-07-15T06:21:31Z" },
+    "zdi": { "generatedAt": "2026-07-15T06:21:31Z" }
   }
 }
