@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 15 Jul 2026 08:48:07 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 17 Jul 2026 07:59:23 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,265 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Autopilot Required Apps No Longer Need to Wait 60 Minutes</title>
+		<link>https://patchmypc.com/blog/autopilot-required-apps-no-longer-need-to-wait-60-minutes/</link>
+					<comments>https://patchmypc.com/blog/autopilot-required-apps-no-longer-need-to-wait-60-minutes/#respond</comments>
+		
+		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
+		<pubDate>Fri, 17 Jul 2026 07:59:21 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=187865</guid>
+
+					<description><![CDATA[<p>Required Win32 apps sometimes waited 60 minutes after Autopilot ESP completed. IME 1.103.101.0 introduces a FirstSync registry watcher that detects ESP completion and immediately triggers another app workload check in.</p>
+<p>The post <a href="https://patchmypc.com/blog/autopilot-required-apps-no-longer-need-to-wait-60-minutes/">Autopilot Required Apps No Longer Need to Wait 60 Minutes</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">After your Autopilot enrollment (ESP) was completed, the desktop appeared, but the remaining required apps sometimes waited exactly <strong>60 minutes before installing</strong>. IME <strong>1.103.101.0</strong> appears to fix this by watching for ESP to finish and immediately triggering a new Win32 app check-in.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Please Note:</strong> When writing this blog, IME version 1.103.101.0 is not shipped to prod (send over to clients), but I could already manually download it.</p>
+
+
+
+<h2 id="h-introduction" class="wp-block-heading">Introduction</h2>
+
+
+
+<p class="wp-block-paragraph">Back in September 2025, I wrote about a strange delay that could occur after <strong><a href="https://learn.microsoft.com/en-us/autopilot/overview">Windows Autopilot enrollment.</a></strong> The Enrollment Status Page (ESP) completed successfully, the user reached the desktop, but the remaining required Win32 apps did absolutely nothing. Then, almost exactly 60 minutes later, they suddenly started installing.</p>
+
+
+
+<p class="wp-block-paragraph">After digging into the Intune Management Extension, we found the reason. The first Win32 app check-in happened too early. IME still believed the device was inside ESP, or it could not yet resolve the correct logged-on user. That first attempt failed, and the Win32 app poller fell back to its hard-coded 3600000-millisecond retry timer.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="470" height="25" src="https://patchmypc.com/app/uploads/2026/06/image-69.png" alt="" class="wp-image-187866" srcset="https://patchmypc.com/app/uploads/2026/06/image-69.png 470w, https://patchmypc.com/app/uploads/2026/06/image-69-300x16.png 300w" sizes="(max-width: 470px) 100vw, 470px" /></figure>
+
+
+
+<p class="wp-block-paragraph">A reboot, service restart, logoff, or manual trigger could bypass the delay, but IME itself had no reliable way to notice the exact moment ESP ended. That appears to have changed in IME 1.103.101.0.</p>
+
+
+
+<h2 id="h-the-original-60-minute-required-apps-delay" class="wp-block-heading">The Original 60-Minute Required Apps Delay</h2>
+
+
+
+<p class="wp-block-paragraph">The original behavior is explained in detail in my blog about <a href="https://patchmypc.com/blog/why-do-required-apps-wait-60-minutes-after-autopilot-enrollment/">why required apps wait 60 minutes after Autopilot enrollment</a>. During Autopilot, ESP tracks the blocking apps that must be installed before the user is allowed to continue. </p>
+
+
+
+<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="750" height="214" src="https://patchmypc.com/app/uploads/2026/06/image-77.png" alt="" class="wp-image-187876" srcset="https://patchmypc.com/app/uploads/2026/06/image-77.png 750w, https://patchmypc.com/app/uploads/2026/06/image-77-300x86.png 300w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Once those tracked/blocking applications finish, Windows switches to the desktop. The remaining required applications are not part of that ESP lock-in list and must be picked up by the normal Win32 app workload.</p>
+
+
+
+<p class="wp-block-paragraph">That handover did not always happen cleanly. When IME performed its first app check-in, EspHelper.CheckEspPhase() could still return AccountSetup. In other cases, the available-app pass could still see defaultuser0 instead of the actual Entra ID user.</p>
+
+
+
+<p class="wp-block-paragraph">Because the available-app check-in runs before the required-app check-in, that early exit also prevented the required-app workload from running. IME then scheduled the next attempt for one hour later.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Request required apps for user logon<br>AvailableAppRequest exits early<br>Required app check-in scheduled for 3600000 milliseconds</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="869" height="212" src="https://patchmypc.com/app/uploads/2026/06/image-18.jpg" alt="" class="wp-image-187869" srcset="https://patchmypc.com/app/uploads/2026/06/image-18.jpg 869w, https://patchmypc.com/app/uploads/2026/06/image-18-300x73.jpg 300w, https://patchmypc.com/app/uploads/2026/06/image-18-768x187.jpg 768w" sizes="(max-width: 869px) 100vw, 869px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The one-hour timer was not the actual problem. The problem was that IME missed the transition between ESP and the normal desktop session. Once it missed that exact moment, the Win32App timer became the only mechanism left to try again.</p>
+
+
+
+<h2 id="h-why-a-reboot-appeared-to-fix-the-required-app-delay" class="wp-block-heading">Why a Reboot Appeared to Fix the Required App Delay</h2>
+
+
+
+<p class="wp-block-paragraph">This also explained why the issue was difficult to reproduce consistently. If Windows restarted during ESP because of a reboot-required policy, IME started fresh after the user signed in. By then, FirstSync had completed, ESP was no longer in the Account Setup phase, and the real user session was available.</p>
+
+
+
+<p class="wp-block-paragraph">The first app check-in could then be completed normally, allowing the required-app check-in to follow immediately. Without that reboot, IME could remain alive across the transition. Its first attempt happened while the device was still changing state, after which it quietly waited for the next scheduled poll.</p>
+
+
+
+<p class="wp-block-paragraph">Restarting the IME service had the same effect. It simply forced the app poller to run again after the device and user had reached a stable state.</p>
+
+
+
+<h2 id="h-what-changed-in-ime-1-103-101-0" class="wp-block-heading">What Changed in IME 1.103.101.0</h2>
+
+
+
+<p class="wp-block-paragraph">When comparing IME 1.101.111.0 with 1.103.101.0, the most interesting ESP changes appeared inside: <strong>Microsoft.Management.Clients.IntuneManagementExtension.Win32AppPlugIn.dll</strong></p>
+
+
+
+<p class="wp-block-paragraph">Microsoft added several new methods to EspHelper… and one of them is the Setup ESP Registry Watcher</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="278" src="https://patchmypc.com/app/uploads/2026/06/image-74.png" alt="" class="wp-image-187872" srcset="https://patchmypc.com/app/uploads/2026/06/image-74.png 624w, https://patchmypc.com/app/uploads/2026/06/image-74-300x134.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Those method names already reveal the new approach. Instead of checking the ESP phase once and relying on the normal polling timer afterward, the IME can now monitor the registry location where Windows records the progress of the enrollment <strong><a href="https://patchmypc.com/blog/intune-management-extension-esp-phases/">FirstSync</a> </strong>process.</p>
+
+
+
+<p class="wp-block-paragraph">The new code searches under: HKLM\SOFTWARE\Microsoft\Enrollments.&nbsp; It locates the applicable enrollment and its FirstSync subtree, then creates a registry watcher for changes below that location.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="975" height="245" src="https://patchmypc.com/app/uploads/2026/06/image-76.png" alt="" class="wp-image-187874" srcset="https://patchmypc.com/app/uploads/2026/06/image-76.png 975w, https://patchmypc.com/app/uploads/2026/06/image-76-300x75.png 300w, https://patchmypc.com/app/uploads/2026/06/image-76-768x193.png 768w" sizes="(max-width: 975px) 100vw, 975px" /></figure>
+
+
+
+<h2 id="h-watching-firstsync-instead-of-guessing" class="wp-block-heading">Watching FirstSync Instead of Guessing</h2>
+
+
+
+<p class="wp-block-paragraph">The new strings inside the Win32 App plugin make the intended flow even clearer: [Win32App][EspHelper][SetupEspRegistryWatcher] RegistryWatcher started successfully.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="36" src="https://patchmypc.com/app/uploads/2026/06/image-70.png" alt="" class="wp-image-187867" srcset="https://patchmypc.com/app/uploads/2026/06/image-70.png 624w, https://patchmypc.com/app/uploads/2026/06/image-70-300x17.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Once the watcher is active, the IME no longer needs to guess when ESP might be finished. Windows will update those values below the FirstSync subtree as the enrollment phases progress, and the IME receives an event when that state changes.</p>
+
+
+
+<p class="wp-block-paragraph">The callback is handled by: <strong>EspHelper.OnEspRegistryValueChanged</strong>.  The corresponding logging shows what happens next:&nbsp; [Win32App][EspHelper][OnEspRegistryValueChanged] Registry value change detected under FirstSync subtree.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="29" src="https://patchmypc.com/app/uploads/2026/06/image-72.png" alt="" class="wp-image-187868" srcset="https://patchmypc.com/app/uploads/2026/06/image-72.png 624w, https://patchmypc.com/app/uploads/2026/06/image-72-300x14.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p class="wp-block-paragraph">A registry change alone does not automatically mean ESP has completed. The callback, therefore, checks the ESP phase again. If the device is still inside ESP, IME continues waiting.</p>
+
+
+
+<p class="wp-block-paragraph">Once the phase changes to completed, the important new behavior kicks in: [Win32App][EspHelper][OnEspRegistryValueChanged] ESP completed. Triggering immediate app workload check-in.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="64" src="https://patchmypc.com/app/uploads/2026/06/image-71-1024x64.png" alt="" class="wp-image-187870" srcset="https://patchmypc.com/app/uploads/2026/06/image-71-1024x64.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-71-300x19.png 300w, https://patchmypc.com/app/uploads/2026/06/image-71-768x48.png 768w, https://patchmypc.com/app/uploads/2026/06/image-71.png 1284w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">That is the missing handover from the original flow.</p>
+
+
+
+<h2 id="h-the-new-immediate-app-workload-check-in" class="wp-block-heading">The New Immediate App Workload Check-In</h2>
+
+
+
+<p class="wp-block-paragraph">ApplicationPoller.DoWorkInternal now references a new feature named: <strong>RunNontrackedAppsCheckinImmediatelyAfterEsp</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="554" height="28" src="https://patchmypc.com/app/uploads/2026/06/image-79.png" alt="" class="wp-image-187900" srcset="https://patchmypc.com/app/uploads/2026/06/image-79.png 554w, https://patchmypc.com/app/uploads/2026/06/image-79-300x15.png 300w" sizes="(max-width: 554px) 100vw, 554px" /></figure>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="168" src="https://patchmypc.com/app/uploads/2026/06/image-73.png" alt="" class="wp-image-187871" srcset="https://patchmypc.com/app/uploads/2026/06/image-73.png 624w, https://patchmypc.com/app/uploads/2026/06/image-73-300x81.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The name is important. ESP already handles the applications that are tracked and locked in by the ESP profile. The delay affected the remaining apps that were not tracked by ESP but were still required for the user or device.</p>
+
+
+
+<p class="wp-block-paragraph">The new behavior tells IME to run another app workload check-in as soon as ESP finishes. At that point, the actual user session should be available, EspHelper.CheckEspPhase() should return NotInEsp, and the normal app evaluation can continue.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="336" src="https://patchmypc.com/app/uploads/2026/06/image-75.png" alt="" class="wp-image-187873" srcset="https://patchmypc.com/app/uploads/2026/06/image-75.png 624w, https://patchmypc.com/app/uploads/2026/06/image-75-300x162.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The available-app pass can now be completed instead of exiting early. Once that pass succeeds, the required-app check-in no longer needs to wait for the next one-hour polling cycle AKA the 60 minute delay.</p>
+
+
+
+<p class="wp-block-paragraph">Microsoft did not remove the <strong>3600000 millisecond pulling timer.</strong> The Required Apps timer still exists as the normal fallback schedule. What changed is that the IME now has an event-driven reason to run before that timer expires.</p>
+
+
+
+<h2 id="h-from-polling-to-an-event-driven-handover" class="wp-block-heading">From Polling to an Event-Driven Handover</h2>
+
+
+
+<p class="wp-block-paragraph">This is a small architectural change with a significant effect. Previously, the IME essentially asked whether the ESP was finished at a specific moment. If the answer was no, it went back to sleep. The device could complete ESP a few seconds later, but nothing informed the app poller that the state had changed.</p>
+
+
+
+<p class="wp-block-paragraph">IME 1.103.101.0 can keep watching that state transition. The moment Windows updates the FirstSync registry state, IME checks again. When ESP has genuinely completed, it immediately starts the Required Win32 app workload.</p>
+
+
+
+<p class="wp-block-paragraph">That removes the race between the first user session, ESP completion, and the initial available-app check-in.</p>
+
+
+
+<p class="wp-block-paragraph">It also explains the presence of <strong>DisposeEspRegistryWatcher</strong>. Once the transition has been detected and the immediate check-in has been triggered, the ESP Registry watcher is no longer required. Cleaning it up prevents duplicate callbacks and avoids repeatedly triggering the app workload for later, unrelated registry changes.</p>
+
+
+
+<h2 id="h-does-this-finally-remove-the-60-minute-required-app-delay" class="wp-block-heading">Does This Finally Remove the 60-Minute Required App Delay?</h2>
+
+
+
+<p class="wp-block-paragraph">For the specific post-ESP race described in the earlier blog, this new behavior appears designed to do exactly that. The delay was caused by IME running too early, missing the correct user or ESP state, and then relying on its one-hour fallback timer. The new registry watcher gives IME another opportunity as soon as FirstSync changes and ESP completes.</p>
+
+
+
+<p class="wp-block-paragraph">That means a reboot should no longer be required for the IME to notice the real user session. Restarting the IME service should no longer be necessary for the normal ESP-to-desktop transition either. The custom StatusService remediation should also become less important for devices receiving this new behavior.</p>
+
+
+
+<p class="wp-block-paragraph">There is one important detail, though. The name <strong>RunNontrackedAppsCheckinImmediatelyAfterEsp </strong>looks like a flight-controlled feature. The code is present in IME 1.103.101.0, but Microsoft can still control its enablement through service-delivered configuration. Seeing the new DLL does not automatically prove that every tenant receives the behavior at the same moment.</p>
+
+
+
+<h2 id="h-why-this-matters" class="wp-block-heading">Why This Matters</h2>
+
+
+
+<p class="wp-block-paragraph">The desktop appearing does not always mean every enrollment component has already observed the same state. That small timing gap was enough for IME to miss the first useful app check-in and leave required applications waiting for an hour.</p>
+
+
+
+<p class="wp-block-paragraph">The workaround was always straightforward: reboot, restart IME, log off and back on, or trigger another check-in. But none of those options addressed why IME missed the transition in the first place.</p>
+
+
+
+<p class="wp-block-paragraph">IME 1.103.101.0 changes that. By watching the FirstSync registry state and triggering the app workload when ESP completes, Microsoft has connected the end of enrollment directly to the next Win32 app evaluation.</p>
+
+
+
+<p class="wp-block-paragraph">The one-hour timer is still there, but it should no longer be the first thing standing between a completed Autopilot enrollment and the remaining required applications.</p>
+<p>The post <a href="https://patchmypc.com/blog/autopilot-required-apps-no-longer-need-to-wait-60-minutes/">Autopilot Required Apps No Longer Need to Wait 60 Minutes</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/blog/autopilot-required-apps-no-longer-need-to-wait-60-minutes/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Inside the Improved on-demand sync for Windows devices</title>
 		<link>https://patchmypc.com/blog/inside-the-improved-on-demand-sync-for-windows-devices/</link>
 					<comments>https://patchmypc.com/blog/inside-the-improved-on-demand-sync-for-windows-devices/#respond</comments>
@@ -53,7 +312,7 @@
 
 
 
-<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="678" height="213" src="https://patchmypc.com/app/uploads/2026/07/image-57.png" alt="" class="wp-image-189122" srcset="https://patchmypc.com/app/uploads/2026/07/image-57.png 678w, https://patchmypc.com/app/uploads/2026/07/image-57-300x94.png 300w" sizes="(max-width: 678px) 100vw, 678px" /></figure>
+<figure class="wp-block-image size-full"><img decoding="async" width="678" height="213" src="https://patchmypc.com/app/uploads/2026/07/image-57.png" alt="" class="wp-image-189122" srcset="https://patchmypc.com/app/uploads/2026/07/image-57.png 678w, https://patchmypc.com/app/uploads/2026/07/image-57-300x94.png 300w" sizes="(max-width: 678px) 100vw, 678px" /></figure>
 
 
 
@@ -1967,311 +2226,6 @@ exit 1</code></pre>
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/five-eyes-intelligence-alliance-says-its-time-to-speed-up-patching/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Intune EPM System Settings: Network and Time Sync Elevation</title>
-		<link>https://patchmypc.com/blog/intune-epm-system-settings-network-and-time-sync-elevation/</link>
-					<comments>https://patchmypc.com/blog/intune-epm-system-settings-network-and-time-sync-elevation/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Fri, 26 Jun 2026 08:44:27 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=187187</guid>
-
-					<description><![CDATA[<p>A look at how Intune EPM appears to be moving beyond file elevation with a System Settings experience for Network Settings and Time Sync.</p>
-<p>The post <a href="https://patchmypc.com/blog/intune-epm-system-settings-network-and-time-sync-elevation/">Intune EPM System Settings: Network and Time Sync Elevation</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p class="wp-block-paragraph">This blog looks at a new <strong><a href="https://learn.microsoft.com/en-us/intune/epm/overview">Endpoint Privilege Management</a> / EPM</strong> system settings experience that appears to be in the works, starting with <strong>Network Settings and Time Sync.</strong> With Microsoft announcing it in the &#8220;<a href="https://techcommunity.microsoft.com/blog/microsoftintuneblog/what%E2%80%99s-new-in-microsoft-intune-%E2%80%93-june/4491983">What’s new in Microsoft Intune – June</a>&#8221; &#8230; looks like I am okay to talk about it!</p>
-
-
-
-<p class="wp-block-paragraph">So, I’ll walk through the flight names, the <code>EpmElevate.exe</code> helper, the claim validation, and why this looks like more than just another file elevation rule.</p>
-
-
-
-<p class="wp-block-paragraph"><strong>Please note: </strong>I am not in any private preview! This is all based on OSINT and my own investigation. Also, this feature is not enabled in all tenants yet&#8230;..</p>
-
-
-
-<h2 class="wp-block-heading" id="h-introduction">Introduction</h2>
-
-
-
-<p class="wp-block-paragraph">Endpoint Privilege Management has always worked best when the elevation target is obvious. You define a rule for an executable, MSI, or PowerShell script, EPM matches the file, and the user can perform that specific action without becoming a local administrator.</p>
-
-
-
-<p class="wp-block-paragraph">That model works well for applications and installers, but Windows administration does not always use a simple executable. Changing the configuration of a network adapter or changing the Time is just different.</p>
-
-
-
-<p class="wp-block-paragraph">Those actions never fitted comfortably into the normal EPM file elevation model. While looking through the latest EPM components, I noticed several new flight names suggesting Microsoft was working to address that gap.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-the-epm-flights-that-showed-the-epm-system-settings">The EPM flights that showed the EPM system settings</h2>
-
-
-
-<p class="wp-block-paragraph">While investigating the EPM files on my own test device, I noticed that some new constants appeared inside the EPM agent</p>
-
-
-
-<ul class="wp-block-list">
-<li>EnableNetworkSettings</li>
-
-
-
-<li>EnableTimeSync</li>
-
-
-
-<li>EnableElevationRuleSystemSettingsEnrichment</li>
-</ul>
-
-
-
-<p class="wp-block-paragraph">The first two are fairly clear. Microsoft is working on network settings and time synchronization scenarios. The other one that also feels important is: <strong>EnableElevationRuleSystemSettingsEnrichment</strong></p>
-
-
-
-<p class="wp-block-paragraph">A normal EPM rule describes a file. It can use the filename, path, publisher, certificate, or file hash to decide whether elevation is allowed. A system setting needs more context than that.</p>
-
-
-
-<p class="wp-block-paragraph">EPM does not only need to know which executable started. It also needs to understand which Windows setting the user is trying to change and whether that specific action is permitted by policy. That flight name suggests Microsoft is adding that extra context to the elevation rule.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-finding-epmelevate-exe">Finding EpmElevate.exe</h2>
-
-
-
-<p class="wp-block-paragraph">The next clue was already sitting inside the Microsoft EPM Agent folder. C:\Program Files\Microsoft EPM Agent\EPMElevate\EpmElevate.exe</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="306" src="https://patchmypc.com/app/uploads/2026/06/image-9.jpg" alt="" class="wp-image-187194" srcset="https://patchmypc.com/app/uploads/2026/06/image-9.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-9-300x147.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p class="wp-block-paragraph">At first, the filename made it look like a generic EPM elevation helper. After decompiling it, it became clear that the executable contains dedicated implementations for network settings and time synchronization. The binary contains three relevant windows:</p>
-
-
-
-<ul class="wp-block-list">
-<li>NetworkSettings.MainWindow</li>
-
-
-
-<li>TimeSync.MainWindow</li>
-
-
-
-<li>CombinedSettings.CombinedSettingsWindow</li>
-</ul>
-
-
-
-<figure class="wp-block-image size-full is-resized"><img decoding="async" width="559" height="135" src="https://patchmypc.com/app/uploads/2026/06/image-37.png" alt="" class="wp-image-187188" style="width:559px;height:auto" srcset="https://patchmypc.com/app/uploads/2026/06/image-37.png 559w, https://patchmypc.com/app/uploads/2026/06/image-37-300x72.png 300w" sizes="(max-width: 559px) 100vw, 559px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That means EPM can open a standalone network window, a standalone time sync window, or one combined system settings window containing both experiences. The command line parser confirms how those windows are selected. The (<strong>EpmElevate.exe -SystemSettings NetworkSettings</strong>)  argument opens the Network Settings window.  When looking at the time sync settings, we notice that this command line will do the trick: <strong>EpmElevate.exe -SystemSettings TimeSync</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="276" src="https://patchmypc.com/app/uploads/2026/06/image-39.png" alt="EPM system settings: Network Settings And Time Sync" class="wp-image-187191" srcset="https://patchmypc.com/app/uploads/2026/06/image-39.png 624w, https://patchmypc.com/app/uploads/2026/06/image-39-300x133.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p class="wp-block-paragraph">When both options are passed, EPM opens the combined window.</p>
-
-
-
-<p class="wp-block-paragraph">EpmElevate.exe -SystemSettings NetworkSettings TimeSync</p>
-
-
-
-<p class="wp-block-paragraph">The combined window is called:</p>
-
-
-
-<p class="wp-block-paragraph">Endpoint Privilege Management &#8211; System Settings</p>
-
-
-
-<p class="wp-block-paragraph">So the code does not contain a generic selection screen that asks the user what they want to manage. EPM decides which panels are available before starting the executable and then passes the appropriate arguments.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-trying-to-launch-the-epm-system-settings-manually">Trying to launch the EPM System Settings manually</h2>
-
-
-
-<p class="wp-block-paragraph">Finding the command line naturally led to the next test. I tried launching EpmElevate.exe manually with the system settings arguments and without elevating it with EPM. The executable started, but immediately closed.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="552" height="201" src="https://patchmypc.com/app/uploads/2026/06/image-36.png" alt="" class="wp-image-187189" srcset="https://patchmypc.com/app/uploads/2026/06/image-36.png 552w, https://patchmypc.com/app/uploads/2026/06/image-36-300x109.png 300w" sizes="(max-width: 552px) 100vw, 552px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The log explained why.</p>
-
-
-
-<p class="wp-block-paragraph">EpmElevate claim validation failed:<br>Required claim MEMEPM_RULE_ID is missing or empty.<br>Process was not launched through the EPM pipeline.<br>Exiting with ACCESS_DENIED.</p>
-
-
-
-<p class="wp-block-paragraph">The executable validates several EPM claims before parsing the system settings arguments.</p>
-
-
-
-<ul class="wp-block-list">
-<li>MEMEPM_RULE_ID</li>
-
-
-
-<li>MEMEPM_POLICY_ID</li>
-
-
-
-<li>MEMEPM_INITIATING_PROCESS</li>
-</ul>
-
-
-
-<p class="wp-block-paragraph">The initiating process must also be: EpmService. This is an important part of the design. Running the executable as an administrator is not enough. Launching it as SYSTEM does not help either.</p>
-
-
-
-<p class="wp-block-paragraph">EpmElevate.exe expects to be started by the EPM service with the correct EPM claims attached to its process token. Without those claims, it refuses to continue.</p>
-
-
-
-<p class="wp-block-paragraph">Microsoft did not simply install a privileged network and time configuration tool on the device. The helper only works when EPM launches it from an approved policy context.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-a-system-settings-rule-is-probably-required">A system settings rule is probably required</h2>
-
-
-
-<p class="wp-block-paragraph">The claim validation also tells us that an EPM rule is likely part of the final experience. EpmElevate.exe explicitly requires a rule ID and a policy ID. The expected flow appears to be straightforward.</p>
-
-
-
-<p class="wp-block-paragraph">An administrator configures a system settings rule in Intune. That rule allows Network Settings, Time Sync, or both.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="375" height="472" src="https://patchmypc.com/app/uploads/2026/06/image-40.png" alt="" class="wp-image-187192" srcset="https://patchmypc.com/app/uploads/2026/06/image-40.png 375w, https://patchmypc.com/app/uploads/2026/06/image-40-238x300.png 238w" sizes="(max-width: 375px) 100vw, 375px" /></figure>
-
-
-
-<p class="wp-block-paragraph">After adding the rule, I tried shortcuts I created before… but still no luck</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="361" height="189" src="https://patchmypc.com/app/uploads/2026/06/image-38.png" alt="EPM system settings: Network Settings And Time Sync" class="wp-image-187190" srcset="https://patchmypc.com/app/uploads/2026/06/image-38.png 361w, https://patchmypc.com/app/uploads/2026/06/image-38-300x157.png 300w" sizes="(max-width: 361px) 100vw, 361px" /></figure>
-
-
-
-<h2 class="wp-block-heading" id="h-the-network-settings-and-time-sync-system-settings">The Network Settings and Time Sync System Settings</h2>
-
-
-
-<p class="wp-block-paragraph">The implementation is already present in the EPM Agent, but the full Intune configuration does not appear to be available yet.</p>
-
-
-
-<p class="wp-block-paragraph">A quick note here: I am not in a private preview, I do not have access to a flighted tenant, and I do not have any inside knowledge about how this should be enabled. This is based on what is already present in the client side components.</p>
-
-
-
-<h3 class="wp-block-heading" id="h-network-settings">Network Settings</h3>
-
-
-
-<p class="wp-block-paragraph">The Network Settings window is not just hinted at by a string or flight name. The EPM Elevate code contains an actual <code>NetworkSettings.MainWindow</code> implementation.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="1002" height="166" src="https://patchmypc.com/app/uploads/2026/06/image-41.png" alt="EPM system settings: Network Settings And Time Sync" class="wp-image-187197" srcset="https://patchmypc.com/app/uploads/2026/06/image-41.png 1002w, https://patchmypc.com/app/uploads/2026/06/image-41-300x50.png 300w, https://patchmypc.com/app/uploads/2026/06/image-41-768x127.png 768w" sizes="(max-width: 1002px) 100vw, 1002px" /></figure>
-
-
-
-<p class="wp-block-paragraph">&nbsp;Its constructor initializes the network configuration service, loads the WPF components, applies the base window setup, and prepares the refresh timer. In other words, this is already real client-side UI logic, not just a future placeholder… Well enough words… let’s look at it…</p>
-
-
-
-<figure class="wp-block-image size-full is-resized"><img decoding="async" width="987" height="484" src="https://patchmypc.com/app/uploads/2026/06/image-42.png" alt="Network Settings EPM" class="wp-image-187198" style="aspect-ratio:2.0392919125303712;width:634px;height:auto" srcset="https://patchmypc.com/app/uploads/2026/06/image-42.png 987w, https://patchmypc.com/app/uploads/2026/06/image-42-300x147.png 300w, https://patchmypc.com/app/uploads/2026/06/image-42-768x377.png 768w" sizes="(max-width: 987px) 100vw, 987px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Once we select the proper adapter we want to change, we will get this screen.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="842" height="845" src="https://patchmypc.com/app/uploads/2026/06/image-43.png" alt="Network Settings EPM" class="wp-image-187199" srcset="https://patchmypc.com/app/uploads/2026/06/image-43.png 842w, https://patchmypc.com/app/uploads/2026/06/image-43-300x300.png 300w, https://patchmypc.com/app/uploads/2026/06/image-43-150x150.png 150w, https://patchmypc.com/app/uploads/2026/06/image-43-768x771.png 768w" sizes="(max-width: 842px) 100vw, 842px" /></figure>
-
-
-
-<h3 class="wp-block-heading" id="h-time-sync">Time Sync</h3>
-
-
-
-<p class="wp-block-paragraph">For Time Sync, the code focuses on Windows Time synchronization and NTP configuration. So this should not be described as changing the system clock manually. It is about synchronising time and changing the configured time server.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="517" src="https://patchmypc.com/app/uploads/2026/06/image-12.jpg" alt="Time Zone EPM system settings" class="wp-image-187195" srcset="https://patchmypc.com/app/uploads/2026/06/image-12.jpg 624w, https://patchmypc.com/app/uploads/2026/06/image-12-300x249.jpg 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<h2 class="wp-block-heading" id="h-what-is-still-missing">What is still missing?</h2>
-
-
-
-<p class="wp-block-paragraph">After configuring an EPM elevation rule and allowing EpmElevate.exe, there still seems to be a missing connection.</p>
-
-
-
-<p class="wp-block-paragraph">Manually creating a shortcut with the correct parameters is not user-friendly and does not appear to be the intended flow. There needs to be an entry point. A place where the user can start the action without knowing anything about <code>EpmElevate.exe</code>, command-line arguments or EPM claims.</p>
-
-
-
-<p class="wp-block-paragraph">That place would probably be Company Portal. At the moment, I cannot find the matching Company Portal implementation in the latest version I checked. That might mean the Company Portal side is not there yet, hidden behind flighting, or still being worked on.&nbsp; So the device side pieces are visible, but the full user experience is not complete yet.</p>
-
-
-
-<h2 class="wp-block-heading" id="h-closing-thoughts">Closing thoughts</h2>
-
-
-
-<p class="wp-block-paragraph">EPM appears to be moving beyond normal file elevation.</p>
-
-
-
-<p class="wp-block-paragraph">That does not mean users are getting unrestricted access to Windows Settings, and it certainly does not mean they are becoming local administrators. It looks more controlled than that. An administrator approves a specific system setting. The Company Portal gives the user a place to start the action. EPM validates the rule and policy, then launches a trusted helper that performs only the allowed configuration.</p>
-
-
-
-<p class="wp-block-paragraph">Network adapter settings and time synchronization appear to be the first two examples of this new model. That is a useful direction for EPM. Instead of trying to find the right executable to elevate, administrators can approve the Windows action itself.</p>
-
-
-
-<p class="wp-block-paragraph"></p>
-<p>The post <a href="https://patchmypc.com/blog/intune-epm-system-settings-network-and-time-sync-elevation/">Intune EPM System Settings: Network and Time Sync Elevation</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/intune-epm-system-settings-network-and-time-sync-elevation/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
