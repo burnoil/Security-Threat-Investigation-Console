@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Sat, 18 Jul 2026 10:36:59 +0000</lastBuildDate>
+	<lastBuildDate>Sat, 18 Jul 2026 12:26:23 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,7 +28,7 @@
 	<height>32</height>
 </image> 
 	<item>
-		<title>Intune Custom Compliance Could Move Beyond the 8 Hour Wait</title>
+		<title>Intune Custom Compliance Policies and the Hourly Cadence Fix</title>
 		<link>https://patchmypc.com/blog/custom-compliance-policies-and-the-eight-hour-waiting-fix/</link>
 					<comments>https://patchmypc.com/blog/custom-compliance-policies-and-the-eight-hour-waiting-fix/#respond</comments>
 		
@@ -38,7 +38,7 @@
 		<guid isPermaLink="false">https://patchmypc.com/?p=188125</guid>
 
 					<description><![CDATA[<p>Custom compliance in Intune can leave devices reporting stale results for up to eight hours. IME 1.103.101.0 appears to introduce a new hourly cadence that could rerun discovery scripts and send fresh PolicyResult data back to Intune much sooner.</p>
-<p>The post <a href="https://patchmypc.com/blog/custom-compliance-policies-and-the-eight-hour-waiting-fix/">Intune Custom Compliance Could Move Beyond the 8 Hour Wait</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+<p>The post <a href="https://patchmypc.com/blog/custom-compliance-policies-and-the-eight-hour-waiting-fix/">Intune Custom Compliance Policies and the Hourly Cadence Fix</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
 <p class="wp-block-paragraph">Custom compliance policies in Intune can be pretty powerful, but waiting up to 8 hours for a fresh result has always been a big pain point for security. The Intune Management Extension 1.103.101.0 appears to add new scheduling that could finally make the famous <strong>8-hour compliance window much shorter.</strong></p>
@@ -174,7 +174,7 @@
 
 
 <p class="wp-block-paragraph">So this does not silently press the Company Portal <strong>Check Compliance</strong> button. It gives IME its own faster way to rerun the custom compliance script workload and report the new result back to Intune. For now, I would call it client-side plumbing until Microsoft updates the public documentation or the behavior is confirmed across tenants. But the direction is clear: custom compliance no longer appears limited to the old eight-hour waiting game inside the IME client.</p>
-<p>The post <a href="https://patchmypc.com/blog/custom-compliance-policies-and-the-eight-hour-waiting-fix/">Intune Custom Compliance Could Move Beyond the 8 Hour Wait</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+<p>The post <a href="https://patchmypc.com/blog/custom-compliance-policies-and-the-eight-hour-waiting-fix/">Intune Custom Compliance Policies and the Hourly Cadence Fix</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/custom-compliance-policies-and-the-eight-hour-waiting-fix/feed/</wfw:commentRss>
