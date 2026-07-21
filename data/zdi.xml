@@ -10,9 +10,25 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Tue, 21 Jul 2026 12:36:04 -0500</pubDate>
+    <pubDate>Tue, 21 Jul 2026 14:40:30 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-446: Microsoft Windows WMI Providers Incorrect Authorization Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-32968</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-446/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.0. The following CVEs are assigned: CVE-2026-50297.]]></description>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-445: Microsoft Windows WMI Providers Incorrect Authorization Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-32967</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-445/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.0. The following CVEs are assigned: CVE-2026-50325.]]></description>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-444: 7-Zip XZ Decompression Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
@@ -1596,22 +1612,6 @@
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-247/</link>
       <description><![CDATA[This vulnerability allows local attackers to delete arbitrary files on affected installations of NoMachine. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.1. The following CVEs are assigned: CVE-2026-5053.]]></description>
       <pubDate>Mon, 30 Mar 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-246: (0Day) aws-mcp-server Command Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27968</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-246/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of aws-mcp-server. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2026-5058.]]></description>
-      <pubDate>Mon, 30 Mar 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-245: (0Day) aws-mcp-server AWS CLI Command Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27969</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-245/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of aws-mcp-server. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2026-5059.]]></description>
-      <pubDate>Tue, 21 Apr 2026 00:00:00 -0500</pubDate>
     </item>
     
   </channel>
