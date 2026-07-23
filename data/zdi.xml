@@ -10,9 +10,57 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Thu, 23 Jul 2026 16:12:18 -0500</pubDate>
+    <pubDate>Thu, 23 Jul 2026 18:02:54 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-452: Dify AI Workflow oauth_redirect_url Open Redirect Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29196</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-452/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Dify. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 5.4.]]></description>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-451: Docker Desktop for macOS Inference Server Permissive Allow List Sandbox Escape Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29308</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-451/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escape the model runner sandbox on affected installations of Docker Desktop for macOS. An attacker must first obtain the ability to execute low-privileged code within the sandbox in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8.]]></description>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-450: AzeoTech DAQFactory CTL File Parsing Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28831</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-450/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of AzeoTech DAQFactory. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-12921.]]></description>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-449: AzeoTech DAQFactory CTL File Parsing Type Confusion Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28876</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-449/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of AzeoTech DAQFactory. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-12390.]]></description>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-448: Bitdefender Total Security Shredder Link Following Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28703</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-448/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Bitdefender Total Security. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.3. The following CVEs are assigned: CVE-2026-6851.]]></description>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-447: Heimdall Data Database Proxy generateFileContent CRLF Injection Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29251</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-447/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Heimdall Data Database Proxy. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.2. The following CVEs are assigned: CVE-2026-12357.]]></description>
+      <pubDate>Thu, 23 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-446: Microsoft Windows WMI Providers Incorrect Authorization Local Privilege Escalation Vulnerability]]></title>
@@ -1564,54 +1612,6 @@
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-253/</link>
       <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Microsoft Visual Studio Code. User interaction is required to exploit this vulnerability in that the target open a malicious project. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-21518.]]></description>
       <pubDate>Thu, 02 Apr 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-252: Mozilla Firefox IonMonkey Switch Statement Optimization Type Confusion Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29301</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-252/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Mozilla Firefox. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-4698.]]></description>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-251: Foxit PDF Reader Update Service Uncontrolled Search Path Element Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28595</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-251/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Foxit PDF Reader. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-3775.]]></description>
-      <pubDate>Thu, 02 Apr 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-250: Linux Kernel Analog Device Driver Improper Validation of Array Index Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28893</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-250/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Linux Kernel. An attacker must first obtain the ability to execute high-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.2. The following CVEs are assigned: CVE-2026-23092.]]></description>
-      <pubDate>Tue, 31 Mar 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-249: NoMachine Uncontrolled Search Path Element Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28494</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-249/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of NoMachine.  An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-5055.]]></description>
-      <pubDate>Mon, 30 Mar 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-248: NoMachine External Control of File Path Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28630</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-248/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of NoMachine. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-5054.]]></description>
-      <pubDate>Mon, 30 Mar 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-247: NoMachine External Control of File Path Arbitrary File Deletion Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28644</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-247/</link>
-      <description><![CDATA[This vulnerability allows local attackers to delete arbitrary files on affected installations of NoMachine. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.1. The following CVEs are assigned: CVE-2026-5053.]]></description>
-      <pubDate>Mon, 30 Mar 2026 00:00:00 -0500</pubDate>
     </item>
     
   </channel>
