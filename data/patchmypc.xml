@@ -992,265 +992,6 @@
 		
 			</item>
 		<item>
-		<title>Autopilot Required Apps No Longer Need to Wait 60 Minutes</title>
-		<link>https://patchmypc.com/blog/autopilot-required-apps-no-longer-need-to-wait-60-minutes/</link>
-					<comments>https://patchmypc.com/blog/autopilot-required-apps-no-longer-need-to-wait-60-minutes/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Fri, 17 Jul 2026 07:59:21 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=187865</guid>
-
-					<description><![CDATA[<p>Required Win32 apps sometimes waited 60 minutes after Autopilot ESP completed. IME 1.103.101.0 introduces a FirstSync registry watcher that detects ESP completion and immediately triggers another app workload check in.</p>
-<p>The post <a href="https://patchmypc.com/blog/autopilot-required-apps-no-longer-need-to-wait-60-minutes/">Autopilot Required Apps No Longer Need to Wait 60 Minutes</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p class="wp-block-paragraph">After your Autopilot enrollment (ESP) was completed, the desktop appeared, but the remaining required apps sometimes waited exactly <strong>60 minutes before installing</strong>. IME <strong>1.103.101.0</strong> appears to fix this by watching for ESP to finish and immediately triggering a new Win32 app check-in.</p>
-
-
-
-<p class="wp-block-paragraph"><strong>Please Note:</strong> When writing this blog, IME version 1.103.101.0 is not shipped to prod (send over to clients), but I could already manually download it.</p>
-
-
-
-<h2 id="h-introduction" class="wp-block-heading">Introduction</h2>
-
-
-
-<p class="wp-block-paragraph">Back in September 2025, I wrote about a strange delay that could occur after <strong><a href="https://learn.microsoft.com/en-us/autopilot/overview">Windows Autopilot enrollment.</a></strong> The Enrollment Status Page (ESP) completed successfully, the user reached the desktop, but the remaining required Win32 apps did absolutely nothing. Then, almost exactly 60 minutes later, they suddenly started installing.</p>
-
-
-
-<p class="wp-block-paragraph">After digging into the Intune Management Extension, we found the reason. The first Win32 app check-in happened too early. IME still believed the device was inside ESP, or it could not yet resolve the correct logged-on user. That first attempt failed, and the Win32 app poller fell back to its hard-coded 3600000-millisecond retry timer.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="470" height="25" src="https://patchmypc.com/app/uploads/2026/06/image-69.png" alt="" class="wp-image-187866" srcset="https://patchmypc.com/app/uploads/2026/06/image-69.png 470w, https://patchmypc.com/app/uploads/2026/06/image-69-300x16.png 300w" sizes="(max-width: 470px) 100vw, 470px" /></figure>
-
-
-
-<p class="wp-block-paragraph">A reboot, service restart, logoff, or manual trigger could bypass the delay, but IME itself had no reliable way to notice the exact moment ESP ended. That appears to have changed in IME 1.103.101.0.</p>
-
-
-
-<h2 id="h-the-original-60-minute-required-apps-delay" class="wp-block-heading">The Original 60-Minute Required Apps Delay</h2>
-
-
-
-<p class="wp-block-paragraph">The original behavior is explained in detail in my blog about <a href="https://patchmypc.com/blog/why-do-required-apps-wait-60-minutes-after-autopilot-enrollment/">why required apps wait 60 minutes after Autopilot enrollment</a>. During Autopilot, ESP tracks the blocking apps that must be installed before the user is allowed to continue. </p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="750" height="214" src="https://patchmypc.com/app/uploads/2026/06/image-77.png" alt="" class="wp-image-187876" srcset="https://patchmypc.com/app/uploads/2026/06/image-77.png 750w, https://patchmypc.com/app/uploads/2026/06/image-77-300x86.png 300w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Once those tracked/blocking applications finish, Windows switches to the desktop. The remaining required applications are not part of that ESP lock-in list and must be picked up by the normal Win32 app workload.</p>
-
-
-
-<p class="wp-block-paragraph">That handover did not always happen cleanly. When IME performed its first app check-in, EspHelper.CheckEspPhase() could still return AccountSetup. In other cases, the available-app pass could still see defaultuser0 instead of the actual Entra ID user.</p>
-
-
-
-<p class="wp-block-paragraph">Because the available-app check-in runs before the required-app check-in, that early exit also prevented the required-app workload from running. IME then scheduled the next attempt for one hour later.</p>
-
-
-
-<p class="wp-block-paragraph"><strong>Request required apps for user logon<br>AvailableAppRequest exits early<br>Required app check-in scheduled for 3600000 milliseconds</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="869" height="212" src="https://patchmypc.com/app/uploads/2026/06/image-18.jpg" alt="" class="wp-image-187869" srcset="https://patchmypc.com/app/uploads/2026/06/image-18.jpg 869w, https://patchmypc.com/app/uploads/2026/06/image-18-300x73.jpg 300w, https://patchmypc.com/app/uploads/2026/06/image-18-768x187.jpg 768w" sizes="(max-width: 869px) 100vw, 869px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The one-hour timer was not the actual problem. The problem was that IME missed the transition between ESP and the normal desktop session. Once it missed that exact moment, the Win32App timer became the only mechanism left to try again.</p>
-
-
-
-<h2 id="h-why-a-reboot-appeared-to-fix-the-required-app-delay" class="wp-block-heading">Why a Reboot Appeared to Fix the Required App Delay</h2>
-
-
-
-<p class="wp-block-paragraph">This also explained why the issue was difficult to reproduce consistently. If Windows restarted during ESP because of a reboot-required policy, IME started fresh after the user signed in. By then, FirstSync had completed, ESP was no longer in the Account Setup phase, and the real user session was available.</p>
-
-
-
-<p class="wp-block-paragraph">The first app check-in could then be completed normally, allowing the required-app check-in to follow immediately. Without that reboot, IME could remain alive across the transition. Its first attempt happened while the device was still changing state, after which it quietly waited for the next scheduled poll.</p>
-
-
-
-<p class="wp-block-paragraph">Restarting the IME service had the same effect. It simply forced the app poller to run again after the device and user had reached a stable state.</p>
-
-
-
-<h2 id="h-what-changed-in-ime-1-103-101-0" class="wp-block-heading">What Changed in IME 1.103.101.0</h2>
-
-
-
-<p class="wp-block-paragraph">When comparing IME 1.101.111.0 with 1.103.101.0, the most interesting ESP changes appeared inside: <strong>Microsoft.Management.Clients.IntuneManagementExtension.Win32AppPlugIn.dll</strong></p>
-
-
-
-<p class="wp-block-paragraph">Microsoft added several new methods to EspHelper… and one of them is the Setup ESP Registry Watcher</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="278" src="https://patchmypc.com/app/uploads/2026/06/image-74.png" alt="" class="wp-image-187872" srcset="https://patchmypc.com/app/uploads/2026/06/image-74.png 624w, https://patchmypc.com/app/uploads/2026/06/image-74-300x134.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Those method names already reveal the new approach. Instead of checking the ESP phase once and relying on the normal polling timer afterward, the IME can now monitor the registry location where Windows records the progress of the enrollment <strong><a href="https://patchmypc.com/blog/intune-management-extension-esp-phases/">FirstSync</a> </strong>process.</p>
-
-
-
-<p class="wp-block-paragraph">The new code searches under: HKLM\SOFTWARE\Microsoft\Enrollments.&nbsp; It locates the applicable enrollment and its FirstSync subtree, then creates a registry watcher for changes below that location.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="975" height="245" src="https://patchmypc.com/app/uploads/2026/06/image-76.png" alt="" class="wp-image-187874" srcset="https://patchmypc.com/app/uploads/2026/06/image-76.png 975w, https://patchmypc.com/app/uploads/2026/06/image-76-300x75.png 300w, https://patchmypc.com/app/uploads/2026/06/image-76-768x193.png 768w" sizes="(max-width: 975px) 100vw, 975px" /></figure>
-
-
-
-<h2 id="h-watching-firstsync-instead-of-guessing" class="wp-block-heading">Watching FirstSync Instead of Guessing</h2>
-
-
-
-<p class="wp-block-paragraph">The new strings inside the Win32 App plugin make the intended flow even clearer: [Win32App][EspHelper][SetupEspRegistryWatcher] RegistryWatcher started successfully.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="36" src="https://patchmypc.com/app/uploads/2026/06/image-70.png" alt="" class="wp-image-187867" srcset="https://patchmypc.com/app/uploads/2026/06/image-70.png 624w, https://patchmypc.com/app/uploads/2026/06/image-70-300x17.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Once the watcher is active, the IME no longer needs to guess when ESP might be finished. Windows will update those values below the FirstSync subtree as the enrollment phases progress, and the IME receives an event when that state changes.</p>
-
-
-
-<p class="wp-block-paragraph">The callback is handled by: <strong>EspHelper.OnEspRegistryValueChanged</strong>.  The corresponding logging shows what happens next:&nbsp; [Win32App][EspHelper][OnEspRegistryValueChanged] Registry value change detected under FirstSync subtree.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="29" src="https://patchmypc.com/app/uploads/2026/06/image-72.png" alt="" class="wp-image-187868" srcset="https://patchmypc.com/app/uploads/2026/06/image-72.png 624w, https://patchmypc.com/app/uploads/2026/06/image-72-300x14.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p class="wp-block-paragraph">A registry change alone does not automatically mean ESP has completed. The callback, therefore, checks the ESP phase again. If the device is still inside ESP, IME continues waiting.</p>
-
-
-
-<p class="wp-block-paragraph">Once the phase changes to completed, the important new behavior kicks in: [Win32App][EspHelper][OnEspRegistryValueChanged] ESP completed. Triggering immediate app workload check-in.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="64" src="https://patchmypc.com/app/uploads/2026/06/image-71-1024x64.png" alt="" class="wp-image-187870" srcset="https://patchmypc.com/app/uploads/2026/06/image-71-1024x64.png 1024w, https://patchmypc.com/app/uploads/2026/06/image-71-300x19.png 300w, https://patchmypc.com/app/uploads/2026/06/image-71-768x48.png 768w, https://patchmypc.com/app/uploads/2026/06/image-71.png 1284w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That is the missing handover from the original flow.</p>
-
-
-
-<h2 id="h-the-new-immediate-app-workload-check-in" class="wp-block-heading">The New Immediate App Workload Check-In</h2>
-
-
-
-<p class="wp-block-paragraph">ApplicationPoller.DoWorkInternal now references a new feature named: <strong>RunNontrackedAppsCheckinImmediatelyAfterEsp</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="554" height="28" src="https://patchmypc.com/app/uploads/2026/06/image-79.png" alt="" class="wp-image-187900" srcset="https://patchmypc.com/app/uploads/2026/06/image-79.png 554w, https://patchmypc.com/app/uploads/2026/06/image-79-300x15.png 300w" sizes="(max-width: 554px) 100vw, 554px" /></figure>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="168" src="https://patchmypc.com/app/uploads/2026/06/image-73.png" alt="" class="wp-image-187871" srcset="https://patchmypc.com/app/uploads/2026/06/image-73.png 624w, https://patchmypc.com/app/uploads/2026/06/image-73-300x81.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The name is important. ESP already handles the applications that are tracked and locked in by the ESP profile. The delay affected the remaining apps that were not tracked by ESP but were still required for the user or device.</p>
-
-
-
-<p class="wp-block-paragraph">The new behavior tells IME to run another app workload check-in as soon as ESP finishes. At that point, the actual user session should be available, EspHelper.CheckEspPhase() should return NotInEsp, and the normal app evaluation can continue.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="336" src="https://patchmypc.com/app/uploads/2026/06/image-75.png" alt="" class="wp-image-187873" srcset="https://patchmypc.com/app/uploads/2026/06/image-75.png 624w, https://patchmypc.com/app/uploads/2026/06/image-75-300x162.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The available-app pass can now be completed instead of exiting early. Once that pass succeeds, the required-app check-in no longer needs to wait for the next one-hour polling cycle AKA the 60 minute delay.</p>
-
-
-
-<p class="wp-block-paragraph">Microsoft did not remove the <strong>3600000 millisecond pulling timer.</strong> The Required Apps timer still exists as the normal fallback schedule. What changed is that the IME now has an event-driven reason to run before that timer expires.</p>
-
-
-
-<h2 id="h-from-polling-to-an-event-driven-handover" class="wp-block-heading">From Polling to an Event-Driven Handover</h2>
-
-
-
-<p class="wp-block-paragraph">This is a small architectural change with a significant effect. Previously, the IME essentially asked whether the ESP was finished at a specific moment. If the answer was no, it went back to sleep. The device could complete ESP a few seconds later, but nothing informed the app poller that the state had changed.</p>
-
-
-
-<p class="wp-block-paragraph">IME 1.103.101.0 can keep watching that state transition. The moment Windows updates the FirstSync registry state, IME checks again. When ESP has genuinely completed, it immediately starts the Required Win32 app workload.</p>
-
-
-
-<p class="wp-block-paragraph">That removes the race between the first user session, ESP completion, and the initial available-app check-in.</p>
-
-
-
-<p class="wp-block-paragraph">It also explains the presence of <strong>DisposeEspRegistryWatcher</strong>. Once the transition has been detected and the immediate check-in has been triggered, the ESP Registry watcher is no longer required. Cleaning it up prevents duplicate callbacks and avoids repeatedly triggering the app workload for later, unrelated registry changes.</p>
-
-
-
-<h2 id="h-does-this-finally-remove-the-60-minute-required-app-delay" class="wp-block-heading">Does This Finally Remove the 60-Minute Required App Delay?</h2>
-
-
-
-<p class="wp-block-paragraph">For the specific post-ESP race described in the earlier blog, this new behavior appears designed to do exactly that. The delay was caused by IME running too early, missing the correct user or ESP state, and then relying on its one-hour fallback timer. The new registry watcher gives IME another opportunity as soon as FirstSync changes and ESP completes.</p>
-
-
-
-<p class="wp-block-paragraph">That means a reboot should no longer be required for the IME to notice the real user session. Restarting the IME service should no longer be necessary for the normal ESP-to-desktop transition either. The custom StatusService remediation should also become less important for devices receiving this new behavior.</p>
-
-
-
-<p class="wp-block-paragraph">There is one important detail, though. The name <strong>RunNontrackedAppsCheckinImmediatelyAfterEsp </strong>looks like a flight-controlled feature. The code is present in IME 1.103.101.0, but Microsoft can still control its enablement through service-delivered configuration. Seeing the new DLL does not automatically prove that every tenant receives the behavior at the same moment.</p>
-
-
-
-<h2 id="h-why-this-matters" class="wp-block-heading">Why This Matters</h2>
-
-
-
-<p class="wp-block-paragraph">The desktop appearing does not always mean every enrollment component has already observed the same state. That small timing gap was enough for IME to miss the first useful app check-in and leave required applications waiting for an hour.</p>
-
-
-
-<p class="wp-block-paragraph">The workaround was always straightforward: reboot, restart IME, log off and back on, or trigger another check-in. But none of those options addressed why IME missed the transition in the first place.</p>
-
-
-
-<p class="wp-block-paragraph">IME 1.103.101.0 changes that. By watching the FirstSync registry state and triggering the app workload when ESP completes, Microsoft has connected the end of enrollment directly to the next Win32 app evaluation.</p>
-
-
-
-<p class="wp-block-paragraph">The one-hour timer is still there, but it should no longer be the first thing standing between a completed Autopilot enrollment and the remaining required applications.</p>
-<p>The post <a href="https://patchmypc.com/blog/autopilot-required-apps-no-longer-need-to-wait-60-minutes/">Autopilot Required Apps No Longer Need to Wait 60 Minutes</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/autopilot-required-apps-no-longer-need-to-wait-60-minutes/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
 		<title>Inside the Improved on-demand sync for Windows devices</title>
 		<link>https://patchmypc.com/blog/inside-the-improved-on-demand-sync-for-windows-devices/</link>
 					<comments>https://patchmypc.com/blog/inside-the-improved-on-demand-sync-for-windows-devices/#respond</comments>
@@ -2221,6 +1962,409 @@ exit 1</code></pre>
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-193-released/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>A Deep Dive into Controlled Feature Rollout: Why Features are turned off by default</title>
+		<link>https://patchmypc.com/blog/how-controlled-feature-rollout-actually-works/</link>
+					<comments>https://patchmypc.com/blog/how-controlled-feature-rollout-actually-works/#respond</comments>
+		
+		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
+		<pubDate>Mon, 06 Jul 2026 11:13:29 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=171465</guid>
+
+					<description><![CDATA[<p>This blog explains what Controlled Feature Rollout (CFR) is, why Microsoft ships features in an off-by-default state, and how a device determines when a new capability or Windows hotfix is allowed to be activated. We will walk through the technical flow inside Windows, including the OneSettings refresh process, the FeatureConfig payload, and how the FeatureManagement ... <a href="https://patchmypc.com/blog/how-controlled-feature-rollout-actually-works/">Continue Reading  &#187;</a></p>
+<p>The post <a href="https://patchmypc.com/blog/how-controlled-feature-rollout-actually-works/">A Deep Dive into Controlled Feature Rollout: Why Features are turned off by default</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">This blog explains what <strong>Controlled Feature Rollout (CFR) </strong>is, why Microsoft ships features in an off-by-default state, and how a device determines when a new capability or Windows hotfix is allowed to be activated. We will walk through the technical flow inside Windows, including the <strong>OneSettings refresh process</strong>, the<strong> FeatureConfig payload,</strong> and how the <strong>FeatureManagement </strong>registry ultimately decides which devices are switched on first.</p>
+
+
+
+<h2 id="h-controlled-feature-rollout" class="wp-block-heading">Controlled Feature Rollout</h2>
+
+
+
+<p class="wp-block-paragraph">Sometimes a Windows update installs new functionality or a feature onto a device, but nothing appears to change or improve. The updated binaries are there, the new logic is present in the DLLs, and technically, the feature should be working. Yet it remains inactive until Microsoft decides to turn it on. That behavior is intentional. It is part of <strong>Controlled Feature Rollout.</strong></p>
+
+
+
+<p class="wp-block-paragraph">Instead of enabling new functionality immediately for every device, Microsoft ships the code first and activates it later in carefully measured waves/buckets. The feature is present but gated and only becomes active when the device receives an updated configuration that approves it for rollout.</p>
+
+
+
+<p class="wp-block-paragraph">Understanding that distinction matters because, from the outside, it can look like something is broken. Two devices on the same build may behave differently, even when running the same Windows version and build. That is exactly what surfaced during the certificate renewal investigation <strong>(KSP bug), where the fix already existed in the OS,</strong> but the rollout flag had not yet been enabled for those systems, forcing me to activate it manually with ViveTool.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="624" height="177" src="https://patchmypc.com/app/uploads/2026/01/image-36.png" alt="controlled feature rollout using the vivetool" class="wp-image-171552" srcset="https://patchmypc.com/app/uploads/2026/01/image-36.png 624w, https://patchmypc.com/app/uploads/2026/01/image-36-300x85.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
+
+
+
+<p class="wp-block-paragraph">That experience is what triggered this deeper dive into how <strong>Controlled Feature Rollout</strong> actually works behind the scenes.</p>
+
+
+
+<h2 id="h-why-microsoft-ships-features-in-an-off-by-default-state" class="wp-block-heading">Why Microsoft ships features in an off-by-default state</h2>
+
+
+
+<p class="wp-block-paragraph">When Microsoft delivers a new feature or a servicing fix, the code is often shipped broadly as part of a cumulative or feature update but remains disabled by default. The logic sits behind a feature gate, such as the check that guarded the KSP renewal behavior. (ProcessRenewalRequestWithRetry is gated by the Feature_Bypass3rdpartyKspInrenew check.)</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="122" src="https://patchmypc.com/app/uploads/2026/01/image-8-1024x122.png" alt="controlled feature rollout WilFeature" class="wp-image-171477" srcset="https://patchmypc.com/app/uploads/2026/01/image-8-1024x122.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-8-300x36.png 300w, https://patchmypc.com/app/uploads/2026/01/image-8-768x91.png 768w, https://patchmypc.com/app/uploads/2026/01/image-8-1536x183.png 1536w, https://patchmypc.com/app/uploads/2026/01/image-8-2048x244.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Shipping the code first ensures the binary payload is already present everywhere. Activating it later with the <strong>Controlled Feature Rollout </strong>allows Microsoft to control the impact. A rollout wave can begin with a small, targeted device population. Telemetry is monitored. Stability and behavioral signals are evaluated. If problems occur, the feature activation can be paused without issuing another OS update. If everything looks good, the rollout expands.</p>
+
+
+
+<p class="wp-block-paragraph">The important part is that activation is driven by configuration rather than code delivery. The code may already be in place, but a device does not enable it until it receives the rollout decision. That brings us to the onesettings platform that coordinates those decisions.</p>
+
+
+
+<h2 id="h-the-role-of-featureconfig-json-in-a-controlled-feature-rollout" class="wp-block-heading">The role of FeatureConfig.json in a Controlled Feature Rollout</h2>
+
+
+
+<p class="wp-block-paragraph">Windows receives rollout configuration through the <strong>OneSettings platform. </strong>Controlled Feature Rollout is one of the systems that sits on top of it. When Microsoft advances a rollout wave, the device does not download a new Windows Update. Instead, it retrieves an updated FeatureConfig payload from the OneSettings service endpoint: <strong>settings-win.data.microsoft.com</strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="91" src="https://patchmypc.com/app/uploads/2026/01/image-12-1024x91.png" alt="" class="wp-image-171485" srcset="https://patchmypc.com/app/uploads/2026/01/image-12-1024x91.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-12-300x27.png 300w, https://patchmypc.com/app/uploads/2026/01/image-12-768x68.png 768w, https://patchmypc.com/app/uploads/2026/01/image-12.png 1199w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The logic that drives this lives in the <strong>wosc.dll </strong>and related components.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="645" height="388" src="https://patchmypc.com/app/uploads/2026/01/image-11.png" alt="" class="wp-image-171484" srcset="https://patchmypc.com/app/uploads/2026/01/image-11.png 645w, https://patchmypc.com/app/uploads/2026/01/image-11-300x180.png 300w" sizes="(max-width: 645px) 100vw, 645px" /></figure>
+
+
+
+<p class="wp-block-paragraph">If you watch it with Procmon or ETW tracing, you will see that when the configuration is retrieved, Windows writes two files into: <strong>config.json and featureconfig.json.</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="875" height="200" src="https://patchmypc.com/app/uploads/2026/01/image-13.png" alt="controlled feature rollout featureconfig" class="wp-image-171486" srcset="https://patchmypc.com/app/uploads/2026/01/image-13.png 875w, https://patchmypc.com/app/uploads/2026/01/image-13-300x69.png 300w, https://patchmypc.com/app/uploads/2026/01/image-13-768x176.png 768w" sizes="(max-width: 875px) 100vw, 875px" /></figure>
+
+
+
+<p class="wp-block-paragraph">FeatureConfig.json is one of the important ones here. It contains the feature identifiers, rollout state, device targeting attributes, flight identifiers, staged rollout metadata, and whether a feature should be enabled, disabled, or delayed on that specific system. Inside that payload is a JSON document containing feature identifiers, rollout state, targeting metadata, wave information, device attributes, and other evaluation rules.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="73" src="https://patchmypc.com/app/uploads/2026/01/image-15-1024x73.png" alt="" class="wp-image-171489" srcset="https://patchmypc.com/app/uploads/2026/01/image-15-1024x73.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-15-300x21.png 300w, https://patchmypc.com/app/uploads/2026/01/image-15-768x55.png 768w, https://patchmypc.com/app/uploads/2026/01/image-15.png 1401w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Some <strong>Feature IDs </strong>(like <strong> 45172197</strong>) inside this file may look familiar. For example, the <strong><a href="https://patchmypc.com/blog/administrator-protection-windows-11-25h2/">ShadowAdmin</a></strong> feature appears as one of the FIDs inside the payload. And that same data is mirrored into the registry under: <strong> HKLM\SYSTEM\CurrentControlSet\Control\FeatureManagement</strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="206" src="https://patchmypc.com/app/uploads/2026/01/image-16-1024x206.png" alt="" class="wp-image-171493" srcset="https://patchmypc.com/app/uploads/2026/01/image-16-1024x206.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-16-300x60.png 300w, https://patchmypc.com/app/uploads/2026/01/image-16-768x154.png 768w, https://patchmypc.com/app/uploads/2026/01/image-16.png 1383w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Windows does not randomly flip these switches. Every decision is evaluated against device properties, rollout targeting, build compatibility, servicing conditions, and safety indicators. Some features are enabled automatically on newer builds where they are considered baseline. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="716" height="83" src="https://patchmypc.com/app/uploads/2026/01/image-17.png" alt="controlled feature rollout vivetool" class="wp-image-171494" srcset="https://patchmypc.com/app/uploads/2026/01/image-17.png 716w, https://patchmypc.com/app/uploads/2026/01/image-17-300x35.png 300w" sizes="(max-width: 716px) 100vw, 716px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Others remain staged until the <strong>Controlled Feature Rollout</strong> configuration explicitly allows activation. The configuration does not remain static. The device periodically refreshes it, and that refresh can be triggered in more than one way.</p>
+
+
+
+<h2 id="h-how-the-device-refreshes-the-feature-configuration" class="wp-block-heading">How the device refreshes the feature configuration</h2>
+
+
+
+<p class="wp-block-paragraph">A device can update its Feature Configuration through scheduled refresh or through event-driven triggers. Both end up feeding the same evaluation logic, but they are initiated for different reasons. Scheduled refresh happens through the OneSettings <strong>RefreshCache</strong> task. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="979" height="447" src="https://patchmypc.com/app/uploads/2026/01/image-19.png" alt="controlled feature rollout scheduled task" class="wp-image-171496" srcset="https://patchmypc.com/app/uploads/2026/01/image-19.png 979w, https://patchmypc.com/app/uploads/2026/01/image-19-300x137.png 300w, https://patchmypc.com/app/uploads/2026/01/image-19-768x351.png 768w" sizes="(max-width: 979px) 100vw, 979px" /></figure>
+
+
+
+<p class="wp-block-paragraph">This Refresh Cache task periodically retrieves configuration from the service and writes a new FeatureConfig.json when changes are available. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="743" height="32" src="https://patchmypc.com/app/uploads/2026/01/image-25.png" alt="" class="wp-image-171541" srcset="https://patchmypc.com/app/uploads/2026/01/image-25.png 743w, https://patchmypc.com/app/uploads/2026/01/image-25-300x13.png 300w" sizes="(max-width: 743px) 100vw, 743px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Even if nothing else happens on the device, this mechanism ensures that rollout state eventually converges with what Microsoft intends. The second path is more dynamic and comes from the <strong>FeatureConfig ReconcileFeatures task.</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="808" height="264" src="https://patchmypc.com/app/uploads/2026/01/image-23.png" alt="controlled feature rollout scheduled tasks" class="wp-image-171539" srcset="https://patchmypc.com/app/uploads/2026/01/image-23.png 808w, https://patchmypc.com/app/uploads/2026/01/image-23-300x98.png 300w, https://patchmypc.com/app/uploads/2026/01/image-23-768x251.png 768w" sizes="(max-width: 808px) 100vw, 808px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Instead of being driven by a simple timer, this task reacts to Windows Notification Facility (WNF) state changes. The task definition contains multiple WNF triggers, including several that execute immediately and others that run after a short delay. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="420" height="353" src="https://patchmypc.com/app/uploads/2026/01/image-26.png" alt="" class="wp-image-171542" srcset="https://patchmypc.com/app/uploads/2026/01/image-26.png 420w, https://patchmypc.com/app/uploads/2026/01/image-26-300x252.png 300w" sizes="(max-width: 420px) 100vw, 420px" /></figure>
+
+
+
+<p class="wp-block-paragraph">When one of these WNF states changes, Windows treats that event as a signal that the configuration context may have shifted and that the feature state needs to be re-evaluated. During testing, this behavior became very visible. We enabled the <strong>&#8220;get the latest updates as soon as there are available&#8221;</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="871" height="110" src="https://patchmypc.com/app/uploads/2026/01/image-29.png" alt="" class="wp-image-171545" srcset="https://patchmypc.com/app/uploads/2026/01/image-29.png 871w, https://patchmypc.com/app/uploads/2026/01/image-29-300x38.png 300w, https://patchmypc.com/app/uploads/2026/01/image-29-768x97.png 768w" sizes="(max-width: 871px) 100vw, 871px" /></figure>
+
+
+
+<p class="wp-block-paragraph">After enabling the “<strong>Get the latest updates as soon as they are available”</strong> policy, the ReconcileFeatures task executed almost instantly and downloaded a newer FeatureConfig version, even though RefreshCache had not yet run.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="647" height="61" src="https://patchmypc.com/app/uploads/2026/01/image-30.png" alt="" class="wp-image-171546" srcset="https://patchmypc.com/app/uploads/2026/01/image-30.png 647w, https://patchmypc.com/app/uploads/2026/01/image-30-300x28.png 300w" sizes="(max-width: 647px) 100vw, 647px" /></figure>
+
+
+
+<p class="wp-block-paragraph">New rollout and the corresponding feature IDs appeared immediately in the registry and JSON payload. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="463" height="393" src="https://patchmypc.com/app/uploads/2026/01/image-31.png" alt="" class="wp-image-171547" srcset="https://patchmypc.com/app/uploads/2026/01/image-31.png 463w, https://patchmypc.com/app/uploads/2026/01/image-31-300x255.png 300w" sizes="(max-width: 463px) 100vw, 463px" /></figure>
+
+
+
+<p class="wp-block-paragraph">In this case, it was ReconcileFeatures rather than RefreshCache that triggered the download. That makes sense when you look at what the reconciliation process is actually responsible for.</p>
+
+
+
+<h2 id="h-the-role-of-wnf-triggers-in-reconcilefeatures" class="wp-block-heading">The role of WNF triggers in ReconcileFeatures</h2>
+
+
+
+<p class="wp-block-paragraph">As mentioned before, the ReconcileFeatures task is not just a periodic scheduled task. It is also bound to multiple WNF state triggers.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="457" src="https://patchmypc.com/app/uploads/2026/01/image-37-1024x457.png" alt="" class="wp-image-171553" srcset="https://patchmypc.com/app/uploads/2026/01/image-37-1024x457.png 1024w, https://patchmypc.com/app/uploads/2026/01/image-37-300x134.png 300w, https://patchmypc.com/app/uploads/2026/01/image-37-768x343.png 768w, https://patchmypc.com/app/uploads/2026/01/image-37.png 1213w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The task XML includes WNF state change triggers such as:</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="919" height="24" src="https://patchmypc.com/app/uploads/2026/01/image-28.png" alt="" class="wp-image-171544" srcset="https://patchmypc.com/app/uploads/2026/01/image-28.png 919w, https://patchmypc.com/app/uploads/2026/01/image-28-300x8.png 300w, https://patchmypc.com/app/uploads/2026/01/image-28-768x20.png 768w" sizes="(max-width: 919px) 100vw, 919px" /></figure>
+
+
+
+<p class="wp-block-paragraph"><code>WNF_SHEL_CDM_FEATURE_CONFIG_FIRST_USAGE</code></p>
+
+
+
+<p class="wp-block-paragraph">and several others related to configuration updates and feature usage signals. These WNF notifications do not contain the CFR data themselves. They act as signals that something changed and the system should reevaluate. When one of these states is raised, ReconcileFeatures runs and processes the FeatureConfig rules again.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="817" height="111" src="https://patchmypc.com/app/uploads/2026/01/image-33.png" alt="" class="wp-image-171549" srcset="https://patchmypc.com/app/uploads/2026/01/image-33.png 817w, https://patchmypc.com/app/uploads/2026/01/image-33-300x41.png 300w, https://patchmypc.com/app/uploads/2026/01/image-33-768x104.png 768w" sizes="(max-width: 817px) 100vw, 817px" /></figure>
+
+
+
+<p class="wp-block-paragraph">This explains scenarios where feature behavior changes without an update being installed. The configuration changed and Windows re processed the rollout logic.  It also explains why activating the “Get the latest updates as soon as they are available” policy can immediately trigger evaluation. That policy enables optional and preview content, sets rollout participation flags, and in practice caused ReconcileFeatures to run on my system and download a newer FeatureConfig payload.</p>
+
+
+
+<h2 id="h-what-happens-during-feature-reconciliation" class="wp-block-heading">What happens during Feature reconciliation</h2>
+
+
+
+<p class="wp-block-paragraph">Once the configuration is refreshed, ReconcileFeatures does not simply flip feature toggles. It walks across several FeatureManagement registry paths, and it also looks at the staged and overrides structures. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="971" height="413" src="https://patchmypc.com/app/uploads/2026/01/image-32.png" alt="" class="wp-image-171548" srcset="https://patchmypc.com/app/uploads/2026/01/image-32.png 971w, https://patchmypc.com/app/uploads/2026/01/image-32-300x128.png 300w, https://patchmypc.com/app/uploads/2026/01/image-32-768x327.png 768w" sizes="(max-width: 971px) 100vw, 971px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Two important registry locations in this process are: FeatureManagement\Overrides and FeatureManagement\UsageSubscriptions</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="973" height="343" src="https://patchmypc.com/app/uploads/2026/01/image-34.png" alt="controlled feature rollout featuremanagement" class="wp-image-171550" srcset="https://patchmypc.com/app/uploads/2026/01/image-34.png 973w, https://patchmypc.com/app/uploads/2026/01/image-34-300x106.png 300w, https://patchmypc.com/app/uploads/2026/01/image-34-768x271.png 768w" sizes="(max-width: 973px) 100vw, 973px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Overrides contain the feature state that has been explicitly forced or adjusted. This is also the place where tools like Mach2 or ViveTool write their values. The ReconcileFeatures task is designed to restore overrides and return feature state to what the rollout configuration intends. That is why Microsoft documentation calls this out in the context of Temporary Enterprise Feature Control. Even if an override is applied manually, the system may revert it when reconciliation runs, unless the override is treated as a higher-priority policy entry.</p>
+
+
+
+<p class="wp-block-paragraph">During this same pass the code also reads flight and usage metadata. Procmon traces clearly show lookups of flight IDs, reporting targets, rollout timestamps, and feature impression state. This information is used both for gating and for telemetry reporting. Only after this reconciliation pass does the device decide whether a given feature flag should be enabled or remain off.</p>
+
+
+
+<h2 id="h-where-getctacpropertyalloc-fits-in" class="wp-block-heading">Where GetCtacPropertyAlloc fits in</h2>
+
+
+
+<p class="wp-block-paragraph">Inside <strong>fcon.dll </strong>there is a function named<strong> GetCtacPropertyAlloc</strong>. ReconcileFeatures and related components call it to fetch CTAC and rollout properties at runtime.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="994" height="277" src="https://patchmypc.com/app/uploads/2026/01/image-35.png" alt="" class="wp-image-171551" srcset="https://patchmypc.com/app/uploads/2026/01/image-35.png 994w, https://patchmypc.com/app/uploads/2026/01/image-35-300x84.png 300w, https://patchmypc.com/app/uploads/2026/01/image-35-768x214.png 768w" sizes="(max-width: 994px) 100vw, 994px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Depending on the requested property name, it returns:</p>
+
+
+
+<ul class="wp-block-list">
+<li>&#8220;FeatureConfigs&#8221;<br>The full FeatureConfig payload as a string. This corresponds to the JSON that is written to disk.</li>
+
+
+
+<li>&#8220;MxVersion&#8221;<br>The current configuration version.</li>
+
+
+
+<li>&#8220;MxState&#8221;<br>The current rollout state for this device.</li>
+
+
+
+<li>&#8220;IsMicrosoftAAD&#8221;<br>A simple yes or no value that tells FCON whether the device is in a Microsoft AAD context. This changes which rollout rules apply.</li>
+
+
+
+<li>&#8220;TriggeredFlightIds&#8221;<br>The flights that have actually taken effect on the device.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">This is the glue between the downloaded configuration, the registry structures, the evaluation logic, and the final feature enablement decision.</p>
+
+
+
+<h2 id="h-windows-flighting-overview" class="wp-block-heading">Windows Flighting Overview</h2>
+
+
+
+<p class="wp-block-paragraph">With Microsoft having almost no documentation about this Controlled Feature Rollout flow.. I decided to combine it all in a high overview.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="774" src="https://patchmypc.com/app/uploads/2026/07/image-6-1024x774.png" alt="controlled feature rollout CFR overview" class="wp-image-188427" srcset="https://patchmypc.com/app/uploads/2026/07/image-6-1024x774.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-6-300x227.png 300w, https://patchmypc.com/app/uploads/2026/07/image-6-768x580.png 768w, https://patchmypc.com/app/uploads/2026/07/image-6.png 1421w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<h2 id="h-why-can-devices-behave-differently-even-on-the-same-build" class="wp-block-heading">Why can devices behave differently, even on the same build</h2>
+
+
+
+<p class="wp-block-paragraph">From the outside, Controlled Feature Rollout can look inconsistent. Two devices install the same cumulative update and receive the same binaries, yet only one of them activates a new feature or hotfix. It feels random, but both systems are behaving exactly as designed.</p>
+
+
+
+<p class="wp-block-paragraph">The difference is not in the code but in the activation timing. Devices move through different rollout waves, belong to different targeting buckets, or process the reconciliation triggers at different moments. One machine may already have evaluated the latest FeatureConfig payload, while another is still waiting for its next evaluation window. The binaries exist on both, only the enablement decision differs.</p>
+
+
+
+<p class="wp-block-paragraph">That is exactly what happened in the KSP renewal investigation. The fix was already present on the device, but the rollout wave had not yet enabled it for that tenant. Manually toggling the feature flag with ViVeTool worked, but it effectively bypassed the intended CFR activation path. That moment made it clear that nothing was missing or broken. The feature was simply staged and waiting for its turn to be enabled. Which is what led to this deeper dive into how CFR actually flows through <strong>OneSettings, FeatureConfig, ReconcileFeatures, and the FeatureManagement registry.</strong></p>
+
+
+
+<h2 id="h-the-store-has-flights-too" class="wp-block-heading">The Store Has Flights Too</h2>
+
+
+
+<p class="wp-block-paragraph">While investigating CFR, I noticed something interesting. Windows is not the only Microsoft component that can be remotely flighted&#8230; The Microsoft Store installation engine appears to have its own configuration and rollout mechanism.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="524" height="212" src="https://patchmypc.com/app/uploads/2026/05/image-43.png" alt="" class="wp-image-185895" srcset="https://patchmypc.com/app/uploads/2026/05/image-43.png 524w, https://patchmypc.com/app/uploads/2026/05/image-43-300x121.png 300w" sizes="(max-width: 524px) 100vw, 524px" /></figure>
+
+
+
+<p class="wp-block-paragraph">At the center of that process is the <strong>Store Install Service</strong>. This service is responsible for much more than simply downloading Store apps. This service essentially acts as a controlled pipeline for Store apps, making sure that apps are downloaded, staged, validated, installed, and provisioned in a reliable, managed, and remotely configurable way.</p>
+
+
+
+<p class="wp-block-paragraph">Instead of relying on traditional Windows Feature IDs, the Store retrieves a configuration payload from: <strong>/settings/v3.0/SCC/InstallService</strong></p>
+
+
+
+<p class="wp-block-paragraph">The payload contains hundreds of remotely configurable settings that control how the Store installation pipeline behaves. Unlike CFR, where a feature is enabled or disabled through a Feature ID, these settings directly influence the behavior of the service itself.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="682" height="300" src="https://patchmypc.com/app/uploads/2026/05/image-44.png" alt="" class="wp-image-185896" srcset="https://patchmypc.com/app/uploads/2026/05/image-44.png 682w, https://patchmypc.com/app/uploads/2026/05/image-44-300x132.png 300w" sizes="(max-width: 682px) 100vw, 682px" /></figure>
+
+
+
+<h3 id="h-id-61372494-sote-flight-example" class="wp-block-heading">ID 61372494 Sote Flight Example</h3>
+
+
+
+<p class="wp-block-paragraph">A good example of this was the <strong><a href="https://patchmypc.com/blog/company-portal-not-installing-during-autopilot-enrollment-0x87d1041c/">Company Portal 0x87D1041C issue during Autopilot pre-provisioning</a></strong>. After the May Windows update, the updated <strong>InstallService.dll </strong>contained a new code path called FixInstallUnderSystemContext, linked to feature ID 61372494. But the code being present was not enough to explain the behavior. The important part was that the Store InstallService OneSettings payload also contained FIXINSTALLUNDERSYSTEMCONTEXT set to 1.</p>
+
+
+
+<p class="wp-block-paragraph">That changed the installation flow for Store apps started under LocalSystem. Instead of completing the expected system-context registration path during pre-provisioning, InstallService tried to move into a logged-on-user flow. During Autopilot pre-provisioning, that is exactly the wrong timing, because the actual user session does not exist yet. The package could already be staged under WindowsApps, but Company Portal was not registered in the state Intune expected, causing ESP to fail with 0x87D1041C.</p>
+
+
+
+<p class="wp-block-paragraph">When the InstallService configuration was later reverted, and <strong>FIXINSTALLUNDERSYSTEMCONTEXT</strong> changed back to 0, Company Portal started installing successfully again with the same Intune assignment and the same Autopilot configuration. That made it a perfect example of Store-side flighting: the code was already present in Windows, but the behavior was controlled by a remote OneSettings value.</p>
+
+
+
+<h2 id="h-why-controlled-feature-rollout-matters-when-troubleshooting" class="wp-block-heading">Why Controlled Feature Rollout matters when troubleshooting</h2>
+
+
+
+<p class="wp-block-paragraph">If a feature exists but does not appear to work yet, it is worth checking:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Whether FeatureConfig.json has been updated</li>
+
+
+
+<li>Whether ReconcileFeatures has recently been evaluated</li>
+
+
+
+<li>Whether overrides are being reset</li>
+
+
+
+<li>Whether rollout participation policies are applied</li>
+
+
+
+<li>Whether the device is inside an enterprise-controlled rollout window</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">And if you want to be kept up to date about what Microsoft is activating in the background, check out the <strong><a href="https://github.com/call4cloud-code/onesettings-flight-monitor/tree/main">OneSettings Monitor on GitHub</a></strong>. It monitors the flights Microsoft is enabling remotely&#8230; which could be useful when something breaks out of a sudden&#8230;</p>
+
+
+
+<p class="wp-block-paragraph"></p>
+<p>The post <a href="https://patchmypc.com/blog/how-controlled-feature-rollout-actually-works/">A Deep Dive into Controlled Feature Rollout: Why Features are turned off by default</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/blog/how-controlled-feature-rollout-actually-works/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
