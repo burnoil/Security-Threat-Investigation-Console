@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 29 Jul 2026 13:41:20 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 30 Jul 2026 10:38:52 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -45,7 +45,7 @@
 
 
 
-<h2 id="h-three-red-errors-and-a-noncompliant-device-2016345708" class="wp-block-heading">Three red errors and <strong>a NonCompliant Device: 2016345708.</strong></h2>
+<h2 id="h-three-red-errors-and-a-noncompliant-device-2016345708" class="wp-block-heading"><strong>Three red errors and a NonCompliant Device: 2016345708.</strong></h2>
 
 
 
@@ -133,15 +133,11 @@
 
 
 
-<p class="wp-block-paragraph">The follow-up to IT1431577 recommended KB5101684 as the client-side remediation.</p>
+<p class="wp-block-paragraph">The follow-up to IT1431577 recommended KB5101684 as the client-side remediation. Let’s take a step back and look at what changed in the July build, why Windows was moving toward this newer TPM path, and how Microsoft corrected the regression without removing the new design.</p>
 
 
 
-<p class="wp-block-paragraph">The public KB now says the update addresses newly provisioned or recovered devices that could stay incorrectly noncompliant after MDM enrollment. That explains the symptom. The interesting part was finding what Microsoft changed underneath it. Let&#8217;s take a quick step back and let&#8217;s find out what Microsoft enabled by mistake and how they fixed it</p>
-
-
-
-<h2 id="h-why-one-missing-certificate-causes-the-2016345708-compliance-issu" class="wp-block-heading">Why one missing certificate causes the 2016345708 Compliance Issue</h2>
+<h2 id="h-why-one-missing-certificate-causes-the-2016345708-compliance-issue" class="wp-block-heading">Why one missing certificate causes the 2016345708 Compliance Issue</h2>
 
 
 
@@ -161,27 +157,39 @@
 
 
 
+<h2 id="h-why-windows-was-moving-to-a-broader-tpm-identity-path" class="wp-block-heading">Why Windows Was Moving to a Broader TPM Identity Path</h2>
+
+
+
+<p class="wp-block-paragraph">The July build did more than change the request sent to the Microsoft AIK service. It expanded the TPM identity material that Windows prepared before attestation could begin.</p>
+
+
+
+<p class="wp-block-paragraph">The established Windows flow was mainly built around RSA based Endorsement Key and AIK material. TPM 2.0 is more flexible and can support different algorithms and identity types, including RSA and ECC. Physical and virtual TPMs do not always expose or handle that material in exactly the same way.</p>
+
+
+
+<p class="wp-block-paragraph">Microsoft has not publicly documented the complete design reasoning behind this change. However, the Windows code suggests that Microsoft was preparing the attestation platform for a broader and more crypto agile TPM identity model instead of continuing to depend on one established RSA path. That explains the direction of the change. It does not explain why devices became noncompliant. To understand that, we need to look at the hidden Windows feature that switched on the additional work.</p>
+
+
+
 <h2 id="h-the-hidden-feature-behind-the-new-attestation-path" class="wp-block-heading">The Hidden Feature behind the new Attestation path</h2>
 
 
 
-<p class="wp-block-paragraph">The binary work pointed to feature <strong>ID 62861611. </strong>Its internal WIL name is <strong>PCPKspEKPubEnumeration</strong>. The name sounds narrow, as if it only lists the TPM Endorsement Key. The code shows something wider.</p>
+<p class="wp-block-paragraph">The binary comparison pointed to feature ID 62861611, internally named <strong>PCPKspEKPubEnumeration.</strong></p>
 
 
 
-<p class="wp-block-paragraph">When the feature is enabled, Windows prepares a new PCP/KSP view of the TPM’s public identity, checks or creates extra AIK v2 material, uses a newer way to import the TPM-created key, and selects newer pre-attestation logic. <strong>When the feature is disabled, Windows keeps using the older&#8221;WORKING AKA NOT BROKEN&#8221; path.</strong></p>
+<p class="wp-block-paragraph">When enabled, Windows kept the established attestation work but added several new steps. It enumerated public Endorsement Key identities through the Microsoft Platform Crypto Provider, prepared additional RSA and ECC identity material, evaluated whether the existing AIK certificate should move to AIK v2, and selected the newer pre-attestation health check. When the feature was disabled, Windows remained on the established attestation path without performing that additional preparation.</p>
 
 
 
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="576" src="https://patchmypc.com/app/uploads/2026/07/image-135-1024x576.png" alt="" class="wp-image-190511" srcset="https://patchmypc.com/app/uploads/2026/07/image-135-1024x576.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-135-300x169.png 300w, https://patchmypc.com/app/uploads/2026/07/image-135-768x432.png 768w, https://patchmypc.com/app/uploads/2026/07/image-135.png 1417w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="576" src="https://patchmypc.com/app/uploads/2026/07/image-135-1024x576.png" alt="The release binary connects the WIL name PCPKspEKPubEnumeration to feature ID 62861611." class="wp-image-190511" srcset="https://patchmypc.com/app/uploads/2026/07/image-135-1024x576.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-135-300x169.png 300w, https://patchmypc.com/app/uploads/2026/07/image-135-768x432.png 768w, https://patchmypc.com/app/uploads/2026/07/image-135.png 1417w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
-<p class="wp-block-paragraph">The release binary connects the WIL name PCPKspEKPubEnumeration to feature ID 62861611. </p>
-
-
-
-<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><td><strong>In plain words</strong> This feature does not turn the TPM on or off. It chooses whether Windows adds the newer TPM identity and AIK v2 work on top of the established attestation path.</td></tr></tbody></table></figure>
+<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><td><strong>In plain words </strong>This feature does not turn the TPM on or off. It chooses whether Windows adds the newer TPM identity and AIK v2 work on top of the established attestation path.</td></tr></tbody></table></figure>
 
 
 
@@ -377,15 +385,15 @@
 
 
 
-<p class="wp-block-paragraph">The July build enabled more than a new AIK message. It enabled a wider TPM identity path. Windows started exposing RSA and ECC EK public material through PCP/KSP, preparing extra AIK v2 identities, using a newer key-import format, and selecting a newer pre-attestation check.</p>
+<p class="wp-block-paragraph">The July build enabled more than a new AIK message. It enabled a wider TPM identity path. Windows started preparing RSA and ECC Endorsement Key material through the Microsoft Platform Crypto Provider, creating additional AIK v2 identities, using newer key import logic, and selecting a newer pre attestation health check.</p>
 
 
 
-<p class="wp-block-paragraph">That wider change explains why the reports looked different. The Nuvoton case showed a physical TPM certificate and chain that did not lead to 2016345708 compliance issues. Parallels showed a virtual TPM that could not answer the new Windows calls correctly. The AIK v2 trace showed a device that reached the Microsoft service and was throttled. Different break, same newly enabled path.</p>
+<p class="wp-block-paragraph">That wider change explains why the reports did not all look the same. The Nuvoton case involved a physical TPM with real certificate material that still resulted in the 2016345708 compliance issue. Parallels involved a virtual TPM that could not correctly answer the newer Windows TPM calls. A successful AIK v2 trace showed that the new client and service flow could complete correctly, while a separate trace showed that the Microsoft service could also return HTTP 429 throttling.</p>
 
 
 
-<p class="wp-block-paragraph">Disabling 62861611 brought the tested device back to the established flow and restored DHA. Microsoft’s July preview update did not simply turn the feature off. It kept the new design, added a choice between current and _Old EK service APIs, and added a narrow safety net that keeps a working AIK v1 certificate when a v1-to-v2 upgrade receives HTTP 404.</p>
+<p class="wp-block-paragraph">Different failures, but all connected to the same newly enabled TPM identity path. Disabling feature 62861611 returned the tested device to the established attestation flow and restored Device Health Attestation.KB5101684 did not remove the new design. Microsoft kept the wider TPM identity and AIK v2 architecture, added a compatibility choice between the current and older EK service APIs, and added a narrow safeguard that keeps an existing AIK v1 certificate when an attempted AIK v2 upgrade returns HTTP 404.</p>
 <p>The post <a href="https://patchmypc.com/blog/why-intune-devices-became-noncompliant-after-the-july-windows-update/">Why Intune Devices Became Noncompliant After the July Windows Update</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
