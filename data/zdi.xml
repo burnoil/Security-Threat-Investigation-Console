@@ -10,9 +10,185 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Thu, 30 Jul 2026 15:18:37 -0500</pubDate>
+    <pubDate>Thu, 30 Jul 2026 17:12:42 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-523: Hugging Face PyTorch Image Models checkpoint Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-27987</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-523/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Hugging Face PyTorch Image Models. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-15679.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-522: Phoenix Contact CHARX SEC-3000 Insertion of Sensitive Information into Log File Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-27763</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-522/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to disclose sensitive information on affected installations of Phoenix Contact CHARX SEC-3000 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.5. The following CVEs are assigned: CVE-2026-41032.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-521: Phoenix Contact CHARX SEC-3000 Command Injection Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-27762</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-521/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Phoenix Contact CHARX SEC-3000 devices. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.8. The following CVEs are assigned: CVE-2026-44095.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-520: (Pwn2Own) Phoenix Contact CHARX SEC-3150 Jupicore External Control of Path Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29093</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-520/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-44103.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-519: (Pwn2Own) Phoenix Contact CHARX SEC-3150 CharxSystemConfigManager Configuration Injection Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29077</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-519/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-44099.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-518: (Pwn2Own) Phoenix Contact CHARX SEC-3150 MQTT Service Server-Side Request Forgery Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29073</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-518/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to access internal resources on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.3. The following CVEs are assigned: CVE-2026-44091.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-517: (Pwn2Own) Phoenix Contact CHARX SEC-3150 BackendURL WebSocket Command Injection Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29054</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-517/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Phoenix Contact CHARX SEC-3150 devices. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 6.8. The following CVEs are assigned: CVE-2026-44098.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-516: (Pwn2Own) Phoenix Contact CHARX SEC-3150 ModBus Server Exposed Dangerous Function Denial-of-Service Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29055</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-516/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to create a denial-of-service condition on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.5. The following CVEs are assigned: CVE-2026-44090.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-515: (Pwn2Own) Phoenix Contact CHARX SEC-3150 charx-jupicore Missing Authentication Configuration Modification Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28999</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-515/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to modify configuration on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 4.2. The following CVEs are assigned: CVE-2026-44100.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-514: (Pwn2Own) Phoenix Contact CHARX SEC-3150 Failing Open Authentication Bypass Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29076</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-514/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to bypass authentication on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-44094.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-513: (Pwn2Own) Phoenix Contact CHARX SEC-3150 update2-upload Arbitrary File Upload Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29110</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-513/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to upload arbitrary files on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 2.4. The following CVEs are assigned: CVE-2026-44097.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-512: (Pwn2Own) Phoenix Contact CHARX SEC-3150 ModBus Server Exposed Dangerous Function Denial-of-Service Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29052</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-512/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to create a denial-of-service condition on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.5. The following CVEs are assigned: CVE-2026-44107.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-511: (Pwn2Own) Phoenix Contact CHARX SEC-3150 user-applications Symlink Following Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29075</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-511/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Phoenix Contact CHARX SEC-3150 devices. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-44093.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-510: (Pwn2Own) Phoenix Contact CHARX SEC-3150 Missing Cryptographic Signature Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29094</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-510/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to bypass firmware validation on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-44104.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-509: (Pwn2Own) Phoenix Contact CHARX SEC-3150 OCPP Missing Authentication for Critical Function Authentication Bypass Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29091</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-509/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to modify configuration on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.0. The following CVEs are assigned: CVE-2026-44101.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-508: (Pwn2Own) Phoenix Contact CHARX SEC-3150 charx_set_ip_address Improper Input Validation Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29108</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-508/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Phoenix Contact CHARX SEC-3150 devices. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-44095.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-507: (Pwn2Own) Phoenix Contact CHARX SEC-3150 Privilege Defined With Unsafe Actions Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29109</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-507/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Phoenix Contact CHARX SEC-3150 devices. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-44096.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-506: (Pwn2Own) Phoenix Contact CHARX SEC-3150 Insertion of Sensitive Information into Log File Authentication Bypass Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29050</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-506/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to bypass authentication on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.3. The following CVEs are assigned: CVE-2026-44105.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-505: (Pwn2Own) Phoenix Contact CHARX SEC-3150 charx-system-config-manager Service CRLF Injection Firewall Bypass Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29074</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-505/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to bypass firewall rules on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.0. The following CVEs are assigned: CVE-2026-44092.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-504: (Pwn2Own) Phoenix Contact CHARX SEC-3150 CharxSystemConfigManager Configuration Injection Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29059</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-504/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-7849.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-503: (Pwn2Own) Phoenix Contact CHARX SEC-3150 Race Condition Firewall Bypass Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29058</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-503/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to bypass firewall rules on affected installations of Phoenix Contact CHARX SEC-3150 devices. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.4. The following CVEs are assigned: CVE-2026-44108.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-502: (Pwn2Own) Phoenix Contact CHARX SEC-3150 user-applications Link Following Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29085</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-502/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Phoenix Contact CHARX SEC-3150 devices. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-44106.]]></description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-501: WatchGuard FireWare OS sigd comp_start_cb Directory Traversal Arbitrary File Creation Vulnerability]]></title>
@@ -1436,182 +1612,6 @@
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-324/</link>
       <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-45206.]]></description>
       <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-323: TrendAI Vision One Security Agent Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28089</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-323/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-34930.]]></description>
-      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-322: TrendAI Vision One Security Agent Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28077</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-322/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-34929.]]></description>
-      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-321: TrendAI Vision One Security Agent Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28061</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-321/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-34928.]]></description>
-      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-320: TrendAI Vision One Security Agent Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27959</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-320/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-34927.]]></description>
-      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-319: Progress Software Kemp LoadMaster addcountry Command Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29249</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-319/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Progress Software Kemp LoadMaster. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-3517.]]></description>
-      <pubDate>Thu, 21 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-318: Progress Software Kemp LoadMaster ssodomain_killsession Command Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29222</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-318/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Progress Software Kemp LoadMaster. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-3518.]]></description>
-      <pubDate>Thu, 21 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-317: Siemens Simcenter Femap IPT File Parsing Memory Corruption Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27349</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-317/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Siemens Simcenter Femap. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-12659.]]></description>
-      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-316: Siemens Simcenter Femap IPT File Parsing Memory Corruption Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27389</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-316/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Siemens Simcenter Femap. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2025-12659.]]></description>
-      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-315: Apple macOS USD Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29240</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-315/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Apple macOS. Interaction with the USD library is required to exploit this vulnerability but attack vectors may vary depending on the implementation. The ZDI has assigned a CVSS rating of 3.3. The following CVEs are assigned: CVE-2026-28941.]]></description>
-      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-314: Apple macOS USD File Parsing Out-Of-Bounds Write Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29239</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-314/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Apple macOS. Interaction with the USD library is required to exploit this vulnerability but attack vectors may vary depending on the implementation. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-28940.]]></description>
-      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-313: Apple Safari Regular Expression Duplicate Named Groups Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29186</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-313/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Apple Safari. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-28847.]]></description>
-      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-312: Apple Safari Web Inspector WebCore Style Resolver Use-After-Free Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28879</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-312/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Apple Safari. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-28955.]]></description>
-      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-311: Apple macOS CoreSymbolication Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28695</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-311/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Apple macOS. Interaction with the CoreSymbolication framework is required to exploit this vulnerability but attack vectors may vary depending on the implementation. The ZDI has assigned a CVSS rating of 3.3. The following CVEs are assigned: CVE-2026-28918.]]></description>
-      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-310: Microsoft Windows splwow64 Race Condition Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28605</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-310/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 4.4. The following CVEs are assigned: CVE-2026-34342.]]></description>
-      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-309: Microsoft Windows Message Queueing Double Free Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28559</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-309/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows that run Message Queueing. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-33838.]]></description>
-      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-308: Ivanti Endpoint Manager RemoteControlAuth Exposed Dangerous Method Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28617</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-308/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Ivanti Endpoint Manager. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 4.9. The following CVEs are assigned: CVE-2026-8109.]]></description>
-      <pubDate>Tue, 12 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-307: FlowiseAI Flowise Airtable_Agent Code Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29412</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-307/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Flowise. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2026-41265.]]></description>
-      <pubDate>Fri, 01 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-306: Oracle VirtualBox SoundBlaster 16 Race Condition Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28806</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-306/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Oracle VirtualBox. An attacker must first obtain the ability to execute high-privileged code on the target guest system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-35230.]]></description>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-305: (0Day) OpenAI Codex Sandbox Escape Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29475</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-305/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to bypass the sandbox on affected installations of OpenAI Codex. User interaction is required to exploit this vulnerability in that the target must use Codex to process a repository containing malicious JavaScript. The ZDI has assigned a CVSS rating of 8.6.]]></description>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-304: Foxit PDF Reader AcroForm Annotation Use-After-Free Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29495</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-304/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-5943.]]></description>
-      <pubDate>Mon, 27 Apr 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-303: Foxit PDF Reader AcroForm Signature Use-After-Free Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29494</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-303/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 3.3. The following CVEs are assigned: CVE-2026-5942.]]></description>
-      <pubDate>Mon, 27 Apr 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-302: Foxit PDF Reader AcroForm Signature Use-After-Free Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29492</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-302/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-5941.]]></description>
-      <pubDate>Mon, 27 Apr 2026 00:00:00 -0500</pubDate>
     </item>
     
   </channel>
