@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Sat, 01 Aug 2026 15:20:59 +0000</lastBuildDate>
+	<lastBuildDate>Sat, 01 Aug 2026 17:52:45 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -261,33 +261,23 @@
 
 
 
-<h2 id="h-turning-the-investigation-into-a-live-sync-monitor" class="wp-block-heading">Turning the investigation into a live Sync monitor</h2>
+<h2 id="h-turning-the-investigation-into-a-live-ic3-sync-monitor" class="wp-block-heading">Turning the investigation into a live IC3 Sync monitor</h2>
 
 
 
-<p class="wp-block-paragraph">Once the two notification paths were clear, I wanted to see them together instead of constantly switching between the Windows event logs and NotificationInfraLogs. That is why we built the Intune Notification Monitor. The goal was not to simulate Intune, but to correlate the real client side evidence produced by the next Sync action and turn it into one readable flow.</p>
+<p class="wp-block-paragraph">Once the two notification paths were clear, I wanted to see them together instead of constantly switching between the Windows event logs and NotificationInfraLogs. That is why I built the Intune Notification Monitor. The goal was not to simulate Intune, but to correlate the real client side evidence produced by the next Sync action and turn it into one readable flow.</p>
 
 
 
-<p class="wp-block-paragraph">The monitor is a local diagnostic tool and is not part of Microsoft Intune. It does not replace the Sync button or create its own device action. The Arm next Sync button only prepares the monitor to capture the next action. You then press Sync in the real Intune portal, and the tool watches both branches as they appear on the device.</p>
+<p class="wp-block-paragraph">The monitor also made the speed improvement immediately visible. Because IME already has an active IC3 and Trouter connection before anyone presses Sync, the DirectSync request does not have to wait for the next scheduled IME check in. In our captured actions, the IC3 request arrived and started the IME workload flow within milliseconds of pressing Sync in the Intune portal.</p>
 
 
 
-<p class="wp-block-paragraph">The left side follows the Windows MDM path. It detects the WNS notification that activates WindowsMDMPush and then records the policy, compliance, device management, and OMA DM evidence that follows. In the captured action, the timeline includes Windows device management activity together with event IDs 1010, 2902, 2900, 265, 361, and 131. The right side follows the IME path. It decodes the incoming<a href="https://patchmypc.com/blog/intune-ime-ic3-teams-protocol/"> IC3 and Trouter DirectSync payload,</a> shows the requested Win32 app, PowerShell script, and remediation workloads, and marks when IME has processed the request.</p>
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="554" src="https://patchmypc.com/app/uploads/2026/08/image-4-1024x554.png" alt="" class="wp-image-190873" srcset="https://patchmypc.com/app/uploads/2026/08/image-4-1024x554.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-4-300x162.png 300w, https://patchmypc.com/app/uploads/2026/08/image-4-768x416.png 768w, https://patchmypc.com/app/uploads/2026/08/image-4-1536x831.png 1536w, https://patchmypc.com/app/uploads/2026/08/image-4.png 1846w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
-<p class="wp-block-paragraph">The live flow then brings both branches back together as one Hybrid action. That is a correlation performed by the monitor from the evidence available on the client. The top orchestration node should therefore be read as a visualization of the one portal action and its two observed client paths, not as decompiled proof of Microsoft’s internal service side implementation.</p>
-
-
-
-
-
-<p class="wp-block-paragraph">Figure 16. The Intune Notification Monitor correlates the WNS and Windows MDM evidence with the IC3 and Trouter IME evidence and displays both as one live Hybrid Sync action.</p>
-
-
-
-<p class="wp-block-paragraph">The monitor makes the architecture much easier to explain. The portal still exposes one Sync button, but the device produces two different evidence chains. The blue branch proves that Windows policy work still relies on WNS and WindowsMDMPush. The purple branch proves that the IME DirectSync request now arrives through IC3 and Trouter. Seeing those branches move at the same time turns the code and log findings from the earlier sections into a live, repeatable demonstration.</p>
+<p class="wp-block-paragraph">That timing is an observation from our captures and should not be treated as a guaranteed response time. However, it clearly shows the advantage of delivering the request over an already established connection.</p>
 
 
 
