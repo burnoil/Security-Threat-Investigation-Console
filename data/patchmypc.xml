@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Sat, 01 Aug 2026 17:52:45 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 03 Aug 2026 16:26:00 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,308 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Patch My PC Publisher Production Version 3.0.3.0 Released</title>
+		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-3-0-released/</link>
+					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-3-0-released/#respond</comments>
+		
+		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
+		<pubDate>Mon, 03 Aug 2026 16:25:59 +0000</pubDate>
+				<category><![CDATA[Production Release]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=190946</guid>
+
+					<description><![CDATA[<p>This release contains a variety of fixes, as noted below. This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&#160;MSI installer. Fixes</p>
+<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-3-0-released/">Patch My PC Publisher Production Version 3.0.3.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">This release contains a variety of fixes, as noted below.</p>
+
+
+
+<p class="wp-block-paragraph">This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&nbsp;<strong><a href="https://patchmypc.com/publishing-service-setup-documentation">MSI installer</a></strong>.</p>
+
+
+
+<h2 id="h-fixes" class="wp-block-heading">Fixes</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Fixed a bug causing the sync schedule to drift away from the scheduled time in some cases.</li>
+
+
+
+<li>When the Publisher is configured with an MSP license, and two or more tenants are syncing the same application, an incomplete application can be published. For example, two or more tenants are processing Google Chrome at the same time. Some of the tenants may publish the product before the download is complete. </li>
+</ul>
+
+
+
+<p class="wp-block-paragraph"></p>
+<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-3-0-released/">Patch My PC Publisher Production Version 3.0.3.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-3-0-released/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Patch Management after Ivanti DSM End of Life: What DSM Customers Need to Know Before 2027</title>
+		<link>https://patchmypc.com/blog/ivanti-dsm-end-of-life/</link>
+					<comments>https://patchmypc.com/blog/ivanti-dsm-end-of-life/#respond</comments>
+		
+		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
+		<pubDate>Mon, 03 Aug 2026 15:59:00 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=190899</guid>
+
+					<description><![CDATA[<p>Ivanti DSM reaches end of life on December 31, 2026. Learn how to plan your Ivanti DSM migration, compare replacement options, move applications and eScript packages to Microsoft Intune or Configuration Manager, and modernize third party patch management.</p>
+<p>The post <a href="https://patchmypc.com/blog/ivanti-dsm-end-of-life/">Patch Management after Ivanti DSM End of Life: What DSM Customers Need to Know Before 2027</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">Patch management is the process of planning, testing, and deploying software updates and security patches across endpoints in a controlled manner. Especially for third-party applications, this remains a recurring challenge for many IT teams because whenever an update becomes available, it needs to be detected, packaged, tested, and deployed securely, reliably, and in a way that can be audited. And the challenge will only become bigger: With the emergence of AI models like Claude Mythos, the frequency of security patches is expected to significantly increase. With the Ivanti DSM End of Life (EOL) approaching, many organizations in the DACH region are facing three key questions.</p>
+
+
+
+<ol class="wp-block-list">
+<li>Which solution will take over endpoint management, server management, and software distribution in the future?</li>
+
+
+
+<li>How can application packages with years of package logic, eScript code, dependencies, and operational knowledge be migrated from Ivanti DSM to a new platform?</li>
+
+
+
+<li>How can the <a href="https://patchmypc.com/blog/what-is-third-party-patching/">third party patching</a>challenge be solved long term?</li>
+</ol>
+
+
+
+<p class="wp-block-paragraph">For many DSM (Desktop &amp; Server Management) customers, this is about more than selecting a new tool. It is about managing a controlled transition to a sustainable long-term operating model.</p>
+
+
+
+<p class="wp-block-paragraph">So where should organizations begin? It starts with understanding what Ivanti DSM&#8217;s end of life actually means, the options available for replacing it, and what a successful migration path looks like. Finally, it will show a path on how to smoothly migrate apps from Ivanti DSM to <a href="https://patchmypc.com/blog/category/intune/">Microsoft Intune</a> and ConfigMgr.</p>
+
+
+
+<h2 id="h-when-does-ivanti-dsm-reach-end-of-life" class="wp-block-heading">When Does Ivanti DSM Reach End of Life?</h2>
+
+
+
+<p class="wp-block-paragraph">Ivanti DSM reaches its official End of Life on December 31, 2026. From that date onward, regular vendor support for Ivanti Desktop and Server Management will end. Organizations will no longer receive official product updates or standard support services. Only very few large organizations were offered another support extension by Ivanti. IT teams should check their license expiry date in DSM to avoid unexpected problems, as there were some customers who shifted to a subscription model in the past, meaning access to DSM could be lost.</p>
+
+
+
+<p class="wp-block-paragraph">This leaves a limited window to evaluate, test, and implement a replacement solution. The challenge goes beyond selecting a platform. Existing software packages, deployment processes, OS deployment workflows, permissions, target groups, and operating models all need to be reviewed. The larger the DSM environment, the earlier planning should begin.</p>
+
+
+
+<h2 id="h-what-happens-after-ivanti-dsm-support-ends" class="wp-block-heading">What Happens After Ivanti DSM Support Ends?</h2>
+
+
+
+<p class="wp-block-paragraph">After support ends, continuing to operate Ivanti DSM becomes increasingly risky. Without official updates, bug fixes, or security patches, organizations may face greater security, operational, compliance, and audit risks. This is especially important in regulated industries or environments with strict audit requirements, where vulnerabilities may no longer be addressed through supported product updates. That risk is not theoretical. In March 2026, Ivanti released a high severity security update for DSM to address a local privilege escalation vulnerability.</p>
+
+
+
+<p class="wp-block-paragraph">DSM will also become more difficult to operate from a technical perspective. New Windows versions, modern endpoint scenarios, and cloud management requirements may no longer be reliably supported. At the same time, DSM expertise often becomes harder to find. Experienced administrators move into new roles, projects, or organizations, making troubleshooting and maintenance more challenging.</p>
+
+
+
+<p class="wp-block-paragraph">Simply running DSM until the last possible day is rarely the best strategy. A planned transition with a clearly defined target platform, prioritized applications, and a realistic timeline is usually the safer approach.</p>
+
+
+
+<h2 id="h-common-ivanti-dsm-replacement-options" class="wp-block-heading">Common Ivanti DSM Replacement Options</h2>
+
+
+
+<p class="wp-block-paragraph">There is no direct one-to-one replacement that automatically replicates every DSM capability. The right solution depends heavily on the existing environment. Key considerations include cloud strategy, application portfolio, OS deployment requirements, server management needs, licensing models, and operational processes.</p>
+
+
+
+<p class="wp-block-paragraph">Many organizations evaluate Microsoft Intune, Microsoft Configuration Manager, baramundi, or Ivanti Neurons. Other options include Matrix42 Empirum or Tanium. In practice, hybrid target architectures are common. For example, Intune may be used for modern unified endpoint management (UEM) while another solution handles complex software distribution, servers, or specialized requirements.</p>
+
+
+
+<p class="wp-block-paragraph">A meaningful evaluation should go beyond comparing feature lists. The critical question is whether the new platform can support an organization&#8217;s real-world processes as well as how much a solution can adapt to the organization and vice versa. This includes installation logic, detection methods, repair actions, rollback procedures, user context handling, dependencies, maintenance windows, and reporting.</p>
+
+
+
+<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><th>Option</th><th>Strengths</th><th>Typical Challenges</th></tr><tr><td>Microsoft Intune</td><td>Cloud endpoint management, Autopilot, compliance, mobile device management</td><td>Complex DSM logic like packages, userparts, parameters and installation orders often needs to be redesigned. No full Windows Server management through standard Intune enrollment. Selected endpoint security settings can be managed through Microsoft Defender for Endpoint.</td></tr><tr><td>Microsoft Configuration Manager</td><td>Strong traditional software distribution, on premises and hybrid scenarios</td><td>Operational overhead, maintaining on-premise infrastructur and licensing can be significant if used for servers. Also the packaging challenges mentioned for Intune remain.</td></tr><tr><td>baramundi</td><td>Windows focused client management, software distribution, patch management</td><td>Packages (especially in this case Userparts) and operational processes must be migrated carefully. On-premise infrastructure must be maintained.</td></tr><tr><td>Ivanti Neurons</td><td>Modern Ivanti platform for IT and endpoint management</td><td>Not a simple DSM upgrade but a full platform migration. Not strong for software deployment but focuses more on DEX.</td></tr></tbody></table></figure>
+
+
+
+<h3 id="h-microsoft-intune" class="wp-block-heading">Microsoft Intune</h3>
+
+
+
+<p class="wp-block-paragraph">For many DSM customers, Microsoft Intune is the most obvious target platform. It provides strong capabilities for modern cloud endpoint management, Windows Autopilot, compliance management, mobile device management, and integration with Microsoft 365 and Entra ID. For organizations expanding their cloud native endpoint strategy, Intune is often a central component.</p>
+
+
+
+<p class="wp-block-paragraph">Another clear advantage is licensing. Intune is already included in many Microsoft 365 plans or can be integrated into existing Microsoft investments. This makes it particularly attractive for organizations moving toward cloud management.</p>
+
+
+
+<p class="wp-block-paragraph">However, Intune is not automatically a complete replacement for every DSM scenario. Traditional software distribution, complex installation logic, layered dependencies, and all server management requirements often need to be handled differently. For many organizations, Intune becomes the primary target platform, but not necessarily the complete answer for every DSM use case.</p>
+
+
+
+<h3 id="h-microsoft-configuration-manager-mecm" class="wp-block-heading">Microsoft Configuration Manager / MECM</h3>
+
+
+
+<p class="wp-block-paragraph">Microsoft Configuration Manager, often still referred to as SCCM or MECM, remains a strong option for traditional Windows environments. It is particularly well suited for organizations with large numbers of on-premises clients, complex software distribution requirements, servers and other high availability endpoints, and established Microsoft management processes.</p>
+
+
+
+<p class="wp-block-paragraph">The transition from DSM to Configuration Manager is often closer to familiar client management workflows than a pure cloud migration. Applications, collections, task sequences, and detailed client control align well with environments that continue to operate on premises or in hybrid models.</p>
+
+
+
+<p class="wp-block-paragraph">Configuration Manager can also be used alongside Intune through co-management. This is attractive for organizations that want to adopt Intune gradually while continuing to manage certain workloads through traditional methods or need a mature solution to manage servers while fully taking advantage of Intune&#8217;s modern capabilities. At the same time, infrastructure requirements, operational complexity, and Microsoft&#8217;s decreasing ConfigMgr focus should be carefully evaluated.</p>
+
+
+
+<h3 id="h-baramundi" class="wp-block-heading">baramundi</h3>
+
+
+
+<p class="wp-block-paragraph">baramundi is a well-established endpoint management solution in the German-speaking market. The platform combines real-time software distribution, patch management, inventory management, OS deployment, and vulnerability management within a single interface. It is particularly attractive for organizations looking for a practical and relatively easy-to-manage solution for Windows clients and servers.</p>
+
+
+
+<p class="wp-block-paragraph">For many IT teams, baramundi also plays a role in hybrid operating models. The platform can be used alongside Intune and supports co-management scenarios. While Intune delivers modern cloud endpoint management &amp; security capabilities, baramundi often handles server management, traditional software distribution, or detailed administrative processes within the corporate network.</p>
+
+
+
+<h3 id="h-ivanti-neurons" class="wp-block-heading">Ivanti Neurons</h3>
+
+
+
+<p class="wp-block-paragraph">Ivanti positions Neurons as a modern platform for IT and endpoint management. For existing Ivanti customers, this may initially seem like a natural choice. However, there is no clearly defined migration path from Ivanti DSM to Ivanti Neurons and these are completely different platforms. Organizations should therefore evaluate early how existing applications, package logic, and operational processes can be transferred.</p>
+
+
+
+<p class="wp-block-paragraph">Moving from Ivanti DSM to Ivanti Neurons is not a simple upgrade. Existing DSM packages, eScript logic, and operational workflows cannot be transferred. Many organizations must redesign their software distribution, packaging standards, and deployment processes.</p>
+
+
+
+<p class="wp-block-paragraph">DSM was particularly strong in traditional software distribution for many years. Companies expecting the same depth of functionality should carefully validate their requirements against Ivanti Neurons. The vendor name alone is less important than whether the platform can reliably support day-to-day operational needs.</p>
+
+
+
+<h2 id="h-why-application-packaging-becomes-a-migration-challenge" class="wp-block-heading">Why Application Packaging Becomes a Migration Challenge</h2>
+
+
+
+<p class="wp-block-paragraph">Over the years, organizations build package logic, special cases, dependencies, workarounds, and operational knowledge into their DSM environments. Some packages work perfectly but are poorly documented. Others contain assumptions that no longer fit modern management platforms. Depending on organization size and complexity, we are often talking hundreds, sometimes thousands, of apps that need to be migrated to the new endpoint management solution.</p>
+
+
+
+<p class="wp-block-paragraph">This is why application packaging becomes a critical path during a DSM migration. Without working applications, there is no successful endpoint migration. The platform may be selected, devices may be prepared, and management approval may be secured. But if business-critical applications cannot be installed, patched, detected, repaired, or removed reliably, the project will stall.</p>
+
+
+
+<p class="wp-block-paragraph">Target platforms operate differently from DSM. Detection rules, installation context, return codes, reboot behavior, user interaction, and dependency handling often need to be redesigned. Migration is therefore more than a technical export process. It is an opportunity to clean up, standardize, and modernize the application portfolio for the long term, but also the biggest DSM migration challenge!</p>
+
+
+
+<h2 id="h-what-happens-to-escript-packages-during-migration" class="wp-block-heading">What Happens to eScript Packages During Migration?</h2>
+
+
+
+<p class="wp-block-paragraph">Existing eScript packages generally cannot be reused directly on a new platform. eScript is tightly integrated with DSM. Commands, conditions, and workflows &#8211; the whole eScript language is specifically designed for DSM. When moving to a new platform, this logic must first be understood and then rebuilt appropriately.</p>
+
+
+
+<p class="wp-block-paragraph">Each package should be analyzed systematically. What happens during installation? Which detection methods could be used? Is there repair logic? How does uninstallation work? Does the package trigger a reboot? Does it run in system and/or user context? Are there dependencies on other applications, files, registry keys, or groups?</p>
+
+
+
+<p class="wp-block-paragraph">Simple packages can often be rebuilt relatively quickly. Complex packages require significantly more analysis and testing. Packages with extensive conditions, legacy components, user interaction, parameters, and retries after reboot are particularly challenging. In these cases, simply translating commands is rarely enough. The underlying logic must be reviewed and adapted to a new standard.</p>
+
+
+
+<h2 id="h-can-escript-be-converted-to-powershell-or-psadt" class="wp-block-heading">Can eScript Be Converted to PowerShell or PSADT?</h2>
+
+
+
+<p class="wp-block-paragraph">Yes, eScript packages can be migrated to PowerShell or <a href="https://patchmypc.com/product/psadt/">PSAppDeployToolkit (PSADT)</a>, and many commands have a PowerShell or PSADT equivalent. However, DSM logic is often very unique. What worked well in DSM is not automatically the best solution in Intune or Configuration Manager.</p>
+
+
+
+<p class="wp-block-paragraph">PowerShell provides flexibility and modern automation capabilities. PSADT adds structure, logging, user interaction, exit code handling, and standardization. This becomes especially important when managing large application portfolios because consistent standards simplify ongoing operations and future maintenance.</p>
+
+
+
+<p class="wp-block-paragraph">The most effective approach is usually not to translate eScript directly. Instead, organizations should analyze the existing logic, remove outdated elements, define a target standard, rebuild the package, and perform thorough testing. This results in a migration that is more reliable, easier to maintain, and better aligned with modern endpoint management practices.</p>
+
+
+
+<figure class="wp-block-image"><img decoding="async" src="https://images.surferseo.art/7634c5f9-ffe0-4f87-8cce-6268242b5998.png" alt="Screenshot of the Patch My PC Ivanti DSM Migration Tool"/></figure>
+
+
+
+<p class="wp-block-paragraph">For everything else, Patch My PC and <a href="https://www.softtailor.de">SOFTTAILOR</a>, the German specialists for Endpoint Management and application packaging, have developed an automation-enabled migration approach that helps organizations move applications from Ivanti DSM to Intune and ConfigMgr faster and with greater consistency. By analyzing existing package logic and reducing manual migration effort, the process not only accelerates the transition but also helps create more reliable and maintainable application packages for the long term.</p>
+
+
+
+<h2 id="h-how-to-prepare-for-an-ivanti-dsm-migration" class="wp-block-heading">How to Prepare for an Ivanti DSM Migration</h2>
+
+
+
+<figure class="wp-block-image"><img decoding="async" src="https://images.surferseo.art/d497ab9b-ed0e-4d4f-99e5-570c0de7f05a.png" alt="Goals of a succesful Ivanti DSM Migration"/></figure>
+
+
+
+<p class="wp-block-paragraph">A successful DSM migration starts with strategy rather than technology. Organizations should first define the requirements their future platform must meet. Over the past 12 months, SOFTTAILOR has helped many organizations define their individual requirements catalog.</p>
+
+
+
+<p class="wp-block-paragraph">Based on those requirements, potential target platforms can be evaluated. Intune, Configuration Manager, Baramundi, Ivanti Neurons, and other solutions each offer different strengths. The key question is not which platform has the most features, but which one best supports the organization&#8217;s processes and long-term goals.</p>
+
+
+
+<p class="wp-block-paragraph">Once the target architecture has been defined, standards for packaging, testing, and deployment should be established. Many organizations use the migration as an opportunity to reduce custom solutions and introduce consistent processes. This simplifies both the migration itself and ongoing operations afterward. PSADT will be your hero here for application packaging.</p>
+
+
+
+<p class="wp-block-paragraph">Clear ownership is equally important. Who defines technical standards? Who is responsible for package migration? Who performs business validation testing? A well-structured project model helps prevent delays and provides transparency for all stakeholders.</p>
+
+
+
+<p class="wp-block-paragraph">Two of the most important questions: How do I solve the app migration challenge smoothly, and how do I set up third-party patch management in the long run? Patch My PC and SOFTTAILOR can help you with all of that.</p>
+
+
+
+<h2 id="h-next-steps-for-organizations-running-dsm-today" class="wp-block-heading">Next Steps for Organizations Running DSM Today</h2>
+
+
+
+<p class="wp-block-paragraph">A DSM migration takes time, especially when large numbers of software packages, eScript packages, and established operational processes are involved. The timeline may appear comfortable at first glance, but even medium-sized environments can quickly consume the available time.</p>
+
+
+
+<p class="wp-block-paragraph">Now is the right time to understand the actual migration effort. This starts with analyzing the application portfolio. Which applications are business critical? Which packages can be migrated, replaced, or retired? Where does complex eScript logic create additional effort?</p>
+
+
+
+<p class="wp-block-paragraph">Interested in how Patch My PC and SOFTTAILOR can help you with your Ivanti DSM migration? Get a first glance of how our <a href="https://patchmypc.com/product/migration/">migration</a> approach works <a href="https://www.youtube.com/watch?v=Bqf9pEKfdzY">from this webinar</a> and reach out to the <a href="https://www.softtailor.de/kontakt/erstberatung">SOFTTAILOR team</a> to discuss more details.</p>
+
+
+
+<p class="wp-block-paragraph"></p>
+<p>The post <a href="https://patchmypc.com/blog/ivanti-dsm-end-of-life/">Patch Management after Ivanti DSM End of Life: What DSM Customers Need to Know Before 2027</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/blog/ivanti-dsm-end-of-life/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Intune On Demand Device Sync Now Uses IC3 for IME Workloads</title>
 		<link>https://patchmypc.com/blog/intune-on-demand-device-sync-now-uses-ic3-for-ime-workloads/</link>
 					<comments>https://patchmypc.com/blog/intune-on-demand-device-sync-now-uses-ic3-for-ime-workloads/#respond</comments>
@@ -2291,364 +2593,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/inside-the-improved-on-demand-sync-for-windows-devices/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Patch My PC Publisher Preview Version 2.3.2.287 Released</title>
-		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-287-released/</link>
-					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-287-released/#respond</comments>
-		
-		<dc:creator><![CDATA[Brian Hall]]></dc:creator>
-		<pubDate>Mon, 13 Jul 2026 17:32:44 +0000</pubDate>
-				<category><![CDATA[Preview Release]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=188986</guid>
-
-					<description><![CDATA[<p>This release contains a variety of improvements and fixes, as noted below. New Features and Improvements User Interface Enhancements Intune Improvements ConfigMgr Improvements Bug Fixes Publishing and Synchronization Application and Service Reliability User Interface Accessibility Improvements Keyboard Navigation</p>
-<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-287-released/">Patch My PC Publisher Preview Version 2.3.2.287 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p class="wp-block-paragraph">This release contains a variety of improvements and fixes, as noted below.</p>
-
-
-
-<h2 id="h-new-features-and-improvements" class="wp-block-heading">New Features and Improvements</h2>
-
-
-
-<h3 id="h-user-interface-enhancements" class="wp-block-heading">User Interface Enhancements</h3>
-
-
-
-<ul class="wp-block-list">
-<li>Reorganized the Publisher settings and navigation layout to improve usability and streamline workflows.</li>
-
-
-
-<li>Added a confirmation prompt before running Publishing Service Sync from the <strong>Run Publishing Service Sync</strong> button.</li>
-
-
-
-<li>Improved the behavior of information filters, making it more intuitive to clear and reset filters throughout the Publisher UI.</li>
-
-
-
-<li>Added support for delaying in-place updates for Intune Applications and Updates.</li>
-</ul>
-
-
-
-<h3 id="h-intune-improvements" class="wp-block-heading">Intune Improvements</h3>
-
-
-
-<ul class="wp-block-list">
-<li>Resolved multiple Intune assignment-related issues.</li>
-
-
-
-<li>Fixed an issue where the Intune application secret could expire after restarting Publisher.</li>
-
-
-
-<li>Fixed preview version display on the About tab.</li>
-
-
-
-<li>Fixed an issue where a stale client secret could be used by the Graph Mail OAuth token provider.</li>
-</ul>
-
-
-
-<h3 id="h-configmgr-improvements" class="wp-block-heading">ConfigMgr Improvements</h3>
-
-
-
-<ul class="wp-block-list">
-<li>Fixed an issue where the retained-app safeguard could incorrectly prevent valid Intune application re-creation.</li>
-
-
-
-<li>Corrected an issue that could extract ZIP file contents to an incorrect folder when using delayed application upgrades.</li>
-</ul>
-
-
-
-<h2 id="h-bug-fixes" class="wp-block-heading">Bug Fixes</h2>
-
-
-
-<h3 id="h-publishing-and-synchronization" class="wp-block-heading">Publishing and Synchronization</h3>
-
-
-
-<ul class="wp-block-list">
-<li>Fixed an issue that could trigger a duplicate publish synchronization operation.</li>
-
-
-
-<li>Preserved catalog process lists when the saved process pattern is empty.</li>
-</ul>
-
-
-
-<h3 id="h-application-and-service-reliability" class="wp-block-heading">Application and Service Reliability</h3>
-
-
-
-<ul class="wp-block-list">
-<li>Resolved a Newtonsoft.Json version mismatch that could cause a <code>JToken.WriteTo</code> <code>MissingMethodException</code>.</li>
-
-
-
-<li>Updated logging to correctly honor a custom runtime log path and added additional test coverage.</li>
-
-
-
-<li>Fixed validation issues when editing webhooks.</li>
-
-
-
-<li>Consolidated System.Net.Http assembly references to improve reliability.</li>
-</ul>
-
-
-
-<h3 id="h-user-interface" class="wp-block-heading">User Interface</h3>
-
-
-
-<ul class="wp-block-list">
-<li>Disabled <strong>Export to CSV</strong> until a query has been executed.</li>
-
-
-
-<li>Fixed license date formatting issues and added support for copying cloud portal links.</li>
-
-
-
-<li>Corrected various UI issues across the <strong>General</strong>, <strong>WSUS</strong>, and <strong>Cloud</strong> tabs.</li>
-
-
-
-<li>Fixed an issue where expanding <strong>Alerts</strong> on the <strong>Advanced</strong> tab could incorrectly redirect to the <strong>About</strong> tab.</li>
-
-
-
-<li>Standardized GroupBox header font sizes throughout the <strong>Advanced</strong> tab.</li>
-</ul>
-
-
-
-<h2 id="h-accessibility-improvements" class="wp-block-heading">Accessibility Improvements</h2>
-
-
-
-<h3 id="h-keyboard-navigation" class="wp-block-heading">Keyboard Navigation</h3>
-
-
-
-<ul class="wp-block-list">
-<li>Improved synchronization between grid selections and dropdown selections when using keyboard navigation.</li>
-
-
-
-<li>Added keyboard access support for DataGrid column headers.</li>
-
-
-
-<li>Corrected DataGrid tab navigation and focus traversal behavior.</li>
-
-
-
-<li>Resolved keyboard navigation conflicts throughout the application.</li>
-</ul>
-
-
-
-<p class="wp-block-paragraph"></p>
-<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-287-released/">Patch My PC Publisher Preview Version 2.3.2.287 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-287-released/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Deploying Claude Desktop Device-Wide: MSIX as a Custom App in Patch My PC </title>
-		<link>https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/</link>
-					<comments>https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Mon, 13 Jul 2026 12:38:17 +0000</pubDate>
-				<category><![CDATA[Knowledge Base]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=188924</guid>
-
-					<description><![CDATA[<p>Anthropic distributes Claude Desktop for Windows as an MSIX package, and like all MSIX&#160;packages&#160;it installs per user.&#160;That’s&#160;fine for a single machine, but it creates a problem in managed environments: the obvious Intune route of uploading the MSIX as a Line-of-Business (LOB) app often&#160;fails for&#160;exactly the users&#160;you’re&#160;deploying to.&#160; In this post,&#160;I’ll&#160;show you why the LOB approach ... <a href="https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/">Continue Reading  &#187;</a></p>
-<p>The post <a href="https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/">Deploying Claude Desktop Device-Wide: MSIX as a Custom App in Patch My PC </a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p class="wp-block-paragraph">Anthropic distributes Claude Desktop for Windows as an MSIX package, and like all MSIX&nbsp;packages&nbsp;it installs per user.&nbsp;That’s&nbsp;fine for a single machine, but it creates a problem in managed environments: the obvious Intune route of uploading the MSIX as a Line-of-Business (LOB) app often&nbsp;fails for&nbsp;exactly the users&nbsp;you’re&nbsp;deploying to.&nbsp;</p>
-
-
-
-<p class="wp-block-paragraph">In this post,&nbsp;I’ll&nbsp;show you why the LOB approach falls short and how to deploy Claude Desktop device-wide instead, using Patch My PC’s Custom Apps feature with a scripted installation.&nbsp;</p>
-
-
-
-<h2 id="h-why-the-msix-lob-approach-can-fail-nbsp" class="wp-block-heading"><strong>Why the MSIX LOB approach can fail</strong>&nbsp;</h2>
-
-
-
-<p class="wp-block-paragraph">When you upload an MSIX as an LOB app, Intune installs it in the <strong>user context</strong>. Standard users may hit installation failures when the deployment requires permissions their account&nbsp;doesn’t&nbsp;have. Even when it succeeds, the app is installed only for that user. Anyone else who signs&nbsp;in to&nbsp;the device gets nothing.&nbsp;</p>
-
-
-
-<p class="wp-block-paragraph">For device-wide deployment, the&nbsp;better&nbsp;approach is to <strong>provision</strong> the package at the operating system level with Add-AppxProvisionedPackage. Provisioning stages the package in the Windows image, so&nbsp;it’s&nbsp;installed for every user on the device, including users who sign in for the first time later. Because the Patch My PC agent runs in the SYSTEM context, it has the permissions provisioning requires; your end users never need admin rights.&nbsp;</p>
-
-
-
-<p class="wp-block-paragraph">Patch My PC’s <strong>Custom Apps with scripted installation</strong> makes this straightforward: you bring the installer and the PowerShell, and the platform handles packaging, delivery, and detection. (Custom Apps are handy well beyond this scenario: deploying registry keys, PSADT-based changes, and detection rules built on them. The <a href="https://psappdeploytoolkit.com/" target="_blank" rel="noreferrer noopener">Get-ADTRegistryKey</a> function in PSADT is a nice&nbsp;example.)&nbsp;</p>
-
-
-
-<p class="wp-block-paragraph">Let’s&nbsp;go and&nbsp;build&nbsp;it!&nbsp;</p>
-
-
-
-<h2 id="h-step-by-step-claude-desktop-as-a-custom-app-nbsp" class="wp-block-heading"><strong>Step-by-step: Claude Desktop as a Custom App</strong>&nbsp;</h2>
-
-
-
-<p class="wp-block-paragraph">1. <strong>Enable Preview Features.</strong> Go to <strong>Settings &gt; Company</strong>, enable <strong>Preview Features</strong>, and refresh your browser</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="585" src="https://patchmypc.com/app/uploads/2026/07/image-45-1024x585.png" alt="" class="wp-image-188936" srcset="https://patchmypc.com/app/uploads/2026/07/image-45-1024x585.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-45-300x171.png 300w, https://patchmypc.com/app/uploads/2026/07/image-45-768x439.png 768w, https://patchmypc.com/app/uploads/2026/07/image-45.png 1526w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph">    2. <strong>Add the app.</strong> Open the Patch My PC Cloud portal, go to <strong>App Catalog</strong>, and click <strong>Add App</strong></p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="489" src="https://patchmypc.com/app/uploads/2026/07/image-46-1024x489.png" alt="" class="wp-image-188938" srcset="https://patchmypc.com/app/uploads/2026/07/image-46-1024x489.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-46-300x143.png 300w, https://patchmypc.com/app/uploads/2026/07/image-46-768x367.png 768w, https://patchmypc.com/app/uploads/2026/07/image-46-1536x733.png 1536w, https://patchmypc.com/app/uploads/2026/07/image-46.png 1630w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<ol class="wp-block-list"></ol>
-
-
-
-<ol start="3" class="wp-block-list">
-<li><strong>Select&nbsp;scripted&nbsp;installation.</strong> Under <strong>Install Method</strong>, choose <strong>Installation Script</strong>, not <strong>Installer File</strong>. The installer file method&nbsp;won’t&nbsp;work for this scenario because we need to control how the package is provisioned.&nbsp;</li>
-</ol>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="597" src="https://patchmypc.com/app/uploads/2026/07/image-47-1024x597.png" alt="" class="wp-image-188939" srcset="https://patchmypc.com/app/uploads/2026/07/image-47-1024x597.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-47-300x175.png 300w, https://patchmypc.com/app/uploads/2026/07/image-47-768x448.png 768w, https://patchmypc.com/app/uploads/2026/07/image-47.png 1290w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<ol start="4" class="wp-block-list">
-<li><strong>Download the MSIX.</strong> Get the Claude Desktop installer from the Claude Help Center: <a href="https://support.claude.com/en/articles/12622703-deploy-claude-desktop-for-windows" target="_blank" rel="noreferrer noopener">Deploy Claude Desktop for Windows | Claude Help Center</a>&nbsp;</li>
-</ol>
-
-
-
-<ol start="5" class="wp-block-list">
-<li><strong>Upload the MSIX as an extra file.</strong> Add Claude.msix under <strong>Extra Files</strong> (not as the script itself).&nbsp;</li>
-</ol>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="1002" height="588" src="https://patchmypc.com/app/uploads/2026/07/image-48.png" alt="" class="wp-image-188940" srcset="https://patchmypc.com/app/uploads/2026/07/image-48.png 1002w, https://patchmypc.com/app/uploads/2026/07/image-48-300x176.png 300w, https://patchmypc.com/app/uploads/2026/07/image-48-768x451.png 768w" sizes="(max-width: 1002px) 100vw, 1002px" /></figure>
-
-
-
-<ol start="6" class="wp-block-list">
-<li><strong>Add the install script.</strong>&nbsp;</li>
-</ol>
-
-
-
-<pre class="wp-block-code"><code>Add-AppxProvisionedPackage&nbsp;-Online -PackagePath&nbsp;"$PSScriptRoot\Claude.msix" -SkipLicense&nbsp;-Regions "all"&nbsp;</code></pre>
-
-
-
-<ol start="7" class="wp-block-list">
-<li><strong>Fill in the General Information fields</strong>: app name, vendor, description, and icon.&nbsp;</li>
-</ol>
-
-
-
-<ol start="8" class="wp-block-list">
-<li><strong>Configure the uninstall script.</strong> Because the package is provisioned, remove both the provisioned package (so&nbsp;new users&nbsp;don’t&nbsp;get it) and the installed package for existing users:&nbsp;</li>
-</ol>
-
-
-
-<pre class="wp-block-code"><code>Get-AppxProvisionedPackage&nbsp;-Online | Where-Object&nbsp;{ $_.DisplayName&nbsp;-match "Claude" }&nbsp;| Remove-AppxProvisionedPackage&nbsp;-Online&nbsp;
-
-Get-AppxPackage&nbsp;-AllUsers&nbsp;*Claude* | Remove-AppxPackage&nbsp;-AllUsers</code></pre>
-
-
-
-<ol start="9" class="wp-block-list">
-<li><strong>Add a custom detection script.</strong> The built-in automatic detection rules&nbsp;won’t&nbsp;work here, so select <strong>Use Custom Script</strong> and check for the provisioned package:&nbsp;</li>
-</ol>
-
-
-
-<pre class="wp-block-code"><code>$claude&nbsp;= Get-AppxProvisionedPackage&nbsp;-Online | Where-Object&nbsp;{ $_.DisplayName&nbsp;-match "Claude" }&nbsp;
-
-if ($claude) {&nbsp;
-
-&nbsp;&nbsp;&nbsp; Write-Output "Installed"&nbsp;
-
-&nbsp;&nbsp;&nbsp; exit 0&nbsp;
-
-}&nbsp;
-
-exit 1</code></pre>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="936" height="558" src="https://patchmypc.com/app/uploads/2026/07/image-42.png" alt="" class="wp-image-188930" srcset="https://patchmypc.com/app/uploads/2026/07/image-42.png 936w, https://patchmypc.com/app/uploads/2026/07/image-42-300x179.png 300w, https://patchmypc.com/app/uploads/2026/07/image-42-768x458.png 768w" sizes="(max-width: 936px) 100vw, 936px" /></figure>
-
-
-
-<ol start="10" class="wp-block-list">
-<li><strong>Review the summary and click Create.</strong>&nbsp;</li>
-</ol>
-
-
-
-<ol start="11" class="wp-block-list">
-<li><strong>Deploy&nbsp;and test. </strong>&nbsp;</li>
-</ol>
-
-
-
-<p class="wp-block-paragraph">Assign the app to a small group of test devices first. I always recommend&nbsp;an Available deployment&nbsp;to a handful of test machines before&nbsp;going Required&nbsp;to production. New to deployments? This guide&nbsp;covers it: Deploy an App using Patch My PC Cloud | Getting Started.&nbsp;</p>
-
-
-
-<h2 id="h-wrapping-up-nbsp" class="wp-block-heading"><strong>Wrapping up</strong>&nbsp;</h2>
-
-
-
-<p class="wp-block-paragraph">That’s&nbsp;all it takes: one install command, a matching uninstall, and a short detection script, and Claude Desktop is provisioned device-wide for every current and future user, with no admin rights&nbsp;required&nbsp;on the endpoint. The same pattern works for any per-user MSIX you need to deploy machine-wide.&nbsp;</p>
-
-
-
-<p class="wp-block-paragraph">Good luck, and feel free to contact support if you have any questions.&nbsp;</p>
-<p>The post <a href="https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/">Deploying Claude Desktop Device-Wide: MSIX as a Custom App in Patch My PC </a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/kb/deploying-claude-desktop-device-wide-msix-as-a-custom-app-in-patch-my-pc/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
