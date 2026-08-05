@@ -10,7 +10,7 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Tue, 04 Aug 2026 22:17:20 -0500</pubDate>
+    <pubDate>Wed, 05 Aug 2026 01:33:50 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
     
@@ -234,7 +234,7 @@
       <title><![CDATA[ZDI-26-496: Trend AI Cleaner One Pro Link Following Arbitrary File Deletion Vulnerability]]></title>
       <guid isPermaLink="false">ZDI-CAN-28718</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-496/</link>
-      <description><![CDATA[This vulnerability allows local attackers to delete arbitrary files on affected installations of Trend Micro Cleaner One Pro. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.6. The following CVEs are assigned: CVE-2026-62660.]]></description>
+      <description><![CDATA[This vulnerability allows local attackers to delete arbitrary files on affected installations of TrendLife Cleaner One Pro. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.6. The following CVEs are assigned: CVE-2026-62660.]]></description>
       <pubDate>Wed, 29 Jul 2026 00:00:00 -0500</pubDate>
     </item>
     
