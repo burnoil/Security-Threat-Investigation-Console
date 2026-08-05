@@ -10,9 +10,33 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Wed, 05 Aug 2026 07:03:29 -0500</pubDate>
+    <pubDate>Wed, 05 Aug 2026 10:19:48 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-526: (0Day) PAX Technology Q80 Application Installer Signature Verification Bypass Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30585</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-526/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of PAX Technology Q80. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-525: (0Day) PAX Technology Q80 AIP File Parsing Link Following Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30583</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-525/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of PAX Technology Q80. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-524: (0Day) PAX Technology Q80 XCB Daemon Missing Authentication Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30584</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-524/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to disclose sensitive information and modify configuration on affected installations of PAX Technology Q80. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.1.]]></description>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-523: Hugging Face PyTorch Image Models checkpoint Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
@@ -1588,30 +1612,6 @@
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-327/</link>
       <description><![CDATA[This vulnerability allows local attackers to create a denial-of-service condition on affected installations of Docker Desktop. An attacker must first obtain the ability to execute low-privileged code within a container on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.5. The following CVEs are assigned: CVE-2026-8936.]]></description>
       <pubDate>Wed, 03 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-326: TrendAI Vision One Security Agent Time-Of-Check Time-Of-Use Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27982</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-326/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-45208.]]></description>
-      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-325: TrendAI Vision One Security Agent Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29177</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-325/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-45207.]]></description>
-      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-324: TrendAI Vision One Security Agent Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28118</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-324/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of TrendAI Vision One Security Agent. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-45206.]]></description>
-      <pubDate>Thu, 28 May 2026 00:00:00 -0500</pubDate>
     </item>
     
   </channel>
