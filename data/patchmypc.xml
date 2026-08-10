@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 06 Aug 2026 07:58:31 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 10 Aug 2026 19:45:47 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,51 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Patch My PC Publisher Production Version 3.0.4.0 Released</title>
+		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-4-0-released/</link>
+					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-4-0-released/#respond</comments>
+		
+		<dc:creator><![CDATA[Brian Hall]]></dc:creator>
+		<pubDate>Mon, 10 Aug 2026 19:45:46 +0000</pubDate>
+				<category><![CDATA[Production Release]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=191606</guid>
+
+					<description><![CDATA[<p>This release contains a variety of fixes, as noted below. This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&#160;MSI installer. Fixes</p>
+<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-4-0-released/">Patch My PC Publisher Production Version 3.0.4.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">This release contains a variety of fixes, as noted below.</p>
+
+
+
+<p class="wp-block-paragraph">This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&nbsp;<strong><a href="https://patchmypc.com/publishing-service-setup-documentation">MSI installer</a></strong>.</p>
+
+
+
+<h2 id="h-fixes" class="wp-block-heading">Fixes</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Fixes generic settings &#8220;File may be locked&#8221; error and replaces it with more descriptive error message.​</li>
+
+
+
+<li>Fixes configmgr user-based apps always installing as SYSTEM</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph"></p>
+<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-4-0-released/">Patch My PC Publisher Production Version 3.0.4.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-4-0-released/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>The Dead Zone: Your IT Team Isn&#8217;t Too Slow. Attackers Just Have Terrible Manners. </title>
 		<link>https://patchmypc.com/blog/the-dead-zone/</link>
 					<comments>https://patchmypc.com/blog/the-dead-zone/#respond</comments>
@@ -2242,161 +2287,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/company-portal-error-loading-apps/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Intune Custom Compliance Policies and the Hourly Cadence Fix</title>
-		<link>https://patchmypc.com/blog/custom-compliance-policies-and-the-eight-hour-waiting-fix/</link>
-					<comments>https://patchmypc.com/blog/custom-compliance-policies-and-the-eight-hour-waiting-fix/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Sat, 18 Jul 2026 10:36:57 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=188125</guid>
-
-					<description><![CDATA[<p>Custom compliance in Intune can leave devices reporting stale results for up to eight hours. IME 1.103.101.0 appears to introduce a new hourly cadence that could rerun discovery scripts and send fresh PolicyResult data back to Intune much sooner.</p>
-<p>The post <a href="https://patchmypc.com/blog/custom-compliance-policies-and-the-eight-hour-waiting-fix/">Intune Custom Compliance Policies and the Hourly Cadence Fix</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p class="wp-block-paragraph">Custom compliance policies in Intune can be pretty powerful, but waiting up to 8 hours for a fresh result has always been a big pain point for security. The Intune Management Extension 1.103.101.0 appears to add new scheduling that could finally make the famous <strong>8-hour compliance window much shorter.</strong></p>
-
-
-
-<h2 id="h-introduction" class="wp-block-heading">Introduction</h2>
-
-
-
-<p class="wp-block-paragraph"><strong><a href="https://patchmypc.com/blog/intune-custom-compliance-policies/">Custom compliance Policies </a></strong>in Intune are one of those features that give you a lot of freedom, but it also comes with one painful delay. Microsoft documents that the Intune Management Extension <strong>checks for new or updated custom compliance PowerShell scripts every 8 hours</strong>,<strong> runs discovery scripts every 8 hours, </strong>and can run the already-downloaded script when a user selects <strong>Check Compliance</strong>. </p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="975" height="302" src="https://patchmypc.com/app/uploads/2026/07/image-3.png" alt="" class="wp-image-188132" srcset="https://patchmypc.com/app/uploads/2026/07/image-3.png 975w, https://patchmypc.com/app/uploads/2026/07/image-3-300x93.png 300w, https://patchmypc.com/app/uploads/2026/07/image-3-768x238.png 768w" sizes="(max-width: 975px) 100vw, 975px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The same documentation also states that push notifications cannot trigger custom compliance to run on demand.</p>
-
-
-
-<p class="wp-block-paragraph">That explains the behavior many of us have seen. A device setting change that is checked with a <strong><a href="https://patchmypc.com/blog/intune-custom-compliance-policies/">custom compliance policy, </a></strong>but Intune is still evaluating the previous script result. The device might already be fixed or already be broken, but the custom compliance policy does not know that until the discovery script runs again and the result is uploaded.</p>
-
-
-
-<p class="wp-block-paragraph">Microsoft also notes this in the custom compliance policies troubleshooting section: after an issue is fixed on a device, it can take up to 8 hours for the noncompliant status to show as compliant again.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="975" height="146" src="https://patchmypc.com/app/uploads/2026/07/image-4.png" alt="" class="wp-image-188133" srcset="https://patchmypc.com/app/uploads/2026/07/image-4.png 975w, https://patchmypc.com/app/uploads/2026/07/image-4-300x45.png 300w, https://patchmypc.com/app/uploads/2026/07/image-4-768x115.png 768w" sizes="(max-width: 975px) 100vw, 975px" /></figure>
-
-
-
-<h2 id="h-the-old-custom-compliance-8-hour-problem" class="wp-block-heading">The Old Custom Compliance 8-hour Problem</h2>
-
-
-
-<p class="wp-block-paragraph">I ran into this years ago with a <a href="https://call4cloud.nl/custom-compliance-policy-intune/">custom compliance policy that checked BitLocker</a>. The discovery script returned the<strong> BitLocker state as JSON</strong>. Intune evaluated that JSON against the custom compliance rule. That part worked fine.</p>
-
-
-
-<p class="wp-block-paragraph">The annoying part came after the local state changed. When BitLocker was disabled after the device had already reported a compliant result, the device could keep showing as compliant for a while. The old result was still cached locally by the Intune Management Extension, and Intune could only evaluate the last result it had received. The cache lived under the IME script report area: <strong>HKLM\SOFTWARE\Microsoft\IntuneManagementExtension\SideCarPolicies\Scripts\Reports</strong></p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="237" src="https://patchmypc.com/app/uploads/2026/07/image-5-1024x237.png" alt="" class="wp-image-188134" srcset="https://patchmypc.com/app/uploads/2026/07/image-5-1024x237.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-5-300x69.png 300w, https://patchmypc.com/app/uploads/2026/07/image-5-768x177.png 768w, https://patchmypc.com/app/uploads/2026/07/image-5-1536x355.png 1536w, https://patchmypc.com/app/uploads/2026/07/image-5.png 1563w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The workaround was to force a script state reset, restart the IME, or trigger a compliance sync from the company portal.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="374" height="261" src="https://patchmypc.com/app/uploads/2026/07/image.png" alt="" class="wp-image-188129" srcset="https://patchmypc.com/app/uploads/2026/07/image.png 374w, https://patchmypc.com/app/uploads/2026/07/image-300x209.png 300w" sizes="(max-width: 374px) 100vw, 374px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That worked, but it was clearly a workaround for the slower custom compliance cadence. Besides that&#8230; is the user really going to click the check access button after his device became non-compliant? I don’t think so&#8230;</p>
-
-
-
-<h2 id="h-custom-compliance-policies-cadence-has-changed" class="wp-block-heading">Custom Compliance Policies Cadence Has Changed</h2>
-
-
-
-<p class="wp-block-paragraph">In version 1.103.101.0 of the IME, Microsoft appears to have added new scheduling plumbing for custom compliance scripts. The interesting part is not just that a powershell script can run. The important part is that the client now contains controlled hourly cadence for the compliance script workload, and the reporting path still sends the updated result back to Intune.</p>
-
-
-
-<p class="wp-block-paragraph">The corrected diff from 1.101.111.0 to 1.103.101.0 shows new custom compliance scheduling paths in<strong> AgentCommon.dll and ScriptPlugIn.dll, EnableHourlyComplianceScriptCadence,</strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="247" src="https://patchmypc.com/app/uploads/2026/07/image-1.png" alt="" class="wp-image-188131" srcset="https://patchmypc.com/app/uploads/2026/07/image-1.png 624w, https://patchmypc.com/app/uploads/2026/07/image-1-300x119.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That tells us Microsoft did not only tweak a timer somewhere. They added a more flexible scheduling model around the script plugin.</p>
-
-
-
-<h2 id="h-the-full-custom-compliance-hourly-cadence-flow" class="wp-block-heading">The Full Custom Compliance Hourly Cadence flow</h2>
-
-
-
-<p class="wp-block-paragraph">The IME binaries show that the script result still goes through the normal report path. The script plugin creates or updates a local policy result, compares it with the previous result, serializes the changed result as a PolicyResult, and sends it through the SideCar gateway session.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="624" height="192" src="https://patchmypc.com/app/uploads/2026/07/image-2.png" alt="" class="wp-image-188130" srcset="https://patchmypc.com/app/uploads/2026/07/image-2.png 624w, https://patchmypc.com/app/uploads/2026/07/image-2-300x92.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The flow looks like this:</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="576" src="https://patchmypc.com/app/uploads/2026/07/image-67-1024x576.png" alt="" class="wp-image-189460" srcset="https://patchmypc.com/app/uploads/2026/07/image-67-1024x576.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-67-300x169.png 300w, https://patchmypc.com/app/uploads/2026/07/image-67-768x432.png 768w, https://patchmypc.com/app/uploads/2026/07/image-67-1536x864.png 1536w, https://patchmypc.com/app/uploads/2026/07/image-67.png 1672w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph"><strong>Hourly cadence, minute schedule, or notification scheduling path<br>        |<br>ScriptPlugIn checks whether the compliance script policy is due<br>        |<br>Discovery script runs<br>        |<br>New EmsPolicyResult is created<br>        |<br>Result is saved under SideCarPolicies\Scripts\Reports<br>        |<br>ReportManager compares the old and new results<br>        |<br>The changed result is serialized as PolicyResult<br>        |<br>SideCarGatewaySession sends it back to Intune<br>        |<br>Result is marked as sent only after successful upload</strong></p>
-
-
-
-<h2 id="h-why-this-could-improve-the-eight-hour-problem" class="wp-block-heading">Why This Could Improve the Eight-Hour Problem</h2>
-
-
-
-<p class="wp-block-paragraph">The old Custom Compliance behavior was simple: if the discovery script did not run again, Intune kept evaluating stale data. The new behavior gives IME a way to process the compliance script workload more often when the feature is enabled. If the script output changes, the new result can be sent back to Intune via the existing PolicyResult path. For a BitLocker custom compliance policy, that means this old flow could become the new, improved/faster flow</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="576" src="https://patchmypc.com/app/uploads/2026/07/image-68-1024x576.png" alt="" class="wp-image-189461" srcset="https://patchmypc.com/app/uploads/2026/07/image-68-1024x576.png 1024w, https://patchmypc.com/app/uploads/2026/07/image-68-300x169.png 300w, https://patchmypc.com/app/uploads/2026/07/image-68-768x432.png 768w, https://patchmypc.com/app/uploads/2026/07/image-68-1536x864.png 1536w, https://patchmypc.com/app/uploads/2026/07/image-68.png 1672w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That does not make custom compliance instant. But reducing the stale window from <strong>“up to eight hours</strong>” to something closer to “<strong>up to one hour”</strong> would already be a big improvement.</p>
-
-
-
-<h2 id="h-conclusion" class="wp-block-heading">Conclusion</h2>
-
-
-
-<p class="wp-block-paragraph">This looks like Microsoft is improving one of the most frustrating parts of custom compliance. The old behavior was not that custom compliance was broken. It was that the script result could become stale, and Intune had to wait for the next discovery cycle before it could evaluate the new state.</p>
-
-
-
-<p class="wp-block-paragraph">IME 1.103.101.0 appears to add a controlled hourly custom compliance cadence, minute schedule handling, and notification scheduling plumbing for the compliance script workload. More importantly, the result still flows through the normal PolicyResult upload path.</p>
-
-
-
-<p class="wp-block-paragraph">So this does not silently press the Company Portal <strong>Check Compliance</strong> button. It gives IME its own faster way to rerun the custom compliance script workload and report the new result back to Intune. For now, I would call it client-side plumbing until Microsoft updates the public documentation or the behavior is confirmed across tenants. But the direction is clear: custom compliance no longer appears limited to the old eight-hour waiting game inside the IME client.</p>
-<p>The post <a href="https://patchmypc.com/blog/custom-compliance-policies-and-the-eight-hour-waiting-fix/">Intune Custom Compliance Policies and the Hourly Cadence Fix</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/custom-compliance-policies-and-the-eight-hour-waiting-fix/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
