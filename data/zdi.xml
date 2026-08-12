@@ -10,9 +10,129 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Tue, 11 Aug 2026 18:48:51 -0500</pubDate>
+    <pubDate>Tue, 11 Aug 2026 21:29:16 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-541: (Pwn2Own) Microsoft Windows win32kfull Use-After-Free Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31479</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-541/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-65775.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-540: (Pwn2Own) Microsoft Windows win32kfull Use-After-Free Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31276</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-540/</link>
+      <description><![CDATA[This vulnerability allows local attackers to disclose sensitive information on affected installations of Microsoft Windows. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.5. The following CVEs are assigned: CVE-2026-65776.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-539: (Pwn2Own) Microsoft Windows ipt.sys Incorrect Permission Assignment Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31260</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-539/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-65773.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-538: (Pwn2Own) Microsoft Exchange Improper Authorization Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31480</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-538/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to escalate privileges on affected installations of Microsoft Exchange. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-62911.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-537: (Pwn2Own) Microsoft Windows storport Integer Overflow Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31299</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-537/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-65814.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-536: (Pwn2Own) Microsoft Windows http.sys Integer Overflow Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31294</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-536/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-62735.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-535: (Pwn2Own) Microsoft Exchange External Control of File Path Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31481</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-535/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Microsoft Exchange. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 7.2. The following CVEs are assigned: CVE-2026-62911.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-534: (Pwn2Own) Microsoft Exchange Capture-Replay Authentication Bypass Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31262</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-534/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to bypass authentication on affected installations of Microsoft Exchange. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.1. The following CVEs are assigned: CVE-2026-62911.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-533: Cisco Secure Firewall Management Center login.cgi Authentication Bypass Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30390</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-533/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to bypass authentication on affected installations of Cisco Secure Firewall Management Center. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2026-20316.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-532: SonicWall Email Security updateNetIf Command Injection Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29025</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-532/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of SonicWall Email Security. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-66149.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-531: SonicWall GMS Virtual Appliance interface Command Injection Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29024</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-531/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of SonicWall GMS Virtual Appliance. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-66148.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-530: SonicWall Email Security snmp Command Injection Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29029</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-530/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of SonicWall Email Security. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-66150.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-529: Samsung Galaxy S25 TIFF File Processing Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29432</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-529/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Samsung Galaxy S25 devices. User interaction may be required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-21045.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-528: Wazuh Cluster DAPI Protocol Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30062</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-528/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Wazuh. An attacker must first obtain the ability to execute low-privileged code on a worker node in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.9. The following CVEs are assigned: CVE-2026-28220.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-527: Wazuh Cluster DAPI Protocol Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30086</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-527/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Wazuh. An attacker must first obtain the ability to execute low-privileged code on a worker node in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.9. The following CVEs are assigned: CVE-2026-44901.]]></description>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-526: (0Day) PAX Technology Q80 Application Installer Signature Verification Bypass Remote Code Execution Vulnerability]]></title>
@@ -1492,126 +1612,6 @@
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-342/</link>
       <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Progress Software Kemp LoadMaster. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2026-8037.]]></description>
       <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-341: Progress Software Kemp LoadMaster dolistapikeys Uninitialized Memory Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30439</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-341/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Progress Software Kemp LoadMaster. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.2. The following CVEs are assigned: CVE-2026-8037.]]></description>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-340: Progress Software Kemp LoadMaster dodelapikey Uninitialized Memory Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30438</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-340/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Progress Software Kemp LoadMaster. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-8037.]]></description>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-339: Microsoft Windows Narrator Braille Support brlapi Exposed Dangerous Function Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28792</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-339/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. Additionally, Braille support for Narrator must be installed. The ZDI has assigned a CVSS rating of 7.0. The following CVEs are assigned: CVE-2026-48565.]]></description>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-338: NVIDIA Transformers4Rec Model.load Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28649</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-338/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of NVIDIA Transformers4Rec. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-24162.]]></description>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-337: X.Org Server CheckKeyTypes Buffer Overflow Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28736</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-337/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-34003.]]></description>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-336: X.Org Server CheckKeyActions Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28737</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-336/</link>
-      <description><![CDATA[This vulnerability allows local attackers to disclose sensitive information on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.1. The following CVEs are assigned: CVE-2026-34002.]]></description>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-335: X.Org Server SyncAwaitFence Use-After-Free Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28706</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-335/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-34001.]]></description>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-334: X.Org Server CheckSetGeom Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28679</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-334/</link>
-      <description><![CDATA[This vulnerability allows local attackers to disclose sensitive information on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.1. The following CVEs are assigned: CVE-2026-34000.]]></description>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-333: X.Org Server XkbSetCompatMap Integer Underflow Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28593</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-333/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-33999.]]></description>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-332: QEMU calc_image_hostmem Integer Overflow Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27578</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-332/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of QEMU. An attacker must first obtain the ability to execute low-privileged code on the target guest system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-3886.]]></description>
-      <pubDate>Tue, 09 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-331: (Pwn2Own) Microsoft Edge Feedback Log File Handling Directory Traversal Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-31431</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-331/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Microsoft Edge. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-45495.]]></description>
-      <pubDate>Thu, 04 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-330: (Pwn2Own) Microsoft Edge Navigation Handling Universal Cross-Site Scripting Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-31430</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-330/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary cross-origin script on affected installations of Microsoft Edge. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 5.0. The following CVEs are assigned: CVE-2026-45494.]]></description>
-      <pubDate>Thu, 04 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-329: (Pwn2Own) Microsoft Edge Origin Validation Error Security Bypass Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-31429</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-329/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to access restricted functionality on affected installations of Microsoft Edge. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 4.3. The following CVEs are assigned: CVE-2026-45492.]]></description>
-      <pubDate>Thu, 04 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-328: ASUS MyASUS Origin Validation Error Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28489</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-328/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of ASUS MyASUS. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-7480.]]></description>
-      <pubDate>Wed, 10 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-327: Docker Desktop grpcfuse Kernel Module Uncontrolled Recursion Denial-of-Service Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30796</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-327/</link>
-      <description><![CDATA[This vulnerability allows local attackers to create a denial-of-service condition on affected installations of Docker Desktop. An attacker must first obtain the ability to execute low-privileged code within a container on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 6.5. The following CVEs are assigned: CVE-2026-8936.]]></description>
-      <pubDate>Wed, 03 Jun 2026 00:00:00 -0500</pubDate>
     </item>
     
   </channel>
