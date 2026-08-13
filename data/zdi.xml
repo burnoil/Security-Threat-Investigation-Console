@@ -10,9 +10,145 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Thu, 13 Aug 2026 12:01:45 -0500</pubDate>
+    <pubDate>Thu, 13 Aug 2026 14:11:04 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-584: dnsmasq DNSSEC NSEC/NSEC3 Type Bitmap Processing Infinite Loop Denial-of-Service Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30607</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-584/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to create a denial-of-service condition on affected installations of dnsmasq. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-4890.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-583: Clam AntiVirus 7z Archive Parsing Integer Overflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29416</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-583/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Clam AntiVirus. Interaction with this product is required to exploit this vulnerability but attack vectors may vary depending on the implementation. The ZDI has assigned a CVSS rating of 8.4. The following CVEs are assigned: CVE-2026-20215.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-582: Cisco Identity Services Engine PatchUpdateListener Directory Traversal Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28708</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-582/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Cisco Identity Services Engine. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 4.9. The following CVEs are assigned: CVE-2026-20148.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-581: Cisco Identity Services Engine invokeScript Command Injection Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28709</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-581/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Cisco Identity Services Engine. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.2. The following CVEs are assigned: CVE-2026-20147.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-580: Cisco Identity Services Engine Missing Authentication for Critical Function Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29246</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-580/</link>
+      <description><![CDATA[The vulnerability allows remote attackers to disclose sensitive information on affected installations of Cisco Identity Services Engine. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-20190.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-579: Cisco Identity Services Engine zipFiles Directory Traversal Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29197</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-579/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Cisco Identity Services Engine. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.2. The following CVEs are assigned: CVE-2026-20181.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-578: NGINX HTTP Dav Module Alias Directive Integer Underflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29287</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-578/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of NGINX. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.1. The following CVEs are assigned: CVE-2026-27654.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-577: Trend Micro VPN OpenSSL Configuration Uncontrolled Search Path Element Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29830</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-577/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Trend Micro VPN. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.0. The following CVEs are assigned: CVE-2026-67212.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-576: Linux Kernel XFRM Race Condition Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31423</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-576/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Linux Kernel. An attacker must first obtain the ability to execute high-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-575: Linux Kernel Net Scheduler Packet Classifier API Time-Of-Check Time-Of-Use Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31419</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-575/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Linux Kernel. An attacker must first obtain the ability to execute high-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-574: Linux Kernel Net Scheduler Connection Tracking Race Condition Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29413</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-574/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Linux Kernel. An attacker must first obtain the ability to execute high-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-46319.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-573: Linux Kernel KSMBD Response Header Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31063</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-573/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Linux Kernel KSMBD. Authentication is not required to exploit this vulnerability. However, only systems with ksmbd enabled are vulnerable. The ZDI has assigned a CVSS rating of 9.3.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-572: Linux Kernel XFRM Race Condition Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30499</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-572/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Linux Kernel. An attacker must first obtain the ability to execute high-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-571: Linux Kernel Net Scheduler Packet Classifier API Use-After-Free Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31222</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-571/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Linux Kernel. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-64530.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-570: Linux Kernel IGMP Subsystem Race Condition Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31149</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-570/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Linux Kernel. An attacker must first obtain the ability to execute high-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-569: Linux Kernel Net Scheduler True Link Equalizer Race Condition Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30840</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-569/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Linux Kernel. An attacker must first obtain the ability to execute high-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-568: Linux Kernel Net Scheduler Race Condition Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31523</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-568/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Linux Kernel. An attacker must first obtain the ability to execute high-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-567: Norton Utilities Ultimate NortonUtilitiesSvc Link Following Local Privilege Escalation Vulnerability]]></title>
@@ -1475,142 +1611,6 @@
       <guid isPermaLink="false">ZDI-CAN-30116</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-385/</link>
       <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Unraid. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-9772.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-384: MosaicML Composer Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27990</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-384/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of MosaicML Composer. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-10043.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-383: ATEN Unizon doCryptoHugeFileToFile Improper Verification of Cryptographic Signature Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28590</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-383/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of ATEN Unizon. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.2. The following CVEs are assigned: CVE-2026-9779.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-382: ATEN Unizon ImportDeviceList Directory Traversal Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28579</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-382/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of ATEN Unizon. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.2. The following CVEs are assigned: CVE-2026-9778.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-381: ATEN Unizon restoreDB Directory Traversal Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28578</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-381/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of ATEN Unizon. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.2. The following CVEs are assigned: CVE-2026-9777.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-380: ATEN Unizon writeFileToHttpServletResponse Directory Traversal Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28505</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-380/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of ATEN Unizon. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-9776.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-379: ATEN Unizon uploadSSL Directory Traversal Arbitrary File Deletion Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28503</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-379/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to delete arbitrary files on affected installations of ATEN Unizon. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.5. The following CVEs are assigned: CVE-2026-9775.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-378: ATEN Unizon updateLicense Directory Traversal Arbitrary File Deletion Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28502</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-378/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to delete arbitrary files on affected installations of ATEN Unizon. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.5. The following CVEs are assigned: CVE-2026-9774.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-377: Quest NetVault Backup viewclient Cross-Site Scripting Authentication Bypass Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28202</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-377/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to bypass authentication on affected installations of Quest NetVault Backup. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-7569.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-376: Quest NetVault Backup NVBULogDaemon Command Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27625</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-376/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Quest NetVault Backup. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-9787.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-375: Quest NetVault Backup NVBUDashboard SQL Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27626</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-375/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Quest NetVault Backup. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-9786.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-374: Quest NetVault Backup NVBULibrarySlot SQL Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27630</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-374/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Quest NetVault Backup. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-9785.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-373: Quest NetVault Backup NVBULibraryPort SQL Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27631</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-373/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Quest NetVault Backup. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-9784.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-372: Quest NetVault Backup NVBURemovableMedia SQL Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27632</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-372/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Quest NetVault Backup. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-9783.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-371: Quest NetVault Backup NVBUDeviceDrive SQL Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27633</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-371/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Quest NetVault Backup. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-9782.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-370: Quest NetVault Backup NVBURASDevice SQL Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27648</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-370/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Quest NetVault Backup. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-9781.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-369: Quest NetVault Backup addclient3 Cross-Site Scripting Authentication Bypass Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27666</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-369/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to bypass authentication on affected installations of Quest NetVault Backup. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-9780.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-368: Quest NetVault Backup NVBUDashboard SQL Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27809</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-368/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Quest NetVault Backup. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-7570.]]></description>
       <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
     </item>
     
