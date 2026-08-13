@@ -10,9 +10,41 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Thu, 13 Aug 2026 08:25:27 -0500</pubDate>
+    <pubDate>Thu, 13 Aug 2026 10:03:25 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-567: Norton Utilities Ultimate NortonUtilitiesSvc Link Following Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-25569</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-567/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Norton Utilities Ultimate. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2024-13962.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-566: BlackBerry QNX  KEV File Parsing Out-Of-Bounds Write Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30346</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-566/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of BlackBerry QNX. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-40272.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-565: Gen Digital CCleaner Link Following Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28680</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-565/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Gen Digital CCleaner. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-12410.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-564: NVIDIA Transformers4Rec load_model_trainer_states_from_checkpoint Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28536</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-564/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of NVIDIA Transformers4Rec. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-24232.]]></description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-563: (Pwn2Own) Home Assistant Green Simple Service Discovery Protocol Server-Side Request Forgery Vulnerability]]></title>
@@ -1579,38 +1611,6 @@
       <guid isPermaLink="false">ZDI-CAN-27809</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-368/</link>
       <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Quest NetVault Backup. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-7570.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-367: Fuji Electric Tellus pcid64 Driver Registry APIs Exposed Dangerous Method Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27671</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-367/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Fuji Electric Tellus. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-8108.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-366: Fuji Electric Tellus pcid64 Driver File APIs Exposed Dangerous Method Arbitrary File Deletion Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27673</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-366/</link>
-      <description><![CDATA[This vulnerability allows local attackers to delete arbitrary files on affected installations of Fuji Electric Tellus. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-8108.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-365: FlowiseAI Flowise CSV Agent customReadCSV Code Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29410</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-365/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Flowise. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-41137.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-364: FlowiseAI Flowise CSV Agent  Prompt Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-29411</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-364/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Flowise. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2026-41264.]]></description>
       <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
     </item>
     
