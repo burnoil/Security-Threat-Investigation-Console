@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Fri, 14 Aug 2026 08:14:46 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 14 Aug 2026 11:03:41 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -1022,7 +1022,7 @@
 
 
 
-<p class="wp-block-paragraph">How those individual results are collected, correlated, and returned to the portal deserves its own technical investigation and a dedicated follow up blog.</p>
+<p class="wp-block-paragraph">How those individual results are collected, correlated, and returned to the portal deserves its<strong><a href="https://patchmypc.com/blog/inside-intunes-new-sync-status-window/"> own technical investigation and a dedicated follow up blog.</a></strong></p>
 <p>The post <a href="https://patchmypc.com/blog/intune-on-demand-device-sync-now-uses-ic3-for-ime-workloads/">Intune On Demand Device Sync Now Uses IC3 for IME Workloads</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
