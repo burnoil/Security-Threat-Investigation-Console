@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 13 Aug 2026 19:41:53 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 14 Aug 2026 06:19:06 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -137,15 +137,11 @@
 
 
 
-<p class="wp-block-paragraph">The Policies row is best explained through the classic Windows MDM path. WNS carries the notification, WindowsMDMPush wakes the MDM client, OMADMClient opens an OMA DM session, and policy results are returned to the service. The service then exposes that summary through getSyncStatus.</p>
+<p class="wp-block-paragraph">The Policies row is best explained through the classic Windows MDM path. WNS carries the notification, WindowsMDMPush wakes the MDM client, OMADMClient opens an OMA DM session, and<strong> <a href="https://learn.microsoft.com/en-us/windows/client-management/oma-dm-protocol-support">policy results (status)</a> </strong>are returned to the service. The service then exposes that summary through getSyncStatus.</p>
 
 
 
 <figure class="wp-block-image size-large"><img decoding="async" width="1024" height="596" src="https://patchmypc.com/app/uploads/2026/08/image-13-1024x596.png" alt="the full  Sync status tracker" class="wp-image-191876" srcset="https://patchmypc.com/app/uploads/2026/08/image-13-1024x596.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-13-300x175.png 300w, https://patchmypc.com/app/uploads/2026/08/image-13-768x447.png 768w, https://patchmypc.com/app/uploads/2026/08/image-13.png 1253w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph"><em>Detailed flow behind the Policies row in the current pane.</em></p>
 
 
 
