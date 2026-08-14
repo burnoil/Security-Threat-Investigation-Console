@@ -10,7 +10,7 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Fri, 14 Aug 2026 14:02:08 -0500</pubDate>
+    <pubDate>Fri, 14 Aug 2026 15:36:02 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
     
@@ -482,15 +482,15 @@
       <title><![CDATA[ZDI-26-526: (0Day) PAX Technology Q80 Application Installer Signature Verification Bypass Remote Code Execution Vulnerability]]></title>
       <guid isPermaLink="false">ZDI-CAN-30585</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-526/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of PAX Technology Q80. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
-      <pubDate>Wed, 05 Aug 2026 00:00:00 -0500</pubDate>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of PAX Technology Q80. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-19910, CVE-2026-19911.]]></description>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 -0500</pubDate>
     </item>
     
     <item>
       <title><![CDATA[ZDI-26-525: (0Day) PAX Technology Q80 AIP File Parsing Link Following Remote Code Execution Vulnerability]]></title>
       <guid isPermaLink="false">ZDI-CAN-30583</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-525/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of PAX Technology Q80. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5.]]></description>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of PAX Technology Q80. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-19909.]]></description>
       <pubDate>Wed, 05 Aug 2026 00:00:00 -0500</pubDate>
     </item>
     
@@ -498,7 +498,7 @@
       <title><![CDATA[ZDI-26-524: (0Day) PAX Technology Q80 XCB Daemon Missing Authentication Vulnerability]]></title>
       <guid isPermaLink="false">ZDI-CAN-30584</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-524/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to disclose sensitive information and modify configuration on affected installations of PAX Technology Q80. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.1.]]></description>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to disclose sensitive information and modify configuration on affected installations of PAX Technology Q80. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.1. The following CVEs are assigned: CVE-2026-19908.]]></description>
       <pubDate>Wed, 05 Aug 2026 00:00:00 -0500</pubDate>
     </item>
     
