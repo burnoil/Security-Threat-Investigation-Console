@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Fri, 14 Aug 2026 06:19:06 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 14 Aug 2026 08:14:46 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -145,11 +145,7 @@
 
 
 
-<p class="wp-block-paragraph">The most important disclaimer is that policy units are not proven to mean Intune configuration profiles. The row is clearly useful as a progress signal, but it should not be over explained as a precise profile count.</p>
-
-
-
-<p class="wp-block-paragraph">There is another boundary worth calling out. In this investigation, classic Windows MDM activity clearly contributes to the Policies row, but WinDC or MMP C policy paths were not proven to be part of the on demand Sync results shown here. For now, the safest conclusion is that the pane surfaces the results Intune chose to aggregate, not every policy path that exists on the device.</p>
+<p class="wp-block-paragraph">There is another boundary worth calling out. In this investigation, classic Windows MDM activity clearly contributes to the Policies row. WinDC or MMP C policy paths were not proven to be part of the on demand Sync results shown here. For now, the safest conclusion is that the sync status windows surfaces the results Intune chose to aggregate. It does not show every policy path that exists on the device.</p>
 
 
 
@@ -157,19 +153,47 @@
 
 
 
-<p class="wp-block-paragraph">Inside IME, the Applications row and Scripts row come from separate workload engines. In this capture, Applications aligned with IME application processing and the AppWorkload.log path. Scripts aligned with the platform PowerShell workflow and AgentExecutor.log.</p>
+<p class="wp-block-paragraph">Inside the IME, Applications and Scripts are handled by separate workload engines. When the DirectSync notification reaches IME, the Win32 app workload wakes up and starts processing the required applications that are applicable to the device. That processing is recorded in <strong><code>AppWorkload.log</code>,</strong> while the resulting application state is reported back to the Intune service and eventually reflected in the Applications row. Platform PowerShell scripts follow their own execution path, with the actual script execution visible in <code>AgentExecutor.log</code> and the resulting state reported back separately for the Scripts row.</p>
 
 
 
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="694" src="https://patchmypc.com/app/uploads/2026/08/image-14-1024x694.png" alt="" class="wp-image-191877" srcset="https://patchmypc.com/app/uploads/2026/08/image-14-1024x694.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-14-300x203.png 300w, https://patchmypc.com/app/uploads/2026/08/image-14-768x520.png 768w, https://patchmypc.com/app/uploads/2026/08/image-14.png 1147w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph"><em>IME breakdown behind the Applications and Scripts rows.</em></p>
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="603" src="https://patchmypc.com/app/uploads/2026/08/image-16-1024x603.png" alt="" class="wp-image-191974" srcset="https://patchmypc.com/app/uploads/2026/08/image-16-1024x603.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-16-300x177.png 300w, https://patchmypc.com/app/uploads/2026/08/image-16-768x452.png 768w, https://patchmypc.com/app/uploads/2026/08/image-16.png 1516w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
 <p class="wp-block-paragraph">The new Sync Window pane is designed to give quick visibility, while the detailed logs on the device remain the place for deeper troubleshooting.</p>
+
+
+
+<h3 id="h-5-where-is-compliance" class="wp-block-heading">5.Where is Compliance?</h3>
+
+
+
+<p class="wp-block-paragraph">The current Sync Status Window appears to stop after Scripts, but the getSyncStatus response for the same Sync operation still contained a Compliance component. At that moment the service reported Compliance as inProgress. That gives us the missing clue: Compliance was not skipped. The portal was still tracking it, but it was not rendering the row yet.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="565" height="159" src="https://patchmypc.com/app/uploads/2026/08/image-18.png" alt="" class="wp-image-191989" srcset="https://patchmypc.com/app/uploads/2026/08/image-18.png 565w, https://patchmypc.com/app/uploads/2026/08/image-18-300x84.png 300w" sizes="(max-width: 565px) 100vw, 565px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The Intune portal code confirms why the row disappears. Compliance is one of the normal stages in the model, but the display filter only keeps the Compliance row once its normalized status is success or failure. An inProgress Compliance stage therefore exists in the model and can keep the monitor active while remaining invisible in the pane.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="566" src="https://patchmypc.com/app/uploads/2026/08/image-17-1024x566.png" alt="Figure 10. The portal filter hides Compliance while it is still in progress. The polling logic separately continues to look for Compliance after the other stages reach a final state." class="wp-image-191988" srcset="https://patchmypc.com/app/uploads/2026/08/image-17-1024x566.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-17-300x166.png 300w, https://patchmypc.com/app/uploads/2026/08/image-17-768x424.png 768w, https://patchmypc.com/app/uploads/2026/08/image-17.png 1504w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">This also explains the full blue progress bar in the capture. The portal calculates progress from the stages that survive the display filter. If Compliance is still in progress and therefore hidden, Notifying device, Policies, Applications, and Scripts can all be in final states and the visible progress bar can reach 100 percent while Compliance is still running behind the pane.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="586" height="433" src="https://patchmypc.com/app/uploads/2026/08/image-19.png" alt="" class="wp-image-191990" srcset="https://patchmypc.com/app/uploads/2026/08/image-19.png 586w, https://patchmypc.com/app/uploads/2026/08/image-19-300x222.png 300w" sizes="(max-width: 586px) 100vw, 586px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The polling logic does not stop immediately when that happens. Once the other stages have reached a final state, the view explicitly looks for Compliance and gives it a separate 90 second wait to finish. If Compliance later returns a final state such as Compliant, In grace period, Not applicable, or Managed by Configuration Manager, the portal presents that as a successful Compliance result. Other final Compliance results are presented as failure.</p>
 
 
 
@@ -182,7 +206,7 @@
 
 
 <ul class="wp-block-list">
-<li>If Notifying device completes, you know the action was at least accepted and tracked by the service.</li>
+<li>If Notifying device completes, you know the action was at least accepted and tracked by the service.(AKA the device is online)</li>
 
 
 
@@ -203,6 +227,18 @@
 
 
 
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
 <h2 id="h-what-the-new-sync-status-does-not-prove" class="wp-block-heading">What the new Sync Status does not prove</h2>
 
 
@@ -216,15 +252,11 @@
 
 
 
-<li>The Applications offered count should not be read as installed count or success count.</li>
+<li>Knowing which applications/script/policies failed or were succesful is not possible.</li>
 
 
 
-<li>The Policies row is useful progress information, but policy units are not proven to equal configuration profiles.</li>
-
-
-
-<li>This current UI does not show a separate Compliance row, so this article intentionally leaves compliance out of the flow…. For now…</li>
+<li>Where the policies number comes from&#8230; that&#8217;s the biggest question.</li>
 </ul>
 
 
