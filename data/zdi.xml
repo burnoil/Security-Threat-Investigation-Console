@@ -10,7 +10,7 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Tue, 18 Aug 2026 08:49:18 -0500</pubDate>
+    <pubDate>Tue, 18 Aug 2026 09:39:14 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
     
@@ -106,7 +106,7 @@
       <title><![CDATA[ZDI-26-573: Linux Kernel KSMBD Response Header Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
       <guid isPermaLink="false">ZDI-CAN-31063</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-573/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Linux Kernel KSMBD. Authentication is not required to exploit this vulnerability. However, only systems with ksmbd enabled are vulnerable. The ZDI has assigned a CVSS rating of 9.3.]]></description>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Linux Kernel KSMBD. Authentication is not required to exploit this vulnerability. However, only systems with ksmbd enabled are vulnerable. The ZDI has assigned a CVSS rating of 9.3. The following CVEs are assigned: CVE-2026-68431.]]></description>
       <pubDate>Thu, 13 Aug 2026 00:00:00 -0500</pubDate>
     </item>
     
