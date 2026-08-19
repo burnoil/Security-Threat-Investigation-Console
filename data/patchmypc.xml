@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Tue, 18 Aug 2026 18:13:05 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 19 Aug 2026 12:58:07 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -110,7 +110,7 @@
 
 
 
-<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="559" src="https://patchmypc.com/app/uploads/2026/08/image-9-1024x559.png" alt="Current Sync status pane example from the device page in Intune." class="wp-image-191871" srcset="https://patchmypc.com/app/uploads/2026/08/image-9-1024x559.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-9-300x164.png 300w, https://patchmypc.com/app/uploads/2026/08/image-9-768x419.png 768w, https://patchmypc.com/app/uploads/2026/08/image-9.png 1257w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+<figure class="wp-block-image size-large"><a href="https://patchmypc.com/app/uploads/2026/08/image-9.png"><img fetchpriority="high" decoding="async" width="1024" height="559" src="https://patchmypc.com/app/uploads/2026/08/image-9-1024x559.png" alt="Current Sync status pane example from the device page in Intune." class="wp-image-191871" srcset="https://patchmypc.com/app/uploads/2026/08/image-9-1024x559.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-9-300x164.png 300w, https://patchmypc.com/app/uploads/2026/08/image-9-768x419.png 768w, https://patchmypc.com/app/uploads/2026/08/image-9.png 1257w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></figure>
 
 
 
@@ -118,7 +118,7 @@
 
 
 
-<p class="wp-block-paragraph">The important change is not just a nicer sync status window. The portal now behaves more like a lightweight monitoring client. It starts the Sync action, opens the pane, and keeps polling for updated status while the action is in progress.</p>
+<p class="wp-block-paragraph">The key change isn&#8217;t just a nicer sync status window. The portal now behaves more like a lightweight monitoring client. It starts the Sync action, opens the pane, and keeps polling for updated status while the action is in progress.</p>
 
 
 
@@ -146,7 +146,7 @@
 
 
 
-<p class="wp-block-paragraph">The high level flow is useful, but it becomes much easier to explain once it is broken into smaller pieces. The next diagrams zoom in on the portal sequence, the split between Windows MDM and IME, the Policies row, and the Applications and Scripts rows.</p>
+<p class="wp-block-paragraph">The high-level flow is useful, but it becomes much easier to explain once it is broken into smaller pieces. The next diagrams zoom in on the portal sequence, the split between Windows MDM and IME, the Policies row, and the Applications and Scripts rows.</p>
 
 
 
@@ -158,11 +158,7 @@
 
 
 
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="643" src="https://patchmypc.com/app/uploads/2026/08/image-11-1024x643.png" alt="" class="wp-image-191874" srcset="https://patchmypc.com/app/uploads/2026/08/image-11-1024x643.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-11-300x188.png 300w, https://patchmypc.com/app/uploads/2026/08/image-11-768x482.png 768w, https://patchmypc.com/app/uploads/2026/08/image-11.png 1237w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph"><em>Portal side sequence from clicking Sync to opening the live monitoring pane.</em></p>
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="768" src="https://patchmypc.com/app/uploads/2026/08/image-36-1024x768.png" alt="" class="wp-image-192567" srcset="https://patchmypc.com/app/uploads/2026/08/image-36-1024x768.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-36-300x225.png 300w, https://patchmypc.com/app/uploads/2026/08/image-36-768x576.png 768w, https://patchmypc.com/app/uploads/2026/08/image-36-1536x1152.png 1536w, https://patchmypc.com/app/uploads/2026/08/image-36.png 1969w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
@@ -174,43 +170,83 @@
 
 
 
-<p class="wp-block-paragraph">What looks like one action in the portal is delivered through two different device side paths. Windows MDM is still woken through WNS and the WindowsMDMPush task. IME uses the IC3 and Trouter path through NotificationMessageListener.</p>
+<p class="wp-block-paragraph">What looks like one action in the portal is delivered through two different device-side paths. Windows MDM is still woken through WNS and the WindowsMDMPush task. IME uses the IC3 and Trouter path through NotificationMessageListener.</p>
 
 
 
-<figure class="wp-block-image size-full"><img decoding="async" width="668" height="501" src="https://patchmypc.com/app/uploads/2026/08/image-18.jpg" alt=" Sync status what it does when triggering a sync" class="wp-image-191863" srcset="https://patchmypc.com/app/uploads/2026/08/image-18.jpg 668w, https://patchmypc.com/app/uploads/2026/08/image-18-300x225.jpg 300w" sizes="(max-width: 668px) 100vw, 668px" /></figure>
+<figure class="wp-block-image size-full"><img decoding="async" width="668" height="501" src="https://patchmypc.com/app/uploads/2026/08/image-18.jpg" alt="One Sync action, two different device side notification paths." class="wp-image-191863" srcset="https://patchmypc.com/app/uploads/2026/08/image-18.jpg 668w, https://patchmypc.com/app/uploads/2026/08/image-18-300x225.jpg 300w" sizes="(max-width: 668px) 100vw, 668px" /></figure>
 
 
 
-<p class="wp-block-paragraph"><em>One Sync action, two different device side notification paths.</em></p>
+<p class="wp-block-paragraph">This split explains why the pane isn&#8217;t backed by a single Sync engine.<strong> Policies live on the Windows MDM side</strong>. <strong>Applications and Scripts live on the IME side.</strong></p>
 
 
 
-<p class="wp-block-paragraph">This split explains why the pane is not backed by one single Sync engine. Policies live on the Windows MDM side. Applications and Scripts live on the IME side.</p>
+<h2 id="h-zoom-in-on-the-policies-row" class="wp-block-heading">Zoom in on the Policies row</h2>
 
 
 
-<h3 id="h-3-zoom-in-on-the-policies-row" class="wp-block-heading">3. Zoom in on the Policies row</h3>
+<p class="wp-block-paragraph">The Policies row is best explained through the classic Windows MDM path. WNS carries the notification, WindowsMDMPush wakes the MDM client, OMADMClient opens an OMA DM session, and<strong> <a href="https://learn.microsoft.com/en-us/windows/client-management/oma-dm-protocol-support">policy results (status)</a> </strong>are returned to the service. The service then exposes that summary through <strong>getSyncStatus.</strong></p>
 
 
 
-<p class="wp-block-paragraph">The Policies row is best explained through the classic Windows MDM path. WNS carries the notification, WindowsMDMPush wakes the MDM client, OMADMClient opens an OMA DM session, and<strong> <a href="https://learn.microsoft.com/en-us/windows/client-management/oma-dm-protocol-support">policy results (status)</a> </strong>are returned to the service. The service then exposes that summary through getSyncStatus.</p>
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="581" src="https://patchmypc.com/app/uploads/2026/08/image-38-1024x581.png" alt="" class="wp-image-192570" srcset="https://patchmypc.com/app/uploads/2026/08/image-38-1024x581.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-38-300x170.png 300w, https://patchmypc.com/app/uploads/2026/08/image-38-768x435.png 768w, https://patchmypc.com/app/uploads/2026/08/image-38-1536x871.png 1536w, https://patchmypc.com/app/uploads/2026/08/image-38.png 1665w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="596" src="https://patchmypc.com/app/uploads/2026/08/image-13-1024x596.png" alt="the full  Sync status tracker" class="wp-image-191876" srcset="https://patchmypc.com/app/uploads/2026/08/image-13-1024x596.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-13-300x175.png 300w, https://patchmypc.com/app/uploads/2026/08/image-13-768x447.png 768w, https://patchmypc.com/app/uploads/2026/08/image-13.png 1253w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+<h2 class="wp-block-heading">3. Zoom in on the Policies row</h2>
 
 
 
-<p class="wp-block-paragraph">There is another boundary worth calling out. In this investigation, classic Windows MDM activity clearly contributes to the Policies row. WinDC or MMP C policy paths were not proven to be part of the on demand Sync results shown here. For now, the safest conclusion is that the sync status windows surfaces the results Intune chose to aggregate. It does not show every policy path that exists on the device.</p>
+<p class="wp-block-paragraph">The Policies row is the one counter that is still not fully explained. The first number we can prove is the older Device configuration total of 71. When I opened Device configuration status for the same device, the portal called the Graph report <strong>getConfigurationPoliciesReportForDevice</strong>. The response returned <strong>TotalRowCount: 71</strong>.. which is exactly what was shown in the Device monitor as well&#8230;</p>
 
 
 
-<h3 id="h-4-zoom-in-on-applications-and-scripts" class="wp-block-heading">4. Zoom in on Applications and Scripts</h3>
+<figure class="wp-block-image size-full"><img decoding="async" width="658" height="255" src="https://patchmypc.com/app/uploads/2026/08/image-42.png" alt="" class="wp-image-192582" srcset="https://patchmypc.com/app/uploads/2026/08/image-42.png 658w, https://patchmypc.com/app/uploads/2026/08/image-42-300x116.png 300w" sizes="(max-width: 658px) 100vw, 658px" /></figure>
 
 
 
-<p class="wp-block-paragraph">Inside the IME, Applications and Scripts are handled by separate workload engines. When the DirectSync notification reaches IME, the Win32 app workload wakes up and starts processing the required applications that are applicable to the device. That processing is recorded in <strong><code>AppWorkload.log</code>,</strong> while the resulting application state is reported back to the Intune service and eventually reflected in the Applications row. Platform PowerShell scripts follow their own execution path, with the actual script execution visible in <code>AgentExecutor.log</code> and the resulting state reported back separately for the Scripts row.</p>
+<p class="wp-block-paragraph">The export of that same report contained exactly 71 reporting rows: 66 with PolicyStatus 2, 4 with PolicyStatus 5 and 1 with PolicyStatus 1. That matches the title exactly.<strong> But 71 does not mean 71 unique policy definitions</strong>. Those 71 rows contain 41 unique PolicyIds. Thirty policies are represented twice, normally as separate user and system evaluation rows, while eleven appear once. So the 71 is a Graph reporting row count,NOT a device side Policy CSP count.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="525" src="https://patchmypc.com/app/uploads/2026/08/image-39-1024x525.png" alt="" class="wp-image-192579" srcset="https://patchmypc.com/app/uploads/2026/08/image-39-1024x525.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-39-300x154.png 300w, https://patchmypc.com/app/uploads/2026/08/image-39-768x394.png 768w, https://patchmypc.com/app/uploads/2026/08/image-39-1536x788.png 1536w, https://patchmypc.com/app/uploads/2026/08/image-39-2048x1050.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph"><strong>Graph response: TotalRowCount is 71.</strong></p>
+
+
+
+<p class="wp-block-paragraph">Next I looked at the device side evidence. The DMEDP Debug XML shows Windows actively reading real Policy CSP settings during the OMA DM session. In this capture there are 356 Policy GetValue operations covering 89 unique Policy CSP paths. Every one of those 89 paths is read four times during the trace. That immediately rules out a simple device side count of Policy CSP reads as the source of either 71 or 73.</p>
+
+
+
+<figure class="wp-block-image size-large is-resized"><img decoding="async" width="1024" height="855" src="https://patchmypc.com/app/uploads/2026/08/image-40-1024x855.png" alt="" class="wp-image-192580" style="aspect-ratio:1.1976863189444058;width:1024px;height:auto" srcset="https://patchmypc.com/app/uploads/2026/08/image-40-1024x855.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-40-300x250.png 300w, https://patchmypc.com/app/uploads/2026/08/image-40-768x641.png 768w, https://patchmypc.com/app/uploads/2026/08/image-40-1536x1282.png 1536w, https://patchmypc.com/app/uploads/2026/08/image-40.png 1561w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The count check makes the boundary even clearer. The DMEDP EventData never exposes 71 or 73 as a policy total. The SyncML trace does not contain &lt;Data&gt;71&lt;/Data&gt;, &lt;Data&gt;73&lt;/Data&gt;, or a policyCount field either. SyncML is showing the delta exchanged in that OMA DM session, not a list of 71 or 73 logical policy objects.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="489" src="https://patchmypc.com/app/uploads/2026/08/image-41-1024x489.png" alt="" class="wp-image-192581" srcset="https://patchmypc.com/app/uploads/2026/08/image-41-1024x489.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-41-300x143.png 300w, https://patchmypc.com/app/uploads/2026/08/image-41-768x367.png 768w, https://patchmypc.com/app/uploads/2026/08/image-41.png 1246w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">That leaves the live Sync Status number. The pane shows 68 of 73 Policies succeeded, while the older Device configuration report shows 66 succeeded out of 71. Both views have five items that are not successful: 73 minus 68 is 5, and 71 minus 66 is also 5. In this capture the difference is therefore exactly two additional successful items in the live policy set. What those two items are cannot be identified from the Graph Device configuration report, the DMEDP Debug XML, or the SyncML trace we captured. The service is clearly using a policy set that is not identical to the older 71 row Device configuration report, but the evidence here does not tell us what the extra two objects are.</p>
+
+
+
+<p class="wp-block-paragraph">This is also where the current Sync Status experience falls short. If the pane tells us 68 of 73 succeeded, we should be able to click or double click the Policies row and see those 73 items, including the two that are missing from the older report. Right now the summary gives us the number, but not the evidence behind it.</p>
+
+
+
+<h2 id="h-zoom-in-on-applications-and-scripts" class="wp-block-heading">Zoom in on Applications and Scripts</h2>
+
+
+
+<p class="wp-block-paragraph"><strong>Applications and Scripts</strong> both sit on the IME side of the Sync operation, but they are not handled by one single workload engine. The latest device logs make the <strong>“offered”</strong> numbers much easier to explain because the same counts appear inside IME during the exact DirectSync session.</p>
 
 
 
@@ -218,11 +254,103 @@
 
 
 
-<p class="wp-block-paragraph">The new Sync Window pane is designed to give quick visibility, while the detailed logs on the device remain the place for deeper troubleshooting.</p>
+<h3 id="h-applications-where-does-offered-number-come-from" class="wp-block-heading">Applications: where does “Offered Number” come from?</h3>
 
 
 
-<h3 id="h-5-where-is-compliance" class="wp-block-heading">5.Where is Compliance?</h3>
+<p class="wp-block-paragraph">The Sync Status pane showed 28 applications offered. </p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="506" height="378" src="https://patchmypc.com/app/uploads/2026/08/image-32.png" alt="" class="wp-image-192562" srcset="https://patchmypc.com/app/uploads/2026/08/image-32.png 506w, https://patchmypc.com/app/uploads/2026/08/image-32-300x224.png 300w" sizes="(max-width: 506px) 100vw, 506px" /></figure>
+
+
+
+<p class="wp-block-paragraph">In the AppWorkload.log on the device itself, the IME first requests required apps. Intune then returns 28 Win32 app objects, and the V3 processor starts processing 28 subgraphs. A few hundred milliseconds later, it finishes those same 28 subgraphs.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="211" src="https://patchmypc.com/app/uploads/2026/08/image-29-1024x211.png" alt="" class="wp-image-192559" srcset="https://patchmypc.com/app/uploads/2026/08/image-29-1024x211.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-29-300x62.png 300w, https://patchmypc.com/app/uploads/2026/08/image-29-768x158.png 768w, https://patchmypc.com/app/uploads/2026/08/image-29-1536x316.png 1536w, https://patchmypc.com/app/uploads/2026/08/image-29-2048x421.png 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph"><strong>Proof.</strong> The 28 in the portal matches the 28 Win32 app objects returned to IME and the 28 app subgraphs evaluated by the V3 processor. This makes the Applications counter fairly clear. “28 offered” does not mean 28 applications were installed. It means Intune handed 28 Win32 app objects to the IME for evaluation in that session. The IME can then use detection, applicability, previous state, reevaluation timing and GRS to decide whether any further action is required.</p>
+
+
+
+<h3 id="h-scripts-the-counter-is-broader-than-platform-scripts" class="wp-block-heading">Scripts: the counter is broader than Platform scripts</h3>
+
+
+
+<p class="wp-block-paragraph">The Scripts row showed 2 offered.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="530" height="408" src="https://patchmypc.com/app/uploads/2026/08/image-31.png" alt="" class="wp-image-192561" srcset="https://patchmypc.com/app/uploads/2026/08/image-31.png 530w, https://patchmypc.com/app/uploads/2026/08/image-31-300x231.png 300w" sizes="(max-width: 530px) 100vw, 530px" /></figure>
+
+
+
+<p class="wp-block-paragraph"> During the same DirectSync notification, the IME explicitly wakes <strong>Proactive Remediation and the regular PowerShellScriptWorkload. </strong>HealthScripts then sends a GetScript request and receives exactly 2 script objects. The local scheduler resolves exactly 2 policies.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="301" src="https://patchmypc.com/app/uploads/2026/08/image-33-1024x301.png" alt="" class="wp-image-192563" srcset="https://patchmypc.com/app/uploads/2026/08/image-33-1024x301.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-33-300x88.png 300w, https://patchmypc.com/app/uploads/2026/08/image-33-768x226.png 768w, https://patchmypc.com/app/uploads/2026/08/image-33-1536x452.png 1536w, https://patchmypc.com/app/uploads/2026/08/image-33.png 1721w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The same <strong>DirectSync</strong> notification wakes both script-related workloads, while HealthScripts receives and resolves exactly two script policies. Those two objects are not simply two Platform PowerShell scripts. One of them is the EnableAdmin <strong>Remediation </strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="638" height="174" src="https://patchmypc.com/app/uploads/2026/08/image-30.jpg" alt="" class="wp-image-192553" srcset="https://patchmypc.com/app/uploads/2026/08/image-30.jpg 638w, https://patchmypc.com/app/uploads/2026/08/image-30-300x82.jpg 300w" sizes="(max-width: 638px) 100vw, 638px" /></figure>
+
+
+
+<p class="wp-block-paragraph"> The second HealthScripts policy is PolicyType 8 and returns structured compliance style JSON,w hich clearly shows it is connectde to the <strong>Custom Compliance policy I created for Bitlocker</strong>.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="638" height="145" src="https://patchmypc.com/app/uploads/2026/08/image-33.jpg" alt="" class="wp-image-192554" srcset="https://patchmypc.com/app/uploads/2026/08/image-33.jpg 638w, https://patchmypc.com/app/uploads/2026/08/image-33-300x68.jpg 300w" sizes="(max-width: 638px) 100vw, 638px" /></figure>
+
+
+
+<p class="wp-block-paragraph">SO the 2 Scripts that are offered are a PowerShell Remediation Script And Health Script&#8230; why ? Because they are allowed to be executed once more&#8230; While PowerShell Platform scripts are only executed once!.</p>
+
+
+
+<h3 id="h-but-directsync-also-wakes-platform-scripts" class="wp-block-heading">But DirectSync also wakes Platform scripts</h3>
+
+
+
+<p class="wp-block-paragraph">The regular PowerShellScriptWorkload is definitely triggered as part of the same DirectSync. On this device IME already has eight Platform script policy results and sends them in its PolicyRequest. Intune returns an empty PolicyResponse, so there were no <strong>NEW Platform script policies offered during this particular sync</strong>.</p>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="233" src="https://patchmypc.com/app/uploads/2026/08/image-34-1024x233.png" alt="" class="wp-image-192564" srcset="https://patchmypc.com/app/uploads/2026/08/image-34-1024x233.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-34-300x68.png 300w, https://patchmypc.com/app/uploads/2026/08/image-34-768x175.png 768w, https://patchmypc.com/app/uploads/2026/08/image-34.png 1453w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">This is why the Scripts row should not be described as the Platform scripts blade. In this capture, the value of 2 lines up with the two HealthScripts objects returned by GetScript, while the regular Platform script workload separately reports eight existing policy records and receives no new policy payload.</p>
+
+
+
+<h3 id="h-a-cleaner-way-to-read-the-counters" class="wp-block-heading">A cleaner way to read the counters</h3>
+
+
+
+<p class="wp-block-paragraph">DirectSync<br>&nbsp; |<br>&nbsp; +&#8211; Win32 App Workload<br>&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; Intune returns 28 Win32 apps<br>&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; Applications: 28 offered<br>&nbsp; |<br>&nbsp; +&#8211; HealthScripts<br>&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; GetScript returns 2 policies<br>&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; Remediation + custom compliance style discovery<br>&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; Scripts: 2 offered<br>&nbsp; |<br>&nbsp; +&#8211; PowerShellScriptWorkload<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; 8 existing results sent<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; PolicyResponse []<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; 0 new Platform scripts offered</p>
+
+
+
+<h3 id="h-offered-does-not-mean-executed" class="wp-block-heading">Offered does not mean executed</h3>
+
+
+
+<p class="wp-block-paragraph">The HealthScripts response returned two policies, but IME did not immediately launch two PowerShell processes because Sync was clicked. After resolving the two policies, HealthScripts checks their existing state and schedule. One policy uses an eight hour interval and EnableAdmin uses a daily schedule. The number is therefore closer to “script policies offered for evaluation” than “scripts executed now”. The same idea applies to applications.</p>
+
+
+
+<h2 id="h-where-is-compliance" class="wp-block-heading">Where is Compliance?</h2>
 
 
 
@@ -281,40 +409,6 @@
 
 
 <figure class="wp-block-image size-large"><img decoding="async" width="1024" height="570" src="https://patchmypc.com/app/uploads/2026/08/image-15-1024x570.png" alt="the new sync status window" class="wp-image-191878" srcset="https://patchmypc.com/app/uploads/2026/08/image-15-1024x570.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-15-300x167.png 300w, https://patchmypc.com/app/uploads/2026/08/image-15-768x428.png 768w, https://patchmypc.com/app/uploads/2026/08/image-15.png 1261w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph"></p>
-
-
-
-<p class="wp-block-paragraph"></p>
-
-
-
-<p class="wp-block-paragraph"></p>
-
-
-
-<h2 id="h-what-the-new-sync-status-does-not-prove" class="wp-block-heading">What the new Sync Status does not prove</h2>
-
-
-
-<p class="wp-block-paragraph">The pane is helpful, but it should not be treated like a perfect source of truth for every detail.</p>
-
-
-
-<ul class="wp-block-list">
-<li>Applications and Scripts are summarized rows. They do not replace the detailed IME logs.</li>
-
-
-
-<li>Knowing which applications/script/policies failed or were succesful is not possible.</li>
-
-
-
-<li>Where the policies number comes from&#8230; that&#8217;s the biggest question.</li>
-</ul>
 
 
 
