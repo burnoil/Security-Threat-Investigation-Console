@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 19 Aug 2026 12:58:07 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 19 Aug 2026 13:23:54 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -186,19 +186,11 @@
 
 
 
-<p class="wp-block-paragraph">The Policies row is best explained through the classic Windows MDM path. WNS carries the notification, WindowsMDMPush wakes the MDM client, OMADMClient opens an OMA DM session, and<strong> <a href="https://learn.microsoft.com/en-us/windows/client-management/oma-dm-protocol-support">policy results (status)</a> </strong>are returned to the service. The service then exposes that summary through <strong>getSyncStatus.</strong></p>
+<p class="wp-block-paragraph">The Policies Sync Window row is best explained through the classic Windows MDM path. WNS carries the notification, WindowsMDMPush wakes the MDM client, OMADMClient opens an OMA DM session, and<strong> <a href="https://learn.microsoft.com/en-us/windows/client-management/oma-dm-protocol-support">policy results (status)</a> </strong>are returned to the service. The service then exposes that summary through <strong>getSyncStatus.</strong></p>
 
 
 
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="581" src="https://patchmypc.com/app/uploads/2026/08/image-38-1024x581.png" alt="" class="wp-image-192570" srcset="https://patchmypc.com/app/uploads/2026/08/image-38-1024x581.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-38-300x170.png 300w, https://patchmypc.com/app/uploads/2026/08/image-38-768x435.png 768w, https://patchmypc.com/app/uploads/2026/08/image-38-1536x871.png 1536w, https://patchmypc.com/app/uploads/2026/08/image-38.png 1665w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<h2 class="wp-block-heading">3. Zoom in on the Policies row</h2>
-
-
-
-<p class="wp-block-paragraph">The Policies row is the one counter that is still not fully explained. The first number we can prove is the older Device configuration total of 71. When I opened Device configuration status for the same device, the portal called the Graph report <strong>getConfigurationPoliciesReportForDevice</strong>. The response returned <strong>TotalRowCount: 71</strong>.. which is exactly what was shown in the Device monitor as well&#8230;</p>
+<p class="wp-block-paragraph">The Policies row is the one counter that is still not fully explained. The first number we can prove is the Device configuration total of 71. When I opened Device configuration status for the same device, the portal called the Graph report <strong>getConfigurationPoliciesReportForDevice</strong>. The response returned <strong>TotalRowCount: 71</strong>.. which is exactly what was shown in the Device monitor as well..</p>
 
 
 
@@ -206,7 +198,7 @@
 
 
 
-<p class="wp-block-paragraph">The export of that same report contained exactly 71 reporting rows: 66 with PolicyStatus 2, 4 with PolicyStatus 5 and 1 with PolicyStatus 1. That matches the title exactly.<strong> But 71 does not mean 71 unique policy definitions</strong>. Those 71 rows contain 41 unique PolicyIds. Thirty policies are represented twice, normally as separate user and system evaluation rows, while eleven appear once. So the 71 is a Graph reporting row count,NOT a device side Policy CSP count.</p>
+<p class="wp-block-paragraph"><strong>The export of that same report contained exactly 71 reporting rows: 66 with PolicyStatus 2, 4 with PolicyStatus 5 and 1 with PolicyStatus 1</strong>. That matches the title exactly.<strong> But 71 does not mean 71 unique policy definitions</strong>. Those 71 rows contain 41 unique PolicyIds. Thirty policies are represented twice, normally as separate user and system evaluation rows, while eleven appear once. So the<strong> 71 should is a Graph reporting row count,NOT a device side Policy CSP count.</strong></p>
 
 
 
@@ -218,7 +210,7 @@
 
 
 
-<p class="wp-block-paragraph">Next I looked at the device side evidence. The DMEDP Debug XML shows Windows actively reading real Policy CSP settings during the OMA DM session. In this capture there are 356 Policy GetValue operations covering 89 unique Policy CSP paths. Every one of those 89 paths is read four times during the trace. That immediately rules out a simple device side count of Policy CSP reads as the source of either 71 or 73.</p>
+<p class="wp-block-paragraph">Next, I looked at the device-side evidence. The DMEDP Debug XML shows Windows actively reading real Policy CSP settings during the OMA DM session. In this capture there are 356 Policy GetValue operations covering 89 unique Policy CSP paths. Every one of those 89 paths is read four times during the trace. That immediately rules out a simple device side count of Policy CSP reads as the source of either 71 or 73.</p>
 
 
 
@@ -226,7 +218,7 @@
 
 
 
-<p class="wp-block-paragraph">The count check makes the boundary even clearer. The DMEDP EventData never exposes 71 or 73 as a policy total. The SyncML trace does not contain &lt;Data&gt;71&lt;/Data&gt;, &lt;Data&gt;73&lt;/Data&gt;, or a policyCount field either. SyncML is showing the delta exchanged in that OMA DM session, not a list of 71 or 73 logical policy objects.</p>
+<p class="wp-block-paragraph">The count check makes the boundary even clearer. The debug EventData never exposes 71 or 73 as a policy total. The SyncML trace does not contain &lt;Data>71&lt;/Data>, &lt;Data>73&lt;/Data>, or a policyCount field either. SyncML is showing the delta exchanged in that OMA DM session, not a list of 71 or 73 logical policy objects.</p>
 
 
 
@@ -234,7 +226,23 @@
 
 
 
-<p class="wp-block-paragraph">That leaves the live Sync Status number. The pane shows 68 of 73 Policies succeeded, while the older Device configuration report shows 66 succeeded out of 71. Both views have five items that are not successful: 73 minus 68 is 5, and 71 minus 66 is also 5. In this capture the difference is therefore exactly two additional successful items in the live policy set. What those two items are cannot be identified from the Graph Device configuration report, the DMEDP Debug XML, or the SyncML trace we captured. The service is clearly using a policy set that is not identical to the older 71 row Device configuration report, but the evidence here does not tell us what the extra two objects are.</p>
+<h3 id="h-explaining-the-number" class="wp-block-heading">Explaining the Number</h3>
+
+
+
+<p class="wp-block-paragraph">That leaves the <strong>weird live Sync Status number.</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="457" height="69" src="https://patchmypc.com/app/uploads/2026/08/image-43.png" alt="" class="wp-image-192589" srcset="https://patchmypc.com/app/uploads/2026/08/image-43.png 457w, https://patchmypc.com/app/uploads/2026/08/image-43-300x45.png 300w" sizes="(max-width: 457px) 100vw, 457px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The new Sync Window shows<strong> 68 of 73 Policies succeeded</strong>, while the older Device configuration report shows<strong> 66 succeeded out of 71. </strong>Both views have five items that are not successful: 73 minus 68 is 5, and 71 minus 66 is also 5. In this capture the difference is therefore exactly two additional successful items in the live policy set. We cannot identify those two items from the Graph Device configuration report, the DMEDP Debug XML, or the SyncML trace we captured. </p>
+
+
+
+<p class="wp-block-paragraph">The service is clearly using a policy set that is not identical to the older 71-row Device configuration report, but the evidence here does not tell us what the extra two objects are.</p>
 
 
 
@@ -258,7 +266,7 @@
 
 
 
-<p class="wp-block-paragraph">The Sync Status pane showed 28 applications offered. </p>
+<p class="wp-block-paragraph">The Sync Status pane showed<strong> 28 applications </strong>offered.</p>
 
 
 
@@ -274,7 +282,7 @@
 
 
 
-<p class="wp-block-paragraph"><strong>Proof.</strong> The 28 in the portal matches the 28 Win32 app objects returned to IME and the 28 app subgraphs evaluated by the V3 processor. This makes the Applications counter fairly clear. “28 offered” does not mean 28 applications were installed. It means Intune handed 28 Win32 app objects to the IME for evaluation in that session. The IME can then use detection, applicability, previous state, reevaluation timing and GRS to decide whether any further action is required.</p>
+<p class="wp-block-paragraph"><strong>Proof.</strong> The 28 in the portal matches the 28 Win32 app objects returned to IME and the 28 app subgraphs evaluated by the V3 processor. This makes the Applications counter fairly clear. “28 offered” does not mean 28 applications were installed. It means Intune handed<strong> 28 Win32 REQUIRED app objects to the IME for evaluation in that session.</strong> The IME can then use detection, applicability, previous state, reevaluation timing and GRS to decide whether any further action is required.</p>
 
 
 
@@ -416,15 +424,19 @@
 
 
 
-<p class="wp-block-paragraph">The new Sync status pane is a meaningful improvement because it turns Sync into something visible. You click Sync, Intune starts monitoring, the portal opens a live pane, and the service begins returning summarized status from the Windows MDM and IME paths.</p>
+<p class="wp-block-paragraph">The new Sync Status pane makes Sync visible, but the interesting part is where those counters come from.</p>
 
 
 
-<p class="wp-block-paragraph">That does not mean the pane explains everything. But it does give admins a much better starting point. Instead of guessing whether anything happened, you can now see the action being accepted, follow the major result buckets, and then pivot into the right logs when you need deeper detail.</p>
+<p class="wp-block-paragraph"><strong>Applications:</strong> the offered count maps to the <strong>required Win32 apps</strong> Intune returns to IME for evaluation.</p>
 
 
 
-<p class="wp-block-paragraph">For the current UI shown here, the cleanest mental model is simple: one portal action, multiple device side clients, one summarized service view.</p>
+<p class="wp-block-paragraph"><strong>Scripts:</strong> the offered count maps to script policies returned to IME. That can include HealthScripts such as Remediations or custom compliance, but it could also be a <strong>new Platform PowerShell script</strong> that still needs to run. Existing Platform scripts normally only run once, so they would not automatically be executed again just because Sync was clicked.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Policies</strong> is still the odd one. We can explain the normal Device Configuration count, but the slightly higher number in the new Sync Status pane still needs more service-side evidence or better documentation from Microsoft</p>
 <p>The post <a href="https://patchmypc.com/blog/inside-intunes-new-sync-status-window/">Inside Intune&#8217;s New Sync Status Window</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
