@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 19 Aug 2026 13:23:54 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 19 Aug 2026 16:47:40 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -218,7 +218,7 @@
 
 
 
-<p class="wp-block-paragraph">The count check makes the boundary even clearer. The debug EventData never exposes 71 or 73 as a policy total. The SyncML trace does not contain &lt;Data>71&lt;/Data>, &lt;Data>73&lt;/Data>, or a policyCount field either. SyncML is showing the delta exchanged in that OMA DM session, not a list of 71 or 73 logical policy objects.</p>
+<p class="wp-block-paragraph">The count check makes the boundary even clearer. The debug EventData never exposes 71 or 73 as a policy total. The SyncML trace does not contain &lt;Data&gt;71&lt;/Data&gt;, &lt;Data&gt;73&lt;/Data&gt;, or a policyCount field either. SyncML is showing the delta exchanged in that OMA DM session, not a list of 71 or 73 logical policy objects.</p>
 
 
 
@@ -390,29 +390,11 @@
 
 
 
-<h2 id="h-how-this-helps-during-troubleshooting" class="wp-block-heading">How this helps during troubleshooting</h2>
+<h2 id="h-the-overview" class="wp-block-heading">The Overview</h2>
 
 
 
-<p class="wp-block-paragraph">The biggest value of the new pane is visibility. Before this experience, an admin could trigger Sync and then wait without much feedback. Now you immediately get a service-side view that shows whether Intune accepted the action and whether the main result buckets have started returning data.</p>
-
-
-
-<ul class="wp-block-list">
-<li>If Notifying device completes, you know the action was at least accepted and tracked by the service.(AKA the device is online)</li>
-
-
-
-<li>If Policies moves but Applications or Scripts do not, that points you toward the split between the Windows MDM path and the IME path.</li>
-
-
-
-<li>If Applications or Scripts show offered counts, you can pivot into AppWorkload.log or AgentExecutor.log on the device for detail (pulled by remote diag collection).</li>
-
-
-
-<li>If Policies shows partial success, you know there is work to do, but the pane alone does not tell you which exact policy objects failed… which is a shame…</li>
-</ul>
+<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>Sync Status row</th><th>What the number relates to</th><th>Included</th><th>Not included / not proven</th></tr></thead><tbody><tr><td><strong>Policies</strong></td><td>Service side policy result set</td><td>Windows MDM policy results aggregated by Intune</td><td>Not simply assigned policies, not the number of Policy CSP settings read on the device, and not directly visible in SyncML. The exact live total is still not fully explained.</td></tr><tr><td><strong>Applications</strong></td><td>Required Win32 apps returned to IME for evaluation</td><td>Required Win32 app objects that Intune offers to the Win32 app workload</td><td>Available apps, web links, every app assigned to the device, or the number of apps actually installed during Sync</td></tr><tr><td><strong>Scripts</strong></td><td>Script policies returned to the IME script workloads</td><td>HealthScripts such as Remediations/custom compliance, and potentially a new Platform PowerShell script that still needs to run</td><td>Existing Platform scripts are not automatically rerun just because Sync is clicked</td></tr><tr><td><strong>Compliance</strong></td><td>Compliance state tracked by the service</td><td>Compliance processing can exist in the Sync Status model</td><td>It may not be shown in the pane while still in progress</td></tr><tr><td><strong>Notifying device</strong></td><td>Delivery/start of the Sync request</td><td>Confirms the service was able to start the device notification flow</td><td>Does not mean all policies, apps and scripts have completed</td></tr></tbody></table></figure>
 
 
 
