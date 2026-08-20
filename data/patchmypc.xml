@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Wed, 19 Aug 2026 16:47:40 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 20 Aug 2026 07:14:53 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -282,7 +282,7 @@
 
 
 
-<p class="wp-block-paragraph"><strong>Proof.</strong> The 28 in the portal matches the 28 Win32 app objects returned to IME and the 28 app subgraphs evaluated by the V3 processor. This makes the Applications counter fairly clear. “28 offered” does not mean 28 applications were installed. It means Intune handed<strong> 28 Win32 REQUIRED app objects to the IME for evaluation in that session.</strong> The IME can then use detection, applicability, previous state, reevaluation timing and GRS to decide whether any further action is required.</p>
+<p class="wp-block-paragraph"><strong>Proof.</strong> The 28 in the portal match the 28 Win32 app objects returned to IME and the 28 app subgraphs evaluated by the V3 processor. This makes the Applications counter fairly clear. “28 offered” does not mean 28 applications were installed. It means Intune handed<strong> 28 Win32 REQUIRED app objects (Also Winget/Store apps) to the IME for evaluation in that session.</strong> The IME can then use detection, applicability, previous state, reevaluation timing and GRS to decide whether any further action is required.</p>
 
 
 
@@ -394,7 +394,7 @@
 
 
 
-<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>Sync Status row</th><th>What the number relates to</th><th>Included</th><th>Not included / not proven</th></tr></thead><tbody><tr><td><strong>Policies</strong></td><td>Service side policy result set</td><td>Windows MDM policy results aggregated by Intune</td><td>Not simply assigned policies, not the number of Policy CSP settings read on the device, and not directly visible in SyncML. The exact live total is still not fully explained.</td></tr><tr><td><strong>Applications</strong></td><td>Required Win32 apps returned to IME for evaluation</td><td>Required Win32 app objects that Intune offers to the Win32 app workload</td><td>Available apps, web links, every app assigned to the device, or the number of apps actually installed during Sync</td></tr><tr><td><strong>Scripts</strong></td><td>Script policies returned to the IME script workloads</td><td>HealthScripts such as Remediations/custom compliance, and potentially a new Platform PowerShell script that still needs to run</td><td>Existing Platform scripts are not automatically rerun just because Sync is clicked</td></tr><tr><td><strong>Compliance</strong></td><td>Compliance state tracked by the service</td><td>Compliance processing can exist in the Sync Status model</td><td>It may not be shown in the pane while still in progress</td></tr><tr><td><strong>Notifying device</strong></td><td>Delivery/start of the Sync request</td><td>Confirms the service was able to start the device notification flow</td><td>Does not mean all policies, apps and scripts have completed</td></tr></tbody></table></figure>
+<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>Sync Status row</th><th>What the number relates to</th><th>Included</th><th>Not included / not proven</th></tr></thead><tbody><tr><td><strong>Policies</strong></td><td>Service side policy result set</td><td>Windows MDM policy results aggregated by Intune</td><td>Not simply assigned policies, not the number of Policy CSP settings read on the device, and not directly visible in SyncML. The exact live total is still not fully explained.</td></tr><tr><td><strong>Applications</strong></td><td>Required Apps (Including Win32App/Winget/Store Apps)</td><td>Required Win32 app objects that Intune offers to the Win32 app workload</td><td>Available apps, web links, every app assigned to the device, or the number of apps actually installed during Sync</td></tr><tr><td><strong>Scripts</strong></td><td>Script policies returned to the IME script workloads</td><td>HealthScripts such as Remediations/custom compliance, and potentially a new Platform PowerShell script that still needs to run</td><td>Existing Platform scripts are not automatically rerun just because Sync is clicked</td></tr><tr><td><strong>Compliance</strong></td><td>Compliance state tracked by the service</td><td>Compliance processing can exist in the Sync Status model</td><td>It may not be shown in the pane while still in progress</td></tr><tr><td><strong>Notifying device</strong></td><td>Delivery/start of the Sync request</td><td>Confirms the service was able to start the device notification flow</td><td>Does not mean all policies, apps and scripts have completed</td></tr></tbody></table></figure>
 
 
 
