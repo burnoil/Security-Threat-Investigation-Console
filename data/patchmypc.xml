@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 20 Aug 2026 07:14:53 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 20 Aug 2026 09:34:42 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -126,11 +126,11 @@
 
 
 
-<h2 id="h-the-big-sync-status-overview" class="wp-block-heading">The big Sync Status Overview</h2>
+<h2 id="h-the-mdm-and-ime-world-vs-the-status-sync-window" class="wp-block-heading">The MDM and IME World vs the Status Sync Window</h2>
 
 
 
-<p class="wp-block-paragraph" id="h-the-big-picture">This first diagram is the map for the rest of the article. It shows how one Sync action is accepted, monitored, split into workload-specific paths, correlated by the service, and finally returned to the Sync status pane.</p>
+<p class="wp-block-paragraph" id="h-the-big-picture">This first diagram is the map for the rest of the article. It shows how one Sync action is accepted, monitored, split into workload-specific paths (2 worlds), correlated by the service, and finally returned to the Sync status pane.</p>
 
 
 
@@ -154,7 +154,7 @@
 
 
 
-<p class="wp-block-paragraph">The first part is fully portal-side. The browser sends syncDevice, the service accepts the action, a monitoring record is created, and the Sync status pane opens. Only after that does the polling loop begin.</p>
+<p class="wp-block-paragraph">The first part is fully portal-side. The browser <strong>executes the syncDevice command</strong>, the service accepts the action, a monitoring record is created, and the new Sync Status Window opens. Only after that does the polling loop begin with a 4 hour timeout.</p>
 
 
 
@@ -162,15 +162,15 @@
 
 
 
-<p class="wp-block-paragraph">That distinction matters during troubleshooting. A successful syncDevice response only proves that the request was accepted. It does not prove that every workload has already started or completed.</p>
+<p class="wp-block-paragraph">That distinction matters during troubleshooting. A successful <strong>syncDevic</strong>e response only proves that the request was accepted. It does not prove that every workload has already started or completed.</p>
 
 
 
-<h3 id="h-2-one-sync-action-splits-into-two-notification-paths" class="wp-block-heading">2. One Sync action splits into two notification paths</h3>
+<h3 id="h-2-one-sync-action-splits-into-two-notification-paths-worlds" class="wp-block-heading">2. One Sync action splits into two notification paths/worlds</h3>
 
 
 
-<p class="wp-block-paragraph">What looks like one action in the portal is delivered through two different device-side paths. Windows MDM is still woken through WNS and the WindowsMDMPush task. IME uses the IC3 and Trouter path through NotificationMessageListener.</p>
+<p class="wp-block-paragraph">What looks like one action in the portal is delivered through two different device-side paths (the 2 worlds I have been talking about). <strong>Windows MDM </strong>is still woken through WNS and the WindowsMDMPush task. IC3 is used to initiate a direct connection to the Intune management Extension.</p>
 
 
 
