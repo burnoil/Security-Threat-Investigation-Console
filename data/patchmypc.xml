@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 20 Aug 2026 09:34:42 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 20 Aug 2026 10:20:05 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -182,23 +182,47 @@
 
 
 
-<h2 id="h-zoom-in-on-the-policies-row" class="wp-block-heading">Zoom in on the Policies row</h2>
+<h2 id="h-the-new-sync-status-window-is-not-counting-intune-objects" class="wp-block-heading">The new Sync Status window is not counting Intune objects</h2>
 
 
 
-<p class="wp-block-paragraph">The Policies Sync Window row is best explained through the classic Windows MDM path. WNS carries the notification, WindowsMDMPush wakes the MDM client, OMADMClient opens an OMA DM session, and<strong> <a href="https://learn.microsoft.com/en-us/windows/client-management/oma-dm-protocol-support">policy results (status)</a> </strong>are returned to the service. The service then exposes that summary through <strong>getSyncStatus.</strong></p>
+<p class="wp-block-paragraph">The biggest challenge with interpreting the new Sync Status window is that the rows do not represent one-to-one mappings with objects that administrators see in the Intune portal.</p>
 
 
 
-<p class="wp-block-paragraph">The Policies row is the one counter that is still not fully explained. The first number we can prove is the Device configuration total of 71. When I opened Device configuration status for the same device, the portal called the Graph report <strong>getConfigurationPoliciesReportForDevice</strong>. The response returned <strong>TotalRowCount: 71</strong>.. which is exactly what was shown in the Device monitor as well..</p>
+<p class="wp-block-paragraph">A device can have an application assigned in Intune, but the way that application appears in Sync Status depends on which client is responsible for processing it.</p>
 
 
 
-<figure class="wp-block-image size-full"><img decoding="async" width="658" height="255" src="https://patchmypc.com/app/uploads/2026/08/image-42.png" alt="" class="wp-image-192582" srcset="https://patchmypc.com/app/uploads/2026/08/image-42.png 658w, https://patchmypc.com/app/uploads/2026/08/image-42-300x116.png 300w" sizes="(max-width: 658px) 100vw, 658px" /></figure>
+<p class="wp-block-paragraph">This is the important distinction:</p>
 
 
 
-<p class="wp-block-paragraph"><strong>The export of that same report contained exactly 71 reporting rows: 66 with PolicyStatus 2, 4 with PolicyStatus 5 and 1 with PolicyStatus 1</strong>. That matches the title exactly.<strong> But 71 does not mean 71 unique policy definitions</strong>. Those 71 rows contain 41 unique PolicyIds. Thirty policies are represented twice, normally as separate user and system evaluation rows, while eleven appear once. So the<strong> 71 should is a Graph reporting row count,NOT a device side Policy CSP count.</strong></p>
+<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>Intune workload</th><th>Device-side processing engine</th><th>Sync Status row</th></tr></thead><tbody><tr><td>Configuration profiles</td><td>Windows MDM</td><td>Policies</td></tr><tr><td>MSI Line of Business applications</td><td>Windows MDM / EnterpriseDesktopManagement</td><td>Policies</td></tr><tr><td>Web Links</td><td>Windows MDM</td><td>Policies</td></tr><tr><td>Win32 required applications</td><td>Intune Management Extension</td><td>Applications</td></tr><tr><td>Required Store / Enterprise App Catalog apps handled by IME</td><td>Intune Management Extension</td><td>Applications</td></tr><tr><td>Remediations</td><td>HealthScripts in IME</td><td>Scripts</td></tr><tr><td>Custom Compliance discovery scripts</td><td>HealthScripts in IME</td><td>Scripts</td></tr><tr><td>Platform PowerShell scripts</td><td>PowerShellScriptWorkload in IME</td><td>Depends on whether new policy data is returned</td></tr></tbody></table></figure>
+
+
+
+<p class="wp-block-paragraph">This explains the behaviour we see in the Sync Status window. Two applications can both be called “applications” in Intune, but only one of them may increase the Applications counter. The difference is not the portal object type. The difference is the client-side engine processing the workload.</p>
+
+
+
+<h2 id="h-where-does-the-policies-number-come-from" class="wp-block-heading">Where does the Policies number come from?</h2>
+
+
+
+<p class="wp-block-paragraph">Now that we understand that Policies represents Windows MDM owned work, the next question becomes: how does Intune calculate the number shown in this row? In this example, the Sync Status window shows:<strong> 68 of 73 Policies succeeded</strong></p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="472" height="228" src="https://patchmypc.com/app/uploads/2026/08/image-44.png" alt="" class="wp-image-192676" srcset="https://patchmypc.com/app/uploads/2026/08/image-44.png 472w, https://patchmypc.com/app/uploads/2026/08/image-44-300x145.png 300w" sizes="(max-width: 472px) 100vw, 472px" /></figure>
+
+
+
+<p class="wp-block-paragraph">The first question is obvious. Where does the number 73 come from? To answer that, we first need to understand what the Policies row represents. This part of the Sync Status experience belongs to the Windows MDM path. During a sync operation, Windows receives the notification, the MDM stack wakes up, an OMA DM session is created, and Windows processes the requested management operations. The resulting status information is then returned back to Intune, where the service exposes the summary through the Sync Status experience.</p>
+
+
+
+<p class="wp-block-paragraph">At first, it is tempting to assume that the Policies number is simply the number of Device Configuration policies assigned to the device. However, the first piece of evidence already shows that the story is slightly different. When opening Device Configuration status for the same device, Intune calls the Graph report:</p>
 
 
 
@@ -206,11 +230,23 @@
 
 
 
-<p class="wp-block-paragraph"><strong>Graph response: TotalRowCount is 71.</strong></p>
+<p class="wp-block-paragraph"><strong>The response returns: TotalRowCount: 71</strong>. That same number is also visible in the Device Monitor experience.</p>
 
 
 
-<p class="wp-block-paragraph">Next, I looked at the device-side evidence. The DMEDP Debug XML shows Windows actively reading real Policy CSP settings during the OMA DM session. In this capture there are 356 Policy GetValue operations covering 89 unique Policy CSP paths. Every one of those 89 paths is read four times during the trace. That immediately rules out a simple device side count of Policy CSP reads as the source of either 71 or 73.</p>
+<figure class="wp-block-image size-full"><img decoding="async" width="658" height="255" src="https://patchmypc.com/app/uploads/2026/08/image-42.png" alt="" class="wp-image-192582" srcset="https://patchmypc.com/app/uploads/2026/08/image-42.png 658w, https://patchmypc.com/app/uploads/2026/08/image-42-300x116.png 300w" sizes="(max-width: 658px) 100vw, 658px" /></figure>
+
+
+
+<p class="wp-block-paragraph">So we can confidently say that 71 represents the Device Configuration reporting count for this device. The question then becomes: If Device Configuration reports 71, why does Sync Status show 73?  Is Windows creating two additional policies locally? Are there hidden Policy CSP objects involved?</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="472" height="228" src="https://patchmypc.com/app/uploads/2026/08/image-44.png" alt="" class="wp-image-192676" srcset="https://patchmypc.com/app/uploads/2026/08/image-44.png 472w, https://patchmypc.com/app/uploads/2026/08/image-44-300x145.png 300w" sizes="(max-width: 472px) 100vw, 472px" /></figure>
+
+
+
+<p class="wp-block-paragraph">To answer that question, we moved from the portal into the device-side evidence. Debug logging was enabled and the DMEDP Event log was exported to XML. The trace showed Windows actively processing Policy CSP settings during the OMA DM session. The capture contained 356 Policy GetValue operations covering 89 unique Policy CSP paths. Each of those paths was read four times during the trace.</p>
 
 
 
@@ -218,35 +254,27 @@
 
 
 
-<p class="wp-block-paragraph">The count check makes the boundary even clearer. The debug EventData never exposes 71 or 73 as a policy total. The SyncML trace does not contain &lt;Data&gt;71&lt;/Data&gt;, &lt;Data&gt;73&lt;/Data&gt;, or a policyCount field either. SyncML is showing the delta exchanged in that OMA DM session, not a list of 71 or 73 logical policy objects.</p>
+<p class="wp-block-paragraph">This tells us something important. The Sync Status number is not a simple count of Policy CSP reads performed by Windows. The device is not looking at those 356 operations and turning them into either 71 or 73. The additional two entries are not being created because Windows suddenly discovered two extra Policy CSP paths. <strong>So where do they come from?</strong></p>
 
 
 
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="489" src="https://patchmypc.com/app/uploads/2026/08/image-41-1024x489.png" alt="" class="wp-image-192581" srcset="https://patchmypc.com/app/uploads/2026/08/image-41-1024x489.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-41-300x143.png 300w, https://patchmypc.com/app/uploads/2026/08/image-41-768x367.png 768w, https://patchmypc.com/app/uploads/2026/08/image-41.png 1246w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+<p class="wp-block-paragraph">The answer appears to be that Sync Status is not showing exactly the same dataset as the Device Configuration report. The Device Configuration report is showing configuration policy reporting. The Sync Status Policies counter appears to represent a broader Windows MDM result set. This also explains another observation from testing. When adding a traditional MSI Line of Business application, the Policies counter changed from 70 to 71, while the Applications counter remains untouched.</p>
 
 
 
-<h3 id="h-explaining-the-number" class="wp-block-heading">Explaining the Number</h3>
+<figure class="wp-block-image size-full"><img decoding="async" width="548" height="437" src="https://patchmypc.com/app/uploads/2026/08/image-45.png" alt="" class="wp-image-192678" srcset="https://patchmypc.com/app/uploads/2026/08/image-45.png 548w, https://patchmypc.com/app/uploads/2026/08/image-45-300x239.png 300w" sizes="(max-width: 548px) 100vw, 548px" /></figure>
 
 
 
-<p class="wp-block-paragraph">That leaves the <strong>weird live Sync Status number.</strong></p>
+<p class="wp-block-paragraph">That MSI application is NOT processed by the Intune Management Extension. It belongs to the Windows MDM EnterpriseDesktopManagement path. This means the Policies row is not simply a configuration profile counter. It is a summary of Windows MDM owned work that Intune combines into the Sync Status experience&#8230;.. and MSI/Lob Apps are deployed to your device using a CSP (AKA a policy)</p>
 
 
 
-<figure class="wp-block-image size-full"><img decoding="async" width="457" height="69" src="https://patchmypc.com/app/uploads/2026/08/image-43.png" alt="" class="wp-image-192589" srcset="https://patchmypc.com/app/uploads/2026/08/image-43.png 457w, https://patchmypc.com/app/uploads/2026/08/image-43-300x45.png 300w" sizes="(max-width: 457px) 100vw, 457px" /></figure>
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="187" src="https://patchmypc.com/app/uploads/2026/08/image-46-1024x187.png" alt="" class="wp-image-192680" srcset="https://patchmypc.com/app/uploads/2026/08/image-46-1024x187.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-46-300x55.png 300w, https://patchmypc.com/app/uploads/2026/08/image-46-768x141.png 768w, https://patchmypc.com/app/uploads/2026/08/image-46-1536x281.png 1536w, https://patchmypc.com/app/uploads/2026/08/image-46.png 1737w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
-<p class="wp-block-paragraph">The new Sync Window shows<strong> 68 of 73 Policies succeeded</strong>, while the older Device configuration report shows<strong> 66 succeeded out of 71. </strong>Both views have five items that are not successful: 73 minus 68 is 5, and 71 minus 66 is also 5. In this capture the difference is therefore exactly two additional successful items in the live policy set. We cannot identify those two items from the Graph Device configuration report, the DMEDP Debug XML, or the SyncML trace we captured. </p>
-
-
-
-<p class="wp-block-paragraph">The service is clearly using a policy set that is not identical to the older 71-row Device configuration report, but the evidence here does not tell us what the extra two objects are.</p>
-
-
-
-<p class="wp-block-paragraph">This is also where the current Sync Status experience falls short. If the pane tells us 68 of 73 succeeded, we should be able to click or double click the Policies row and see those 73 items, including the two that are missing from the older report. Right now the summary gives us the number, but not the evidence behind it.</p>
+<p class="wp-block-paragraph">The Policies number appears to represent Windows MDM-owned workload results returned to Intune during the Sync operation. Configuration policies are part of this count, but the MSI experiment shows that the bucket is broader than configuration profiles alone.</p>
 
 
 
@@ -254,7 +282,7 @@
 
 
 
-<p class="wp-block-paragraph"><strong>Applications and Scripts</strong> both sit on the IME side of the Sync operation, but they are not handled by one single workload engine. The latest device logs make the <strong>“offered”</strong> numbers much easier to explain because the same counts appear inside IME during the exact DirectSync session.</p>
+<p class="wp-block-paragraph"><strong>Applications and Scripts</strong> both sit on the IME side of the Sync operation, but they aren&#8217;t handled by a single workload engine. The latest device logs make the <strong>“offered”</strong> numbers much easier to explain because the same counts appear inside IME during the exact DirectSync session.</p>
 
 
 
@@ -262,7 +290,7 @@
 
 
 
-<h3 id="h-applications-where-does-offered-number-come-from" class="wp-block-heading">Applications: where does “Offered Number” come from?</h3>
+<h3 id="h-where-does-the-application-number-come-from" class="wp-block-heading">Where does the Application number come from?</h3>
 
 
 
@@ -274,7 +302,7 @@
 
 
 
-<p class="wp-block-paragraph">In the AppWorkload.log on the device itself, the IME first requests required apps. Intune then returns 28 Win32 app objects, and the V3 processor starts processing 28 subgraphs. A few hundred milliseconds later, it finishes those same 28 subgraphs.</p>
+<p class="wp-block-paragraph">In the AppWorkload.log on the device itself, the IME first requests required apps. Intune then returns <strong>28 Win32 app objects,</strong> and the V3 processor starts processing 28 subgraphs. A few hundred milliseconds later, it finishes those same 28 subgraphs.</p>
 
 
 
@@ -282,7 +310,7 @@
 
 
 
-<p class="wp-block-paragraph"><strong>Proof.</strong> The 28 in the portal match the 28 Win32 app objects returned to IME and the 28 app subgraphs evaluated by the V3 processor. This makes the Applications counter fairly clear. “28 offered” does not mean 28 applications were installed. It means Intune handed<strong> 28 Win32 REQUIRED app objects (Also Winget/Store apps) to the IME for evaluation in that session.</strong> The IME can then use detection, applicability, previous state, reevaluation timing and GRS to decide whether any further action is required.</p>
+<p class="wp-block-paragraph"><strong>Proof.</strong> The 28 in the portal match the 28 Win32 app objects returned to IME and the 28 app subgraphs evaluated by the V3 processor. This makes the Applications counter fairly clear. “28 offered” does not mean 28 applications were installed. It means Intune handed<strong> 28 Win32 REQUIRED app objects (Also Winget/Store apps and NO LOB Apps) to the IME for evaluation in that session.</strong> </p>
 
 
 
@@ -314,7 +342,7 @@
 
 
 
-<p class="wp-block-paragraph"> The second HealthScripts policy is PolicyType 8 and returns structured compliance style JSON,w hich clearly shows it is connectde to the <strong>Custom Compliance policy I created for Bitlocker</strong>.</p>
+<p class="wp-block-paragraph">The second HealthScripts policy is PolicyType 8 and returns structured compliance-style JSON, which clearly shows it is connected to the Custom Compliance policy I created for BitLocker.</p>
 
 
 
@@ -322,7 +350,7 @@
 
 
 
-<p class="wp-block-paragraph">SO the 2 Scripts that are offered are a PowerShell Remediation Script And Health Script&#8230; why ? Because they are allowed to be executed once more&#8230; While PowerShell Platform scripts are only executed once!.</p>
+<p class="wp-block-paragraph">SO the 2 Scripts that are offered are a PowerShell Remediation Script and Health Script&#8230; why? Because they can be executed once more, while PowerShell Platform scripts are only executed once.</p>
 
 
 
@@ -330,7 +358,7 @@
 
 
 
-<p class="wp-block-paragraph">The regular PowerShellScriptWorkload is definitely triggered as part of the same DirectSync. On this device IME already has eight Platform script policy results and sends them in its PolicyRequest. Intune returns an empty PolicyResponse, so there were no <strong>NEW Platform script policies offered during this particular sync</strong>.</p>
+<p class="wp-block-paragraph">The regular PowerShellScriptWorkload is definitely triggered as part of the same DirectSync. On this device, IME already has eight Platform script policy results and sends them in its PolicyRequest. Intune returns an empty PolicyResponse, so there were no <strong>NEW Platform script policies offered during this particular sync</strong>.</p>
 
 
 
@@ -390,15 +418,15 @@
 
 
 
-<h2 id="h-the-overview" class="wp-block-heading">The Overview</h2>
+<h2 id="h-how-to-read-the-sync-status-counters" class="wp-block-heading">How to read the Sync Status counters</h2>
 
 
 
-<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>Sync Status row</th><th>What the number relates to</th><th>Included</th><th>Not included / not proven</th></tr></thead><tbody><tr><td><strong>Policies</strong></td><td>Service side policy result set</td><td>Windows MDM policy results aggregated by Intune</td><td>Not simply assigned policies, not the number of Policy CSP settings read on the device, and not directly visible in SyncML. The exact live total is still not fully explained.</td></tr><tr><td><strong>Applications</strong></td><td>Required Apps (Including Win32App/Winget/Store Apps)</td><td>Required Win32 app objects that Intune offers to the Win32 app workload</td><td>Available apps, web links, every app assigned to the device, or the number of apps actually installed during Sync</td></tr><tr><td><strong>Scripts</strong></td><td>Script policies returned to the IME script workloads</td><td>HealthScripts such as Remediations/custom compliance, and potentially a new Platform PowerShell script that still needs to run</td><td>Existing Platform scripts are not automatically rerun just because Sync is clicked</td></tr><tr><td><strong>Compliance</strong></td><td>Compliance state tracked by the service</td><td>Compliance processing can exist in the Sync Status model</td><td>It may not be shown in the pane while still in progress</td></tr><tr><td><strong>Notifying device</strong></td><td>Delivery/start of the Sync request</td><td>Confirms the service was able to start the device notification flow</td><td>Does not mean all policies, apps and scripts have completed</td></tr></tbody></table></figure>
+<p class="wp-block-paragraph">The easiest way to read the Sync Status window is not by looking at Intune object types. The same object type can end up in a different row depending on which Windows component processes it. The counters follow the processing engine, not the category shown in the Intune portal.</p>
 
 
 
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="570" src="https://patchmypc.com/app/uploads/2026/08/image-15-1024x570.png" alt="the new sync status window" class="wp-image-191878" srcset="https://patchmypc.com/app/uploads/2026/08/image-15-1024x570.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-15-300x167.png 300w, https://patchmypc.com/app/uploads/2026/08/image-15-768x428.png 768w, https://patchmypc.com/app/uploads/2026/08/image-15.png 1261w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>Sync Status row</th><th>Which Windows world processes it?</th><th>Where does the data come from?</th><th>What we can explain today</th></tr></thead><tbody><tr><td>Policies</td><td>Windows MDM</td><td>MDM policy processing results returned to Intune during the Sync operation</td><td>Includes Windows MDM owned workloads. Device Configuration policies are part of this number, but the MSI LOB experiment shows this is broader than configuration profiles alone.</td></tr><tr><td>Applications</td><td>Intune Management Extension</td><td>Required application objects returned to the IME application workload</td><td>The number maps to application objects offered to IME for evaluation. In this capture, 28 matches the Win32 app objects returned and the 28 application graphs processed by the V3 processor.</td></tr><tr><td>Scripts</td><td>Intune Management Extension</td><td>Script objects returned to IME script workloads</td><td>The number represents script policies offered to IME. In this capture, the 2 objects came from HealthScripts: a Remediation and a Custom Compliance discovery script.</td></tr><tr><td>Compliance</td><td>Service-side compliance tracking</td><td>Compliance state tracked by the Sync Status service model</td><td>Compliance can exist in the backend state even when the row is not visible because the UI only displays certain normalized states.</td></tr><tr><td>Notifying device</td><td>Sync notification flow</td><td>Start of the device notification process</td><td>Confirms the service started the sync request. It does not prove that workloads completed.</td></tr></tbody></table></figure>
 
 
 
@@ -406,19 +434,27 @@
 
 
 
-<p class="wp-block-paragraph">The new Sync Status pane makes Sync visible, but the interesting part is where those counters come from.</p>
+<p class="wp-block-paragraph">The Sync Status window becomes much easier to understand once the counters are linked to the workload that processes them.</p>
 
 
 
-<p class="wp-block-paragraph"><strong>Applications:</strong> the offered count maps to the <strong>required Win32 apps</strong> Intune returns to IME for evaluation.</p>
+<p class="wp-block-paragraph"><strong>Policies</strong> represents Windows MDM processed workloads. This includes configuration policies and other MDM based workloads such as MSI Line of Business applications and Web Links. The number should be interpreted as Windows MDM work reported back to Intune, not simply the number of configuration profiles assigned.</p>
 
 
 
-<p class="wp-block-paragraph"><strong>Scripts:</strong> the offered count maps to script policies returned to IME. That can include HealthScripts such as Remediations or custom compliance, but it could also be a <strong>new Platform PowerShell script</strong> that still needs to run. Existing Platform scripts normally only run once, so they would not automatically be executed again just because Sync was clicked.</p>
+<p class="wp-block-paragraph"><strong>Applications</strong> represents application objects offered to the Intune Management Extension for evaluation. The number does not mean applications were installed. It shows how many required application objects were handed to IME during that Sync operation. This includes Win32App/EAM/Store apps</p>
 
 
 
-<p class="wp-block-paragraph"><strong>Policies</strong> is still the odd one. We can explain the normal Device Configuration count, but the slightly higher number in the new Sync Status pane still needs more service-side evidence or better documentation from Microsoft</p>
+<p class="wp-block-paragraph"><strong>Scripts</strong> represents script objects offered to IME script workloads. The number should be interpreted as scripts available for evaluation, not necessarily scripts that executed immediately.</p>
+
+
+
+<p class="wp-block-paragraph">The Sync Status window is therefore best viewed as a combined status view of different Windows management workloads.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The Sync Status window is therefore best viewed as a combined status view of different Windows management workloads. The counters make sense once you understand which client is responsible for processing the work.</p>
 <p>The post <a href="https://patchmypc.com/blog/inside-intunes-new-sync-status-window/">Inside Intune&#8217;s New Sync Status Window</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
