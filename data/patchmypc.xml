@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 20 Aug 2026 10:20:05 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 20 Aug 2026 10:47:58 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -238,7 +238,11 @@
 
 
 
-<p class="wp-block-paragraph">So we can confidently say that 71 represents the Device Configuration reporting count for this device. The question then becomes: If Device Configuration reports 71, why does Sync Status show 73?  Is Windows creating two additional policies locally? Are there hidden Policy CSP objects involved?</p>
+<p class="wp-block-paragraph">So we can confidently say that 71 represents the Device Configuration reporting count for this device.<strong> Please Note: </strong>A policy can appear multiple times in the report because Intune reports the result per processing context, such as device or user scope.</p>
+
+
+
+<p class="wp-block-paragraph">The question then becomes: If Device Configuration reports 71, why does Sync Status show 73?  Is Windows creating two additional policies locally? Are there hidden Policy CSP objects involved?</p>
 
 
 
