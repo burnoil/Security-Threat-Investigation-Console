@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 20 Aug 2026 10:47:58 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 20 Aug 2026 12:21:37 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -306,7 +306,15 @@
 
 
 
-<p class="wp-block-paragraph">In the AppWorkload.log on the device itself, the IME first requests required apps. Intune then returns <strong>28 Win32 app objects,</strong> and the V3 processor starts processing 28 subgraphs. A few hundred milliseconds later, it finishes those same 28 subgraphs.</p>
+<p class="wp-block-paragraph">While the Managed Apps report is showing only a couple more.</p>
+
+
+
+<figure class="wp-block-image size-full"><img decoding="async" width="579" height="172" src="https://patchmypc.com/app/uploads/2026/08/image-47.png" alt="" class="wp-image-192695" srcset="https://patchmypc.com/app/uploads/2026/08/image-47.png 579w, https://patchmypc.com/app/uploads/2026/08/image-47-300x89.png 300w" sizes="(max-width: 579px) 100vw, 579px" /></figure>
+
+
+
+<p class="wp-block-paragraph">So let&#8217;s examine what applications are counted and shown in the new status sync window.  To do so, we need to examine the AppWorkload log on the device itself. When triggering the sync, the IME first requests the required apps. Intune then returns <strong>28 Win32 app objects,</strong> and the V3 processor starts processing 28 subgraphs. A few hundred milliseconds later, it finishes those same 28 subgraphs.</p>
 
 
 
@@ -314,7 +322,7 @@
 
 
 
-<p class="wp-block-paragraph"><strong>Proof.</strong> The 28 in the portal match the 28 Win32 app objects returned to IME and the 28 app subgraphs evaluated by the V3 processor. This makes the Applications counter fairly clear. “28 offered” does not mean 28 applications were installed. It means Intune handed<strong> 28 Win32 REQUIRED app objects (Also Winget/Store apps and NO LOB Apps) to the IME for evaluation in that session.</strong> </p>
+<p class="wp-block-paragraph">The 28 in the portal match the 28 Win32 app objects returned to IME and the 28 app subgraphs evaluated by the V3 processor. This makes the Applications counter fairly clear. “28 offered” does not mean 28 applications were installed. It means the IME needs to check the 28 object it is responsible for. <strong>This means it will check the REQUIRED Win32Apps,EAM Apps and Store Apps (WinGet). MSI/LOB apps are not included!</strong></p>
 
 
 
