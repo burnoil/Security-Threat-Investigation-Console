@@ -10,9 +10,33 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Mon, 24 Aug 2026 16:34:54 -0500</pubDate>
+    <pubDate>Mon, 24 Aug 2026 17:31:52 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-610: Apple Safari JavaScriptCore B3 ReduceStrength Phase Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-32069</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-610/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Apple Safari. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-64715.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-609: Linux Kernel Net Scheduler Packet Classifier Use-After-Free Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31524</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-609/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Linux Kernel. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-608: Linux Kernel KVM IOAPIC Use-After-Free Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31468</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-608/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Linux Kernel. An attacker must first obtain the ability to execute high-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.2.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-607: Microsoft Office HTML Injection Information Disclosure Vulnerability]]></title>
@@ -1587,30 +1611,6 @@
       <guid isPermaLink="false">ZDI-CAN-28693</guid>
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-411/</link>
       <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of NVIDIA NVTabular. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-24237.]]></description>
-      <pubDate>Wed, 15 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-410: NVIDIA NeMo Framework Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-28677</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-410/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of NVIDIA NeMo Framework. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-24228.]]></description>
-      <pubDate>Wed, 15 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-409: X.Org Server Glamor Font Heap-based Buffer Overflow Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30498</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-409/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-55999.]]></description>
-      <pubDate>Wed, 15 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-408: X.Org Server ComputeScaledProperties Heap-based Buffer Overflow Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30560</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-408/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-56003.]]></description>
       <pubDate>Wed, 15 Jul 2026 00:00:00 -0500</pubDate>
     </item>
     
