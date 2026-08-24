@@ -10,9 +10,193 @@
                    delivered ahead of public disclosure. All security vulnerabilities that are acquired by the
                    Zero Day Initiative are handled according to the ZDI Disclosure Policy.
         ]]></description>
-    <pubDate>Mon, 24 Aug 2026 15:37:10 -0500</pubDate>
+    <pubDate>Mon, 24 Aug 2026 16:34:54 -0500</pubDate>
     <copyright>Trend Micro, all rights reserved</copyright>
     <language>en</language>
+    
+    <item>
+      <title><![CDATA[ZDI-26-607: Microsoft Office HTML Injection Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29320</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-607/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Microsoft Office. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.6.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-606: Microsoft Windows Compatibility Appraiser Link Following Local Privilege Escalation Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28205</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-606/</link>
+      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Microsoft Windows. An attacker must first obtain the ability to execute low-privileged code in the context of LOCAL SERVICE on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.0.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-605: Microsoft Windows Localized Filenames Improper Input Validation NTLM Response Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29223</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-605/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose NTLM responses on affected installations of Microsoft Windows. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 3.3. The following CVEs are assigned: CVE-2026-50508.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-604: Foxit PDF Reader Annotation Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30246</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-604/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-13126.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-603: Foxit PDF Reader Annotation Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30248</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-603/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-13127.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-602: Foxit PDF Reader Doc Object Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30270</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-602/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-13128.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-601: Foxit PDF Reader Annotation Use-After-Free Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30310</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-601/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 3.3. The following CVEs are assigned: CVE-2026-13129.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-600: Foxit PDF Reader Annotation Use-After-Free Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30311</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-600/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 3.3. The following CVEs are assigned: CVE-2026-57237.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-599: Foxit PDF Reader Annotation Use-After-Free Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30312</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-599/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 3.3. The following CVEs are assigned: CVE-2026-57238.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-598: Foxit PDF Reader AcroForm Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30661</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-598/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-57242.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-597: Foxit PDF Reader AcroForm Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30696</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-597/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-57252.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-596: Foxit PDF Reader PDF File Parsing Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30755</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-596/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 3.3. The following CVEs are assigned: CVE-2026-57253.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-595: Foxit PDF Reader Annotation Use-After-Free Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31158</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-595/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Foxit PDF Reader. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-57254.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-594: NVIDIA Megatron Bridge load_model_config Code Injection Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30353</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-594/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of NVIDIA Megatron Bridge. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-24251.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-593: NVIDIA TensorRT ONNX File Parsing Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30321</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-593/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of NVIDIA TensorRT. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-24268.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-592: NVIDIA TensorRT ONNX File Parsing Improper Validation of Array Index Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30322</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-592/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of NVIDIA TensorRT. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-24238.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-591: NVIDIA TensorRT ONNX File Parsing  Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-30323</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-591/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of NVIDIA TensorRT. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-24272.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-590: libwebsockets HTTP/2 HPACK Path Header Parsing Out-Of-Bounds Write Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-31036</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-590/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of libwebsockets. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.8. The following CVEs are assigned: CVE-2026-19773.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-589: BlueZ A2DP Stack-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29429</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-589/</link>
+      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of BlueZ. An attacker must first obtain the ability to pair a malicious Bluetooth device with the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.1. The following CVEs are assigned: CVE-2026-19774.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-588: Fabric.js loadFromJSON Server-Side Request Forgery Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29318</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-588/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to disclose sensitive information on affected installations of Fabric.js. Interaction with this library is required to exploit this vulnerability but attack vectors may vary depending on the implementation. The ZDI has assigned a CVSS rating of 4.0. The following CVEs are assigned: CVE-2026-19504.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-587: Ashlar-Vellum Cobalt VS File Parsing Heap-based Buffer Overflow Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-28173</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-587/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Ashlar-Vellum Cobalt. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-19781.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-586: OriginLab Origin Viewer OGM File Parsing Memory Corruption Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29340</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-586/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of OriginLab Origin Viewer. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-19886.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
+    
+    <item>
+      <title><![CDATA[ZDI-26-585: OriginLab Origin Viewer OGWU File Parsing Out-Of-Bounds Write Remote Code Execution Vulnerability]]></title>
+      <guid isPermaLink="false">ZDI-CAN-29337</guid>
+      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-585/</link>
+      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of OriginLab Origin Viewer. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-19885.]]></description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 -0500</pubDate>
+    </item>
     
     <item>
       <title><![CDATA[ZDI-26-584: dnsmasq DNSSEC NSEC/NSEC3 Type Bitmap Processing Infinite Loop Denial-of-Service Vulnerability]]></title>
@@ -1428,190 +1612,6 @@
       <link>http://www.zerodayinitiative.com/advisories/ZDI-26-408/</link>
       <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-56003.]]></description>
       <pubDate>Wed, 15 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-407: X.Org Server PCF Font Parsing Heap-based Buffer Overflow Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30559</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-407/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-56002.]]></description>
-      <pubDate>Wed, 15 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-406: X.Org Server BitmapScaleBitmaps Integer Overflow Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30558</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-406/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-56001.]]></description>
-      <pubDate>Wed, 15 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-405: X.Org Server GLX Extension Use-After-Free Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30561</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-405/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-56000.]]></description>
-      <pubDate>Wed, 15 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-404: Delta Electronics DTM Soft Project File Parsing Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27843</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-404/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Delta Electronics DTM Soft. User interaction is required to exploit this vulnerability in that the target must visit a malicious page or open a malicious file. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-12578.]]></description>
-      <pubDate>Wed, 15 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-403: (0Day) Ollama downloadBlob Improper Validation of Array Index Denial-of-Service Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27277</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-403/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to create a denial-of-service condition on affected installations of Ollama. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-15685.]]></description>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-402: (0Day) Glarysoft Glary Utilities Link Following Local Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-27004</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-402/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of Glarysoft Glary Utilities. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.3. The following CVEs are assigned: CVE-2026-15684.]]></description>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-401: (0Day) AnyDesk Support Information Link Following Denial-of-Service Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26645</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-401/</link>
-      <description><![CDATA[This vulnerability allows local attackers to create a denial-of-service condition on affected installations of AnyDesk. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 4.7. The following CVEs are assigned: CVE-2026-15682.]]></description>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-400: (0Day) AnyDesk Screen Recording Link Following Denial-of-Service Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26591</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-400/</link>
-      <description><![CDATA[This vulnerability allows local attackers to create a denial-of-service condition on affected installations of AnyDesk. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 4.7. The following CVEs are assigned: CVE-2026-15681.]]></description>
-      <pubDate>Mon, 13 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-399: (0Day) (Pwn2Own) Lorex 2K Indoor Wi-Fi Security Camera Device Management Server Improper Certificate Validation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-26851</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-399/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Lorex 2K Indoor Wi-Fi Security Cameras. User interaction is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-15683.]]></description>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-398: (0Day) (Pwn2Own) Lorex 2K Indoor Wi-Fi Security Camera CDeviceOperator Format String Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-25884</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-398/</link>
-      <description><![CDATA[This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Lorex 2K Indoor Wi-Fi Security Cameras. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-15680.]]></description>
-      <pubDate>Wed, 08 Jul 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-397: X.Org Server CreateSaverWindow Use-After-Free Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30168</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-397/</link>
-      <description><![CDATA[This vulnerability allows local attackers to disclose sensitive information on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.5. The following CVEs are assigned: CVE-2026-50263.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-396: X.Org Server ChangeDrawableAttributes Out-Of-Bounds Read Information Disclosure Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30165</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-396/</link>
-      <description><![CDATA[This vulnerability allows local attackers to disclose sensitive information on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 5.5. The following CVEs are assigned: CVE-2026-50262.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-395: X.Org Server SyncChangeCounter Use-After-Free Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30164</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-395/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-50261.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-394: X.Org Server FreeCounter Use-After-Free Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30163</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-394/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-50260.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-393: X.Org Server SetMap Request Stack-based Buffer Overflow Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30161</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-393/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-50259.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-392: X.Org Server Xkb Key Types Stack-based Buffer Overflow Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30160</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-392/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-50258.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-391: X.Org Server miSyncDestroyFence Use-After-Free Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30159</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-391/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-50257.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-390: X.Org Server Font Alias Stack-based Buffer Overflow Privilege Escalation Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30136</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-390/</link>
-      <description><![CDATA[This vulnerability allows local attackers to escalate privileges on affected installations of X.Org Server. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability. The ZDI has assigned a CVSS rating of 7.8. The following CVEs are assigned: CVE-2026-50256.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-389: Oracle PeopleSoft ExecuteProcessActivityCommand External Control of File Path Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-31818</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-389/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Oracle PeopleSoft. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-35273.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-388: Oracle PeopleSoft HubMBeanPersistance Deserialization of Untrusted Data Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-31817</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-388/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Oracle PeopleSoft. Although authentication is required to exploit this vulnerability, the existing authentication mechanism can be bypassed. The ZDI has assigned a CVSS rating of 7.5. The following CVEs are assigned: CVE-2026-35273.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-387: Oracle PeopleSoft HttpListeningConnector Server-Side Request Forgery Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-31816</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-387/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to initiate arbitrary server-side requests on affected installations of Oracle PeopleSoft. Authentication is not required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 9.3. The following CVEs are assigned: CVE-2026-35273.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-386: Unraid Web Server ToggleState Command Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30134</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-386/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Unraid. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-9773.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
-    </item>
-    
-    <item>
-      <title><![CDATA[ZDI-26-385: Unraid Web Server FileUpload Command Injection Remote Code Execution Vulnerability]]></title>
-      <guid isPermaLink="false">ZDI-CAN-30116</guid>
-      <link>http://www.zerodayinitiative.com/advisories/ZDI-26-385/</link>
-      <description><![CDATA[This vulnerability allows remote attackers to execute arbitrary code on affected installations of Unraid. Authentication is required to exploit this vulnerability. The ZDI has assigned a CVSS rating of 8.8. The following CVEs are assigned: CVE-2026-9772.]]></description>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 -0500</pubDate>
     </item>
     
   </channel>
