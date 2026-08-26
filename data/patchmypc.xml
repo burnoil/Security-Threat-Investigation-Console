@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 20 Aug 2026 12:21:37 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 26 Aug 2026 20:13:16 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,81 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Patch My PC Publisher Production Version 3.0.14.0 Released</title>
+		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-14-0-released/</link>
+					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-14-0-released/#respond</comments>
+		
+		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
+		<pubDate>Wed, 26 Aug 2026 20:13:14 +0000</pubDate>
+				<category><![CDATA[Production Release]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=193407</guid>
+
+					<description><![CDATA[<p>This release contains a variety of features, improvements, and fixes, as noted below. This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&#160;MSI installer. Improvements Fixes</p>
+<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-14-0-released/">Patch My PC Publisher Production Version 3.0.14.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">This release contains a variety of features, improvements, and fixes, as noted below.</p>
+
+
+
+<p class="wp-block-paragraph">This will be made available via the self-update channel over the coming days. You can upgrade in place now by downloading the latest&nbsp;<strong><a href="https://patchmypc.com/publishing-service-setup-documentation">MSI installer</a></strong>.</p>
+
+
+
+<h2 id="h-improvements" class="wp-block-heading">Improvements</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Lets you republish metadata-only WSUS products.</li>
+
+
+
+<li>Updates release notes links to the maintained documentation short links.</li>
+</ul>
+
+
+
+<h2 id="h-fixes" class="wp-block-heading">Fixes</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Keeps products visible when they require ARM64 only.</li>
+
+
+
+<li>Prevents icon caching from locking out the configured proxy service account.</li>
+
+
+
+<li>Keeps the WSUS Full Content setting at its own scope.</li>
+
+
+
+<li>Keeps weekly sync schedules from skipping a week after a service restart or upgrade.</li>
+
+
+
+<li>Uses your explicit “Perform the installation” choice instead of the MCP default.</li>
+
+
+
+<li>Fixes a bug preventing the user from browsing for a custom ConfigMgr code-signing certificate.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph"></p>
+<p>The post <a href="https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-14-0-released/">Patch My PC Publisher Production Version 3.0.14.0 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-14-0-released/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Patch My PC Publisher Production Version 3.0.10.0 Released</title>
 		<link>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-10-0-released/</link>
 					<comments>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-10-0-released/#respond</comments>
@@ -1926,179 +2001,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-1-0-released/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Patch My PC Publisher Preview Version 2.3.2.476 Released</title>
-		<link>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-476-released/</link>
-					<comments>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-476-released/#respond</comments>
-		
-		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
-		<pubDate>Wed, 22 Jul 2026 20:04:12 +0000</pubDate>
-				<category><![CDATA[Preview Release]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=189857</guid>
-
-					<description><![CDATA[<p>This release contains a variety of features, improvements, and fixes, as noted below. Improvements&#160; Fixes Accessibility and UI</p>
-<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-476-released/">Patch My PC Publisher Preview Version 2.3.2.476 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p class="wp-block-paragraph">This release contains a variety of features, improvements, and fixes, as noted below.</p>
-
-
-
-<h2 id="h-improvements-nbsp" class="wp-block-heading">Improvements&nbsp;</h2>
-
-
-
-<ul class="wp-block-list">
-<li>Added pagination to the Entra ID group picker while retaining selections across pages.</li>
-
-
-
-<li>Significantly improved ConfigMgr folder-browser performance for large folder structures.
-<ul class="wp-block-list">
-<li>Previously, loading 1500+ folders could take 5-10 minutes. This now takes a couple of seconds.</li>
-</ul>
-</li>
-
-
-
-<li>The Cloud tab now remains visible for all license states. Ineligible licenses disable the connection without deleting saved configuration.</li>
-
-
-
-<li>Improved Settings Apply responsiveness and prevented incomplete SQL settings from starting database operations.</li>
-</ul>
-
-
-
-<h3 id="h-fixes" class="wp-block-heading">Fixes</h3>
-
-
-
-<ul class="wp-block-list">
-<li>Restored vendor-level Move Application configuration for ConfigMgr applications.</li>
-
-
-
-<li>Fixed package extraction for republished Intune Win32 applications.</li>
-
-
-
-<li>Intune assignment filter selection now excludes non-Windows and managed-app filters.</li>
-
-
-
-<li>ConfigMgr applications deleted while content remains are recreated during the same synchronization.</li>
-
-
-
-<li>ConfigMgr connectivity is no longer required when application publishing is disabled.</li>
-
-
-
-<li>Fixed a crash when opening device counts after clearing ConfigMgr scan settings.</li>
-
-
-
-<li>Tenant-specific conflicting-process settings no longer overwrite global defaults.</li>
-
-
-
-<li>Corrected conflicting-process timeout conversion and Insert Variable field targeting.</li>
-
-
-
-<li>Hardened settings imports to safely preserve encrypted values and reject unsupported cross-machine secret imports.</li>
-
-
-
-<li>Prevented update prompts from offering versions older than the installed UI or service.</li>
-
-
-
-<li>Restored post-upgrade welcome notifications and improved expired or invalid license guidance.</li>
-
-
-
-<li>SMTP test results and Delivery Optimization information dialogs now appear above progress overlays.</li>
-
-
-
-<li>Disabling logging no longer replaces a custom log-folder path.</li>
-
-
-
-<li>Add/Edit Commands is available when a product uses only additional file or folder script assets.</li>
-
-
-
-<li>Improved license refresh behavior, remaining-days calculation, and ConfigMgr SQL validation.</li>
-
-
-
-<li>Canceling an All Vendors bulk selection now aborts the entire operation.</li>
-
-
-
-<li>Clicking an indeterminate Vendor or All Vendors checkbox now selects all products instead of unselecting all products.</li>
-
-
-
-<li>Fixed false no-products-selected warnings after selecting the first filtered product.</li>
-
-
-
-<li>Fixed selective-sync API requests reporting success when nothing was marked for publishing.</li>
-
-
-
-<li>Fixed Config API errors for unsupported uploads, invalid tenant identifiers, and ports already in use.</li>
-
-
-
-<li>Fixed compatibility failures when an older Newtonsoft.Json assembly is installed in the GAC.</li>
-</ul>
-
-
-
-<h2 class="wp-block-heading">Accessibility and UI</h2>
-
-
-
-<ul class="wp-block-list">
-<li>Added vertical scrolling to ConfigMgr scan pages and restored the application-list scrollbar.</li>
-
-
-
-<li>Added visible invalid-path feedback to the CVE Import Wizard.</li>
-
-
-
-<li>Added explanations when Scan Query is disabled.</li>
-
-
-
-<li>Kept vendor, product, and webhook checkbox states synchronized across filters and bulk selection.</li>
-
-
-
-<li>Improved Entra ID group messages and text visibility across Light and High Contrast themes.</li>
-
-
-
-<li>Improved filter naming, Cloud deployment indicators, icon theming, button sizing, text rendering, keyboard navigation, and window hover states.</li>
-
-
-
-<li>Added copyable release-note links and consistent Publisher Statistics labels.</li>
-</ul>
-<p>The post <a href="https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-476-released/">Patch My PC Publisher Preview Version 2.3.2.476 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/patch-my-pc-publisher-preview-version-2-3-2-476-released/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
