@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 27 Aug 2026 13:39:08 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 28 Aug 2026 12:06:51 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -65,7 +65,7 @@
 
 
 
-<p class="wp-block-paragraph">The Compliance Monitor observes selected Windows security signals locally. When one changes, it automatically requests a new compliance evaluation by starting a Windows MDM device check-in. The user does not need to open Company Portal, and the administrator does not need to initiate another sync.</p>
+<p class="wp-block-paragraph">The Compliance Monitor observes selected Windows security signals locally. When one changes, it can request a new compliance evaluation by starting a Windows MDM device check in. Whether that check in is actually invoked depends on the current service configuration and feature rollout. During testing, we found that Microsoft can enable the monitor and drift detection while still keeping the final DCI trigger in simulation mode.</p>
 
 
 
@@ -85,7 +85,7 @@
 
 
 
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="768" src="https://patchmypc.com/app/uploads/2026/08/image-49-1024x768.png" alt="" class="wp-image-193473" srcset="https://patchmypc.com/app/uploads/2026/08/image-49-1024x768.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-49-300x225.png 300w, https://patchmypc.com/app/uploads/2026/08/image-49-768x576.png 768w, https://patchmypc.com/app/uploads/2026/08/image-49.png 1448w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="576" src="https://patchmypc.com/app/uploads/2026/08/image-52-1024x576.png" alt="" class="wp-image-193585" srcset="https://patchmypc.com/app/uploads/2026/08/image-52-1024x576.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-52-300x169.png 300w, https://patchmypc.com/app/uploads/2026/08/image-52-768x432.png 768w, https://patchmypc.com/app/uploads/2026/08/image-52-1536x864.png 1536w, https://patchmypc.com/app/uploads/2026/08/image-52.png 1672w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
 
 
 
@@ -129,11 +129,15 @@
 
 
 
+<p class="wp-block-paragraph">On our test device, running IME 1.104.102.0, the configuration was enabled and the monitor successfully started.</p>
+
+
+
 <h3 id="h-delivering-the-compliance-monitor-configuration" class="wp-block-heading">Delivering the Compliance Monitor Configuration</h3>
 
 
 
-<p class="wp-block-paragraph">The operational configuration for client driven compliance evaluation comes from the Intune service through the normal Sidecar gateway response.</p>
+<p class="wp-block-paragraph">The operational configuration for client-driven compliance evaluation comes from the Intune service through the normal Sidecar gateway response.</p>
 
 
 
@@ -149,7 +153,7 @@
 
 
 
-<p class="wp-block-paragraph">The Compliance Monitor reads a specific value named: ComplianceMonitorConfigJson</p>
+<p class="wp-block-paragraph">The Compliance Monitor reads a specific value named: <strong>ComplianceMonitorConfigJson</strong></p>
 
 
 
@@ -161,7 +165,7 @@
 
 
 
-<p class="wp-block-paragraph">The Settings collection alone is not enough. During each cycle, the monitor checks whether every listed setting also exists in PerSetting and has Enabled set to true. A name without the corresponding per setting configuration is silently filtered out.</p>
+<p class="wp-block-paragraph">The Settings collection alone is not enough. During each cycle, the monitor checks whether every listed setting also exists in PerSetting and has Enabled set to true. A name without the corresponding per-setting configuration is silently filtered out.</p>
 
 
 
@@ -437,11 +441,7 @@
 
 
 
-<p class="wp-block-paragraph">When one of these settings changes, the monitor automatically starts a new Windows MDM device check-in. Windows reports the latest information to Intune, and Intune performs a fresh compliance evaluation against the assigned policy.</p>
-
-
-
-<p class="wp-block-paragraph">This works in both directions. If a setting becomes unhealthy, Intune can detect the device as noncompliant much sooner. When the problem is fixed, the monitor detects the recovery and starts another MDM check in, allowing a new compliance evaluation without waiting for the normal sync schedule.</p>
+<p class="wp-block-paragraph">When one of these settings changes, the Compliance Monitor detects the drift and hands it to DciHelper. Once Microsoft enables the full client driven compliance flow for the device, DciHelper can start a new Windows MDM check in so Windows can report the latest state to Intune.<br><br>Interestingly, the rollout can happen in stages. On our test device, Microsoft had already enabled the Real Time Compliance account flight and delivered an enabled Compliance Monitor configuration. The monitor was running and detecting real changes to Defender and BitLocker, but EnableComplianceMonitorSimulateMode was still effectively enabled. DciHelper therefore recorded decision=Simulated instead of decision=Invoked.<br></p>
 <p>The post <a href="https://patchmypc.com/blog/intune-client-driven-compliance-evaluation-for-windows-devices/">Inside Intune Client-Driven Compliance Evaluation for Windows Devices</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></content:encoded>
 					
