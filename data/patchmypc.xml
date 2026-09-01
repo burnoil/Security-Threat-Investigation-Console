@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Mon, 31 Aug 2026 18:21:16 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 01 Sep 2026 06:20:57 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -41,7 +41,7 @@
 <p>The post <a href="https://patchmypc.com/blog/windows-autopilot-device-association/">Windows Autopilot Device Association</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[
-<p class="wp-block-paragraph">Windows Autopilot Device Association gives Device Preparation something it didn&#8217;t originally have: a way to recognize the device&#8217;s organization before the user signs in. That makes it possible to retrieve settings early enough to change OOBE, the out-of-box experience. But what actually happens between exporting a CSV and seeing the organization&#8217;s setup screens?</p>
+<p class="wp-block-paragraph">Windows Autopilot Device Association gives Device Preparation something it didn&#8217;t originally have: a way to recognize the device&#8217;s organization <strong>BEFORE</strong> the user signs in. That makes it possible to retrieve settings early enough to change OOBE, the out-of-box experience. But what actually happens between exporting a CSV and seeing the organization&#8217;s setup screens?</p>
 
 
 
@@ -49,7 +49,7 @@
 
 
 
-<p class="wp-block-paragraph"><a>I wanted to follow that process end to end, from the export screen to Device Preparation. The twelve main steps below follow the overview diagram. Where a step needs a closer look, the letters in its smaller flow match the explanation underneath. The code tells us what the Windows client does; the screenshots </a><a href="#_msocom_1">[TR1]</a>&nbsp;show what it looks like</p>
+<p class="wp-block-paragraph"><a>I wanted to follow that process end to end, from the export screen to Device Preparation. The twelve main steps below follow the overview diagram. Where a step needs a closer look, the letters in its smaller flow match the explanation underneath.</a></p>
 
 
 
@@ -57,7 +57,11 @@
 
 
 
-<p class="wp-block-paragraph">With classic Windows Autopilot, the device is registered before deployment. During OOBE, Windows contacts the Autopilot service, which matches the device to that registration and returns its assigned deployment profile. Windows can then use the profile to change the setup experience before asking the user to sign in.</p>
+<p class="wp-block-paragraph">With classic Windows Autopilot, the device is registered <strong>BEFORE</strong> deployment. During the OOBE, Windows contacts the Autopilot service, which matches the device to that registration and returns its assigned Autopilotprofile. Windows can then use the Autopilot profile to change the setup experience before asking the user to sign in. With it, you could hide the privacy screen or define the computer name.</p>
+
+
+
+<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="1082" height="723" src="https://patchmypc.com/app/uploads/2026/08/privacy.png" alt="" class="wp-image-193792" srcset="https://patchmypc.com/app/uploads/2026/08/privacy.png 1082w, https://patchmypc.com/app/uploads/2026/08/privacy-300x200.png 300w, https://patchmypc.com/app/uploads/2026/08/privacy-1024x684.png 1024w, https://patchmypc.com/app/uploads/2026/08/privacy-768x513.png 768w" sizes="(max-width: 1082px) 100vw, 1082px" /></figure>
 
 
 
@@ -89,7 +93,7 @@
 
 
 
-<figure class="wp-block-image size-full"><img fetchpriority="high" decoding="async" width="906" height="510" src="https://patchmypc.com/app/uploads/2026/08/image-49.jpg" alt="" class="wp-image-193693" srcset="https://patchmypc.com/app/uploads/2026/08/image-49.jpg 906w, https://patchmypc.com/app/uploads/2026/08/image-49-300x169.jpg 300w, https://patchmypc.com/app/uploads/2026/08/image-49-768x432.jpg 768w" sizes="(max-width: 906px) 100vw, 906px" /></figure>
+<figure class="wp-block-image size-full"><a href="https://patchmypc.com/app/uploads/2026/08/image-49.jpg"><img decoding="async" width="906" height="510" src="https://patchmypc.com/app/uploads/2026/08/image-49.jpg" alt="" class="wp-image-193693" srcset="https://patchmypc.com/app/uploads/2026/08/image-49.jpg 906w, https://patchmypc.com/app/uploads/2026/08/image-49-300x169.jpg 300w, https://patchmypc.com/app/uploads/2026/08/image-49-768x432.jpg 768w" sizes="(max-width: 906px) 100vw, 906px" /></a></figure>
 
 
 
@@ -113,7 +117,7 @@
 
 
 
-<figure class="wp-block-image size-full"><img decoding="async" width="656" height="500" src="https://patchmypc.com/app/uploads/2026/08/image-45.jpg" alt="" class="wp-image-193684" srcset="https://patchmypc.com/app/uploads/2026/08/image-45.jpg 656w, https://patchmypc.com/app/uploads/2026/08/image-45-300x229.jpg 300w" sizes="(max-width: 656px) 100vw, 656px" /></figure>
+<figure class="wp-block-image size-full"><a href="https://patchmypc.com/app/uploads/2026/08/image-45.jpg"><img decoding="async" width="656" height="500" src="https://patchmypc.com/app/uploads/2026/08/image-45.jpg" alt="" class="wp-image-193684" srcset="https://patchmypc.com/app/uploads/2026/08/image-45.jpg 656w, https://patchmypc.com/app/uploads/2026/08/image-45-300x229.jpg 300w" sizes="(max-width: 656px) 100vw, 656px" /></a></figure>
 
 
 
@@ -257,7 +261,7 @@
 
 
 
-<figure class="wp-block-image size-full"><img decoding="async" width="560" height="444" src="https://patchmypc.com/app/uploads/2026/08/image-14.gif" alt="" class="wp-image-193698"/></figure>
+<figure class="wp-block-image size-full"><a href="https://patchmypc.com/app/uploads/2026/08/image-14.gif"><img decoding="async" width="560" height="444" src="https://patchmypc.com/app/uploads/2026/08/image-14.gif" alt="" class="wp-image-193698"/></a></figure>
 
 
 
@@ -333,7 +337,11 @@
 
 
 
-<figure class="wp-block-image size-full"><img decoding="async" width="942" height="427" src="https://patchmypc.com/app/uploads/2026/08/image-53.png" alt="" class="wp-image-193702" srcset="https://patchmypc.com/app/uploads/2026/08/image-53.png 942w, https://patchmypc.com/app/uploads/2026/08/image-53-300x136.png 300w, https://patchmypc.com/app/uploads/2026/08/image-53-768x348.png 768w" sizes="(max-width: 942px) 100vw, 942px" /></figure>
+<figure class="wp-block-image size-full is-resized"><img decoding="async" width="1672" height="941" src="https://patchmypc.com/app/uploads/2026/08/38d98e47-0ace-4566-85fc-fc519f878634.png" alt="" class="wp-image-193800" style="aspect-ratio:1.7768620583084371;width:740px;height:auto" srcset="https://patchmypc.com/app/uploads/2026/08/38d98e47-0ace-4566-85fc-fc519f878634.png 1672w, https://patchmypc.com/app/uploads/2026/08/38d98e47-0ace-4566-85fc-fc519f878634-300x169.png 300w, https://patchmypc.com/app/uploads/2026/08/38d98e47-0ace-4566-85fc-fc519f878634-1024x576.png 1024w, https://patchmypc.com/app/uploads/2026/08/38d98e47-0ace-4566-85fc-fc519f878634-768x432.png 768w, https://patchmypc.com/app/uploads/2026/08/38d98e47-0ace-4566-85fc-fc519f878634-1536x864.png 1536w" sizes="(max-width: 1672px) 100vw, 1672px" /></figure>
+
+
+
+<p class="wp-block-paragraph"></p>
 
 
 
@@ -441,7 +449,7 @@
 
 
 
-<p class="wp-block-paragraph"><a>The inspected client&#8217;s default field list for this request contains</a>, contextId, linkId, tpmKeyId, maaJwt, and deviceLinkJson. The first four supply the request context, link and key identifiers, and attestation token. The fifth is an additional DeviceLink JSON field. This list comes from the client code; it is not a captured HTTP body showing the exact contents sent in this lab run.</p>
+<p class="wp-block-paragraph"><a>The inspected client&#8217;s default field list for this request contains</a>,&nbsp;contextId, linkId, tpmKeyId, maaJwt, and deviceLinkJson. The first four supply the request context, link and key identifiers, and attestation token. The fifth is an additional DeviceLink JSON field. This list comes from the client code; it is not a captured HTTP body showing the exact contents sent in this lab run.</p>
 
 
 
@@ -577,11 +585,7 @@
 
 
 
-<figure class="wp-block-image size-full"><img decoding="async" width="657" height="369" src="https://patchmypc.com/app/uploads/2026/08/image-46.jpg" alt="" class="wp-image-193687" srcset="https://patchmypc.com/app/uploads/2026/08/image-46.jpg 657w, https://patchmypc.com/app/uploads/2026/08/image-46-300x168.jpg 300w" sizes="(max-width: 657px) 100vw, 657px" /></figure>
-
-
-
-<p class="wp-block-paragraph">.</p>
+<figure class="wp-block-image size-full"><img decoding="async" width="942" height="427" src="https://patchmypc.com/app/uploads/2026/08/image-53.png" alt="" class="wp-image-193702" srcset="https://patchmypc.com/app/uploads/2026/08/image-53.png 942w, https://patchmypc.com/app/uploads/2026/08/image-53-300x136.png 300w, https://patchmypc.com/app/uploads/2026/08/image-53-768x348.png 768w" sizes="(max-width: 942px) 100vw, 942px" /></figure>
 
 
 
@@ -669,7 +673,7 @@
 
 
 
-<p class="wp-block-paragraph"><a>Windows saves the downloaded tag-policy configuration locally so the OOBE components can read it as setup continues. The implementation uses</a> the AutopilotTagPoliciesFile.json, and the directory capture below confirms this location on the lab device:</p>
+<p class="wp-block-paragraph"><a>Windows saves the downloaded tag-policy configuration locally so the OOBE components can read it as setup continues. The implementation uses</a> the&nbsp;AutopilotTagPoliciesFile.json, and the directory capture below confirms this location on the lab device:</p>
 
 
 
@@ -741,7 +745,7 @@
 
 
 
-<p class="wp-block-paragraph"><a>The screenshot also gives us a concrete naming checkpoint. The command prompt reports</a> test-3947 while the device is still at sign-in. The local policy contained test-%RAND:4%; Windows has already resolved the template into an actual computer name. That matches the policy&#8217;s enabled naming setting and Microsoft&#8217;s documentation that naming occurs before enrollment.</p>
+<p class="wp-block-paragraph"><a>The screenshot also gives us a concrete naming checkpoint. The command prompt reports</a>&nbsp;test-3947 while the device is still at sign-in. The local policy contained test-%RAND:4%; Windows has already resolved the template into an actual computer name. That matches the policy&#8217;s enabled naming setting and Microsoft&#8217;s documentation that naming occurs before enrollment.</p>
 
 
 
