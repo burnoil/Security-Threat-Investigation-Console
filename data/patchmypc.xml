@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Tue, 01 Sep 2026 06:20:57 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 03 Sep 2026 13:08:21 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -806,6 +806,18 @@
 
 
 <p class="wp-block-paragraph">A device that is only Pre-associated has not completed the association stage and can have its pending record removed in Intune. Avoid turning an old screenshot&#8217;s variable names into a universal firmware-removal script: the published examples and this lab do not use identical names. Verify the current supported procedure for the device before changing firmware data.</p>
+
+
+
+<h2 id="h-the-script-to-do-it" class="wp-block-heading">The Script to do it &#8230; </h2>
+
+
+
+<p class="wp-block-paragraph">If you don&#8217;t want to perform the export, the import and association all manually.. you can always use the get-autopilotdeviceassociation script.</p>
+
+
+
+<p class="wp-block-paragraph"><a href="https://www.powershellgallery.com/packages/Get-AutopilotDeviceAssociation/1.8.0">PowerShell Gallery | Get-AutopilotDeviceAssociation 1.8.0</a></p>
 
 
 
