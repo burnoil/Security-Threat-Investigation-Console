@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Fri, 04 Sep 2026 06:23:28 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 04 Sep 2026 17:10:50 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,119 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Patch My PC Publisher Preview Version 3.1.0.112 Released</title>
+		<link>https://patchmypc.com/release-notes/preview-release/publisher-3-1-0-112/</link>
+					<comments>https://patchmypc.com/release-notes/preview-release/publisher-3-1-0-112/#respond</comments>
+		
+		<dc:creator><![CDATA[Cody Mathis]]></dc:creator>
+		<pubDate>Fri, 04 Sep 2026 17:09:43 +0000</pubDate>
+				<category><![CDATA[Preview Release]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=143161</guid>
+
+					<description><![CDATA[<p>This release contains a variety of features, improvements, and fixes, as noted below. Features Improvements Fixes</p>
+<p>The post <a href="https://patchmypc.com/release-notes/preview-release/publisher-3-1-0-112/">Patch My PC Publisher Preview Version 3.1.0.112 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">This release contains a variety of features, improvements, and fixes, as noted below.</p>
+
+
+
+<h2 id="h-features" class="wp-block-heading">Features</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Adds full customization for the default command line, including expanded modify command-line options, themed script viewing, and support for uploading MCP banners, custom app icons, and staged content with duplicate file names.​</li>
+
+
+
+<li>Adds support for selecting code-signing certificates for ConfigMgr.​</li>
+
+
+
+<li>Adds project-wide audit logging so you can track who changed what and when.</li>
+</ul>
+
+
+
+<h2 id="h-improvements" class="wp-block-heading">Improvements</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Improves Publisher accessibility and usability across the app with better keyboard navigation, focus handling, tab order, screen reader support, zoom and reflow behavior, and clearer visual contrast.​</li>
+
+
+
+<li>Improves logging and diagnostics with clearer log location and retention controls, better Collect Logs output, richer installed-version details, and improved sync/startup logging.​</li>
+
+
+
+<li>Improves Config API reliability and startup behavior with safer validation, clearer error responses, and bounded retries.​</li>
+
+
+
+<li>Improves service startup and performance by moving blocking checks and backup work off the main UI path and tightening timeout handling.​</li>
+
+
+
+<li>Improves theme consistency, rendering, and overall layout across views, dialogs, grids, pickers, and wizards.​</li>
+
+
+
+<li>Improves documentation links and response guidance with clearer link labels and maintained release-note references.</li>
+</ul>
+
+
+
+<h2 id="h-fixes" class="wp-block-heading">Fixes</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Fixes regressions on the Settings, About, Welcome, Certificate Management, and Advanced screens, including clipping, invisible text, focus issues, layout problems, and handshake failures.​</li>
+
+
+
+<li>Fixes Intune tenant, app manager, and assignment issues, including tenant switching crashes, authentication and selection problems, stale secrets after restart, and unsupported product handling.​</li>
+
+
+
+<li>Fixes logging and telemetry issues so that logs follow the configured path, usage data sync timing, and service logs are captured correctly.​</li>
+
+
+
+<li>Fixes scan, sync, and product-handling issues, including stale counts, missed catch-up runs, double-published syncs, custom product refreshes, and misleading status messages.​</li>
+
+
+
+<li>Fixes command line, script, staged content, and catalog behavior, including upload and restart handling, validation errors, parsing issues, and false &#8220;file does not exist&#8221; errors.​</li>
+
+
+
+<li>Fixes assorted UI regressions across dialogs, grids, menus, pickers, wizards, and notification previews, including overflow, tooltip, text, icon, and button issues.​</li>
+
+
+
+<li>Fixes WSUS, ConfigMgr, SMTP, and licensing issues, including validation refreshes, reloading of imported settings, proxy error messaging, and heartbeat retries after a permanent license refusal.​</li>
+
+
+
+<li>Restores the confirmation prompt before starting a Publishing Service sync.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph"></p>
+<p>The post <a href="https://patchmypc.com/release-notes/preview-release/publisher-3-1-0-112/">Patch My PC Publisher Preview Version 3.1.0.112 Released</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/release-notes/preview-release/publisher-3-1-0-112/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Your Windows Compliance Report Is Lying to You </title>
 		<link>https://patchmypc.com/blog/your-windows-compliance-report-is-lying-to-you/</link>
 					<comments>https://patchmypc.com/blog/your-windows-compliance-report-is-lying-to-you/#respond</comments>
@@ -2104,263 +2217,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/release-notes/production-release/patch-my-pc-publisher-production-version-3-0-3-0-released/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Patch Management after Ivanti DSM End of Life: What DSM Customers Need to Know Before 2027</title>
-		<link>https://patchmypc.com/blog/ivanti-dsm-end-of-life/</link>
-					<comments>https://patchmypc.com/blog/ivanti-dsm-end-of-life/#respond</comments>
-		
-		<dc:creator><![CDATA[SoftTailor]]></dc:creator>
-		<pubDate>Mon, 03 Aug 2026 15:59:00 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=190899</guid>
-
-					<description><![CDATA[<p>Ivanti DSM reaches end of life on December 31, 2026. Learn how to plan your Ivanti DSM migration, compare replacement options, move applications and eScript packages to Microsoft Intune or Configuration Manager, and modernize third party patch management.</p>
-<p>The post <a href="https://patchmypc.com/blog/ivanti-dsm-end-of-life/">Patch Management after Ivanti DSM End of Life: What DSM Customers Need to Know Before 2027</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p class="wp-block-paragraph">Patch management is the process of planning, testing, and deploying software updates and security patches across endpoints in a controlled manner. Especially for third-party applications, this remains a recurring challenge for many IT teams because whenever an update becomes available, it needs to be detected, packaged, tested, and deployed securely, reliably, and in a way that can be audited. And the challenge will only become bigger: With the emergence of AI models like Claude Mythos, the frequency of security patches is expected to significantly increase. With the Ivanti DSM End of Life (EOL) approaching, many organizations in the DACH region are facing three key questions.</p>
-
-
-
-<ol class="wp-block-list">
-<li>Which solution will take over endpoint management, server management, and software distribution in the future?</li>
-
-
-
-<li>How can application packages with years of package logic, eScript code, dependencies, and operational knowledge be migrated from Ivanti DSM to a new platform?</li>
-
-
-
-<li>How can the <a href="https://patchmypc.com/blog/what-is-third-party-patching/">third party patching</a>challenge be solved long term?</li>
-</ol>
-
-
-
-<p class="wp-block-paragraph">For many DSM (Desktop &amp; Server Management) customers, this is about more than selecting a new tool. It is about managing a controlled transition to a sustainable long-term operating model.</p>
-
-
-
-<p class="wp-block-paragraph">So where should organizations begin? It starts with understanding what Ivanti DSM&#8217;s end of life actually means, the options available for replacing it, and what a successful migration path looks like. Finally, it will show a path on how to smoothly migrate apps from Ivanti DSM to <a href="https://patchmypc.com/blog/category/intune/">Microsoft Intune</a> and ConfigMgr.</p>
-
-
-
-<h2 id="h-when-does-ivanti-dsm-reach-end-of-life" class="wp-block-heading">When Does Ivanti DSM Reach End of Life?</h2>
-
-
-
-<p class="wp-block-paragraph">Ivanti DSM reaches its official End of Life on December 31, 2026. From that date onward, regular vendor support for Ivanti Desktop and Server Management will end. Organizations will no longer receive official product updates or standard support services. Only very few large organizations were offered another support extension by Ivanti. IT teams should check their license expiry date in DSM to avoid unexpected problems, as there were some customers who shifted to a subscription model in the past, meaning access to DSM could be lost.</p>
-
-
-
-<p class="wp-block-paragraph">This leaves a limited window to evaluate, test, and implement a replacement solution. The challenge goes beyond selecting a platform. Existing software packages, deployment processes, OS deployment workflows, permissions, target groups, and operating models all need to be reviewed. The larger the DSM environment, the earlier planning should begin.</p>
-
-
-
-<h2 id="h-what-happens-after-ivanti-dsm-support-ends" class="wp-block-heading">What Happens After Ivanti DSM Support Ends?</h2>
-
-
-
-<p class="wp-block-paragraph">After support ends, continuing to operate Ivanti DSM becomes increasingly risky. Without official updates, bug fixes, or security patches, organizations may face greater security, operational, compliance, and audit risks. This is especially important in regulated industries or environments with strict audit requirements, where vulnerabilities may no longer be addressed through supported product updates. That risk is not theoretical. In March 2026, Ivanti released a high severity security update for DSM to address a local privilege escalation vulnerability.</p>
-
-
-
-<p class="wp-block-paragraph">DSM will also become more difficult to operate from a technical perspective. New Windows versions, modern endpoint scenarios, and cloud management requirements may no longer be reliably supported. At the same time, DSM expertise often becomes harder to find. Experienced administrators move into new roles, projects, or organizations, making troubleshooting and maintenance more challenging.</p>
-
-
-
-<p class="wp-block-paragraph">Simply running DSM until the last possible day is rarely the best strategy. A planned transition with a clearly defined target platform, prioritized applications, and a realistic timeline is usually the safer approach.</p>
-
-
-
-<h2 id="h-common-ivanti-dsm-replacement-options" class="wp-block-heading">Common Ivanti DSM Replacement Options</h2>
-
-
-
-<p class="wp-block-paragraph">There is no direct one-to-one replacement that automatically replicates every DSM capability. The right solution depends heavily on the existing environment. Key considerations include cloud strategy, application portfolio, OS deployment requirements, server management needs, licensing models, and operational processes.</p>
-
-
-
-<p class="wp-block-paragraph">Many organizations evaluate Microsoft Intune, Microsoft Configuration Manager, baramundi, or Ivanti Neurons. Other options include Matrix42 Empirum or Tanium. In practice, hybrid target architectures are common. For example, Intune may be used for modern unified endpoint management (UEM) while another solution handles complex software distribution, servers, or specialized requirements.</p>
-
-
-
-<p class="wp-block-paragraph">A meaningful evaluation should go beyond comparing feature lists. The critical question is whether the new platform can support an organization&#8217;s real-world processes as well as how much a solution can adapt to the organization and vice versa. This includes installation logic, detection methods, repair actions, rollback procedures, user context handling, dependencies, maintenance windows, and reporting.</p>
-
-
-
-<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><th>Option</th><th>Strengths</th><th>Typical Challenges</th></tr><tr><td>Microsoft Intune</td><td>Cloud endpoint management, Autopilot, compliance, mobile device management</td><td>Complex DSM logic like packages, userparts, parameters and installation orders often needs to be redesigned. No full Windows Server management through standard Intune enrollment. Selected endpoint security settings can be managed through Microsoft Defender for Endpoint.</td></tr><tr><td>Microsoft Configuration Manager</td><td>Strong traditional software distribution, on premises and hybrid scenarios</td><td>Operational overhead, maintaining on-premise infrastructur and licensing can be significant if used for servers. Also the packaging challenges mentioned for Intune remain.</td></tr><tr><td>baramundi</td><td>Windows focused client management, software distribution, patch management</td><td>Packages (especially in this case Userparts) and operational processes must be migrated carefully. On-premise infrastructure must be maintained.</td></tr><tr><td>Ivanti Neurons</td><td>Modern Ivanti platform for IT and endpoint management</td><td>Not a simple DSM upgrade but a full platform migration. Not strong for software deployment but focuses more on DEX.</td></tr></tbody></table></figure>
-
-
-
-<h3 id="h-microsoft-intune" class="wp-block-heading">Microsoft Intune</h3>
-
-
-
-<p class="wp-block-paragraph">For many DSM customers, Microsoft Intune is the most obvious target platform. It provides strong capabilities for modern cloud endpoint management, Windows Autopilot, compliance management, mobile device management, and integration with Microsoft 365 and Entra ID. For organizations expanding their cloud native endpoint strategy, Intune is often a central component.</p>
-
-
-
-<p class="wp-block-paragraph">Another clear advantage is licensing. Intune is already included in many Microsoft 365 plans or can be integrated into existing Microsoft investments. This makes it particularly attractive for organizations moving toward cloud management.</p>
-
-
-
-<p class="wp-block-paragraph">However, Intune is not automatically a complete replacement for every DSM scenario. Traditional software distribution, complex installation logic, layered dependencies, and all server management requirements often need to be handled differently. For many organizations, Intune becomes the primary target platform, but not necessarily the complete answer for every DSM use case.</p>
-
-
-
-<h3 id="h-microsoft-configuration-manager-mecm" class="wp-block-heading">Microsoft Configuration Manager / MECM</h3>
-
-
-
-<p class="wp-block-paragraph">Microsoft Configuration Manager, often still referred to as SCCM or MECM, remains a strong option for traditional Windows environments. It is particularly well suited for organizations with large numbers of on-premises clients, complex software distribution requirements, servers and other high availability endpoints, and established Microsoft management processes.</p>
-
-
-
-<p class="wp-block-paragraph">The transition from DSM to Configuration Manager is often closer to familiar client management workflows than a pure cloud migration. Applications, collections, task sequences, and detailed client control align well with environments that continue to operate on premises or in hybrid models.</p>
-
-
-
-<p class="wp-block-paragraph">Configuration Manager can also be used alongside Intune through co-management. This is attractive for organizations that want to adopt Intune gradually while continuing to manage certain workloads through traditional methods or need a mature solution to manage servers while fully taking advantage of Intune&#8217;s modern capabilities. At the same time, infrastructure requirements, operational complexity, and Microsoft&#8217;s decreasing ConfigMgr focus should be carefully evaluated.</p>
-
-
-
-<h3 id="h-baramundi" class="wp-block-heading">baramundi</h3>
-
-
-
-<p class="wp-block-paragraph">baramundi is a well-established endpoint management solution in the German-speaking market. The platform combines real-time software distribution, patch management, inventory management, OS deployment, and vulnerability management within a single interface. It is particularly attractive for organizations looking for a practical and relatively easy-to-manage solution for Windows clients and servers.</p>
-
-
-
-<p class="wp-block-paragraph">For many IT teams, baramundi also plays a role in hybrid operating models. The platform can be used alongside Intune and supports co-management scenarios. While Intune delivers modern cloud endpoint management &amp; security capabilities, baramundi often handles server management, traditional software distribution, or detailed administrative processes within the corporate network.</p>
-
-
-
-<h3 id="h-ivanti-neurons" class="wp-block-heading">Ivanti Neurons</h3>
-
-
-
-<p class="wp-block-paragraph">Ivanti positions Neurons as a modern platform for IT and endpoint management. For existing Ivanti customers, this may initially seem like a natural choice. However, there is no clearly defined migration path from Ivanti DSM to Ivanti Neurons and these are completely different platforms. Organizations should therefore evaluate early how existing applications, package logic, and operational processes can be transferred.</p>
-
-
-
-<p class="wp-block-paragraph">Moving from Ivanti DSM to Ivanti Neurons is not a simple upgrade. Existing DSM packages, eScript logic, and operational workflows cannot be transferred. Many organizations must redesign their software distribution, packaging standards, and deployment processes.</p>
-
-
-
-<p class="wp-block-paragraph">DSM was particularly strong in traditional software distribution for many years. Companies expecting the same depth of functionality should carefully validate their requirements against Ivanti Neurons. The vendor name alone is less important than whether the platform can reliably support day-to-day operational needs.</p>
-
-
-
-<h2 id="h-why-application-packaging-becomes-a-migration-challenge" class="wp-block-heading">Why Application Packaging Becomes a Migration Challenge</h2>
-
-
-
-<p class="wp-block-paragraph">Over the years, organizations build package logic, special cases, dependencies, workarounds, and operational knowledge into their DSM environments. Some packages work perfectly but are poorly documented. Others contain assumptions that no longer fit modern management platforms. Depending on organization size and complexity, we are often talking hundreds, sometimes thousands, of apps that need to be migrated to the new endpoint management solution.</p>
-
-
-
-<p class="wp-block-paragraph">This is why application packaging becomes a critical path during a DSM migration. Without working applications, there is no successful endpoint migration. The platform may be selected, devices may be prepared, and management approval may be secured. But if business-critical applications cannot be installed, patched, detected, repaired, or removed reliably, the project will stall.</p>
-
-
-
-<p class="wp-block-paragraph">Target platforms operate differently from DSM. Detection rules, installation context, return codes, reboot behavior, user interaction, and dependency handling often need to be redesigned. Migration is therefore more than a technical export process. It is an opportunity to clean up, standardize, and modernize the application portfolio for the long term, but also the biggest DSM migration challenge!</p>
-
-
-
-<h2 id="h-what-happens-to-escript-packages-during-migration" class="wp-block-heading">What Happens to eScript Packages During Migration?</h2>
-
-
-
-<p class="wp-block-paragraph">Existing eScript packages generally cannot be reused directly on a new platform. eScript is tightly integrated with DSM. Commands, conditions, and workflows &#8211; the whole eScript language is specifically designed for DSM. When moving to a new platform, this logic must first be understood and then rebuilt appropriately.</p>
-
-
-
-<p class="wp-block-paragraph">Each package should be analyzed systematically. What happens during installation? Which detection methods could be used? Is there repair logic? How does uninstallation work? Does the package trigger a reboot? Does it run in system and/or user context? Are there dependencies on other applications, files, registry keys, or groups?</p>
-
-
-
-<p class="wp-block-paragraph">Simple packages can often be rebuilt relatively quickly. Complex packages require significantly more analysis and testing. Packages with extensive conditions, legacy components, user interaction, parameters, and retries after reboot are particularly challenging. In these cases, simply translating commands is rarely enough. The underlying logic must be reviewed and adapted to a new standard.</p>
-
-
-
-<h2 id="h-can-escript-be-converted-to-powershell-or-psadt" class="wp-block-heading">Can eScript Be Converted to PowerShell or PSADT?</h2>
-
-
-
-<p class="wp-block-paragraph">Yes, eScript packages can be migrated to PowerShell or <a href="https://patchmypc.com/product/psadt/">PSAppDeployToolkit (PSADT)</a>, and many commands have a PowerShell or PSADT equivalent. However, DSM logic is often very unique. What worked well in DSM is not automatically the best solution in Intune or Configuration Manager.</p>
-
-
-
-<p class="wp-block-paragraph">PowerShell provides flexibility and modern automation capabilities. PSADT adds structure, logging, user interaction, exit code handling, and standardization. This becomes especially important when managing large application portfolios because consistent standards simplify ongoing operations and future maintenance.</p>
-
-
-
-<p class="wp-block-paragraph">The most effective approach is usually not to translate eScript directly. Instead, organizations should analyze the existing logic, remove outdated elements, define a target standard, rebuild the package, and perform thorough testing. This results in a migration that is more reliable, easier to maintain, and better aligned with modern endpoint management practices.</p>
-
-
-
-<figure class="wp-block-image"><img decoding="async" src="https://images.surferseo.art/7634c5f9-ffe0-4f87-8cce-6268242b5998.png" alt="Screenshot of the Patch My PC Ivanti DSM Migration Tool"/></figure>
-
-
-
-<p class="wp-block-paragraph">For everything else, Patch My PC and <a href="https://www.softtailor.de">SOFTTAILOR</a>, the German specialists for Endpoint Management and application packaging, have developed an automation-enabled migration approach that helps organizations move applications from Ivanti DSM to Intune and ConfigMgr faster and with greater consistency. By analyzing existing package logic and reducing manual migration effort, the process not only accelerates the transition but also helps create more reliable and maintainable application packages for the long term.</p>
-
-
-
-<h2 id="h-how-to-prepare-for-an-ivanti-dsm-migration" class="wp-block-heading">How to Prepare for an Ivanti DSM Migration</h2>
-
-
-
-<figure class="wp-block-image"><img decoding="async" src="https://images.surferseo.art/d497ab9b-ed0e-4d4f-99e5-570c0de7f05a.png" alt="Goals of a succesful Ivanti DSM Migration"/></figure>
-
-
-
-<p class="wp-block-paragraph">A successful DSM migration starts with strategy rather than technology. Organizations should first define the requirements their future platform must meet. Over the past 12 months, SOFTTAILOR has helped many organizations define their individual requirements catalog.</p>
-
-
-
-<p class="wp-block-paragraph">Based on those requirements, potential target platforms can be evaluated. Intune, Configuration Manager, Baramundi, Ivanti Neurons, and other solutions each offer different strengths. The key question is not which platform has the most features, but which one best supports the organization&#8217;s processes and long-term goals.</p>
-
-
-
-<p class="wp-block-paragraph">Once the target architecture has been defined, standards for packaging, testing, and deployment should be established. Many organizations use the migration as an opportunity to reduce custom solutions and introduce consistent processes. This simplifies both the migration itself and ongoing operations afterward. PSADT will be your hero here for application packaging.</p>
-
-
-
-<p class="wp-block-paragraph">Clear ownership is equally important. Who defines technical standards? Who is responsible for package migration? Who performs business validation testing? A well-structured project model helps prevent delays and provides transparency for all stakeholders.</p>
-
-
-
-<p class="wp-block-paragraph">Two of the most important questions: How do I solve the app migration challenge smoothly, and how do I set up third-party patch management in the long run? Patch My PC and SOFTTAILOR can help you with all of that.</p>
-
-
-
-<h2 id="h-next-steps-for-organizations-running-dsm-today" class="wp-block-heading">Next Steps for Organizations Running DSM Today</h2>
-
-
-
-<p class="wp-block-paragraph">A DSM migration takes time, especially when large numbers of software packages, eScript packages, and established operational processes are involved. The timeline may appear comfortable at first glance, but even medium-sized environments can quickly consume the available time.</p>
-
-
-
-<p class="wp-block-paragraph">Now is the right time to understand the actual migration effort. This starts with analyzing the application portfolio. Which applications are business critical? Which packages can be migrated, replaced, or retired? Where does complex eScript logic create additional effort?</p>
-
-
-
-<p class="wp-block-paragraph">Interested in how Patch My PC and SOFTTAILOR can help you with your Ivanti DSM migration? Get a first glance of how our <a href="https://patchmypc.com/product/migration/">migration</a> approach works <a href="https://www.youtube.com/watch?v=Bqf9pEKfdzY">from this webinar</a> and reach out to the <a href="https://www.softtailor.de/kontakt/erstberatung">SOFTTAILOR team</a> to discuss more details.</p>
-
-
-
-<p class="wp-block-paragraph"></p>
-<p>The post <a href="https://patchmypc.com/blog/ivanti-dsm-end-of-life/">Patch Management after Ivanti DSM End of Life: What DSM Customers Need to Know Before 2027</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/ivanti-dsm-end-of-life/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
