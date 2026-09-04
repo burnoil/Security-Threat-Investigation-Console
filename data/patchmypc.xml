@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Thu, 03 Sep 2026 13:08:21 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 04 Sep 2026 06:23:28 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,129 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Your Windows Compliance Report Is Lying to You </title>
+		<link>https://patchmypc.com/blog/your-windows-compliance-report-is-lying-to-you/</link>
+					<comments>https://patchmypc.com/blog/your-windows-compliance-report-is-lying-to-you/#respond</comments>
+		
+		<dc:creator><![CDATA[White Hat]]></dc:creator>
+		<pubDate>Fri, 04 Sep 2026 06:13:53 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">https://patchmypc.com/?p=194067</guid>
+
+					<description><![CDATA[<p>Most enterprise patching programs were built for a different era. Ten years ago, keeping Windows current eliminated a meaningful portion of enterprise risk. Today, the operating system is just one piece of a much larger software ecosystem that includes browsers, collaboration platforms, document readers, VPNs, remote access tools, developer utilities, and hundreds of other third-party ... <a href="https://patchmypc.com/blog/your-windows-compliance-report-is-lying-to-you/">Continue Reading  &#187;</a></p>
+<p>The post <a href="https://patchmypc.com/blog/your-windows-compliance-report-is-lying-to-you/">Your Windows Compliance Report Is Lying to You </a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">Most enterprise patching programs were built for a different era. Ten years ago, keeping Windows current eliminated a meaningful portion of enterprise risk. Today, the operating system is just one piece of a much larger software ecosystem that includes browsers, collaboration platforms, document readers, VPNs, remote access tools, developer utilities, and hundreds of other third-party applications. Attackers adapted to that reality years ago. Many organizations haven&#8217;t.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">According to <strong><a href="https://www.verizon.com/business/resources/reports/dbir/">Verizon&#8217;s 2026 Data Breach Investigations Report</a></strong>, vulnerability exploitation was involved in 48% of breaches, making it one of the most common initial access vectors.¹ Meanwhile, software outside the operating system shows up again and again in CISA advisories, the Known Exploited Vulnerabilities Catalog, and high-profile breach investigations involving file transfer platforms, remote access software, and other third-party technologies.²³⁴ The attack surface didn&#8217;t disappear. It shifted. </p>
+
+
+
+<p class="wp-block-paragraph">The problem isn&#8217;t just that there are more vulnerabilities. It&#8217;s that we&#8217;re discovering them faster than most organizations can remediate them. AI-assisted security research is accelerating vulnerability discovery, but infrastructure teams are still constrained by the same internal workflows and manual processes they&#8217;ve relied on for years. Organizations are getting better at finding exposure. Attackers are getting faster at exploiting it. Too many patching programs are still operating on timelines built for a pre-AI threat landscape.&nbsp;</p>
+
+
+
+<h2 id="h-the-iceberg-beneath-patch-tuesday-nbsp" class="wp-block-heading">The Iceberg Beneath Patch Tuesday&nbsp;</h2>
+
+
+
+<p class="wp-block-paragraph">Most organizations measure patching success by looking at Windows compliance. Green dashboards. Healthy endpoints. Current cumulative updates. Those metrics matter. They just don&#8217;t tell the whole story.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The modern enterprise isn&#8217;t protected by Windows alone. It&#8217;s protected by hundreds of applications running on top of it: browsers, collaboration tools, PDF readers, VPN clients, password managers, developer tools, line-of-business software, and everything else employees install to do their jobs. Windows updates follow a predictable schedule with mature deployment tools and reporting. Third-party applications don&#8217;t. Every vendor ships on its own timeline, uses its own installer, requires its own testing, and often belongs to nobody in particular.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">That&#8217;s the iceberg. A device can be fully compliant from a Windows perspective while still running multiple applications with known exploitable vulnerabilities. Your dashboard says it&#8217;s healthy. An attacker sees something very different.&nbsp;</p>
+
+
+
+<h2 id="h-attackers-follow-the-path-of-least-resistance-nbsp" class="wp-block-heading">Attackers Follow the Path of Least Resistance&nbsp;</h2>
+
+
+
+<p class="wp-block-paragraph">My black hat counterparts don&#8217;t care whether they&#8217;re exploiting Windows, Chrome, Acrobat, or your VPN client. They care about one thing: which target gives them the highest return for the least amount of effort.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">As Windows became harder to attack, they moved on. Third-party applications are patched on different schedules, packaged differently, tested differently, and often owned by nobody in particular. Chaos is good for attackers.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Lack of awareness isn’t the issue. Every security team knows third-party software is risky. The problem is that discovering vulnerable software takes minutes. Packaging, testing, approvals, and deployment take days, weeks, even months. That&#8217;s where attackers make up the difference.&nbsp;</p>
+
+
+
+<h2 id="h-security-s-new-scaling-problem-nbsp" class="wp-block-heading">Security&#8217;s New Scaling Problem&nbsp;</h2>
+
+
+
+<p class="wp-block-paragraph">Over the last two decades, the cybersecurity industry made enormous investments in visibility. Vulnerability scanners became more sophisticated, asset inventories became more accurate, threat intelligence became more accessible, and organizations gained significantly better insight into the software running across their environments.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">By some measures, those investments paid off.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Most enterprise organizations can identify vulnerable software more efficiently than they could ten years ago, but detection and remediation are not the same animal.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Meanwhile, AI-assisted security research is accelerating vulnerability discovery. Infrastructure teams, however, still have the same staffing, maintenance windows, and deployment processes they had a few years ago. When you can discover vulnerabilities twice as fast but can&#8217;t remediate them any faster, the backlog isn&#8217;t a temporary problem. It&#8217;s your operating model.&nbsp;</p>
+
+
+
+<h2 id="h-the-wrong-metric-nbsp" class="wp-block-heading">The Wrong Metric&nbsp;</h2>
+
+
+
+<p class="wp-block-paragraph">Windows compliance is still important. Nobody is arguing otherwise. But if your patch management strategy begins and ends with operating system updates, you&#8217;re measuring the easiest part of the problem, not the part attackers care about most.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Organizations don&#8217;t reduce risk by producing greener dashboards. They reduce risk by shrinking the time between discovering a vulnerability and updating the software. That means automating packaging, reducing testing friction, simplifying deployments, and treating third-party applications as a core part of the security program rather than an afterthought.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">The iceberg isn&#8217;t getting smaller. It&#8217;s getting larger. The organizations that adapt won&#8217;t be the ones that discover the most vulnerabilities. They&#8217;ll be the ones that can remediate them before somebody else takes advantage of them.&nbsp;</p>
+
+
+
+<h2 id="h-closing-the-gap-nbsp" class="wp-block-heading">Closing the Gap&nbsp;</h2>
+
+
+
+<p class="wp-block-paragraph">This problem doesn’t go away with another scanner to doomscroll. The solution is removing the friction between finding a vulnerability and deploying the fix.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">That&#8217;s where automation changes the equation.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Patch My PC works alongside Microsoft Intune, Configuration Manager, and WSUS to automate the packaging and deployment of third-party application updates. Instead of spending hours rebuilding packages and chasing installers, endpoint teams can automate repetitive work while designing deployment rings and rollout schedules that fit their environment, getting updates into production before attackers can reverse-engineer the patch.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Visibility matters, too. <strong><a href="https://patchmypc.com/product/advanced-insights/">Patch My PC Advanced Insights </a></strong>provides compliance reporting for supported third-party applications, making it easy to see what&#8217;s current, what&#8217;s vulnerable, and where remediation has stalled. Better visibility leads to better deployment decisions. Less time building spreadsheets. More time reducing risk. </p>
+
+
+
+<p class="wp-block-paragraph">The organizations that succeed over the next decade won&#8217;t be the ones that find the most vulnerabilities. They&#8217;ll be the ones that can consistently move updates from discovery to deployment before attackers have a chance to move first.&nbsp;</p>
+<p>The post <a href="https://patchmypc.com/blog/your-windows-compliance-report-is-lying-to-you/">Your Windows Compliance Report Is Lying to You </a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>https://patchmypc.com/blog/your-windows-compliance-report-is-lying-to-you/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
 		<title>Windows Autopilot Device Association</title>
 		<link>https://patchmypc.com/blog/windows-autopilot-device-association/</link>
 					<comments>https://patchmypc.com/blog/windows-autopilot-device-association/#respond</comments>
@@ -2238,309 +2361,6 @@
 ]]></content:encoded>
 					
 					<wfw:commentRss>https://patchmypc.com/blog/ivanti-dsm-end-of-life/feed/</wfw:commentRss>
-			<slash:comments>0</slash:comments>
-		
-		
-			</item>
-		<item>
-		<title>Intune On Demand Device Sync Now Uses IC3 for IME Workloads</title>
-		<link>https://patchmypc.com/blog/intune-on-demand-device-sync-now-uses-ic3-for-ime-workloads/</link>
-					<comments>https://patchmypc.com/blog/intune-on-demand-device-sync-now-uses-ic3-for-ime-workloads/#respond</comments>
-		
-		<dc:creator><![CDATA[Rudy Ooms]]></dc:creator>
-		<pubDate>Sat, 01 Aug 2026 15:14:53 +0000</pubDate>
-				<category><![CDATA[Blog]]></category>
-		<guid isPermaLink="false">https://patchmypc.com/?p=190834</guid>
-
-					<description><![CDATA[<p>In our previous investigation, the improved Device Sync action sent two WNS notifications. One woke WindowsMDMPush so the Windows MDM client could trigger the Policy refresh. The other targeted the IME Notification App and carried a DirectSync request for Win32 apps, PowerShell scripts, and Proactive Remediations. When I pressed Sync again with v2 of this ... <a href="https://patchmypc.com/blog/intune-on-demand-device-sync-now-uses-ic3-for-ime-workloads/">Continue Reading  &#187;</a></p>
-<p>The post <a href="https://patchmypc.com/blog/intune-on-demand-device-sync-now-uses-ic3-for-ime-workloads/">Intune On Demand Device Sync Now Uses IC3 for IME Workloads</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></description>
-										<content:encoded><![CDATA[
-<p class="wp-block-paragraph"><a href="https://patchmypc.com/blog/inside-the-improved-on-demand-sync-for-windows-devices/">In our previous investigation,</a> the improved Device Sync action sent two WNS notifications. One woke <strong>WindowsMDMPush</strong> so the Windows MDM client could trigger the Policy refresh. The other targeted the IME Notification App and carried a <strong>DirectSync </strong>request for <strong>Win32 apps, PowerShell scripts, and Proactive Remediations.</strong></p>
-
-
-
-<p class="wp-block-paragraph">When I pressed<strong> Sync again with v2 of this sync button implementation</strong>, something had changed. WindowsMDMPush was still activated through WNS, but the IME request now appeared in NotificationInfraLogs as an incoming<strong><a href="https://patchmypc.com/blog/ic3-from-wns-to-real-time-device-and-ime-actions/"> IC3 Trouter request. </a></strong>The payload was almost identical to the one we captured before. The workloads had not changed. The transport used to reach IME had.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="927" height="695" src="https://patchmypc.com/app/uploads/2026/08/image-9.jpg" alt="The current Sync action is hybrid. WNS still wakes Windows MDM, while IC3 and Trouter now carry the IME DirectSync request." class="wp-image-190840" srcset="https://patchmypc.com/app/uploads/2026/08/image-9.jpg 927w, https://patchmypc.com/app/uploads/2026/08/image-9-300x225.jpg 300w, https://patchmypc.com/app/uploads/2026/08/image-9-768x576.jpg 768w" sizes="(max-width: 927px) 100vw, 927px" /></figure>
-
-
-
-<h2 id="h-it-started-as-a-windows-mdm-only-device-sync" class="wp-block-heading">It started as a Windows MDM-only Device Sync</h2>
-
-
-
-<p class="wp-block-paragraph">The original <strong>Windows Remote Sync action</strong> was built around the<strong> Windows MDM stack</strong>. When an administrator pressed Sync in the Intune portal, Intune asked Windows Push Notification Services to send a small notification to the device. That notification did not contain policies. It only told Windows that the device should contact Intune again.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="665" height="384" src="https://patchmypc.com/app/uploads/2026/08/image.png" alt="" class="wp-image-190846" srcset="https://patchmypc.com/app/uploads/2026/08/image.png 665w, https://patchmypc.com/app/uploads/2026/08/image-300x173.png 300w" sizes="(max-width: 665px) 100vw, 665px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Windows then activated the WindowsMDMPush task. The device enrollment components started the OMA DM client, opened a management session, and asked Intune for policy and compliance work. The Intune Management Extension was not part of that chain.</p>
-
-
-
-<p class="wp-block-paragraph">That is why the button often felt incomplete. Win32 apps, PowerShell scripts, and Proactive Remediations are not processed by the Windows MDM client. They belong to IME and followed their own schedules. A configuration policy could arrive after <strong><a href="https://learn.microsoft.com/nb-no/intune/device-management/actions/sync?pivots=windows">pressing Sync,</a></strong> while a newly assigned required app still appeared to do nothing.</p>
-
-
-
-<p class="wp-block-paragraph">The important point for this story is simple: the first version only woke the Windows MDM side of the device.</p>
-
-
-
-<h2 id="h-the-first-improvement-added-ime-workloads-to-device-sync" class="wp-block-heading">The first improvement added IME workloads to Device Sync</h2>
-
-
-
-<p class="wp-block-paragraph">Microsoft fixed the biggest limitation by adding a second notification beside <strong>WindowsMDMPush</strong>. The Windows MDM notification stayed in place, but a separate notification now targeted <strong><a href="https://patchmypc.com/blog/inside-the-improved-on-demand-sync-for-windows-devices/">the IME Notification App and carried a Sidecar notification payload.</a></strong></p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="665" height="498" src="https://patchmypc.com/app/uploads/2026/08/image-1.jpg" alt="" class="wp-image-190837" srcset="https://patchmypc.com/app/uploads/2026/08/image-1.jpg 665w, https://patchmypc.com/app/uploads/2026/08/image-1-300x225.jpg 300w" sizes="(max-width: 665px) 100vw, 665px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That payload selected the workloads. NotificationIntent was set to 2, which maps to Win32AppWorkload. SyncType was set to DirectSync. AdditionalWorkloads contained 8 and 9, which map to PowerShellScriptWorkload and ProactiveRemediation.</p>
-
-
-
-<p class="wp-block-paragraph">Inside IME, the request used the existing device action pipeline. DeviceActionCallbackAsync handled the incoming action and then called the workload specific handlers. TriggerWin32AppAsync started the Win32 app check, TriggerPowerShellScriptAsync started the script check, and TriggerProactiveRemediationAsync started the remediation sync.</p>
-
-
-
-<p class="wp-block-paragraph">This was the first real improvement. One click could now wake both management clients. The Windows MDM client refreshed policies and compliance, while IME immediately checked its workloads. At that point the workloads had changed, but both notification paths still used WNS.</p>
-
-
-
-<h2 id="h-wns-replaced-with-ic3-in-the-ime-for-device-sync" class="wp-block-heading">WNS Replaced with IC3 in the IME for Device Sync</h2>
-
-
-
-<p class="wp-block-paragraph">The newer capture shows the next step. The Windows MDM side still records the raw notification that activates WindowsMDMPush. That part has not moved. The IME side is different. Instead of another WNS activation for the IME Notification App, NotificationInfraLogs records Processing incoming Trouter request.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="665" height="499" src="https://patchmypc.com/app/uploads/2026/08/image-2.jpg" alt="" class="wp-image-190838" srcset="https://patchmypc.com/app/uploads/2026/08/image-2.jpg 665w, https://patchmypc.com/app/uploads/2026/08/image-2-300x225.jpg 300w" sizes="(max-width: 665px) 100vw, 665px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The message contains the same values as before. NotificationIntent is still 2. SyncType is still DirectSync. <strong>AdditionalWorkloads is now written as 9;8 instead of 8;9</strong>, but it still selects Proactive Remediations and PowerShell scripts. The order is different. The selected workloads are not.</p>
-
-
-
-<p class="wp-block-paragraph">The important detail is that clicking Sync does not create a direct browser connection to the device. The portal submits an action to the Intune service. The client side files do not expose the complete internal service routing, so that middle hop should not be presented as if it were visible in the binaries. The evidence becomes direct again when Trouter delivers the request to IME.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="643" height="482" src="https://patchmypc.com/app/uploads/2026/08/image-3.jpg" alt="" class="wp-image-190836" srcset="https://patchmypc.com/app/uploads/2026/08/image-3.jpg 643w, https://patchmypc.com/app/uploads/2026/08/image-3-300x225.jpg 300w" sizes="(max-width: 643px) 100vw, 643px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That existing connection is the real time part of the design. Before anyone presses Sync, IME receives the notification infrastructure configuration through its normal check in. The response supplies the registrar endpoint, the Trouter endpoint, the token endpoint, and the configuration lifetime. IME stores those values under SOFTWARE\Microsoft\IntuneManagementExtension\IC3, obtains a token, registers its listener, and starts the Trouter client.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="638" height="181" src="https://patchmypc.com/app/uploads/2026/08/image.jpg" alt="" class="wp-image-190835" srcset="https://patchmypc.com/app/uploads/2026/08/image.jpg 638w, https://patchmypc.com/app/uploads/2026/08/image-300x85.jpg 300w" sizes="(max-width: 638px) 100vw, 638px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The investigated code now lets us show that connection at code level rather than only through symbol names. IC3Client.StartAsync builds TrouterClientOptions from the downloaded configuration, creates the token provider, creates the Trouter client, registers MessageListener on /notification, attaches the connection events, and calls TrouterClient.Start().</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="639" height="519" src="https://patchmypc.com/app/uploads/2026/08/image-4.jpg" alt="" class="wp-image-190839" srcset="https://patchmypc.com/app/uploads/2026/08/image-4.jpg 639w, https://patchmypc.com/app/uploads/2026/08/image-4-300x244.jpg 300w" sizes="(max-width: 639px) 100vw, 639px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Figure 6. Decompiled IC3Client.StartAsync from the uploaded IntuneWindowsAgent executable. The method creates the Trouter client, registers the /notification listener, and starts the persistent connection.</p>
-
-
-
-<h2 id="h-what-happens-inside-ime-after-you-press-device-sync" class="wp-block-heading">What happens inside IME after you press Device Sync</h2>
-
-
-
-<p class="wp-block-paragraph">Once the connection is already active, the later Device Sync action can use it. The service side action targets the IME notification infrastructure and Trouter pushes the request over the existing WebSocket. The client side path starts in MessageListener.ProcessRequestAsync.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="665" height="499" src="https://patchmypc.com/app/uploads/2026/08/image-15.jpg" alt="" class="wp-image-190852" srcset="https://patchmypc.com/app/uploads/2026/08/image-15.jpg 665w, https://patchmypc.com/app/uploads/2026/08/image-15-300x225.jpg 300w" sizes="(max-width: 665px) 100vw, 665px" /></figure>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="638" height="191" src="https://patchmypc.com/app/uploads/2026/08/image-6.jpg" alt="" class="wp-image-190844" srcset="https://patchmypc.com/app/uploads/2026/08/image-6.jpg 638w, https://patchmypc.com/app/uploads/2026/08/image-6-300x90.jpg 300w" sizes="(max-width: 638px) 100vw, 638px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Figure 8. NotificationInfraLogs from the Device Sync action shows the Trouter request, DirectSync payload, acknowledgement, and background processing.</p>
-
-
-
-<h3 id="h-processrequestasync" class="wp-block-heading">ProcessRequestAsync</h3>
-
-
-
-<p class="wp-block-paragraph">ProcessRequestAsync validates the request, creates the processing context, parses MessagePayload, checks the IC3 version, starts background processing, and returns the response. CreateProcessingContext is also where the immediate Accepted for processing response and HTTP status 200 are prepared.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="639" height="478" src="https://patchmypc.com/app/uploads/2026/08/image-13.jpg" alt="" class="wp-image-190850" srcset="https://patchmypc.com/app/uploads/2026/08/image-13.jpg 639w, https://patchmypc.com/app/uploads/2026/08/image-13-300x224.jpg 300w" sizes="(max-width: 639px) 100vw, 639px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Figure 9. Decompiled MessageListener.ProcessRequestAsync and CreateProcessingContext. This is the code path that prepares the immediate acknowledgement.</p>
-
-
-
-<h3 id="h-parsemessagepayload" class="wp-block-heading">ParseMessagePayload</h3>
-
-
-
-<p class="wp-block-paragraph">ParseMessagePayload reads TrouterRequest.Body and passes it to the message processor. The resulting MessagePayload contains DeviceCheckinContent together with IC3Version and MinIC3Version. StartBackgroundProcessing then creates BackgroundMessageProcessor and starts it with the same cancellation token.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="639" height="499" src="https://patchmypc.com/app/uploads/2026/08/image-8.jpg" alt="" class="wp-image-190842" srcset="https://patchmypc.com/app/uploads/2026/08/image-8.jpg 639w, https://patchmypc.com/app/uploads/2026/08/image-8-300x234.jpg 300w" sizes="(max-width: 639px) 100vw, 639px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Figure 10. Decompiled ParseMessagePayload and StartBackgroundProcessing. The Trouter request body becomes MessagePayload and is handed to the background processor.</p>
-
-
-
-<h3 id="h-backgroundmessageprocessor" class="wp-block-heading">BackgroundMessageProcessor.</h3>
-
-
-
-<p class="wp-block-paragraph">The next handoff is especially important. BackgroundMessageProcessor.ProcessMessageAsync calls deviceActionCallback with payload.DeviceCheckinContent. In other words, IC3 is not introducing a second app or script engine. It feeds the new transport into the existing device action callback.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="639" height="245" src="https://patchmypc.com/app/uploads/2026/08/image-7.jpg" alt="" class="wp-image-190849" srcset="https://patchmypc.com/app/uploads/2026/08/image-7.jpg 639w, https://patchmypc.com/app/uploads/2026/08/image-7-300x115.jpg 300w" sizes="(max-width: 639px) 100vw, 639px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Figure 11. Decompiled BackgroundMessageProcessor.ProcessMessageAsync. DeviceCheckinContent is passed directly to the existing deviceActionCallback.</p>
-
-
-
-<h3 id="h-sidecarnotificationpayload" class="wp-block-heading">SidecarNotificationPayload</h3>
-
-
-
-<p class="wp-block-paragraph">The callback parses the same SidecarNotificationPayload used by the earlier WNS implementation. It reads NotificationIntent, SyncType, and AdditionalWorkloads. The primary intent can trigger its own handler, while TriggerAdditionalWorkloads handles the extra values from the semicolon separated list.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="639" height="438" src="https://patchmypc.com/app/uploads/2026/08/image-10.jpg" alt="" class="wp-image-190845" srcset="https://patchmypc.com/app/uploads/2026/08/image-10.jpg 639w, https://patchmypc.com/app/uploads/2026/08/image-10-300x206.jpg 300w" sizes="(max-width: 639px) 100vw, 639px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Figure 12. Decompiled EmsAgentService.DeviceActionCallbackAsync. The IC3 payload enters the existing workload dispatcher and reaches the Win32, PowerShell, and remediation callbacks.</p>
-
-
-
-<h3 id="h-sidecarnotification" class="wp-block-heading">SidecarNotification</h3>
-
-
-
-<p class="wp-block-paragraph">The SidecarNotification DLL confirms the numeric values rather than leaving them as assumptions. Win32AppWorkload is 2, PowerShellScriptWorkload is 8, and ProactiveRemediation is 9. The same DLL also contains GetSyncType and GetAdditionalWorkloads, which read the exact keys used in the DirectSync payload.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="639" height="488" src="https://patchmypc.com/app/uploads/2026/08/image-14.jpg" alt="" class="wp-image-190843" srcset="https://patchmypc.com/app/uploads/2026/08/image-14.jpg 639w, https://patchmypc.com/app/uploads/2026/08/image-14-300x229.jpg 300w" sizes="(max-width: 639px) 100vw, 639px" /></figure>
-
-
-
-<p class="wp-block-paragraph">Figure 13. Decompiled SidecarNotificationActionType and payload extension methods from the uploaded SidecarNotification DLL.</p>
-
-
-
-<h3 id="h-triggeradditionalworkloads" class="wp-block-heading">TriggerAdditionalWorkloads</h3>
-
-
-
-<p class="wp-block-paragraph">AgentCommon contains the code that handles the 9;8 value. TriggerAdditionalWorkloads splits the string on semicolons, caps it at twenty entries, validates every value against SidecarNotificationActionType, skips the primary intent and duplicate values, creates a new ClientContext, and dispatches the matching workload callback. The code only supports the three workload values that matter here: 2, 8, and 9.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="639" height="488" src="https://patchmypc.com/app/uploads/2026/08/image-5.jpg" alt="Decompiled NotificationWorkloadHelper.TriggerAdditionalWorkloads from AgentCommon.dll. The method parses 9;8 and dispatches the matching workload callbacks." class="wp-image-190841" srcset="https://patchmypc.com/app/uploads/2026/08/image-5.jpg 639w, https://patchmypc.com/app/uploads/2026/08/image-5-300x229.jpg 300w" sizes="(max-width: 639px) 100vw, 639px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The complete code path can now be followed without relying on a list of strings. IC3Client.StartAsync creates the live Trouter connection. MessageListener.ProcessRequestAsync accepts the incoming request. BackgroundMessageProcessor passes DeviceCheckinContent into deviceActionCallback. EmsAgentService.DeviceActionCallbackAsync then routes the primary and additional workload values into the existing IME handlers.</p>
-
-
-
-<h2 id="h-turning-the-investigation-into-a-live-ic3-sync-monitor" class="wp-block-heading">Turning the investigation into a live IC3 Sync monitor</h2>
-
-
-
-<p class="wp-block-paragraph">Once the two notification paths were clear, I wanted to see them together instead of constantly switching between the Windows event logs and NotificationInfraLogs. That is why I built the Intune Notification Monitor. The goal was not to simulate Intune, but to correlate the real client side evidence produced by the next Sync action and turn it into one readable flow.</p>
-
-
-
-<p class="wp-block-paragraph">The monitor also made the speed improvement immediately visible. Because IME already has an active IC3 and Trouter connection before anyone presses Sync, the DirectSync request does not have to wait for the next scheduled IME check in. In our captured actions, the IC3 request arrived and started the IME workload flow within milliseconds of pressing Sync in the Intune portal.</p>
-
-
-
-<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="554" src="https://patchmypc.com/app/uploads/2026/08/image-4-1024x554.png" alt="" class="wp-image-190873" srcset="https://patchmypc.com/app/uploads/2026/08/image-4-1024x554.png 1024w, https://patchmypc.com/app/uploads/2026/08/image-4-300x162.png 300w, https://patchmypc.com/app/uploads/2026/08/image-4-768x416.png 768w, https://patchmypc.com/app/uploads/2026/08/image-4-1536x831.png 1536w, https://patchmypc.com/app/uploads/2026/08/image-4.png 1846w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
-
-
-
-<p class="wp-block-paragraph">That timing is an observation from our captures and should not be treated as a guaranteed response time. However, it clearly shows the advantage of delivering the request over an already established connection.</p>
-
-
-
-<h2 id="h-the-current-intune-sync-design-is-hybrid" class="wp-block-heading">The current Intune Sync design is hybrid</h2>
-
-
-
-<p class="wp-block-paragraph">Putting everything together, pressing Sync now starts two related but separate client paths. The Intune Notification Monitor can display them as one Hybrid action, but the evidence underneath remains distinct. The Windows MDM branch begins with WNS and WindowsMDMPush. The IME branch begins when IC3 and Trouter deliver the DirectSync request to NotificationMessageListener.</p>
-
-
-
-<p class="wp-block-paragraph">On the Windows MDM side, the built in client handles policies, compliance, and the OMA DM session. On the IME side, the already established Trouter connection carries DeviceCheckinContent into the existing DeviceActionCallbackAsync pipeline, which then dispatches Win32 apps, PowerShell scripts, and Proactive Remediations.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="665" height="498" src="https://patchmypc.com/app/uploads/2026/08/image-12.jpg" alt="" class="wp-image-190851" srcset="https://patchmypc.com/app/uploads/2026/08/image-12.jpg 665w, https://patchmypc.com/app/uploads/2026/08/image-12-300x225.jpg 300w" sizes="(max-width: 665px) 100vw, 665px" /></figure>
-
-
-
-<p class="wp-block-paragraph">The most accurate description is therefore not that Intune Sync has completely moved to IC3. The current implementation is hybrid. WNS remains the wake up path for Windows MDM. IC3 and Trouter are now the delivery path for the IME DirectSync request. The monitor does not change that architecture; it simply makes both halves visible in one place.</p>
-
-
-
-<p class="wp-block-paragraph">One click in the portal now coordinates two clients through two different notification paths. The Sync button looks almost unchanged. Underneath it, the architecture has changed completely, and the live monitor gives us a practical way to watch that change happen on the device.</p>
-
-
-
-<p class="wp-block-paragraph">Receiving and acknowledging the request is only the first part. The next question is how Intune follows both paths and turns their progress into the new Sync Status window. That is the next part of the story.</p>
-
-
-
-<h2 id="h-what-about-the-new-sync-status-window" class="wp-block-heading">What about the new Sync status window?</h2>
-
-
-
-<p class="wp-block-paragraph">The new Sync status pane is the visible part of this improved flow. After the device is notified, Intune follows the different Sync areas separately and shows whether policies, applications, and scripts completed successfully.</p>
-
-
-
-<figure class="wp-block-image size-full"><img decoding="async" width="572" height="390" src="https://patchmypc.com/app/uploads/2026/08/image-1.png" alt="" class="wp-image-190847" srcset="https://patchmypc.com/app/uploads/2026/08/image-1.png 572w, https://patchmypc.com/app/uploads/2026/08/image-1-300x205.png 300w" sizes="(max-width: 572px) 100vw, 572px" /></figure>
-
-
-
-<p class="wp-block-paragraph">How those individual results are collected, correlated, and returned to the portal deserves its<strong><a href="https://patchmypc.com/blog/inside-intunes-new-sync-status-window/"> own technical investigation and a dedicated follow up blog.</a></strong></p>
-<p>The post <a href="https://patchmypc.com/blog/intune-on-demand-device-sync-now-uses-ic3-for-ime-workloads/">Intune On Demand Device Sync Now Uses IC3 for IME Workloads</a> appeared first on <a href="https://patchmypc.com">Patch My PC</a>.</p>
-]]></content:encoded>
-					
-					<wfw:commentRss>https://patchmypc.com/blog/intune-on-demand-device-sync-now-uses-ic3-for-ime-workloads/feed/</wfw:commentRss>
 			<slash:comments>0</slash:comments>
 		
 		
