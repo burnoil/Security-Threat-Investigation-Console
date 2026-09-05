@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-05T15:54:07Z",
-  "commit": "4567286",
+  "generatedAt": "2026-09-05T18:04:29Z",
+  "commit": "fcbacf3",
   "feeds": {
-    "kev": { "generatedAt": "2026-09-05T15:54:07Z" },
-    "patchmypc": { "generatedAt": "2026-09-05T15:54:07Z" },
-    "zdi": { "generatedAt": "2026-09-05T15:54:07Z" }
+    "kev": { "generatedAt": "2026-09-05T18:04:29Z" },
+    "patchmypc": { "generatedAt": "2026-09-05T18:04:29Z" },
+    "zdi": { "generatedAt": "2026-09-05T18:04:29Z" }
   }
 }
