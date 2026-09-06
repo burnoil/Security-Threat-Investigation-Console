@@ -12,7 +12,7 @@
 	<atom:link href="https://patchmypc.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://patchmypc.com/</link>
 	<description>Patch Management Made Easy</description>
-	<lastBuildDate>Sat, 05 Sep 2026 18:25:24 +0000</lastBuildDate>
+	<lastBuildDate>Sun, 06 Sep 2026 05:59:23 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -253,7 +253,7 @@
 
 
 
-<p class="wp-block-paragraph">One coexistence rule is worth remembering. Microsoft states that if a device is registered for Classic Autopilot but is not associated, the Classic Autopilot deployment takes precedence. If that same device is associated, Device Association takes precedence, and the Autoppilot Device Preparation deployment runs.</p>
+<p class="wp-block-paragraph">One coexistence rule is worth remembering. <strong><a href="https://learn.microsoft.com/en-us/autopilot/device-preparation/device-association/lifecycle-management#pre-associating-a-device-that-is-registered-for-windows-autopilot">Microsoft states</a></strong> that if a device is registered for Classic Autopilot but is not associated, the Classic Autopilot deployment takes precedence. If that same device is associated, Device Association takes precedence, and the Autopilot Device Preparation deployment runs.</p>
 
 
 
@@ -541,6 +541,10 @@
 
 
 <p class="wp-block-paragraph"><a>I wanted to follow that process end to end, from the export screen to Device Preparation. The twelve main steps below follow the overview diagram. Where a step needs a closer look, the letters in its smaller flow match the explanation underneath.</a></p>
+
+
+
+<p class="has-small-font-size wp-block-paragraph"><strong>Please note: </strong>If you want to know the differences between Autopilot V1, Autopilot Device Preparation and Autopilot Device Association, you may want to read this blog: <a href="https://patchmypc.com/blog/autopilot-device-preparation-vs-device-association-vs-autopilot/">Device Association vs Classic Autopilot: What Really Changed?</a></p>
 
 
 
